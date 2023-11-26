@@ -38,18 +38,23 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="btn btn-success mt-3 text-center m-auto d-block"
+              className="btn btn-success mt-3 text-center m-auto d-block mb-3"
             >
               بحث
             </button>
+            {studentId && (
+              <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                <Link href={`/parentPre/${searchNumber}`}>
+                  <button className="btn btn-success">ارسال طلب استئذان</button>
+                </Link>
+              </div>
+            )}
+            {!studentId && (
+              <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                <p className="text-danger">هذا الطالب غير موجود</p>
+              </div>
+            )}
           </form>
-          {studentId && (
-            <div className="d-flex justify-content-center align-items-center h-100 d-block">
-              <Link href={`/parentPre/${searchNumber}`}>
-                <button className="btn btn-success">ارسال طلب استئذان</button>
-              </Link>
-            </div>
-          )}
         </div>
       </div>
     </main>
