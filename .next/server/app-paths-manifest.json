@@ -1,0 +1,6 @@
+{
+  "/not-found": "app/not-found.js",
+  "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
+  "/page": "app/page.js",
+  "/api/students/[number]/route": "app/api/students/[number]/route.js"
+}
