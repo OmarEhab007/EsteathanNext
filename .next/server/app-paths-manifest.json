@@ -1,7 +1,8 @@
 {
   "/page": "app/page.js",
-  "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
-  "/api/students/[number]/route": "app/api/students/[number]/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/sentRequests/page": "app/dashboard/sentRequests/page.js"
+  "/dashboard/addStudent/page": "app/dashboard/addStudent/page.js",
+  "/dashboard/addTeacher/page": "app/dashboard/addTeacher/page.js",
+  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js",
+  "/dashboard/deleteData/page": "app/dashboard/deleteData/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }

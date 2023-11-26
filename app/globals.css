@@ -429,5 +429,14 @@ a{
 
   }
 
+  .addStudent form{
+    border: 1px solid;
+    border-radius: 1em;
+  }
+
+  .addTeacher form{
+    border: 1px solid;
+    border-radius: 1em;
+  }
 
   
