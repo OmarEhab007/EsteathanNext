@@ -1,4 +1,4 @@
-// File: /home/omar/projects/zezo/EsteathanNext-main/app/layout.jsx
+// File: D:\Web\Projects\Esteathan-Project\Omar\EsteathanNext\app\layout.jsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

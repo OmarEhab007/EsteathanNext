@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
-                    <a className="navbar-brand" href="./dashboard">إستئذان</a>
+                    <Link className="navbar-brand" href="/dashboard">إستئذان</Link>
                     
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
@@ -37,25 +37,25 @@ export default function RootLayout({ children }) {
                                     الطلبات
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item text-center" href="./">طلب جديد</Link></li>
-                                    <li><Link className="dropdown-item text-center" href="./dashboard/sentRequests">الطلبات المرسلة</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/">طلب جديد</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/sentRequests">الطلبات المرسلة</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item me-2 text-center text-center">
-                                <Link className="nav-link" href="./dashboard/sendToTeacher">ارسال لمعلم</Link>
+                                <Link className="nav-link" href="/dashboard/sendToTeacher">ارسال لمعلم</Link>
                             </li>
                             <li className="nav-item dropdown me-2 text-center">
                                 <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 استيراد بيانات
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item text-center" href="./dashboard/importStudentData">استيراد بيانات الطلاب</Link></li>
-                                    <li><Link className="dropdown-item text-center" href="./dashboard/importTeacherData">استيراد بيانات المعلمين</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/importStudentData">استيراد بيانات الطلاب</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/importTeacherData">استيراد بيانات المعلمين</Link></li>
                                     <li><hr className="dropdown-divider text-center"/></li>
-                                    <li><Link className="dropdown-item text-center" href="#">اضافة طالب جديد</Link></li>
-                                    <li><Link className="dropdown-item text-center" href="#">اضافة معلم جديد</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/addStudent">اضافة طالب جديد</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/addTeacher">اضافة معلم جديد</Link></li>
                                     <li><hr className="dropdown-divider text-center"/></li>
-                                    <li><Link className="dropdown-item text-center" href="#">حذف البيانات</Link></li>
+                                    <li><Link className="dropdown-item text-center" href="/dashboard/deleteData">حذف البيانات</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item me-2 text-center">
