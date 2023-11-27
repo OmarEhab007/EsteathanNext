@@ -1,7 +1,7 @@
-/node_modules
-/.next
+node_modules
+.next
 # Keep environment variables out of version control
-/node_modules
+node_modules
 target
 dist
 logs
