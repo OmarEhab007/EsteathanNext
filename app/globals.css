@@ -137,20 +137,8 @@ a{
   color: wheat;
 }
 
-.btn {
-    background-color: var(--accent-100) !important;
-    color: var(--text-100) !important;
-    border: none !important;
-    border-radius: 0.5em !important;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
-}
-
-.btn:hover{
-    background-color: var(--accent-200) !important;
-    color: var(--text-200) !important;
-    border: none !important;
-    border-radius: 0.5em !important;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+.premationReson {
+  background-color: var(--bg-300) !important;
 }
 
 .border-primary{

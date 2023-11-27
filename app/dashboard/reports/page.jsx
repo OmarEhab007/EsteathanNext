@@ -61,7 +61,7 @@ export default function Reports() {
                                 <div className="row border-secondary  reportDate mb-3">
                                     <div className="col-5 ">
                                         <div className="mb-3 text-center">
-                                            <p><span className='fw-bold' > من / </span> 3/10/2032 </p>
+                                            <p><span className='fw-bold' > من : </span> 3/10/2032 </p>
                                         </div>
                                     </div>
                                     <div className="col-2">
@@ -71,7 +71,7 @@ export default function Reports() {
                                     </div>
                                     <div className="col-5">
                                         <div className="mb-3 text-center">
-                                            <p><span className='fw-bold' > إلى / </span> 20/10/2032 </p>
+                                            <p><span className='fw-bold' > إلى : </span> 20/10/2032 </p>
                                         </div>
                                 </div>
                                 </div>
