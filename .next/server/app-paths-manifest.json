@@ -1,9 +1,11 @@
 {
-  "/parentPre/student/[id]/page": "app/parentPre/student/[id]/page.js",
-  "/api/students/[number]/route": "app/api/students/[number]/route.js",
-  "/api/forms/route": "app/api/forms/route.js",
   "/page": "app/page.js",
+  "/parentPre/student/[id]/page": "app/parentPre/student/[id]/page.js",
+  "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
   "/api/students/route": "app/api/students/route.js",
+  "/api/forms/route": "app/api/forms/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/sentRequests/page": "app/dashboard/sentRequests/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/dashboard/addStudent/page": "app/dashboard/addStudent/page.js",
+  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js"
 }
