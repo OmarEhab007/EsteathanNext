@@ -1,14 +1,14 @@
 /node_modules
 /.next
 # Keep environment variables out of version control
-node_modules
-target
-dist
-logs
+/node_modules
+/target
+/dist
+/logs
 public
-.cache
-.vscode
-.DS_Store
-.idea
-yarn-error.log
-npm-debug.log
+/.cache
+/.vscode
+/.DS_Store
+/.idea
+/yarn-error.log
+/npm-debug.log
