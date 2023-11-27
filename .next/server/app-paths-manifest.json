@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/api/students/[number]/route": "app/api/students/[number]/route.js",
-  "/api/teacher/route": "app/api/teacher/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/addTeacher/page": "app/dashboard/addTeacher/page.js"
-}
