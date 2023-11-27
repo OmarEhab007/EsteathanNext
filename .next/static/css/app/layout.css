@@ -15,12 +15,137 @@ html{
     font-size: 1.2em;
     font-weight: 400;
     line-height: 1.5;
-    color: #303136;
+
+    --primary-100:#C7B299;
+    --primary-200:#a9957d;
+    --primary-300:#675640;
+    --accent-100:#A68B5B;
+    --accent-200:#483507;
+    --text-100:#4D4D4D;
+    --text-200:#797979;
+    --bg-100:#F5EFE7;
+    --bg-200:#ebe5dd;
+    --bg-300:#c2bdb5;
+      
 }
+
+.dark{
+
+  --primary-100:#FFD700;
+  --primary-200:#ddb900;
+  --primary-300:#917800;
+  --accent-100:#c49216;
+  --accent-200:#5e3b00;
+  --text-100:#dcdcdc;
+  --text-200:#929292;
+  --bg-100:#1E1E1E;
+  --bg-200:#2d2d2d;
+  --bg-300:#454545;
+    
+}
+
+body{
+    background-color: var(--bg-100) !important;
+    color: var(--text-100) !important;
+
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-100);
+}
+
+nav{
+    background-color: var(--bg-200) !important;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+}
+
+nav a{
+    color: var(--accent-100) !important;
+
+}
+
+nav a:hover{
+    background-color: var(--bg-100) !important; 
+    border-radius: 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+nav .navbar-brand{
+    color: var(--accent-100) !important;
+}
+
+.dropdown-menu{
+    background-color: var(--bg-200) !important;
+    color: var(--text-100) !important;
+
+}
+
+.card-header{
+    background-color: var(--bg-300) !important;
+    color: var(--text-100) !important;
+  }
+
+  .card{
+    background-color: var(--bg-200) !important;
+    color: var(--text-100) !important;
+  }
+
+  input{
+    background-color: var(--bg-300) !important;
+    color: var(--text-100) !important;
+  }
+
+  input:focus{
+    background-color: var(--bg-200) !important;
+    color: var(--text-100) !important;
+  }
+
+  input::placeholder{
+    color: var(--text-200) !important;
+  }
+
+  textarea{
+    background-color: var(--bg-300) !important;
+    color: var(--text-100) !important;
+  }
+
+  textarea:focus{
+    background-color: var(--bg-200) !important;
+    color: var(--text-100) !important;
+  }
+
+  textarea::placeholder{
+    color: var(--text-200) !important;
+  }
+
+  select{
+    background-color: var(--bg-300) !important;
+    color: var(--text-100) !important;
+  }
+
+  select:focus{
+    background-color: var(--bg-200) !important;
+    color: var(--text-100) !important;
+  }
+
+  select::placeholder{
+    color: var(--text-200) !important;
+  }
+
 
 a{
   text-decoration:none !important;
   color: wheat;
+}
+
+.premationReson {
+  background-color: var(--bg-300) !important;
+}
+
+.border-primary{
+    border-color: var(--accent-100) !important;
 }
 
 /* The switch - the box around the slider */
@@ -438,10 +563,20 @@ a{
     border-radius: 1em;
   }
 
-  
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[12].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.jsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+  .login {
+    min-height: 75vh;
+  }
+
+  .signup {
+    min-height: 75vh;
+  }
+
+  .reportDate{
+    border-bottom: 1px solid ;
+  }
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[12].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app/layout.jsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* cyrillic-ext */
 @font-face {
   font-family: '__Inter_e66fe9';

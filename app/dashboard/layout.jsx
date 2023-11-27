@@ -1,35 +1,34 @@
 "use client";
-import React, { useEffect } from 'react';
-import { Inter } from 'next/font/google'
-import '../globals.css'
-import Link from 'next/link'
-// import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+import React, { useEffect, useState } from 'react';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
+import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css';
 import '../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+import '../globals.css'; // Assuming you have global styles in this file
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
+  const [darkMode, setDarkMode] = useState(false);
 
-    
-    useEffect(() => {
-        
-        if (typeof window !== "undefined") {
-            require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
-        }
-        
-    }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
+    }
+  }, []);
 
-    return (
-      <html lang="ar">
-        <body className={inter.className}>
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
 
+  return (
+    <html lang="ar">
+      <body className={`root-layout ${inter.className} ${darkMode ? 'dark' : ''}`}>
         <header>
-
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container">
-                    <Link className="navbar-brand" href="/dashboard">إستئذان</Link>
-                    
+            <nav className="navbar navbar-expand-lg ">
+                <div className="container">           
+                    <Link href="/dashboard" className="navbar-brand px-2">إستئذان</Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown me-2 text-center">
@@ -59,24 +58,34 @@ export default function RootLayout({ children }) {
                                 </ul>
                             </li>
                             <li className="nav-item me-2 text-center">
-                                <a className="nav-link" href="#"> التقارير </a>
+                                <a className="nav-link" href="/dashboard/reports"> التقارير </a>
+                            </li>
+                            <li className="nav-item me-2 text-center">
+                                <a className="nav-link" href="/dashboard/signin"> تسجيل الدخول </a>
                             </li>
                         </ul>
                     </div>
                     <label className="switch m-md-auto">
-                    <input type="checkbox"/>
+                    <input type="checkbox" onChange={toggleDarkMode} />
                     <span className="slider"></span>
                     </label>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </nav>
+                        <button
+                            className="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span className="navbar-toggler-icon"></span>
+                        </button>   
+                    </div>
+                </nav>
+            </header>
 
-        </header>
-          
-          {children}
+            {children}
         </body>
-      </html>
-    )
-  }
+    </html>
+  );
+}
