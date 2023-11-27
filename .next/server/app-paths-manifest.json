@@ -1,10 +1,8 @@
 {
-  "/not-found": "app/not-found.js",
-  "/api/teacher/route": "app/api/teacher/route.js",
-  "/api/teacher/[id]/route": "app/api/teacher/[id]/route.js",
+  "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
+  "/parentPre/student/[id]/page": "app/parentPre/student/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/sentRequests/page": "app/dashboard/sentRequests/page.js",
-  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js",
   "/dashboard/addStudent/page": "app/dashboard/addStudent/page.js",
   "/dashboard/addTeacher/page": "app/dashboard/addTeacher/page.js"
 }
