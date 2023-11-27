@@ -61,6 +61,9 @@ export default function RootLayout({ children }) {
                             <li className="nav-item me-2 text-center">
                                 <a className="nav-link" href="#"> التقارير </a>
                             </li>
+                            <li className="nav-item me-2 text-center">
+                                <a className="nav-link" href="/dashboard/signin"> تسجيل الدخول </a>
+                            </li>
                         </ul>
                     </div>
                     <label className="switch m-md-auto">

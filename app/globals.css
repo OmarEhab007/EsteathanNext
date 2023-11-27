@@ -439,4 +439,10 @@ a{
     border-radius: 1em;
   }
 
-  
+  .login {
+    min-height: 75vh;
+  }
+
+  .signup {
+    min-height: 75vh;
+  }
