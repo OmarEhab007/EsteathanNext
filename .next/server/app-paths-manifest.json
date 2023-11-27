@@ -1,5 +1,4 @@
 {
-  "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
   "/parentPre/student/[id]/page": "app/parentPre/student/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/sentRequests/page": "app/dashboard/sentRequests/page.js",
