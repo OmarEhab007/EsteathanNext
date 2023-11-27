@@ -1,11 +1,8 @@
 {
-  "/not-found": "app/not-found.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/api/students/[number]/route": "app/api/students/[number]/route.js",
   "/parentPre/[id]/page": "app/parentPre/[id]/page.js",
   "/parentPre/student/[id]/page": "app/parentPre/student/[id]/page.js",
-  "/dashboard/addTeacher/page": "app/dashboard/addTeacher/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/signin/page": "app/dashboard/signin/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/dashboard/signin/page": "app/dashboard/signin/page.js",
+  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js"
 }

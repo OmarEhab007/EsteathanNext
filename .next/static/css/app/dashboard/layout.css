@@ -16,7 +16,6 @@ html{
     font-weight: 400;
     line-height: 1.5;
 
-
     --primary-100:#C7B299;
     --primary-200:#a9957d;
     --primary-300:#675640;
@@ -139,6 +138,26 @@ nav .navbar-brand{
 a{
   text-decoration:none !important;
   color: wheat;
+}
+
+.btn {
+    background-color: var(--accent-100) !important;
+    color: var(--text-100) !important;
+    border: none !important;
+    border-radius: 0.5em !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+}
+
+.btn:hover{
+    background-color: var(--accent-200) !important;
+    color: var(--text-200) !important;
+    border: none !important;
+    border-radius: 0.5em !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+}
+
+.border-primary{
+    border-color: var(--accent-100) !important;
 }
 
 /* The switch - the box around the slider */
