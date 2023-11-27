@@ -22,6 +22,54 @@
       "static/chunks/main-app.js",
       "static/css/app/dashboard/layout.css",
       "static/chunks/app/dashboard/layout.js"
+<<<<<<< HEAD
+=======
+    ],
+    "/dashboard/deleteData/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/deleteData/page.js"
+    ],
+    "/dashboard/sendToTeacher/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/sendToTeacher/page.js"
+    ],
+    "/dashboard/addStudent/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/addStudent/page.js"
+    ],
+    "/dashboard/importStudentData/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/importStudentData/page.js"
+    ],
+    "/dashboard/importTeacherData/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/importTeacherData/page.js"
+    ],
+    "/dashboard/addTeacher/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/addTeacher/page.js"
+    ],
+    "/parentPre/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/parentPre/[id]/page.js"
+    ],
+    "/parentPre/student/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/parentPre/student/[id]/page.js"
+    ],
+    "/dashboard/sentRequests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/sentRequests/page.js"
+>>>>>>> 999113ad7bf83fdcde4c864cb394f883c3dfe4f2
     ]
   }
 }

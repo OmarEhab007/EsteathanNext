@@ -1,4 +1,14 @@
 {
+<<<<<<< HEAD
   "/page": "app/page.js",
+=======
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js",
+  "/dashboard/signin/page": "app/dashboard/signin/page.js",
+  "/dashboard/signup/page": "app/dashboard/signup/page.js",
+  "/dashboard/reports/page": "app/dashboard/reports/page.js",
+>>>>>>> 999113ad7bf83fdcde4c864cb394f883c3dfe4f2
   "/dashboard/page": "app/dashboard/page.js"
 }
