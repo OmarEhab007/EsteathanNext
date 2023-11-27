@@ -1,4 +1,4 @@
-// File: D:\Web\Projects\Esteathan-Project\Omar\EsteathanNext\app\api\students\[number]\route.ts
+// File: /home/omar/projects/zezo/EsteathanNext-main/app/api/students/[number]/route.ts
 import * as entry from '../../../../../../app/api/students/[number]/route.js'
 import type { NextRequest } from 'next/server.js'
 
