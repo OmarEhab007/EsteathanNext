@@ -1,8 +1,10 @@
 {
-  "/page": "app/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/reports/page": "app/dashboard/reports/page.js",
+  "/dashboard/sendToTeacher/page": "app/dashboard/sendToTeacher/page.js",
+  "/dashboard/addStudent/page": "app/dashboard/addStudent/page.js",
+  "/dashboard/importStudentData/page": "app/dashboard/importStudentData/page.js",
+  "/dashboard/addTeacher/page": "app/dashboard/addTeacher/page.js",
   "/dashboard/deleteData/page": "app/dashboard/deleteData/page.js",
-  "/dashboard/signin/page": "app/dashboard/signin/page.js",
-  "/dashboard/signup/page": "app/dashboard/signup/page.js"
+  "/dashboard/page": "app/dashboard/page.js"
 }

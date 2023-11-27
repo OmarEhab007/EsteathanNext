@@ -38,10 +38,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/signup/page.js"
     ],
-    "/not-found": [
+    "/dashboard/reports/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/dashboard/reports/page.js"
+    ],
+    "/dashboard/sendToTeacher/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/sendToTeacher/page.js"
+    ],
+    "/dashboard/addStudent/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/addStudent/page.js"
+    ],
+    "/dashboard/importStudentData/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/importStudentData/page.js"
+    ],
+    "/dashboard/importTeacherData/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/importTeacherData/page.js"
+    ],
+    "/dashboard/addTeacher/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/addTeacher/page.js"
     ]
   }
 }
