@@ -8,40 +8,74 @@ export default function AddStudent() {
   const [year, setYear] = useState("");
   const [parentNumber, setParentNumber] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const nameRegex = /^[\u0600-\u06FF\s]+$/; // Arabic characters and spaces
+  const numberRegex = /^\d{10}$/; // 10-digit numbers
+  const yearRegex = /^\d{2}$/; // 2-digit numbers
+  const parentNumberRegex = /^9665\d{8}$/; // Valid Saudi Arabia phone number
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(number, name, classNumber, year, parentNumber);
+    setLoading(true);
 
-    fetch("/api/students", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        number: number,
-        name: name,
-        class: classNumber,
-        // make year a number not a string
-        year: parseInt(year),
-        parentNumber: parentNumber,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setMessage("تم اضافة الطالب بنجاح");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setMessage("حدث خطأ ما");
+    try {
+      // Validate form fields using regex
+      if (!nameRegex.test(name)) {
+        throw new Error("الرجاء إدخال الاسم باللغة العربية");
+      }
+      if (!numberRegex.test(number)) {
+        throw new Error("الرقم يجب أن يكون عبارة عن 10 أرقام");
+      }
+      if (!yearRegex.test(year)) {
+        throw new Error("السنة يجب أن تكون عبارة عن رقمين");
+      }
+      if (!parentNumberRegex.test(parentNumber)) {
+        throw new Error("رقم ولي الأمر يجب أن يكون رقم هاتف صحيح في المملكة العربية السعودية");
+      }
+
+      const response = await fetch("/api/students", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          number: number,
+          name: name,
+          class: classNumber,
+          year: parseInt(year),
+          parentNumber: parentNumber,
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setMessage("تم اضافة الطالب بنجاح");
+
+      // Clear the input fields after successful submission
+      setNumber("");
+      setName("");
+      setClassNumber("");
+      setYear("");
+      setParentNumber("");
+
+      // Remove the success message after one second
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage(error.message || " هذا الطالب موجود مسبقا بقاعدة بياناتنا ");
+    } finally {
+      setLoading(false);
+    }
   };
+
+
   return (
     <>
       <section className="addStudent">
@@ -73,7 +107,7 @@ export default function AddStudent() {
                 <label htmlFor="studentId"> هوية الطالب </label>
                 <input
                   type="number"
-                  className="form-control border-primary"
+                  className="form-control border-primary "
                   id="studentId"
                   placeholder="هوية الطالب"
                   value={number}
@@ -82,56 +116,97 @@ export default function AddStudent() {
               </div>
             </div>
 
-            <div className="col-sm-6 mb-3">
+            <div className="col-sm-4 mb-3">
               <div className="form-group">
-                <label htmlFor="year">السنة</label>
+                <label htmlFor="studentClass"> السنة الدراسية </label>
+                <select 
+                name="studentClass" 
+                id="studentClass" 
+                className="form-select form-control border-primary" 
+                aria-label="Default select example"
+                placeholder=" السنة الدراسية "
+                value={classNumber}
+                onChange={(e) => setClassNumber(e.target.value)}
+                >
+                  <optgroup  >
+                    <option value="أول ثانوي" > أول ثانوي </option>
+                    <option value="ثاني ثانوي" > ثاني ثانوي </option>
+                    <option value="ثالث ثانوي" > ثالث ثانوي </option>
+                  </optgroup>
+                  <optgroup  >
+                    <option value="أول متوسط" > أول متوسط </option>
+                    <option value="ثاني متوسط" > ثاني متوسط </option>
+                    <option value="ثالث متوسط" > ثالث متوسط </option>
+                  </optgroup>
+                  <optgroup  >
+                    <option value="أول علوي" > أول علوي </option>
+                    <option value="ثاني علوي" > ثاني علوي </option>
+                    <option value="ثالث علوي" > ثالث علوي </option>
+                  </optgroup>
+                  <optgroup  >
+                    <option value="أول أولي" > أول أولي </option>
+                    <option value="ثاني أولي" > ثاني أولي </option>
+                    <option value="ثالث أولي" > ثالث أولي </option>
+                  </optgroup>
+                </select>
+                
+              </div>
+            </div>
+
+            <div className="col-sm-4 mb-3">
+              <div className="form-group">
+                <label htmlFor="year">الشعبة / الفصل</label>
                 <input
                   type="number"
                   className="form-control border-primary"
                   id="year"
-                  placeholder="السنة"
+                  placeholder="الشعبة / الفصل"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 />
               </div>
             </div>
 
-            <div className="col-sm-6 mb-3">
+            <div className="col-sm-4 mb-3">
               <div className="form-group">
-                <label htmlFor="parentNumber">رقم الوالد</label>
+                <label htmlFor="parentNumber">رقم ولي أمر الطالب </label>
                 <input
                   type="text"
                   className="form-control border-primary"
                   id="parentNumber"
-                  placeholder="رقم الوالد"
+                  placeholder="رقم ولي أمر الطالب "
                   value={parentNumber}
                   onChange={(e) => setParentNumber(e.target.value)}
                 />
               </div>
             </div>
 
-            <div className="col-sm-6 mb-3">
-              <div className="form-group">
-                <label htmlFor="studentClass">الشعبة / الفصل </label>
-                <input
-                  type="text"
-                  className="form-control border-primary"
-                  id="classNumber"
-                  placeholder="الشعبة / الفصل"
-                  value={classNumber}
-                  onChange={(e) => setClassNumber(e.target.value)}
-                />
-              </div>
-            </div>
+            
 
             <div className="col-12 mb-3">
               <div className="form-group">
-                <button type="submit" className="btn btn-outline-success">
-                  {" "}
-                  اضافة طالب جديد{" "}
-                  <span className=" p-1 ">
-                    <i class="fa-solid fa-plus"></i>
-                  </span>{" "}
+                <button
+                  type="submit"
+                  className="btn btn-outline-success"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>{" "}
+                      جاري الإضافة...
+                    </>
+                  ) : (
+                    <>
+                      اضافة طالب جديد{" "}
+                      <span className=" p-1 ">
+                        <i className="fa-solid fa-plus"></i>
+                      </span>
+                    </>
+                  )}
                 </button>
               </div>
             </div>
