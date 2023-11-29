@@ -5,6 +5,49 @@ export default function Reports() {
   const [forms, setForms] = useState([]);
   const [students, setStudents] = useState([]);
 
+    const handlePrint = () => {
+        const printWindow = window.open('', '_blank');
+        const reportPrintContent = document.querySelector('.reportPrint');
+      
+        if (printWindow && reportPrintContent) {
+          const baseUrl = process.env.PUBLIC_URL;
+      
+          printWindow.document.write(`
+            <html>
+              <head>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/bootstrap-icons.min.css" />
+                
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" />
+                <link rel="stylesheet" href="${baseUrl}/globals.css"/>
+                <title>Print</title>
+                <!-- Include any necessary stylesheets or styles here -->
+                <style>
+                  body {
+                    font-size: 14px;
+                  }
+                  /* Add any other print-specific styles */
+                </style>
+              </head>
+              <body>
+                ${reportPrintContent.outerHTML}
+              </body>
+            </html>
+          `);
+      
+          printWindow.document.close();
+      
+          // Add a delay before printing (adjust the delay time as needed)
+          setTimeout(() => {
+            printWindow.print();
+          }, 1000); // 1000 milliseconds = 1 second
+        }
+      };
+ 
+
   useEffect(() => {
     fetch("/api/forms") // replace with your API endpoint
       .then((res) => res.json())
@@ -49,38 +92,45 @@ export default function Reports() {
                             id="startDate"
                           />
                         </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="mb-3">
-                          <label htmlFor="endDate" className="form-label">
-                            {" "}
-                            إلى{" "}
-                          </label>
-                          <input
-                            type="date"
-                            className="form-control"
-                            id="endDate"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="mb-3">
-                          <button type="submit" className="btn btn-primary">
-                            {" "}
-                            عرض{" "}
-                          </button>
-                        </div>
-                      </div>
 
-                      <div className="col-6">
-                        <div className="mb-3">
-                          <button
-                            type="button"
-                            className="btn btn-warning ms-auto d-block"
-                          >
-                            {" "}
-                            طباعة{" "}
-                          </button>
+                        <div className="card-body">
+                            <form action="">
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="startDate" className="form-label"> من </label>
+                                            <input type="date" className="form-control" id="startDate" />
+                                         </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="endDate" className="form-label"> إلى </label>
+                                            <input type="date" className="form-control" id="endDate" />
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <button type="submit" className="btn btn-primary" onClick={handlePrint}>
+                                                عرض
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <button
+                                                type="button"
+                                                className="btn btn-warning ms-auto d-block"
+                                                onClick={handlePrint}
+                                            >
+                                                طباعة
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </form>
                         </div>
                       </div>
                     </div>
