@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <header>
             <nav className="navbar navbar-expand-lg ">
                 <div className="container">           
-                    <Link href="/dashboard" className="navbar-brand px-2"> <Image src={icon} alt='icon' placeholder='blur' width={50} /> </Link>
+                    <Link href="/dashboard" className="navbar-brand px-2"> <Image src={icon} alt='icon' placeholder='blur' width={120} /> </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown me-2 text-center">
