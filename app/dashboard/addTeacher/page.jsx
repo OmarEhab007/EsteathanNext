@@ -5,35 +5,86 @@ export default function AddTeacher() {
   const [teacherName, setTeacherName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({
+    nameError: "",
+    phoneError: "",
+  });
 
-  const handleSubmit = (event) => {
+  // Regex pattern for validating a full name with at least 3 names in Arabic
+  const nameRegex = /^[\u0600-\u06FF\s]+(\s[\u0600-\u06FF\s]+){2,}$/;
+
+  // Regex pattern for validating a Saudi Arabia phone number
+  const phoneRegex = /^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/;
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(number, name, classNumber, year, parentNumber);
 
-    fetch("/api/teacher", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: teacherName,
-        phone: phone,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setMessage("تم اضافة المعلم بنجاح");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setMessage("حدث خطأ ما");
+    // Reset errors
+    setErrors({
+      nameError: "",
+      phoneError: "",
+    });
+
+    // Validate teacherName and phone using regex
+    let hasErrors = false;
+    if (!nameRegex.test(teacherName)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        nameError: "يرجى إدخال اسم صحيح باللغة العربية ويحتوي على ثلاثة أسماء على الأقل",
+      }));
+      hasErrors = true;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        phoneError: "يرجى إدخال رقم جوال صحيح في المملكة العربية السعودية",
+      }));
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      // Exit early if there are validation errors
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/teacher", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: teacherName,
+          phone: phone,
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setMessage("تم اضافة المعلم بنجاح");
+
+      // Clear the input fields after successful submission
+      setTeacherName("");
+      setPhone("");
+
+      // Wait for one second and then remove the success message
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage(error.message || "هذا المعلم موجود مسبقا في قاعدة البيانات الخاصة بنا ");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,12 +104,18 @@ export default function AddTeacher() {
                 <label htmlFor="teacherName">اسم المعلم</label>
                 <input
                   type="text"
-                  className="form-control border-primary"
+                  className={`form-control border-primary ${
+                    errors.nameError ? "is-invalid" : ""
+                  }`}
                   id="teacherName"
                   placeholder="اسم المعلم"
                   value={teacherName}
                   onChange={(e) => setTeacherName(e.target.value)}
+                  disabled={loading}
                 />
+                {errors.nameError && (
+                  <div className="invalid-feedback">{errors.nameError}</div>
+                )}
               </div>
             </div>
 
@@ -66,24 +123,46 @@ export default function AddTeacher() {
               <div className="form-group">
                 <label htmlFor="teacherId"> رقم الجوال </label>
                 <input
-                  type="number"
-                  className="form-control border-primary"
+                  type="text"
+                  className={`form-control border-primary ${
+                    errors.phoneError ? "is-invalid" : ""
+                  }`}
                   id="teacherId"
                   placeholder=" رقم الجوال "
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  disabled={loading}
                 />
+                {errors.phoneError && (
+                  <div className="invalid-feedback">{errors.phoneError}</div>
+                )}
               </div>
             </div>
 
             <div className="col-12 mb-3">
               <div className="form-group">
-                <button type="submit" className="btn btn-outline-success">
-                  {" "}
-                  اضافة معلم جديد{" "}
-                  <span className=" p-1 ">
-                    <i class="fa-solid fa-plus"></i>
-                  </span>{" "}
+                <button
+                  type="submit"
+                  className="btn btn-outline-success"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>{" "}
+                      جاري الإضافة...
+                    </>
+                  ) : (
+                    <>
+                      اضافة معلم جديد{" "}
+                      <span className=" p-1 ">
+                        <i className="fa-solid fa-plus"></i>
+                      </span>{" "}
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -92,8 +171,8 @@ export default function AddTeacher() {
       </section>
       <section className="message">
         <div className="container">
-          <div className="alert alert-success" role="alert">
-            {message && message}
+          <div className={`text-success text-center mt-3 ${message ? "" : "d-none"}`} role="alert">
+            {message}
           </div>
         </div>
       </section>

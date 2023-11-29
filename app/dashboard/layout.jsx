@@ -6,6 +6,8 @@ import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css';
 import '../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import '../globals.css'; // Assuming you have global styles in this file
+import Image from 'next/image.js';
+import icon from  '../bigIcon.png';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +30,7 @@ export default function RootLayout({ children }) {
         <header>
             <nav className="navbar navbar-expand-lg ">
                 <div className="container">           
-                    <Link href="/dashboard" className="navbar-brand px-2">إستئذان</Link>
+                    <Link href="/dashboard" className="navbar-brand px-2"> <Image src={icon} alt='icon' placeholder='blur' width={120} /> </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown me-2 text-center">
