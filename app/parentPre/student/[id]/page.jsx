@@ -191,7 +191,7 @@ export default function Student() {
                             تم ارسال طلبك بنجاح{" "}
                           </p>
                           <a
-                            href={`/parentPre/student/${id}`}
+                            href={`/`}
                             className="text-secondary text-decoration-underline"
                           >
                             {" "}
