@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "next/navigation";
+// import PhoneAuth from "./../../../components/PhoneAuth";
 
 export default function ParentPre() {
   const params = useParams();
@@ -9,6 +10,7 @@ export default function ParentPre() {
   // search for student with id = params.id in the database and get the student's parent's phone number
   const [parentPhone, setParentPhone] = useState(null);
   const id = params.id;
+  const [verificationId, setVerificationId] = useState("");
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -28,6 +30,7 @@ export default function ParentPre() {
       fetchStudentData();
     }
   }, [id]);
+  console.log(parentPhone);
 
   return (
     <>
@@ -37,6 +40,7 @@ export default function ParentPre() {
             <h4 className=""> أدخل كود التأكيد المرسل الى هاتف ولي الأمر </h4>
           </header>
 
+          {/* <PhoneAuth /> */}
           <div className="d-flex justify-content-center align-items-center form-outer ">
             <form action="" className="w-50 p-5 border-success">
               <label for="personalId" className="form-labe mb-3">
@@ -50,7 +54,7 @@ export default function ParentPre() {
                 className="form-control border-success"
               />
 
-              <a href="./student.html">
+              <a href={`/parentPre/student/${id}`}>
                 <button
                   className="btn btn-success mt-3 text-center m-auto d-block "
                   type="button"
