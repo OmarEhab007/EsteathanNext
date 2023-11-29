@@ -20,10 +20,9 @@ export default function Reports() {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/bootstrap-icons.min.css" />
                 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" />
+
                 <link rel="stylesheet" href="${baseUrl}/globals.css"/>
-                <title>Print</title>
+                <title> &nbsp; </title>
                 <!-- Include any necessary stylesheets or styles here -->
                 <style>
                   body {
@@ -79,61 +78,39 @@ export default function Reports() {
                 </div>
                 <div className="card-body">
                   <form action="">
-                    <div className="row">
-                      <div className="col-6">
-                        <div className="mb-3">
-                          <label htmlFor="startDate" className="form-label">
-                            {" "}
-                            من{" "}
-                          </label>
-                          <input
-                            type="date"
-                            className="form-control"
-                            id="startDate"
-                          />
-                        </div>
-
-                        <div className="card-body">
-                            <form action="">
-                                <div className="row">
-                                    <div className="col-6">
-                                        <div className="mb-3">
-                                            <label htmlFor="startDate" className="form-label"> من </label>
-                                            <input type="date" className="form-control" id="startDate" />
-                                         </div>
-                                    </div>
-                                    <div className="col-6">
-                                        <div className="mb-3">
-                                            <label htmlFor="endDate" className="form-label"> إلى </label>
-                                            <input type="date" className="form-control" id="endDate" />
-                                        </div>
-                                    </div>
-                                    <div className="col-6">
-                                        <div className="mb-3">
-                                            <button type="submit" className="btn btn-primary" onClick={handlePrint}>
-                                                عرض
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-6">
-                                        <div className="mb-3">
-                                            <button
-                                                type="button"
-                                                className="btn btn-warning ms-auto d-block"
-                                                onClick={handlePrint}
-                                            >
-                                                طباعة
-                                            </button>
-                                        </div>
-                                    </div>
+                      <div className="row">
+                          <div className="col-6">
+                              <div className="mb-3">
+                                  <label htmlFor="startDate" className="form-label"> من </label>
+                                  <input type="date" className="form-control" id="startDate" />
                                 </div>
-                                
-                                
-                            </form>
-                        </div>
-                      </div>
-                    </div>
+                          </div>
+                          <div className="col-6">
+                              <div className="mb-3">
+                                  <label htmlFor="endDate" className="form-label"> إلى </label>
+                                  <input type="date" className="form-control" id="endDate" />
+                              </div>
+                          </div>
+                          <div className="col-6">
+                              <div className="mb-3">
+                                  <button type="submit" className="btn btn-primary" onClick={handlePrint}>
+                                      عرض
+                                  </button>
+                              </div>
+                          </div>
+
+                          <div className="col-6">
+                              <div className="mb-3">
+                                  <button
+                                      type="button"
+                                      className="btn btn-warning ms-auto d-block"
+                                      onClick={handlePrint}
+                                  >
+                                      طباعة
+                                  </button>
+                              </div>
+                          </div>
+                      </div>           
                   </form>
                 </div>
               </div>
@@ -196,8 +173,8 @@ export default function Reports() {
                               <th scope="row">{index + 1}</th>
                               <td>{student.name}</td>
                               <td>{student.number}</td>
-                              <td>{student.year}</td>
                               <td>{student.class}</td>
+                              <td>{student.year}</td>
                               <td>{student.parentNumber}</td>
                               <td>{date}</td>
                             </tr>
