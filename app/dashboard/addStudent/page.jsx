@@ -13,7 +13,7 @@ export default function AddStudent() {
   const nameRegex = /^[\u0600-\u06FF\s]+$/; // Arabic characters and spaces
   const numberRegex = /^\d{10}$/; // 10-digit numbers
   const yearRegex = /^\d{2}$/; // 2-digit numbers
-  const parentNumberRegex = /^9665\d{8}$/; // Valid Saudi Arabia phone number
+  const parentNumberRegex = /^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/; // Valid Saudi Arabia phone number
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -69,12 +69,12 @@ export default function AddStudent() {
       }, 1000);
     } catch (error) {
       console.error("Error:", error);
-      setMessage(error.message || " هذا الطالب موجود مسبقا بقاعدة بياناتنا ");
+      setMessage(error.message || "هذا الطالب موجود مسبقا في قاعدة البيانات الخاصة بنا");
     } finally {
       setLoading(false);
     }
   };
-
+  
 
   return (
     <>

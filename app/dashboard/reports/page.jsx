@@ -1,6 +1,34 @@
-import React from 'react'
+"use client";
+import React from 'react';
 
 export default function Reports() {
+  const handlePrint = () => {
+    const printWindow = window.open('', '_blank');
+    const reportPrintContent = document.querySelector('.reportPrint');
+
+    if (printWindow && reportPrintContent) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print</title>
+            <!-- Include any necessary stylesheets or styles here -->
+            <style>
+              body {
+                font-size: 14px;
+              }
+              /* Add any other print-specific styles */
+            </style>
+          </head>
+          <body>
+            ${reportPrintContent.outerHTML}
+          </body>
+        </html>
+      `);
+
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
   return <>
   
     <section className='reports'>
@@ -30,16 +58,23 @@ export default function Reports() {
                                     </div>
                                     <div className="col-6">
                                         <div className="mb-3">
-                                            <button type="submit" className="btn btn-primary"> عرض </button>
+                                            <button type="submit" className="btn btn-primary" onClick={handlePrint}>
+                                                عرض
+                                            </button>
                                         </div>
                                     </div>
 
                                     <div className="col-6">
                                         <div className="mb-3">
-                                            <button type="button" className="btn btn-warning ms-auto d-block"> طباعة </button>
+                                            <button
+                                                type="button"
+                                                className="btn btn-warning ms-auto d-block"
+                                                onClick={handlePrint}
+                                            >
+                                                طباعة
+                                            </button>
                                         </div>
                                     </div>
-
                                 </div>
                                 
                                 

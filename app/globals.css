@@ -575,3 +575,7 @@ a{
   .reportDate{
     border-bottom: 1px solid ;
   }
+
+  .icon{
+    width: 40px ;
+  }
