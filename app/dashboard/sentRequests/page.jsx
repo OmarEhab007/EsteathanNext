@@ -45,6 +45,24 @@ export default function SendRequests() {
         approval: "approved",
       }),
     });
+
+    fetch("/api/sentMessageToTeacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parentNumber: "201095427168", // Replace with parentPhone
+        message: "تم قبول طلب الاستئذان",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+
+    // reload the page
+    window.location.reload();
     // .then((res) => res.json())
     // .then((data) => {
     //   // Update the forms state with the new data
@@ -65,6 +83,24 @@ export default function SendRequests() {
         approval: "rejected",
       }),
     });
+
+    fetch("/api/sentMessageToTeacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parentNumber: "201095427168", // Replace with parentPhone
+        message: "تم رفض طلب الاستئذان",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+
+    // reload the page
+    window.location.reload();
     // .then((res) => res.json())
     // .then((data) => {
     //   // Update the forms state with the new data
