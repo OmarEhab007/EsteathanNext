@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 export default function Reports() {
   const [forms, setForms] = useState([]);
   const [students, setStudents] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [loading, setLoading] = useState(true);
 
     const handlePrint = () => {
         const printWindow = window.open('', '_blank');
@@ -47,27 +50,86 @@ export default function Reports() {
       };
  
 
-  useEffect(() => {
-    fetch("/api/forms") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => {
-        const approvedForms = data.datas.filter(
-          (form) => form.approval === "done"
-        );
-        setForms(approvedForms);
-      });
-
-    fetch("/api/students") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setStudents(data.datas));
-  }, []);
+      useEffect(() => {
+        // Fetch data here
+        fetch("/api/forms")
+          .then((res) => res.json())
+          .then((data) => {
+            const approvedForms = data.datas.filter(
+              (form) => form.approval === "done"
+            );
+            setForms(approvedForms);
+          })
+          .finally(() => setLoading(false)); // Set loading to false once data is fetched
+    
+        fetch("/api/students")
+          .then((res) => res.json())
+          .then((data) => setStudents(data.datas))
+          .finally(() => setLoading(false)); // Set loading to false once data is fetched
+      }, [])
 
   function findStudentByNumber(id) {
     return students.find((student) => student.number === id);
   }
 
+  const handleFilter = () => {
+    // Filter the forms based on the selected date range
+    const filteredForms = forms.filter((form) => {
+      const formDate = new Date(form.updatedAt).getTime();
+      const startTimestamp = startDate ? new Date(startDate).getTime() : 0;
+      const endTimestamp = endDate ? new Date(endDate).getTime() : Infinity;
+  
+      // Include forms if the timestamp is within the range or matches the start or end date
+      return formDate >= startTimestamp && formDate <= endTimestamp;
+    });
+  
+    setForms(filteredForms);
+  };
+  
+  // Additional cases when start or end date is not specified
+  useEffect(() => {
+    if (!startDate && endDate) {
+      // Display reports up to the specified end date
+      const filteredForms = forms.filter((form) => {
+        const formDate = new Date(form.updatedAt).getTime();
+        const endTimestamp = new Date(endDate).getTime();
+  
+        return formDate <= endTimestamp;
+      });
+  
+      setForms(filteredForms);
+    } else if (startDate && !endDate) {
+      // Display reports from the specified start date
+      const filteredForms = forms.filter((form) => {
+        const formDate = new Date(form.updatedAt).getTime();
+        const startTimestamp = new Date(startDate).getTime();
+  
+        return formDate >= startTimestamp;
+      });
+  
+      setForms(filteredForms);
+    } else if (!startDate && !endDate) {
+      // Display all report data if both start and end dates are blank
+      setForms(forms);
+    }
+  }, [startDate, endDate]);
+
   return (
     <>
+    {loading ? (
+        // Loading screen
+        <div className="loading-screen">
+          <div class="🤚">
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="🌴"></div>		
+            <div class="👍"></div>
+          </div>  
+        </div>
+      ) : (
+        // Content when data is loaded
       <section className="reports">
         <div className="container">
           <div className="row justify-content-center align-items-center mt-5 mb-3">
@@ -79,37 +141,53 @@ export default function Reports() {
                 <div className="card-body">
                   <form action="">
                       <div className="row">
-                          <div className="col-6">
-                              <div className="mb-3">
-                                  <label htmlFor="startDate" className="form-label"> من </label>
-                                  <input type="date" className="form-control" id="startDate" />
-                                </div>
+                        <div className="col-6">
+                          <div className="mb-3">
+                            <label htmlFor="startDate" className="form-label">
+                              من
+                            </label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              id="startDate"
+                              value={startDate}
+                              onChange={(e) => setStartDate(e.target.value)}
+                            />
                           </div>
-                          <div className="col-6">
-                              <div className="mb-3">
-                                  <label htmlFor="endDate" className="form-label"> إلى </label>
-                                  <input type="date" className="form-control" id="endDate" />
-                              </div>
+                        </div>
+                        <div className="col-6">
+                          <div className="mb-3">
+                            <label htmlFor="endDate" className="form-label">
+                              إلى
+                            </label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              id="endDate"
+                              value={endDate}
+                              onChange={(e) => setEndDate(e.target.value)}
+                            />
                           </div>
-                          <div className="col-6">
-                              <div className="mb-3">
-                                  <button type="submit" className="btn btn-primary" onClick={handlePrint}>
-                                      عرض
-                                  </button>
-                              </div>
+                        </div>
+                        <div className="col-6">
+                          <div className="mb-3">
+                            <button type="button" className="btn btn-primary" onClick={handleFilter}>
+                              عرض
+                            </button>
                           </div>
+                        </div>
 
-                          <div className="col-6">
-                              <div className="mb-3">
-                                  <button
-                                      type="button"
-                                      className="btn btn-warning ms-auto d-block"
-                                      onClick={handlePrint}
-                                  >
-                                      طباعة
-                                  </button>
-                              </div>
-                          </div>
+                        <div className="col-6">
+                            <div className="mb-3">
+                                <button
+                                    type="button"
+                                    className="btn btn-warning ms-auto d-block"
+                                    onClick={handlePrint}
+                                >
+                                    طباعة
+                                </button>
+                            </div>
+                        </div>
                       </div>           
                   </form>
                 </div>
@@ -125,11 +203,13 @@ export default function Reports() {
                     <h4> تقرير الاستئذان </h4>
                   </div>
                   <div className="card-body">
-                    <div className="row border-secondary  reportDate mb-3">
-                      <div className="col-5 ">
+                  {startDate || endDate ? (
+                    <div className="row border-secondary reportDate mb-3">
+                      <div className="col-5">
                         <div className="mb-3 text-center">
                           <p>
-                            <span className="fw-bold"> من : </span> 3/10/2032{" "}
+                            <span className="fw-bold startDate"> من : </span>{" "}
+                            {startDate ? new Date(startDate).toLocaleDateString() : ""}
                           </p>
                         </div>
                       </div>
@@ -141,11 +221,13 @@ export default function Reports() {
                       <div className="col-5">
                         <div className="mb-3 text-center">
                           <p>
-                            <span className="fw-bold"> إلى : </span> 20/10/2032{" "}
+                            <span className="fw-bold endDate"> إلى : </span>{" "}
+                            {endDate ? new Date(endDate).toLocaleDateString() : ""}
                           </p>
                         </div>
                       </div>
                     </div>
+                  ) : null}
 
                     <table class="table table-striped">
                       <thead>
@@ -198,6 +280,7 @@ export default function Reports() {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 }
