@@ -49,6 +49,7 @@ export default function Student() {
         console.log(data);
       });
   };
+  
 
   // console.log(student);
 
