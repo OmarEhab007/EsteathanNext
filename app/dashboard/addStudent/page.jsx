@@ -139,14 +139,12 @@ export default function AddStudent() {
                     <option value="ثالث متوسط" > ثالث متوسط </option>
                   </optgroup>
                   <optgroup  >
-                    <option value="أول علوي" > أول علوي </option>
-                    <option value="ثاني علوي" > ثاني علوي </option>
-                    <option value="ثالث علوي" > ثالث علوي </option>
-                  </optgroup>
-                  <optgroup  >
-                    <option value="أول أولي" > أول أولي </option>
-                    <option value="ثاني أولي" > ثاني أولي </option>
-                    <option value="ثالث أولي" > ثالث أولي </option>
+                    <option value="أول ابتدائي" > أول ابتدائي </option>
+                    <option value="ثاني ابتدائي" > ثاني ابتدائي </option>
+                    <option value="ثالث ابتدائي" > ثالث ابتدائي </option>
+                    <option value="أول ابتدائي" > رابع ابتدائي </option>
+                    <option value="ثاني ابتدائي" > خامس ابتدائي </option>
+                    <option value="ثالث ابتدائي" > سادس ابتدائي </option>
                   </optgroup>
                 </select>
                 
