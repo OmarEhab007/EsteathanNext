@@ -101,7 +101,7 @@ export default function Student() {
                   <div className="col-lg-8  col-sm-12">
                     <p className="card-text">
                       {" "}
-                      {student ? student.year : "Loading..."}{" "}
+                      {student ? student.class : "Loading..."}{" "}
                     </p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Student() {
                   <div className="col-lg-8  col-sm-12">
                     <p className="card-text">
                       {" "}
-                      {student ? student.class : "Loading..."}{" "}
+                      {student ? student.year : "Loading..."}{" "}
                     </p>
                   </div>
                 </div>
