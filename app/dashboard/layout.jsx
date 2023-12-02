@@ -135,7 +135,8 @@ export default function RootLayout({ children }) {
                   </li>
                   <li className="nav-item me-2 text-center">
                     <Link className="nav-link" href="/dashboard/reports">
-                      التقارير
+                      {" "}
+                      التقارير{" "}
                     </Link>
                   </li>
                   <li className="nav-item me-2 text-center nav-color">
