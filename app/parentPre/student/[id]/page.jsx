@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
 import { useParams } from "next/navigation";
-import { set } from "mongoose";
 
 export default function Student() {
   const params = useParams();
