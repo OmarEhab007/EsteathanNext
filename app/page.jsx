@@ -3,6 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Image from "next/image";
+import Icon from "./bigIcon.png";
 
 export default function Home() {
   const [searchNumber, setSearchNumber] = useState("");
@@ -33,7 +35,8 @@ export default function Home() {
   return (
     <main className={` reqMain  ${styles.reqMain}`}>
       <div className="container h-100">
-        <div className="d-flex justify-content-center align-items-center h-100">
+        <h1 className="text-center mb-3 mt-5"> <Image src={Icon} alt="Icon" width={300} />   </h1>
+        <div className="d-flex justify-content-center align-items-center h-50">
           <form onSubmit={handleSearch} className={`w-50 p-5 border-success ${styles.searchForm}`}>
             <label htmlFor="personalId" className="form-label mb-3">
               هوية الطالب
