@@ -63,6 +63,11 @@ nav a{
 
 }
 
+.nav-color{
+  color: var(--accent-100) !important;
+  margin: 0.5em 0;
+}
+
 nav a:hover{
     background-color: var(--bg-100) !important; 
     border-radius: 0.5em;

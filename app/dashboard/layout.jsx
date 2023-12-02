@@ -50,20 +50,20 @@ export default function RootLayout({ children }) {
                                 استيراد بيانات
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item text-center" href="/dashboard/importStudentData">استيراد بيانات الطلاب</Link></li>
-                                    <li><Link className="dropdown-item text-center" href="/dashboard/importTeacherData">استيراد بيانات المعلمين</Link></li>
+                                    <li className='text-center nav-color'>{/*<Link className="dropdown-item text-center" href="/dashboard/importStudentData">استيراد بيانات الطلاب</Link>*/} استيراد بيانات الطلاب </li>
+                                    <li className='text-center nav-color' >{/*<Link className="dropdown-item text-center" href="/dashboard/importTeacherData">استيراد بيانات المعلمين</Link>*/} استيراد بيانات المعلمين </li>
                                     <li><hr className="dropdown-divider text-center"/></li>
                                     <li><Link className="dropdown-item text-center" href="/dashboard/addStudent">اضافة طالب جديد</Link></li>
                                     <li><Link className="dropdown-item text-center" href="/dashboard/addTeacher">اضافة معلم جديد</Link></li>
                                     <li><hr className="dropdown-divider text-center"/></li>
-                                    <li><Link className="dropdown-item text-center" href="/dashboard/deleteData">حذف البيانات</Link></li>
+                                    <li className='text-center nav-color'>{/*<Link className="dropdown-item text-center" href="/dashboard/deleteData ">حذف البيانات</Link>*/} حذف البيانات </li>
                                 </ul>
                             </li>
                             <li className="nav-item me-2 text-center">
                                 <a className="nav-link" href="/dashboard/reports"> التقارير </a>
                             </li>
-                            <li className="nav-item me-2 text-center">
-                                <a className="nav-link" href="/dashboard/signin"> تسجيل الدخول </a>
+                            <li className="nav-item me-2 text-center nav-color">
+                                {/*<Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>*/}  تسجيل الدخول 
                             </li>
                         </ul>
                     </div>
