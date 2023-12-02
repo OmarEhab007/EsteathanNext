@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "next/navigation";
-import { set } from "mongoose";
 // import PhoneAuth from "./../../../components/PhoneAuth";
 
 export default function ParentPre() {
