@@ -14,11 +14,11 @@ const inter = Inter({ subsets: ['latin'] });
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
 
-//   useEffect(() => {
-//     if (typeof window !== 'undefined') {
-//       require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
-//     }
-//   }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
+    }
+  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
