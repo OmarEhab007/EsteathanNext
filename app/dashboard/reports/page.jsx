@@ -8,12 +8,13 @@ export default function Reports() {
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
     const handlePrint = () => {
         const printWindow = window.open('', '_blank');
         const reportPrintContent = document.querySelector('.reportPrint');
       
         if (printWindow && reportPrintContent) {
-          const baseUrl = process.env.PUBLIC_URL;
+          
       
           printWindow.document.write(`
             <html>
@@ -24,7 +25,6 @@ export default function Reports() {
                 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
 
-                <link rel="stylesheet" href="${baseUrl}/globals.css"/>
                 <title> &nbsp; </title>
                 <!-- Include any necessary stylesheets or styles here -->
                 <style>
@@ -47,7 +47,9 @@ export default function Reports() {
             printWindow.print();
           }, 1000); // 1000 milliseconds = 1 second
         }
-      };
+    };
+    }, [])
+
  
 
       useEffect(() => {
