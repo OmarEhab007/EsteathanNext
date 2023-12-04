@@ -3,6 +3,38 @@ import React, { useState, useEffect } from "react";
 
 export default function DeleteData() {
   const [students, setStudents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredStudents = students.filter((student) =>
+    student.name.includes(searchQuery)
+  );
+
+  const deleteStudent = (id) => {
+    fetch(`/api/students/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const newStudents = students.filter((student) => student.id !== id);
+        setStudents(newStudents);
+      });
+  };
+
+  const deleteAllStudents = () => {
+    fetch(`/api/students`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStudents([]);
+      });
+  };
+
+  const deleteAllTeachers = () => {
+    fetch(`/api/teacher`, {
+      method: "DELETE",
+    }).then((res) => res.json());
+  };
 
   useEffect(() => {
     fetch("/api/students") // replace with your API endpoint
@@ -33,6 +65,7 @@ export default function DeleteData() {
                       <button
                         type="button"
                         className="btn btn-danger mx-auto d-block"
+                        onClick={deleteAllStudents}
                       >
                         حذف البيانات
                       </button>
@@ -51,6 +84,7 @@ export default function DeleteData() {
                       <button
                         type="button"
                         className="btn btn-danger mx-auto d-block"
+                        onClick={deleteAllTeachers}
                       >
                         حذف البيانات
                       </button>
@@ -78,6 +112,10 @@ export default function DeleteData() {
                                 class="form-control"
                                 id="studentSearch"
                                 placeholder="ابحث باسم الطالب"
+                                value={searchQuery}
+                                onChange={(event) =>
+                                  setSearchQuery(event.target.value)
+                                }
                               />
                               <label for="studentSearch">
                                 {" "}
@@ -89,7 +127,7 @@ export default function DeleteData() {
                       </div>
                       <div className="col-md-3"></div>
 
-                      {students.map((student) => (
+                      {filteredStudents.map((student) => (
                         <div className="col-12 col-md-6 mb-3">
                           <div className="card border-info">
                             <div className="card-header border-warning">
@@ -115,7 +153,10 @@ export default function DeleteData() {
                                   <p className="card-text"> : </p>
                                 </div>
                                 <div className="col-lg-8  col-sm-12">
-                                  <p className="card-text"> {student.number} </p>
+                                  <p className="card-text">
+                                    {" "}
+                                    {student.number}{" "}
+                                  </p>
                                 </div>
                               </div>
 
@@ -127,7 +168,7 @@ export default function DeleteData() {
                                   <p className="card-text"> : </p>
                                 </div>
                                 <div className="col-lg-8  col-sm-12">
-                                  <p className="card-text"> {student.class }</p>
+                                  <p className="card-text"> {student.class}</p>
                                 </div>
                               </div>
 
@@ -147,6 +188,7 @@ export default function DeleteData() {
                                 <button
                                   type="button"
                                   className="btn btn-danger text-center m-auto d-block"
+                                  onClick={() => deleteStudent(student.id)}
                                 >
                                   {" "}
                                   حذف الطالب{" "}
