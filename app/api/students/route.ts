@@ -52,3 +52,19 @@ export async function POST(req: Request, res: Response) {
     );
   }
 }
+
+// delete all students data  /api/students
+
+export async function DELETE(req: Request, res: Response) {
+  try {
+    const data = await prisma.student.deleteMany();
+    return NextResponse.json({ message: "OK", data }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error", error },
+      {
+        status: 500,
+      }
+    );
+  }
+}
