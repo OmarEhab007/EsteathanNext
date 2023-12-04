@@ -98,12 +98,11 @@ export default function RootLayout({ children }) {
                     </Link>
                     <ul className="dropdown-menu">
                       <li className="text-center nav-color">
-                        {/*<Link className="dropdown-item text-center" href="/dashboard/importStudentData">استيراد بيانات الطلاب</Link>*/}{" "}
-                        استيراد بيانات الطلاب{" "}
+                        <Link className="dropdown-item text-center" href="/dashboard/importStudentData">استيراد بيانات الطلاب</Link>
                       </li>
                       <li className="text-center nav-color">
-                        {/*<Link className="dropdown-item text-center" href="/dashboard/importTeacherData">استيراد بيانات المعلمين</Link>*/}{" "}
-                        استيراد بيانات المعلمين{" "}
+                        <Link className="dropdown-item text-center" href="/dashboard/importTeacherData">استيراد بيانات المعلمين</Link>
+                        
                       </li>
                       <li>
                         <hr className="dropdown-divider text-center" />
@@ -128,8 +127,7 @@ export default function RootLayout({ children }) {
                         <hr className="dropdown-divider text-center" />
                       </li>
                       <li className="text-center nav-color">
-                        {/*<Link className="dropdown-item text-center" href="/dashboard/deleteData ">حذف البيانات</Link>*/}{" "}
-                        حذف البيانات{" "}
+                        <Link className="dropdown-item text-center" href="/dashboard/deleteData ">حذف البيانات</Link>
                       </li>
                     </ul>
                   </li>
