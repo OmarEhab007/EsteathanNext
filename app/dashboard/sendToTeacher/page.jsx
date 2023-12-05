@@ -172,6 +172,7 @@ export default function SendToTeasher() {
                               className="form-select"
                               aria-label="Default select example"
                               onChange={handleTeacherChange}
+                              required
                             >
                               <option>اختر المعلم</option>
                               {teachers.map((teacher) => {
@@ -205,6 +206,7 @@ export default function SendToTeasher() {
                               rows="3"
                               value={message}
                               onChange={handleInputChange}
+                              required
                             ></textarea>
                           </div>
                           <div className="sendToteacherButton text-center">
