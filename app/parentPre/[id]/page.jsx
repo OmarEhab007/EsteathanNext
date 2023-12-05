@@ -72,13 +72,13 @@ export default function ParentPre() {
       <main className="reqParent">
         <div className="container h-100">
           <header className=" d-flex justify-content-center align-items-end text-center">
-            <h4 className=""> أدخل كود التأكيد المرسل الى هاتف ولي الأمر </h4>
+            <h4 className=""> أدخل كود التأكيد المرسل الى واتساب ولي الأمر </h4>
           </header>
 
           {/* <PhoneAuth /> */}
-          <div className="d-flex justify-content-center align-items-center form-outer ">
+          <div className="row justify-content-center align-items-center form-outer ">
             <form
-              className="w-50 p-5 border-success"
+              className="col-md-8 col-sm-10 col-12 p-5 border-success"
               onSubmit={(e) => e.preventDefault()}
             >
               <label for="personalId" className="form-labe mb-3">

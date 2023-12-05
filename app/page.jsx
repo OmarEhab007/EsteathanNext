@@ -36,8 +36,8 @@ export default function Home() {
     <main className={` reqMain  ${styles.reqMain}`}>
       <div className="container h-100">
         <h1 className="text-center mb-3 mt-5"> <Image src={Icon} alt="Icon" width={300} />   </h1>
-        <div className="d-flex justify-content-center align-items-center h-50">
-          <form onSubmit={handleSearch} className={`w-50 p-5 border-success ${styles.searchForm}`}>
+        <div className="row justify-content-center align-items-center h-50">
+          <form onSubmit={handleSearch} className={` p-5 border-success col-md-8 col-sm-10 col-12 ${styles.searchForm}`}>
             <label htmlFor="personalId" className="form-label mb-3">
               هوية الطالب
             </label>
