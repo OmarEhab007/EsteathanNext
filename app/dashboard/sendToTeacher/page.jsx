@@ -55,7 +55,7 @@ export default function SendToTeasher() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: "201095427168", // Replace with parentPhone
+        parentNumber: selectedTeacher.phone,
         message: message,
       }),
     })
