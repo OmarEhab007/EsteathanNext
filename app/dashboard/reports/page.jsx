@@ -8,46 +8,46 @@ export default function Reports() {
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  // const handlePrint = () => {
-  //     const printWindow = window.open('', '_blank');
-  //     const reportPrintContent = document.querySelector('.reportPrint');
+  useEffect(() => {
+  const handlePrint = () => {
+      const printWindow = window.open('', '_blank');
+      const reportPrintContent = document.querySelector('.reportPrint');
 
-  //     if (printWindow && reportPrintContent) {
+      if (printWindow && reportPrintContent) {
 
-  //       printWindow.document.write(`
-  //         <html>
-  //           <head>
-  //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
-  //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css" />
-  //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/bootstrap-icons.min.css" />
+        printWindow.document.write(`
+          <html>
+            <head>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css" />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/bootstrap-icons.min.css" />
 
-  //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
 
-  //             <title> &nbsp; </title>
-  //             <!-- Include any necessary stylesheets or styles here -->
-  //             <style>
-  //               body {
-  //                 font-size: 14px;
-  //               }
-  //               /* Add any other print-specific styles */
-  //             </style>
-  //           </head>
-  //           <body>
-  //             ${reportPrintContent.outerHTML}
-  //           </body>
-  //         </html>
-  //       `);
+              <title> &nbsp; </title>
+              <!-- Include any necessary stylesheets or styles here -->
+              <style>
+                body {
+                  font-size: 14px;
+                }
+                /* Add any other print-specific styles */
+              </style>
+            </head>
+            <body>
+              ${reportPrintContent.outerHTML}
+            </body>
+          </html>
+        `);
 
-  //       printWindow.document.close();
+        printWindow.document.close();
 
-  //       // Add a delay before printing (adjust the delay time as needed)
-  //       setTimeout(() => {
-  //         printWindow.print();
-  //       }, 1000); // 1000 milliseconds = 1 second
-  //     }
-  // };
-  // }, [])
+        // Add a delay before printing (adjust the delay time as needed)
+        setTimeout(() => {
+          printWindow.print();
+        }, 1000); // 1000 milliseconds = 1 second
+      }
+  };
+  }, [])
 
   useEffect(() => {
     // Fetch data here
