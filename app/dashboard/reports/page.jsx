@@ -8,7 +8,6 @@ export default function Reports() {
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
   const handlePrint = () => {
       const printWindow = window.open('', '_blank');
       const reportPrintContent = document.querySelector('.reportPrint');
@@ -47,7 +46,6 @@ export default function Reports() {
         }, 1000); // 1000 milliseconds = 1 second
       }
   };
-  }, [])
 
   useEffect(() => {
     // Fetch data here
