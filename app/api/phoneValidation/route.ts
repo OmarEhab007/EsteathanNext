@@ -48,9 +48,9 @@ export const POST = async (req: Request) => {
     const params = new URLSearchParams({
       number: parentNumber,
       type: "text",
-      message: `Validation Code is : ${code}`,
-      instance_id: "6568865B375E4",
-      access_token: "65686dcb208e8",
+      message: `كود التأكيد : ${code}`,
+      instance_id: "657082ACCE9CC",
+      access_token: "657080406f853",
     });
     const url = "https://wa.karzoun.app/api/send?" + params.toString();
 
