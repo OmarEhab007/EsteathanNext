@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function SendRequests() {
   const [forms, setForms] = useState([]);
   const [students, setStudents] = useState([]);
+  const [parentPhone, setParentPhone] = useState(null);
 
   useEffect(() => {
     fetch("/api/forms") // replace with your API endpoint
@@ -34,8 +35,17 @@ export default function SendRequests() {
     return student ? student.class : "Student not found";
   };
 
+  const getStudentParentNumber = (studentId) => {
+    const student = students.find((student) => student.number === studentId);
+    return student ? student.parentNumber : "Student not found";
+  };
+  
+
   const handleApproval = (formId) => {
     // Make an API call to update the form data
+    const form = forms.find((form) => form.id === formId);
+    const student = students.find((student) => student.number === form.studentId);
+    const parentNumber = student.parentNumber;
     fetch(`/api/forms/${formId}`, {
       method: "PUT",
       headers: {
@@ -52,7 +62,7 @@ export default function SendRequests() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: "201095427168", // Replace with parentPhone
+        parentNumber: parentNumber, // Replace with parentPhone
         message: "تم قبول طلب الاستئذان",
       }),
     })

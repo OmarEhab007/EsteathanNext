@@ -48,7 +48,7 @@ export default function ParentPre() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            parentNumber: "201095427168", // Replace with parentPhone
+            parentNumber: parentPhone,
             code: verificationCode,
           }),
         })
