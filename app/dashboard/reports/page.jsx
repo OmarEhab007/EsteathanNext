@@ -185,7 +185,7 @@ export default function Reports() {
                             <button
                               type="button"
                               className="btn btn-warning ms-auto d-block"
-                              // onClick={handlePrint}
+                              onClick={handlePrint}
                             >
                               طباعة
                             </button>
