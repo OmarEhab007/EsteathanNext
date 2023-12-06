@@ -9,6 +9,25 @@ export default function ImportStudentData() {
     reader.onload = (event) => {
       const data = JSON.parse(event.target.result);
       data.forEach((student) => {
+        let classLabel = "";
+
+        switch (student["رقم الصف"]) {
+          case "1314":
+            classLabel = "أول ثانوي";
+            break;
+          case "1416":
+            classLabel = "ثاني ثانوي";
+            break;
+          case "1516":
+            classLabel = "ثالث ثانوي";
+            break;
+          // Add more cases if needed
+
+          default:
+            classLabel = "Unknown Class";
+            break;
+        }
+
         fetch("/api/students", {
           method: "POST",
           headers: {
@@ -16,8 +35,8 @@ export default function ImportStudentData() {
           },
           body: JSON.stringify({
             parentNumber: student["الجوال"],
-            class: student["الفصل"],
-            year: parseInt(student["رقم الصف"], 10),
+            class: classLabel,
+            year: parseInt(student["الفصل"], 10),
             name: student["اسم الطالب"],
             number: student["رقم الطالب"],
           }),
@@ -27,6 +46,7 @@ export default function ImportStudentData() {
 
     reader.readAsText(file);
   };
+
   return (
     <>
       <section className="importStudentData">
