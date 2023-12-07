@@ -5,7 +5,7 @@ export default function Dashboard() {
   const [forms, setForms] = useState([]);
 
   useEffect(() => {
-    fetch("/api/forms") // replace with your API endpoint
+    fetch("/esteathan/api/forms") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => {
         console.log(data.datas); // add this line

@@ -34,7 +34,7 @@ export default function AddStudent() {
         throw new Error("رقم ولي الأمر يجب أن يكون رقم هاتف صحيح في المملكة العربية السعودية");
       }
 
-      const response = await fetch("/api/students", {
+      const response = await fetch("/esteathan/api/students", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

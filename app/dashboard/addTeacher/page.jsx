@@ -52,7 +52,7 @@ export default function AddTeacher() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/teacher", {
+      const response = await fetch("/esteathan/api/teacher", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

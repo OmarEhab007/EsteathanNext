@@ -8,11 +8,11 @@ export default function SendRequests() {
   const [parentPhone, setParentPhone] = useState(null);
 
   useEffect(() => {
-    fetch("/api/forms") // replace with your API endpoint
+    fetch("/esteathan/api/forms") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setForms(data.datas));
 
-    fetch("/api/students") // replace with your API endpoint
+    fetch("/esteathan/api/students") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setStudents(data.datas));
   }, []);
@@ -46,7 +46,7 @@ export default function SendRequests() {
     const form = forms.find((form) => form.id === formId);
     const student = students.find((student) => student.number === form.studentId);
     const parentNumber = student.parentNumber;
-    fetch(`/api/forms/${formId}`, {
+    fetch(`/esteathan/api/forms/${formId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function SendRequests() {
       }),
     });
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/esteathan/api/sentMessageToTeacher", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default function SendRequests() {
 
   const handleRejection = (formId) => {
     // Make an API call to update the form data
-    fetch(`/api/forms/${formId}`, {
+    fetch(`/esteathan/api/forms/${formId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -94,13 +94,13 @@ export default function SendRequests() {
       }),
     });
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/esteathan/api/sentMessageToTeacher", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: "201095427168", // Replace with parentPhone
+        parentNumber: parentPhone, // Replace with parentPhone
         message: "تم رفض طلب الاستئذان",
       }),
     })

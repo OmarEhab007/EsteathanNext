@@ -17,7 +17,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch(`/api/students/${searchNumber}`);
+      const response = await fetch(`/esteathan/api/students/${searchNumber}`);
       const result = await response.json();
       const student = result.data;
       if (student) {

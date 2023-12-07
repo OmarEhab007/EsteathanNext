@@ -12,7 +12,7 @@ export default function Student() {
 
   const id = params.id;
   useEffect(() => {
-    fetch(`/api/students/${id}`)
+    fetch(`/esteathan/api/students/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setStudent(res.data);
@@ -23,7 +23,7 @@ export default function Student() {
     setLoading(true);
     event.preventDefault();
 
-    fetch("/api/forms", {
+    fetch("/esteathan/api/forms", {
       // replace with your API endpoint
       method: "POST",
       headers: {
@@ -191,7 +191,7 @@ export default function Student() {
                             تم ارسال طلبك بنجاح{" "}
                           </p>
                           <a
-                            href={`/`}
+                            href={`/esteathan`}
                             className="text-secondary text-decoration-underline"
                           >
                             {" "}

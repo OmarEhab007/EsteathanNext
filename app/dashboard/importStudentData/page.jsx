@@ -28,7 +28,7 @@ export default function ImportStudentData() {
             break;
         }
 
-        fetch("/api/students", {
+        fetch("/esteathan/api/students", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
