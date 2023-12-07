@@ -84,7 +84,7 @@ export default function SendRequests() {
 
   const handleRejection = (formId) => {
     // Make an API call to update the form data
-    fetch(`/api/forms/${formId}`, {
+    fetch(`/esteathan/api/forms/${formId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -94,13 +94,13 @@ export default function SendRequests() {
       }),
     });
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/esteathan/api/sentMessageToTeacher", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: "201095427168", // Replace with parentPhone
+        parentNumber: parentPhone, // Replace with parentPhone
         message: "تم رفض طلب الاستئذان",
       }),
     })

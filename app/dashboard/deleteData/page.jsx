@@ -10,7 +10,7 @@ export default function DeleteData() {
   );
 
   const deleteStudent = (id) => {
-    fetch(`/api/students/${id}`, {
+    fetch(`/esteathan/api/students/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -21,7 +21,7 @@ export default function DeleteData() {
   };
 
   const deleteAllStudents = () => {
-    fetch(`/api/students`, {
+    fetch(`/esteathan/api/students`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -31,13 +31,13 @@ export default function DeleteData() {
   };
 
   const deleteAllTeachers = () => {
-    fetch(`/api/teacher`, {
+    fetch(`/esteathan/api/teacher`, {
       method: "DELETE",
     }).then((res) => res.json());
   };
 
   useEffect(() => {
-    fetch("/api/students") // replace with your API endpoint
+    fetch("/esteathan/api/students") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setStudents(data.datas));
   }, []);
