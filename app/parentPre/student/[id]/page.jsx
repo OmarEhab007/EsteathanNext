@@ -191,7 +191,7 @@ export default function Student() {
                             تم ارسال طلبك بنجاح{" "}
                           </p>
                           <a
-                            href={`/`}
+                            href={`/esteathan`}
                             className="text-secondary text-decoration-underline"
                           >
                             {" "}

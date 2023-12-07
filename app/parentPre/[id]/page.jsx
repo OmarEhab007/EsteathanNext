@@ -101,7 +101,7 @@ export default function ParentPre() {
                 onClick={() => {
                   if (inputValue === verificationId) {
                     // If the input value is correct, navigate to the next page
-                    window.location.href = `/parentPre/student/${id}`;
+                    window.location.href = `/esteathan/parentPre/student/${id}`;
                   } else {
                     // If the input value is incorrect, show an error message
                     setErrorMessage("The verification code is incorrect.");
