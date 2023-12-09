@@ -6,6 +6,7 @@ export default function SendRequests() {
   const [forms, setForms] = useState([]);
   const [students, setStudents] = useState([]);
   const [parentPhone, setParentPhone] = useState(null);
+  // const [NumberOfRequests, setNumberOfRequests] = useState(null);
 
   useEffect(() => {
     fetch("/esteathan/api/forms") // replace with your API endpoint
@@ -39,12 +40,19 @@ export default function SendRequests() {
     const student = students.find((student) => student.number === studentId);
     return student ? student.parentNumber : "Student not found";
   };
-  
+
+  const getNumberOfRequests = (studentId) => {
+    const studentForms = forms.filter((form) => form.studentId === studentId);
+    // setNumberOfRequests(studentForms.length);
+    return studentForms.length;
+  };
 
   const handleApproval = (formId) => {
     // Make an API call to update the form data
     const form = forms.find((form) => form.id === formId);
-    const student = students.find((student) => student.number === form.studentId);
+    const student = students.find(
+      (student) => student.number === form.studentId
+    );
     const parentNumber = student.parentNumber;
     fetch(`/esteathan/api/forms/${formId}`, {
       method: "PUT",
@@ -189,9 +197,7 @@ export default function SendRequests() {
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div
-                          className="col-lg-8  col-sm-12"
-                        >
+                        <div className="col-lg-8  col-sm-12">
                           <p className="card-text">
                             {" "}
                             {getStudentClass(form.studentId)}{" "}
@@ -202,17 +208,17 @@ export default function SendRequests() {
                       {/*  ============هنا عدد الاستئذانات======== */}
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
                         <div className="col-lg-3  col-5">
-                          <h6 className="card-text"> عدد طلبات الاستئذان السابقة </h6>
+                          <h6 className="card-text">
+                            {" "}
+                            عدد طلبات الاستئذان السابقة{" "}
+                          </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div
-                          className="col-lg-8  col-sm-12"
-                        >
+                        <div className="col-lg-8  col-sm-12">
                           <p className="card-text">
-                            {" "}
-                            {getStudentClass(form.studentId)}{" "}
+                            {getNumberOfRequests(form.studentId)}
                           </p>
                         </div>
                       </div>
@@ -247,7 +253,6 @@ export default function SendRequests() {
                   </div>
                 </div>
               ))}
-
           </div>
         </div>
       </section>
