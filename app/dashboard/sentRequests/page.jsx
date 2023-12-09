@@ -190,8 +190,25 @@ export default function SendRequests() {
                           <p className="card-text"> : </p>
                         </div>
                         <div
-                          className="col-lg-8  col-sm-12
-                "
+                          className="col-lg-8  col-sm-12"
+                        >
+                          <p className="card-text">
+                            {" "}
+                            {getStudentClass(form.studentId)}{" "}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/*  ============هنا عدد الاستئذانات======== */}
+                      <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
+                        <div className="col-lg-3  col-5">
+                          <h6 className="card-text"> عدد طلبات الاستئذان السابقة </h6>
+                        </div>
+                        <div className="col-1">
+                          <p className="card-text"> : </p>
+                        </div>
+                        <div
+                          className="col-lg-8  col-sm-12"
                         >
                           <p className="card-text">
                             {" "}
