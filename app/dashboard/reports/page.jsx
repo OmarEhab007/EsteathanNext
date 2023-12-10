@@ -9,12 +9,11 @@ export default function Reports() {
   const [loading, setLoading] = useState(true);
 
   const handlePrint = () => {
-      const printWindow = window.open('', '_blank');
-      const reportPrintContent = document.querySelector('.reportPrint');
+    const printWindow = window.open("", "_blank");
+    const reportPrintContent = document.querySelector(".reportPrint");
 
-      if (printWindow && reportPrintContent) {
-
-        printWindow.document.write(`
+    if (printWindow && reportPrintContent) {
+      printWindow.document.write(`
           <html>
             <head>
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
@@ -38,13 +37,13 @@ export default function Reports() {
           </html>
         `);
 
-        printWindow.document.close();
+      printWindow.document.close();
 
-        // Add a delay before printing (adjust the delay time as needed)
-        setTimeout(() => {
-          printWindow.print();
-        }, 1000); // 1000 milliseconds = 1 second
-      }
+      // Add a delay before printing (adjust the delay time as needed)
+      setTimeout(() => {
+        printWindow.print();
+      }, 1000); // 1000 milliseconds = 1 second
+    }
   };
 
   useEffect(() => {
@@ -53,7 +52,7 @@ export default function Reports() {
       .then((res) => res.json())
       .then((data) => {
         const approvedForms = data.datas.filter(
-          (form) => form.approval === "done"
+          (form) => form.approval === "approved" || form.approval === "done"
         );
         setForms(approvedForms);
       })

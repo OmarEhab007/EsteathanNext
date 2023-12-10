@@ -75,6 +75,14 @@ export default function SendToTeasher() {
     setMessage(event.target.value);
   };
 
+  function handleCancel(event, formId) {
+  // Prevent form submission
+  event.preventDefault();
+
+  // Remove the form from the state
+  setForms(forms => forms.filter(form => form.id !== formId));
+}
+
   return (
     <>
       <section className="sendToTeacher">
@@ -220,7 +228,7 @@ export default function SendToTeasher() {
                             <button
                               type="button"
                               className="btn btn-outline-danger mt-3 ms-5"
-                              onClick={(event) => handleSubmit(event, form.id)}
+                              onClick={(event) => handleCancel(event, form.id)}
                             >
                               الغاء
                             </button>
