@@ -11,7 +11,7 @@ export default function SendToTeasher() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/forms") // replace with your API endpoint
+    fetch("/esteathan/api/forms") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => {
         const approvedForms = data.datas.filter(
@@ -20,11 +20,11 @@ export default function SendToTeasher() {
         setForms(approvedForms);
       });
 
-    fetch("/api/students") // replace with your API endpoint
+    fetch("/esteathan/api/students") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setStudents(data.datas));
 
-    fetch("/api/teacher") // replace with your API endpoint
+    fetch("/esteathan/api/teacher") // replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setTeachers(data.datas));
   }, []);
@@ -36,7 +36,7 @@ export default function SendToTeasher() {
   const handleSubmit = (event, formId) => {
     event.preventDefault();
 
-    fetch(`/api/forms/${formId}`, {
+    fetch(`/esteathan/api/forms/${formId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function SendToTeasher() {
       })
       .catch((error) => console.error("Error:", error));
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/esteathan/api/sentMessageToTeacher", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function SendToTeasher() {
   };
   const handleTeacherChange = async (event) => {
     const teacherId = event.target.value;
-    const response = await fetch(`/api/teacher/${teacherId}`);
+    const response = await fetch(`/esteathan/api/teacher/${teacherId}`);
     const result = await response.json();
     setSelectedTeacher(result.data);
   };

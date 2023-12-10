@@ -19,7 +19,7 @@ export default function ParentPre() {
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await fetch(`/api/students/${id}`);
+        const response = await fetch(`/esteathan/api/students/${id}`);
         const result = await response.json();
         const student = result.data;
         console.log(student.parentNumber);
@@ -42,7 +42,7 @@ export default function ParentPre() {
         ).toString();
         setVerificationId(verificationCode);
 
-        fetch("/api/phoneValidation", {
+        fetch("/esteathan/api/phoneValidation", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export default function ParentPre() {
                 onClick={() => {
                   if (inputValue === verificationId) {
                     // If the input value is correct, navigate to the next page
-                    window.location.href = `/parentPre/student/${id}`;
+                    window.location.href = `/esteathan/parentPre/student/${id}`;
                   } else {
                     // If the input value is incorrect, show an error message
                     setErrorMessage("The verification code is incorrect.");

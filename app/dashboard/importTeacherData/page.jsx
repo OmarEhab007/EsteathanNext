@@ -9,7 +9,7 @@ export default function ImportTeacherData() {
     reader.onload = (event) => {
       const data = JSON.parse(event.target.result);
       data.forEach((teacher) => {
-        fetch("/api/teacher", {
+        fetch("/esteathan/api/teacher", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

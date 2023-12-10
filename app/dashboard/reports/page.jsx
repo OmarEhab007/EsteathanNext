@@ -49,7 +49,7 @@ export default function Reports() {
 
   useEffect(() => {
     // Fetch data here
-    fetch("/api/forms")
+    fetch("/esteathan/api/forms")
       .then((res) => res.json())
       .then((data) => {
         const approvedForms = data.datas.filter(
@@ -59,7 +59,7 @@ export default function Reports() {
       })
       .finally(() => setLoading(false)); // Set loading to false once data is fetched
 
-    fetch("/api/students")
+    fetch("/esteathan/api/students")
       .then((res) => res.json())
       .then((data) => setStudents(data.datas))
       .finally(() => setLoading(false)); // Set loading to false once data is fetched

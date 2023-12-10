@@ -18,7 +18,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch(`/api/students/${searchNumber}`);
+      const response = await fetch(`/esteathan/api/students/${searchNumber}`);
       const result = await response.json();
       const student = result.data;
       if (student) {
@@ -80,6 +80,7 @@ export default function Home() {
         </div>
       </div>
     </main>
+
     <footer className="align-self-end position-relative">
       <Image src={ bgFooter } placeholder="blur" width="100%" className="footer-bg"  />
       <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
@@ -95,5 +96,6 @@ export default function Home() {
       </div>
     </footer>
   </>
+
   );
 }
