@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={inter.className}>{children}</body>
+      <body className={` d-flex justify-content-center reqbody flex-wrap ${inter.className}`}>{children}</body>
     </html>
   );
 }

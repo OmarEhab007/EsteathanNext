@@ -222,7 +222,7 @@ a{
   }
 
   .reqMain{
-    height: 100vh;
+    min-height: 60vh;
   }
 
   .reqMain form {
@@ -583,4 +583,28 @@ a{
 
   .icon{
     width: 40px ;
+  }
+
+  footer {
+    width:100%;
+    min-height:100px;
+  }
+
+  .footer-bg {
+    width: 100% ;
+    height: 100px ;
+  }
+
+  .reqbody{
+    min-height:100vh;
+  }
+
+  footer span{
+    font-size: 1.2em;
+    color: #ca5305;
+  }
+
+  .footer-icon{
+    width: 2em !important;
+    
   }
