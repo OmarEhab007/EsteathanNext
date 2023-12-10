@@ -608,3 +608,11 @@ a{
     width: 2em !important;
     
   }
+
+  section{
+    width: 100%;
+  }
+
+  header{
+    width: 100%;
+  }

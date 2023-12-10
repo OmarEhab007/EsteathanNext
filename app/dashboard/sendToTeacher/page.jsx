@@ -217,6 +217,13 @@ export default function SendToTeasher() {
                             >
                               ارسال
                             </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger mt-3 ms-5"
+                              onClick={(event) => handleSubmit(event, form.id)}
+                            >
+                              الغاء
+                            </button>
                           </div>
                         </div>
                       </form>
