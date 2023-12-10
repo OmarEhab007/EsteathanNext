@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   return (<>
-    <main className={` reqMain  ${styles.reqMain}`}>
+    <main className={` reqMain w-100  ${styles.reqMain}`}>
       <div className="container h-100">
         <h1 className="text-center mb-3 mt-5"> <Image src={Icon} alt="Icon" width={200} placeholder="blur" />   </h1>
         <div className="row justify-content-center align-items-center h-50">
@@ -80,8 +80,19 @@ export default function Home() {
         </div>
       </div>
     </main>
-    <footer>
-      <Image src={ bgFooter } placeholder="blur" width="100%" />
+    <footer className="align-self-end position-relative">
+      <Image src={ bgFooter } placeholder="blur" width="100%" className="footer-bg"  />
+      <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
+        <div>
+
+        <p className="">
+          فكرة وتصميم و تنفيذ
+          <span> دكتور: عبدالحميد عبيد الله الجابري </span> 
+          جميع الحقوق محفوظة لبرنامج إستئذان
+        <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
+        </p>
+        </div>
+      </div>
     </footer>
   </>
   );

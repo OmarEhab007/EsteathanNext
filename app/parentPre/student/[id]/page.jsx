@@ -54,7 +54,7 @@ export default function Student() {
 
   return (
     <>
-      <main>
+      <main className="w-100">
         <section className="studentInfo">
           <div className="container d-flex justify-content-center align-items-center ">
             <div className="card border-info mb-3 col-xxl-6 col-md-7 col-sm-8 position-relative ">

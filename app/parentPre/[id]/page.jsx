@@ -69,7 +69,7 @@ export default function ParentPre() {
 
   return (
     <>
-      <main className="reqParent">
+      <main className="reqParent w-100">
         <div className="container h-100">
           <header className=" d-flex justify-content-center align-items-end text-center">
             <h4 className=""> أدخل كود التأكيد المرسل الى واتساب ولي الأمر </h4>
