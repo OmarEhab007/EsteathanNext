@@ -587,12 +587,13 @@ a{
 
   footer {
     width:100%;
-    min-height:100px;
+    min-height:200px;
   }
 
   .footer-bg {
     width: 100% ;
-    height: 100px ;
+    height: 200px ;
+    overflow: hidden;
   }
 
   .reqbody{
