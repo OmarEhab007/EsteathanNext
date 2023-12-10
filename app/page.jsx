@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import Icon from "./bigIcon.png";
+import bgFooter from "./footer-bg.png";
 
 export default function Home() {
   const [searchNumber, setSearchNumber] = useState("");
@@ -32,10 +33,10 @@ export default function Home() {
     }
   };
 
-  return (
+  return (<>
     <main className={` reqMain  ${styles.reqMain}`}>
       <div className="container h-100">
-        <h1 className="text-center mb-3 mt-5"> <Image src={Icon} alt="Icon" width={300} />   </h1>
+        <h1 className="text-center mb-3 mt-5"> <Image src={Icon} alt="Icon" width={200} placeholder="blur" />   </h1>
         <div className="row justify-content-center align-items-center h-50">
           <form onSubmit={handleSearch} className={` p-5 border-success col-md-8 col-sm-10 col-12 ${styles.searchForm}`}>
             <label htmlFor="personalId" className="form-label mb-3">
@@ -79,5 +80,9 @@ export default function Home() {
         </div>
       </div>
     </main>
+    <footer>
+      <Image src={ bgFooter } placeholder="blur" width="100%" />
+    </footer>
+  </>
   );
 }
