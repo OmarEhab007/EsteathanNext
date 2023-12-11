@@ -167,15 +167,16 @@ export default function RootLayout({ children }) {
         {children}
         <footer className="align-self-end position-relative">
           <Image src={ bgFooter } placeholder="blur" width="100%" className="footer-bg"  />
-          <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
-            <div>
-
-            <p className=" p-3 text-center">
-              فكرة وتصميم و تنفيذ
-              <span>  عبدالحميد عبيد الله الجابري </span> 
-              جميع الحقوق محفوظة لبرنامج استئذان
-            <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
-            </p>
+          <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
+            <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
+              <div>
+                <p className=" p-3 text-center">
+                  فكرة وتصميم و تنفيذ
+                  <span>  عبدالحميد عبيد الله الجابري </span> 
+                  جميع الحقوق محفوظة لبرنامج استئذان
+                <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
+              </p>
+              </div>
             </div>
           </div>
         </footer>

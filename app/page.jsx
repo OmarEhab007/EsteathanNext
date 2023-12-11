@@ -86,11 +86,11 @@ export default function Home() {
       <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
         <div>
 
-        <p className=" p-3 text-center">
-          فكرة وتصميم و تنفيذ
-          <span>  عبدالحميد عبيد الله الجابري </span> 
-          جميع الحقوق محفوظة لبرنامج استئذان
-        <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
+          <p className=" p-3 text-center">
+            فكرة وتصميم و تنفيذ
+            <span>  عبدالحميد عبيد الله الجابري </span> 
+            جميع الحقوق محفوظة لبرنامج استئذان
+          <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
         </p>
         </div>
       </div>
