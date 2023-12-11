@@ -258,6 +258,7 @@ export default function Reports() {
                             const date = new Date(
                               form.updatedAt
                             ).toLocaleDateString();
+                              const time = new Date(form.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                             return (
                               <tr key={form.id}>
                                 <th scope="row">{index + 1}</th>
@@ -267,7 +268,7 @@ export default function Reports() {
                                 <td>{student.year}</td>
                                 <td>{student.parentNumber}</td>
                                 <td>{date}</td>
-                                <td>time</td>
+                                <td>{time}</td>
                               </tr>
                             );
                           })}
