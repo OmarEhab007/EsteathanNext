@@ -88,7 +88,7 @@ export default function Home() {
 
         <p className=" p-3 text-center">
           فكرة وتصميم و تنفيذ
-          <span> دكتور: عبدالحميد عبيد الله الجابري </span> 
+          <span>  عبدالحميد عبيد الله الجابري </span> 
           جميع الحقوق محفوظة لبرنامج استئذان
         <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
         </p>
