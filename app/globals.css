@@ -629,3 +629,13 @@ a{
     color: var(--text-100-50);
     /* border-radius: 2em; */
   }
+
+  .delete-border{
+    border: 1px solid ;
+    border-radius: 1.5em;
+    overflow: hidden;
+  }
+
+  .delete-border nav{
+    box-shadow: none !important;
+  }
