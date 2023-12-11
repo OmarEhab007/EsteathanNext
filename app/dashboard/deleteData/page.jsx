@@ -233,14 +233,23 @@ export default function DeleteData() {
                                       </div>
                                     </div>
 
-                                    <form action="">
+                                    <form action="" className="text-center">
                                       <button
                                         type="button"
-                                        className="btn btn-danger text-center m-auto d-block"
+                                        className="btn btn-danger text-center me-3"
                                         onClick={() => deleteStudent(student.id)}
                                       >
                                         {" "}
                                         حذف الطالب{" "}
+                                      </button>
+                                      <button 
+                                      type="button"
+                                      className="btn btn-warning text-center "
+
+                                      >
+                                        {" "}
+                                        تعديل الطالب
+                                        {" "}
                                       </button>
                                     </form>
                                   </div>
@@ -320,14 +329,23 @@ export default function DeleteData() {
                                       </div>
                                     </div>
 
-                                    <form action="">
+                                    <form action="" className="text-center">
                                       <button
                                         type="button"
-                                        className="btn btn-danger text-center m-auto d-block"
+                                        className="btn btn-danger text-center me-3"
                                         onClick={() => deleteTeacher(teacher.id)}
                                       >
                                         {" "}
                                         حذف المعلم{" "}
+                                      </button>
+                                      <button 
+                                      type="button"
+                                      className="btn btn-warning text-center "
+
+                                      >
+                                        {" "}
+                                        تعديل المعلم
+                                        {" "}
                                       </button>
                                     </form>
                                   </div>

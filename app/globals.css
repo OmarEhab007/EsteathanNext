@@ -639,3 +639,13 @@ a{
   .delete-border nav{
     box-shadow: none !important;
   }
+
+  .updateStudents form{
+    border: 1px solid;
+    border-radius: 1em;
+  }
+
+  .updateTeacher form{
+    border: 1px solid;
+    border-radius: 1em;
+  }
