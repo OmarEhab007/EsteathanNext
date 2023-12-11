@@ -80,7 +80,18 @@ export default function SendToTeasher() {
   event.preventDefault();
 
   // Remove the form from the state
-  setForms(forms => forms.filter(form => form.id !== formId));
+  fetch(`/esteathan/api/forms/${formId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ approval: "done" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setForms(forms.filter((form) => form.id !== formId));
+      })
+      .catch((error) => console.error("Error:", error));
 }
 
   return (
