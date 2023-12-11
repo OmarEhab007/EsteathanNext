@@ -246,6 +246,7 @@ export default function Reports() {
                             <th scope="col"> الفصل </th>
                             <th scope="col"> رقم ولي الأمر </th>
                             <th scope="col"> تاريخ الاستئذان </th>
+                            <th scope="col"> وقت الاستئذان </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -266,6 +267,7 @@ export default function Reports() {
                                 <td>{student.year}</td>
                                 <td>{student.parentNumber}</td>
                                 <td>{date}</td>
+                                <td>time</td>
                               </tr>
                             );
                           })}
