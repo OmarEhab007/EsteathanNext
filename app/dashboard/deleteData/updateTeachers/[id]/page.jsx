@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function UpdateTeacher() {
 
@@ -10,7 +11,8 @@ export default function UpdateTeacher() {
   const [teacherPhone, setTeacherPhone] = useState(null);
 
   const id = params.id;
-
+  const router = useRouter()
+  
   useEffect(() => {
     const fetchTeacherData = async () => {
       try {
@@ -48,7 +50,10 @@ export default function UpdateTeacher() {
         .then((data) => {
           // console.log(data);
           alert("تم تعديل المعلم بنجاح");
-        });
+        }).then(() => {
+          router.push('/dashboard/deleteData')
+        }
+        );
 
       
     } catch (error) {
