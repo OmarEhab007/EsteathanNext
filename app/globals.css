@@ -649,3 +649,7 @@ a{
     border: 1px solid;
     border-radius: 1em;
   }
+
+  .deleteData nav a{
+    cursor: pointer;
+  }

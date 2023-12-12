@@ -129,7 +129,7 @@ export default function RootLayout({ children }) {
                         <hr className="dropdown-divider text-center" />
                       </li>
                       <li className="text-center nav-color">
-                        <Link className="dropdown-item text-center" href="/dashboard/deleteData ">حذف البيانات</Link>
+                        <Link className="dropdown-item text-center" href="/dashboard/deleteData ">حذف وتعديل البيانات</Link>
                       </li>
                     </ul>
                   </li>
