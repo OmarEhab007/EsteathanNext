@@ -1,6 +1,74 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function UpdateStudents() {
+  const params = useParams();
+  const [studentName, setStudentName] = useState(null);
+  const [studentId, setStudentId] = useState(null);
+  const [studentClass, setStudentClass] = useState(null);
+  const [year, setYear] = useState(null);
+  const [parentNumber, setParentNumber] = useState(null);
+  const [student, setStudent] = useState(null);
+
+  const id = params.id;
+
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const response = await fetch(`/esteathan/api/students/${id}`);
+        const result = await response.json();
+        const student = result.data;
+        console.log(student);
+        setStudent(student);
+        setStudentName(student.name);
+        setStudentId(student.number);
+        setStudentClass(student.class);
+        setYear(student.year);
+        setParentNumber(student.parentNumber);
+      } catch (error) {
+        console.error("Error fetching student data:", error);
+      }
+    };
+
+    if (id) {
+      fetchStudentData();
+    }
+  }
+    , [id]);
+  
+  const updateStudent = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/esteathan/api/students/${student.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: studentName,
+          number: studentId,
+          class: studentClass,
+          year: parseInt(year),
+          parentNumber: parentNumber,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          alert("تم تعديل الطالب بنجاح");
+        });
+
+      
+    } catch (error) {
+      alert("حدث خطأ أثناء تعديل الطالب");
+      // console.error("Error updating student data:", error);
+
+    }
+  }
+
+  
+
   return <>
     
     <section className='updateStudents'>
@@ -20,7 +88,8 @@ export default function UpdateStudents() {
                   type="text"
                   className="form-control border-primary"
                   id="studentName"
-                  placeholder="اسم الطالب"
+                placeholder={studentName}
+                onChange={(e) => setStudentName(e.target.value)}
                 />
               </div>
             </div>
@@ -32,7 +101,8 @@ export default function UpdateStudents() {
                   type="number"
                   className="form-control border-primary "
                   id="studentId"
-                  placeholder="هوية الطالب"
+                placeholder={studentId}
+                onChange={(e) => setStudentId(e.target.value)}
                 />
               </div>
             </div>
@@ -46,6 +116,7 @@ export default function UpdateStudents() {
                 className="form-select form-control border-primary" 
                 aria-label="Default select example"
                 placeholder=" السنة الدراسية "
+                onChange={(e) => setStudentClass(e.target.value)}
                 >
                   <optgroup  >
                     <option value="أول ثانوي" > أول ثانوي </option>
@@ -77,7 +148,8 @@ export default function UpdateStudents() {
                   type="number"
                   className="form-control border-primary"
                   id="year"
-                  placeholder="الشعبة / الفصل"
+                placeholder={year}
+                onChange={(e) => setYear(e.target.value)}
                 />
               </div>
             </div>
@@ -89,7 +161,8 @@ export default function UpdateStudents() {
                   type="text"
                   className="form-control border-primary"
                   id="parentNumber"
-                  placeholder="رقم ولي أمر الطالب "
+                placeholder={parentNumber}
+                onChange={(e) => setParentNumber(e.target.value)}
                 />
               </div>
             </div>
@@ -100,7 +173,8 @@ export default function UpdateStudents() {
               <div className="form-group">
                 <button
                   type="submit"
-                  className="btn btn-info"
+                className="btn btn-info"
+                onClick={updateStudent}
                 >
                 تعديل الطالب {" "}
                 <span className=" p-1 ">

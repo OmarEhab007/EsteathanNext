@@ -1,11 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'
+
+
 
 export default function DeleteData() {
   const [students, setStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("students");
   const [teachers, setTeachers] = useState([]);
+  // const [editedStudent, setEditedStudent] = useState({});//[name, number, class, year]
+  // const [editedTeacher, setEditedTeacher] = useState({});//[name, phone]
+  const router = useRouter()
+
 
   const filteredStudents = students.filter((student) =>
     student.name.includes(searchQuery)
@@ -245,6 +252,7 @@ export default function DeleteData() {
                                       <button 
                                       type="button"
                                       className="btn btn-warning text-center "
+                                      onClick= {()=> router.push(`/dashboard/deleteData/updateStudents/${student.number}`)}
 
                                       >
                                         {" "}
@@ -340,8 +348,8 @@ export default function DeleteData() {
                                       </button>
                                       <button 
                                       type="button"
-                                      className="btn btn-warning text-center "
-
+                                        className="btn btn-warning text-center "
+                                        onClick= {()=> router.push(`/dashboard/deleteData/updateTeachers/${teacher.id}`)}
                                       >
                                         {" "}
                                         تعديل المعلم
