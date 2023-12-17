@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/esteathan",
+  // basePath: "/esteathan",
 };
 
 module.exports = nextConfig;
