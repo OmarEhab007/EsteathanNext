@@ -252,7 +252,7 @@ export default function DeleteData() {
                                       <button 
                                       type="button"
                                       className="btn btn-warning text-center "
-                                      onClick= {()=> router.push(`/dashboard/deleteData/updateStudents/${student.number}`)}
+                                      onClick= {()=> router.push(`/esteathan/dashboard/deleteData/updateStudents/${student.number}`)}
 
                                       >
                                         {" "}
@@ -349,7 +349,7 @@ export default function DeleteData() {
                                       <button 
                                       type="button"
                                         className="btn btn-warning text-center "
-                                        onClick= {()=> router.push(`/dashboard/deleteData/updateTeachers/${teacher.id}`)}
+                                        onClick= {()=> router.push(`/esteathan/dashboard/deleteData/updateTeachers/${teacher.id}`)}
                                       >
                                         {" "}
                                         تعديل المعلم

@@ -51,7 +51,7 @@ export default function UpdateTeacher() {
           // console.log(data);
           alert("تم تعديل المعلم بنجاح");
         }).then(() => {
-          router.push('/dashboard/deleteData')
+          router.push('/esteathan/dashboard/deleteData')
         }
         );
 

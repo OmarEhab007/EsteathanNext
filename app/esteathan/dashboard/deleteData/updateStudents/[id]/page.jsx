@@ -60,7 +60,7 @@ export default function UpdateStudents() {
           // console.log(data);
           alert("تم تعديل الطالب بنجاح");
         }).then(() => {
-          router.push('/dashboard/deleteData')
+          router.push('/esteathan/dashboard/deleteData')
         }
       
       );

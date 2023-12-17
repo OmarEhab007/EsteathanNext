@@ -66,7 +66,7 @@ export default function Home() {
             {hasSearched ? (
               studentId ? (
                 <div className="d-flex justify-content-center align-items-center h-100 d-block">
-                  <Link href={`/parentPre/${searchNumber}`}>
+                  <Link href={`/esteathan/parentPre/${searchNumber}`}>
                     <button className="btn btn-success">ارسال طلب استئذان</button>
                   </Link>
                 </div>
