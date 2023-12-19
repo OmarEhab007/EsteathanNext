@@ -2,7 +2,7 @@
 import React, { useState, useEffect, use } from "react";
 import { useParams } from "next/navigation";
 // import { UploadButton } from "../../../../utils/uploadthing";
-import { UploadButton } from "../../../../../utils/uploadthing";
+import { UploadButton, UploadDropzone } from "../../../../../utils/uploadthing";
 
 export default function Student() {
   const params = useParams();
@@ -186,29 +186,41 @@ export default function Student() {
                         *اختياري
                       </span>{" "}
                     </label>
-                    {/* <input
-                      className="form-control border-primary"
-                      type="file"
-                      id="formFile"
-                      placeholder="اختر ملف"
-                      onChange={handleFileChange}
-                    /> */}
-                    <UploadButton
-                      endpoint="imageUploader"
-                      onClientUploadComplete={(res) => {
-                        // Do something with the response
-                        console.log("Files: ", res);
-                        if (res.length > 0) {
-                          setFileUrl(res[0].url);
-                          alert("Upload Completed");
-                        }
-                        console.log(fileUrl)
-                      }}
-                      onUploadError={(error) => {
-                        // Do something with the error.
-                        alert(`ERROR! ${error.message}`);
-                      }}
-                    />
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <UploadButton
+                        // add two endpoints for each type of file
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res) => {
+                          // Do something with the response
+                          console.log("Files: ", res);
+                          if (res.length > 0) {
+                            setFileUrl(res[0].url);
+                            alert("Upload Completed");
+                          }
+                          console.log(fileUrl);
+                        }}
+                        onUploadError={(error) => {
+                          // Do something with the error.
+                          alert(`ERROR! ${error.message}`);
+                        }}
+                      />
+                      <UploadButton
+                        endpoint="pdfUploader"
+                        onClientUploadComplete={(res) => {
+                          // Do something with the response
+                          console.log("Files: ", res);
+                          if (res.length > 0) {
+                            setFileUrl(res[0].url);
+                            alert("Upload Completed");
+                          }
+                          console.log(fileUrl);
+                        }}
+                        onUploadError={(error) => {
+                          // Do something with the error.
+                          alert(`ERROR! ${error.message}`);
+                        }}
+                      />
+                    </div>
                   </div>
 
                   <button
