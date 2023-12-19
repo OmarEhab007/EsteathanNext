@@ -275,7 +275,7 @@ export default function SendRequests() {
                           {form.reason}{" "}
                         </p>
                       </div>
-                      <div>
+                      <div className="mt-3">
                         <h6> مرفقات الاستئذان</h6>
                         <p className="card-text premationReson ">
                           <a
