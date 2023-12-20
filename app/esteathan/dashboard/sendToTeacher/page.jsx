@@ -9,6 +9,7 @@ export default function SendToTeasher() {
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [student, setStudent] = useState(null);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // today = new Date();
 
@@ -44,7 +45,7 @@ export default function SendToTeasher() {
 
   const handleSubmit = (event, formId) => {
     event.preventDefault();
-
+    setIsLoading(true);
     fetch(`/api/forms/${formId}`, {
       method: "PUT",
       headers: {
@@ -71,6 +72,7 @@ export default function SendToTeasher() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setIsLoading(false);
       });
   };
   const handleTeacherChange = async (event) => {
@@ -87,6 +89,7 @@ export default function SendToTeasher() {
   function handleCancel(event, formId) {
     // Prevent form submission
     event.preventDefault();
+    setIsLoading(true);
 
     // Remove the form from the state
     fetch(`/api/forms/${formId}`, {
@@ -99,6 +102,7 @@ export default function SendToTeasher() {
       .then((res) => res.json())
       .then((data) => {
         setForms(forms.filter((form) => form.id !== formId));
+        setIsLoading(false);
       })
       .catch((error) => console.error("Error:", error));
   }
@@ -237,6 +241,9 @@ export default function SendToTeasher() {
                               required
                             ></textarea>
                           </div>
+                          {isLoading ? (
+                            <div className="spinner-border text-primary mt-3"></div>
+                          ) : 
                           <div className="sendToteacherButton text-center">
                             <button
                               type="button"
@@ -252,7 +259,8 @@ export default function SendToTeasher() {
                             >
                               الغاء
                             </button>
-                          </div>
+                            </div>
+                          }
                         </div>
                       </form>
                     </div>
