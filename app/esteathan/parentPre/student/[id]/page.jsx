@@ -96,7 +96,7 @@ export default function Student() {
       <main className="w-100">
         <section className="studentInfo">
           <div className="container d-flex justify-content-center align-items-center ">
-            <div className="card border-info mb-3 col-xxl-6 col-md-7 col-sm-8 position-relative ">
+            <div className="card border-info mb-3 col-xxl-6 col-md-7 col-sm-8 col-12 position-relative ">
               <div className="card-header border-primary">
                 <div className="row justify-content-start align-items-center">
                   <div className="col-lg-3  col-5">
@@ -186,8 +186,9 @@ export default function Student() {
                         *اختياري
                       </span>{" "}
                     </label>
-                    <div className="flex flex-col items-center justify-center w-full">
+                    <div className=" d-flex  ">
                       <UploadButton
+                        className="imageUploader me-2  "
                         // add two endpoints for each type of file
                         endpoint="imageUploader"
                         onClientUploadComplete={(res) => {
@@ -205,6 +206,7 @@ export default function Student() {
                         }}
                       />
                       <UploadButton
+                        className="pdfUploader"
                         endpoint="pdfUploader"
                         onClientUploadComplete={(res) => {
                           // Do something with the response
@@ -225,7 +227,7 @@ export default function Student() {
 
                   <button
                     type="submit"
-                    className="btn btn-primary text-center m-auto d-block"
+                    className="btn btn-primary text-center m-auto d-block px-5 py-2"
                   >
                     {" "}
                     ارسال{" "}

@@ -665,3 +665,25 @@ a{
     left: 0;
     right: 0;
   }
+
+  .pdfUploader label{
+    background-color: #b51308;
+    transition: all 0.3s ease-in-out;
+    width: 7em;
+    height: 2em;
+  }
+
+  .pdfUploader label:hover{
+    background-color: #eb2a1c;
+  }
+
+  .imageUploader label{
+    background-color: #3781bb;
+    transition: all 0.3s ease-in-out;
+    width: 7em;
+    height: 2em;
+  }
+
+  .imageUploader label:hover{
+    background-color: #4e9bd1;
+  }
