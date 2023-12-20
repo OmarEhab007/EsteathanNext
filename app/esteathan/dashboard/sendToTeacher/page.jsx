@@ -125,7 +125,7 @@ export default function SendToTeasher() {
 
               return (
                 <div className="col-md-6 mb-3">
-                  <div className="card border-primary">
+                  <div className="card border-primary position-relative">
                     <div className="card-header border-primary">
                       <div className="row justify-content-start align-items-center">
                         <div className="col-lg-3  col-5">
@@ -242,7 +242,18 @@ export default function SendToTeasher() {
                             ></textarea>
                           </div>
                           {isLoading ? (
-                            <div className="spinner-border text-primary mt-3"></div>
+                            <div className="position-absolute top-0 bottom-0 start-0 end-0 loading-backgound ">
+                            <div className="h-100 d-flex align-items-center justify-content-center">
+                              <div
+                                className="spinner-border text-primary"
+                                role="status"
+                              >
+                                <span className="visually-hidden">
+                                  Loading...
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                           ) : 
                           <div className="sendToteacherButton text-center">
                             <button
