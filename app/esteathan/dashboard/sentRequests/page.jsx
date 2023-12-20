@@ -1,13 +1,18 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
-import Link from 'next/link';
+import Link from "next/link";
+import BarLoader from "react-spinners/BarLoader";
 
 export default function SendRequests() {
   const [forms, setForms] = useState([]);
   const [students, setStudents] = useState([]);
   const [parentPhone, setParentPhone] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
+  const [reason, setReason] = useState(false);
+  const [reasonText, setReasonText] = useState("تم رفض طلب الاستئذان");
+  const [isRejectButtonVisible, setRejectButtonVisible] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const [NumberOfRequests, setNumberOfRequests] = useState(null);
   // today date
@@ -67,6 +72,7 @@ export default function SendRequests() {
 
   const handleApproval = (formId) => {
     // Make an API call to update the form data
+    setIsLoading(true);
     const form = forms.find((form) => form.id === formId);
     const student = students.find(
       (student) => student.number === form.studentId
@@ -95,6 +101,7 @@ export default function SendRequests() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setIsLoading(false);
       })
       .then(() => {
         window.location.reload();
@@ -103,6 +110,12 @@ export default function SendRequests() {
 
   const handleRejection = (formId) => {
     // Make an API call to update the form data
+    setIsLoading(true);
+    const form = forms.find((form) => form.id === formId);
+    const student = students.find(
+      (student) => student.number === form.studentId
+    );
+    const parentNumber = student.parentNumber;
     fetch(`/api/forms/${formId}`, {
       method: "PUT",
       headers: {
@@ -113,65 +126,26 @@ export default function SendRequests() {
       }),
     });
 
+
+
     fetch("/api/sentMessageToTeacher", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: parentPhone, // Replace with parentPhone
-        message: "تم رفض طلب الاستئذان",
+        parentNumber: parentNumber, // Replace with parentPhone
+        message: reasonText,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setIsLoading(false);
       })
       .then(() => {
         window.location.reload();
       });
-  };
-
-  console.log(forms);
-
-  function FileDisplay({ fileUrl }) {
-    if (!fileUrl) return null;
-
-    const fileExtension = fileUrl.split(".").pop();
-
-    if (fileExtension === "pdf") {
-      return (
-        <embed
-          src={fileUrl}
-          type="application/pdf"
-          width="100%"
-          height="600px"
-        />
-      );
-    } else if (["jpg", "jpeg", "png", "gif"].includes(fileExtension)) {
-      return <img src={fileUrl} alt="file" />;
-    } else {
-      return (
-        <a href={fileUrl} download>
-          Download file
-        </a>
-      );
-    }
-  }
-
-  const downloadFile = async (filePath) => {
-    if (filePath) {
-    // const displayPath = filePath.replace('./public', '');
-    const displayPath = '/test.png'
-    const response = await fetch(displayPath);
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    // rest of your code
-  } else {
-    console.error('filePath is undefined');
-  }
-
   };
 
   return (
@@ -275,39 +249,69 @@ export default function SendRequests() {
                           {form.reason}{" "}
                         </p>
                       </div>
-                      <div className="mt-3">
-                        <h6> مرفقات الاستئذان</h6>
-                        <p className="card-text premationReson ">
-                          <a
-                            download
-                            className="btn btn-outline-primary"
-                            href={form.attachment}
-                            // open in new tab
-                            target="_blank"
+                      {form.attachment && (
+                        <div className="mt-3">
+                          <h6> مرفقات الاستئذان</h6>
+                          <p className="card-text premationReson ">
+                            <a
+                              className="btn btn-outline-primary"
+                              href={form.attachment}
+                              target="_blank"
+                              download
+                            >
+                              تحميل الملف
+                            </a>
+                          </p>
+                        </div>
+                      )}
+                      {isLoading ? (
+                        <BarLoader />
+                      ) : (
+                        <div className="replyButtons mt-3 text-center">
+                          <button
+                            type="button"
+                            className="btn btn-outline-success me-3"
+                            onClick={() => handleApproval(form.id)}
                           >
-                            تحميل الملف
-                          </a>
-                        </p>
-                      </div>
-
-                      <div className="replyButtons mt-3 text-center">
-                        <button
-                          type="button"
-                          className="btn btn-outline-success me-3"
-                          onClick={() => handleApproval(form.id)}
-                        >
-                          {" "}
-                          قبول الطلب{" "}
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-outline-danger"
-                          onClick={() => handleRejection(form.id)}
-                        >
-                          {" "}
-                          رفض الطلب{" "}
-                        </button>
-                      </div>
+                            {" "}
+                            قبول الطلب{" "}
+                          </button>
+                          {isRejectButtonVisible && (
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger"
+                              onClick={() => {
+                                setReason(true);
+                                setRejectButtonVisible(false);
+                              }}
+                            >
+                              {" "}
+                              رفض الطلب{" "}
+                            </button>
+                          )}
+                        </div>
+                      )}
+                      {reason && (
+                        <div className="mt-3">
+                          <h6> سبب رفض الاستئذان </h6>
+                          <textarea
+                            className="form-control"
+                            rows="3"
+                            required
+                            onChange={(e) => setReasonText(e.target.value)}
+                          ></textarea>
+                          <div className="replyButtons mt-3 text-center">
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger"
+                              onClick={() => handleRejection(form.id)}
+                            >
+                              {" "}
+                              رفض الطلب{" "}
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

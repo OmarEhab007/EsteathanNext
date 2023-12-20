@@ -195,13 +195,13 @@ export default function Student() {
                           console.log("Files: ", res);
                           if (res.length > 0) {
                             setFileUrl(res[0].url);
-                            alert("Upload Completed");
+                            alert("تم رفع الملف بنجاح");
                           }
                           console.log(fileUrl);
                         }}
                         onUploadError={(error) => {
                           // Do something with the error.
-                          alert(`ERROR! ${error.message}`);
+                          alert(`حدث خطأ! ${error.message}`);
                         }}
                       />
                       <UploadButton
