@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
 
-// GET /api/forms get single form data from id
+interface Subscription {
+  status: string;
+  plan: string;
+  startDate: Date;
+  endDate: Date;
+  schoolId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
+// get subscription data by id  /api/subscription/[id] by params
 export const GET = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const id = params.id;
-    const data = await prisma.form.findUnique({
+    const data = await prisma.subscription.findUnique({
       where: {
         id: id,
       },
@@ -25,8 +34,30 @@ export const GET = async (
   }
 };
 
-// update form data
+// delete subscription data by id  /api/subscription/[id] by params
+export const DELETE = async (
+  req: Request,
+  { params }: { params: { id: string } }
+) => {
+  try {
+    const id = params.id;
+    const data = await prisma.subscription.delete({
+      where: {
+        id,
+      },
+    });
+    return NextResponse.json({ message: "OK", data }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error", error },
+      {
+        status: 500,
+      }
+    );
+  }
+};
 
+// update subscription data by id  /api/subscription/[id] by params
 export const PUT = async (
   req: Request,
   { params }: { params: { id: string } }
@@ -34,28 +65,16 @@ export const PUT = async (
   try {
     const id = params.id;
     const body = await req.json();
-    const {
-      studentId,
-      reason,
-      attachment,
-      parentNumber,
-      verificationCode,
-      status,
-      approval,
-      schoolId
-    } = body;
-    const data = await prisma.form.update({
+    const { status, plan, startDate, endDate, schoolId } = body;
+    const data = await prisma.subscription.update({
       where: {
         id,
       },
       data: {
-        studentId,
-        reason,
-        attachment,
-        parentNumber,
-        verificationCode,
         status,
-        approval,
+        plan,
+        startDate,
+        endDate,
         schoolId,
       },
     });
@@ -70,26 +89,3 @@ export const PUT = async (
   }
 };
 
-// delete form data
-
-export const DELETE = async (
-  req: Request,
-  { params }: { params: { id: string } }
-) => {
-  try {
-    const id = params.id;
-    const data = await prisma.form.delete({
-      where: {
-        id,
-      },
-    });
-    return NextResponse.json({ message: "OK", data }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error", error },
-      {
-        status: 500,
-      }
-    );
-  }
-};

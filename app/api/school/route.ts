@@ -1,24 +1,20 @@
-import prisma from "../../../lib/db";
 import { NextResponse } from "next/server";
+import prisma from "../../../lib/db";
 
-interface Form {
-  id: string;
-  studentId: string;
-  reason: string;
-  attachment: string;
-  parentNumber: string;
-  verificationCode: string;
-  status: string;
-  approval: string;
+interface school {
   schoolId: string;
+  name: string;
+  phone: string;
+  address: string;
+  subscriptionId: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-// GET /api/forms
+// get all school data  /api/schools
 export const GET = async (req: Request, res: Response) => {
   try {
-    const datas = await prisma.form.findMany();
+    const datas = await prisma.school.findMany();
     return NextResponse.json({ message: "OK", datas }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -30,48 +26,44 @@ export const GET = async (req: Request, res: Response) => {
   }
 };
 
-// add new form data  /api/forms
+
+// add new school data  /api/schools
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const {
-    studentId,
-    reason,
-    attachment,
-    parentNumber,
-    verificationCode,
-    status,
-    approval,
-    schoolId,
-  } = body;
+  const { schoolId, name, phone, address, subscriptionId } = body;
+
+  // Check if all required fields are provided
+  if (!schoolId || !name || !phone || !address || !subscriptionId) {
+    return NextResponse.json(
+      { message: "Error", error: "Missing required fields" },
+      { status: 400 }
+    );
+  }
+
   try {
-    const data = await prisma.form.create({
+    const data = await prisma.school.create({
       data: {
-        studentId,
-        reason,
-        attachment,
-        parentNumber,
-        verificationCode,
-        status,
-        approval,
         schoolId,
+        name,
+        phone,
+        address,
+        subscriptionId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "Error", error },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
 
-// delete all form data  /api/forms
+// delete all teachers data  /api/teachers
 
 export async function DELETE(req: Request, res: Response) {
   try {
-    const data = await prisma.form.deleteMany();
+    const data = await prisma.school.deleteMany();
     return NextResponse.json({ message: "OK", data }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -82,4 +74,3 @@ export async function DELETE(req: Request, res: Response) {
     );
   }
 }
-

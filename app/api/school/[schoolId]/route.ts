@@ -1,17 +1,16 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
 
-// GET /api/forms get single form data from id
-
+// GET /api/school/[schoolId] 
 export const GET = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { schoolId: string } }
 ) => {
   try {
-    const id = params.id;
-    const data = await prisma.form.findUnique({
+    const schoolId = params.schoolId;
+    const data = await prisma.school.findMany({
       where: {
-        id: id,
+        schoolId: schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -25,38 +24,24 @@ export const GET = async (
   }
 };
 
-// update form data
-
+// PUT /api/school/[schoolId]
 export const PUT = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { schoolId: string } }
 ) => {
+  const body = await req.json();
+  const { name, phone, address, subscriptionId } = body;
   try {
-    const id = params.id;
-    const body = await req.json();
-    const {
-      studentId,
-      reason,
-      attachment,
-      parentNumber,
-      verificationCode,
-      status,
-      approval,
-      schoolId
-    } = body;
-    const data = await prisma.form.update({
+    const schoolId = params.schoolId;
+    const data = await prisma.school.updateMany({
       where: {
-        id,
+        schoolId: schoolId,
       },
       data: {
-        studentId,
-        reason,
-        attachment,
-        parentNumber,
-        verificationCode,
-        status,
-        approval,
-        schoolId,
+        name,
+        phone,
+        address,
+        subscriptionId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -70,17 +55,16 @@ export const PUT = async (
   }
 };
 
-// delete form data
-
+// DELETE /api/school/[schoolId]
 export const DELETE = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { schoolId: string } }
 ) => {
   try {
-    const id = params.id;
-    const data = await prisma.form.delete({
+    const schoolId = params.schoolId;
+    const data = await prisma.school.deleteMany({
       where: {
-        id,
+        schoolId: schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

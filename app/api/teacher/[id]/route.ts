@@ -54,7 +54,7 @@ export const PUT = async (
   try {
     const id = params.id;
     const body = await req.json();
-    const { name, phone } = body;
+    const { name, phone, schoolId } = body;
     const data = await prisma.teacher.update({
       where: {
         id,
@@ -62,6 +62,7 @@ export const PUT = async (
       data: {
         name,
         phone,
+        schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

@@ -8,6 +8,7 @@ interface Student {
   class: string;
   year: number;
   parentNumber: string;
+  schoolId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -31,7 +32,7 @@ export const GET = async (req: Request, res: Response) => {
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const { number, name, class: className, year, parentNumber } = body;
+  const { number, name, class: className, year, parentNumber, schoolId } = body;
   try {
     const data = await prisma.student.create({
       data: {
@@ -40,6 +41,7 @@ export async function POST(req: Request, res: Response) {
         class: className,
         year,
         parentNumber,
+        schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

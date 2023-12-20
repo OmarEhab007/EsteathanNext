@@ -4,6 +4,7 @@ import prisma from "../../../lib/db";
 interface Teacher {
   name: string;
   phone: string;
+  schoolId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,12 +28,13 @@ export const GET = async (req: Request, res: Response) => {
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const { name, phone } = body;
+  const { name, phone, schoolId } = body;
   try {
     const data = await prisma.teacher.create({
       data: {
         name,
         phone,
+        schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
