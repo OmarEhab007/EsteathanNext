@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import BarLoader from "react-spinners/BarLoader";
+// import BarLoader from "react-spinners/BarLoader";
 
 export default function SendRequests() {
   const [forms, setForms] = useState([]);
@@ -227,7 +227,7 @@ export default function SendRequests() {
                       {/*  ============هنا عدد الاستئذانات======== */}
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
                         <div className="col-lg-3  col-5">
-                          <h6 className="card-text">
+                          <h6 className="card-text position-relative">
                             {" "}
                             عدد طلبات الاستئذان السابقة{" "}
                           </h6>
@@ -265,7 +265,19 @@ export default function SendRequests() {
                         </div>
                       )}
                       {isLoading ? (
-                        <BarLoader />
+                        // <BarLoader className="position-absolute top-0 bottom-0 start-0 end-0" />
+                        <div className="position-absolute top-0 bottom-0 start-0 end-0 loading-backgound ">
+                          <div className="h-100 d-flex align-items-center justify-content-center">
+                            <div
+                              className="spinner-border text-primary"
+                              role="status"
+                            >
+                              <span className="visually-hidden">
+                                Loading...
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       ) : (
                         <div className="replyButtons mt-3 text-center">
                           <button
