@@ -1,29 +1,24 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
 
-interface Bill {
-  status: string;
-  schoolId: string;
+interface User {
   name: string;
+  password: string;
+  role: string;
+  schoolId: string;
   phone: string;
-  address: string;
-  attachment: string;
-  plan: string;
-  history: string;
-  createdAt: Date;
-  updatedAt: Date;
+  status: string;
+  lastLogin: Date;
 }
 
-
-
-// get  bill data by id  /api/bill/[id] by params
+// get  bill user by id  /api/user/[id] by params
 export const GET = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const id = params.id;
-    const data = await prisma.bill.findUnique({
+    const data = await prisma.user.findUnique({
       where: {
         id: id,
       },
@@ -39,14 +34,14 @@ export const GET = async (
   }
 };
 
-// delete bill data by id  /api/bill/[id] by params
+// delete user data by id  /api/user/[id] by params
 export const DELETE = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const id = params.id;
-    const data = await prisma.bill.delete({
+    const data = await prisma.user.delete({
       where: {
         id,
       },
@@ -62,7 +57,7 @@ export const DELETE = async (
   }
 };
 
-// update bill data by id  /api/bill/[id] by params
+// update user data by id  /api/user/[id] by params
 export const PUT = async (
   req: Request,
   { params }: { params: { id: string } }
@@ -70,20 +65,19 @@ export const PUT = async (
   try {
     const id = params.id;
     const body = await req.json();
-    const { status, schoolId,  name, phone, address, attachment, plan, history } = body;
-    const data = await prisma.bill.update({
+    const { name, password, role, schoolId, phone, status, lastLogin } = body;
+    const data = await prisma.user.update({
       where: {
         id,
       },
       data: {
-        status,
-        schoolId,
         name,
+        password,
+        role,
+        schoolId,
         phone,
-        address,
-        attachment,
-        plan,
-        history,
+        status,
+        lastLogin,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -96,4 +90,3 @@ export const PUT = async (
     );
   }
 };
-

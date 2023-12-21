@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../lib/db";
 
-interface Bill {
-  id: string;
+interface User {
   name: string;
   password: string;
   role: string;
@@ -10,14 +9,12 @@ interface Bill {
   phone: string;
   status: string;
   lastLogin: Date;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-// get all bill data  /api/bill
+// get all users /api/user
 export const GET = async (req: Request, res: Response) => {
   try {
-    const datas = await prisma.bill.findMany();
+    const datas = await prisma.user.findMany();
     return NextResponse.json({ message: "OK", datas }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -29,22 +26,21 @@ export const GET = async (req: Request, res: Response) => {
   }
 };
 
-// add new bill data  /api/bill
+// add new user data /api/user
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const { status, schoolId, name, phone, address, attachment, plan, history } =
+  const { name, password, role, schoolId, phone, status, lastLogin } =
     body;
   try {
-    const data = await prisma.bill.create({
+    const data = await prisma.user.create({
       data: {
-        status,
-        schoolId,
         name,
+        password,
+        role,
+        schoolId,
         phone,
-        address,
-        attachment,
-        plan,
-        history,
+        status,
+        lastLogin,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -58,10 +54,10 @@ export async function POST(req: Request, res: Response) {
   }
 }
 
-// delete all bill data  /api/bill
+// delete all users  /api/user
 export async function DELETE(req: Request, res: Response) {
   try {
-    const data = await prisma.bill.deleteMany();
+    const data = await prisma.user.deleteMany();
     return NextResponse.json({ message: "OK", data }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
