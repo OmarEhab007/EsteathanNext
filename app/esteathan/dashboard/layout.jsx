@@ -10,6 +10,8 @@ import Image from "next/image.js";
 import icon from "../bigIcon.png";
 import bgFooter from "../footer-bg.png";
 import Icon from "../bigIcon.png";
+import { signOut } from "next-auth/react";
+import "@uploadthing/react/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,13 +19,15 @@ export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-  if (typeof window !== 'undefined') {
-    import('../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
-    import('../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css');
-    import('../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css');
-    import('next/font/google');
-  }
-}, []);
+    if (typeof window !== "undefined") {
+      import("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
+      import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
+      import(
+        "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+      );
+      import("next/font/google");
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -69,7 +73,10 @@ export default function RootLayout({ children }) {
                     </Link>
                     <ul className="dropdown-menu">
                       <li>
-                        <Link className="dropdown-item text-center" href="/esteathan/">
+                        <Link
+                          className="dropdown-item text-center"
+                          href="/esteathan/"
+                        >
                           طلب جديد
                         </Link>
                       </li>
@@ -84,7 +91,10 @@ export default function RootLayout({ children }) {
                     </ul>
                   </li>
                   <li className="nav-item me-2 text-center text-center">
-                    <Link className="nav-link" href="/esteathan/dashboard/sendToTeacher">
+                    <Link
+                      className="nav-link"
+                      href="/esteathan/dashboard/sendToTeacher"
+                    >
                       ارسال لمعلم
                     </Link>
                   </li>
@@ -100,11 +110,20 @@ export default function RootLayout({ children }) {
                     </Link>
                     <ul className="dropdown-menu">
                       <li className="text-center nav-color">
-                        <Link className="dropdown-item text-center" href="/esteathan/dashboard/importStudentData">استيراد بيانات الطلاب</Link>
+                        <Link
+                          className="dropdown-item text-center"
+                          href="/esteathan/dashboard/importStudentData"
+                        >
+                          استيراد بيانات الطلاب
+                        </Link>
                       </li>
                       <li className="text-center nav-color">
-                        <Link className="dropdown-item text-center" href="/esteathan/dashboard/importTeacherData">استيراد بيانات المعلمين</Link>
-                        
+                        <Link
+                          className="dropdown-item text-center"
+                          href="/esteathan/dashboard/importTeacherData"
+                        >
+                          استيراد بيانات المعلمين
+                        </Link>
                       </li>
                       <li>
                         <hr className="dropdown-divider text-center" />
@@ -129,20 +148,30 @@ export default function RootLayout({ children }) {
                         <hr className="dropdown-divider text-center" />
                       </li>
                       <li className="text-center nav-color">
-                        <Link className="dropdown-item text-center" href="/esteathan/dashboard/deleteData ">حذف وتعديل البيانات</Link>
+                        <Link
+                          className="dropdown-item text-center"
+                          href="/esteathan/dashboard/deleteData "
+                        >
+                          حذف وتعديل البيانات
+                        </Link>
                       </li>
                     </ul>
                   </li>
                   <li className="nav-item me-2 text-center">
-                    <Link className="nav-link" href="/esteathan/dashboard/reports">
+                    <Link
+                      className="nav-link"
+                      href="/esteathan/dashboard/reports"
+                    >
                       {" "}
                       التقارير{" "}
                     </Link>
                   </li>
-                  <li className="nav-item me-2 text-center nav-color">
-                    {/*<Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>*/}{" "}
+
+                  {/* <li className="nav-item me-2 text-center nav-color">
+                    <Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>{" "}
                     تسجيل الدخول
                   </li>
+                   */}
                 </ul>
               </div>
               <label className="switch m-md-auto">
@@ -160,22 +189,42 @@ export default function RootLayout({ children }) {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
+
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a
+                    className="nav-link logout-button  me-2 text-center nav-color"
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}
+                  >
+                    <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+                  </a>
+                </li>
+              </ul>
             </div>
           </nav>
         </header>
 
         {children}
         <footer className="align-self-end position-relative">
-          <Image src={ bgFooter } placeholder="blur" width="100%" className="footer-bg"  />
+          <Image
+            src={bgFooter}
+            placeholder="blur"
+            width="100%"
+            className="footer-bg"
+          />
           <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
             <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
               <div>
                 <p className=" p-3 text-center">
                   فكرة وتصميم و تنفيذ
-                  <span>  عبدالحميد عبيد الله الجابري </span> 
+                  <span> عبدالحميد عبيد الله الجابري </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
-                <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
-              </p>
+                  <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
+                </p>
               </div>
             </div>
           </div>

@@ -13,6 +13,8 @@ export default function Student() {
   const [success, setSuccess] = useState(false);
   const [fileUrl, setFileUrl] = useState("");
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [errorUpload, setErrorUpload] = useState(false);
 
   const id = params.id;
   useEffect(() => {
@@ -180,14 +182,26 @@ export default function Student() {
 
                   <div className="mb-3">
                     <label for="formFile" className="form-label">
-                      {" "}
-                      ارفاق مستند{" "}
+                      اختر طريقة لإرفاق ملف
                       <span className="fs-6 text-opacity-50 text-danger">
                         *اختياري
                       </span>{" "}
                     </label>
                     <div className=" d-flex  ">
                       <UploadButton
+                        content={{
+                          button({ ready }) {
+                            if (ready) return <div>ارفاق صوره</div>;
+
+                            return "جاري الاستعداد";
+                          },
+                          allowedContent({ ready, fileTypes, isUploading }) {
+                            // if (!ready) return "Checking what you allow";
+                            if (isUploading)
+                              return "جاري رفع الملف الرجاء الانتظار";
+                            return `بحد اقصي 4 ميجا`;
+                          },
+                        }}
                         className="imageUploader me-2  "
                         // add two endpoints for each type of file
                         endpoint="imageUploader"
@@ -196,16 +210,31 @@ export default function Student() {
                           console.log("Files: ", res);
                           if (res.length > 0) {
                             setFileUrl(res[0].url);
-                            alert("تم رفع الملف بنجاح");
+                            // alert("تم رفع الملف بنجاح");
+                            setUploading(true);
                           }
                           console.log(fileUrl);
                         }}
                         onUploadError={(error) => {
                           // Do something with the error.
-                          alert(`حدث خطأ! ${error.message}`);
+                          // alert(`حدث خطأ! ${error.message}`);
+                          setErrorUpload(true);
                         }}
                       />
                       <UploadButton
+                        content={{
+                          button({ ready }) {
+                            if (ready) return <div>ارفاق مستند</div>;
+
+                            return "جاري الاستعداد";
+                          },
+                          allowedContent({ ready, fileTypes, isUploading }) {
+                            // if (!ready) return "Checking what you allow";
+                            if (isUploading)
+                              return "جاري رفع الملف الرجاء الانتظار";
+                            return `بحد اقصي 8 ميجا`;
+                          },
+                        }}
                         className="pdfUploader"
                         endpoint="pdfUploader"
                         onClientUploadComplete={(res) => {
@@ -213,17 +242,32 @@ export default function Student() {
                           console.log("Files: ", res);
                           if (res.length > 0) {
                             setFileUrl(res[0].url);
-                            alert("Upload Completed");
+                            // alert("Upload Completed");
+                            setUploading(true);
                           }
                           console.log(fileUrl);
                         }}
                         onUploadError={(error) => {
                           // Do something with the error.
-                          alert(`ERROR! ${error.message}`);
+                          // alert(`ERROR! ${error.message}`);
+                          setErrorUpload(true);
                         }}
                       />
                     </div>
                   </div>
+
+                  {uploading && (
+                    // create p for success uploading message
+                    <div className="alert alert-success" role="alert">
+                      تم رفع الملف بنجاح
+                    </div>
+                  )}
+                  {errorUpload && (
+                    // create p for error uploading message
+                    <div className="alert alert-danger" role="alert">
+                      حدث خطأ! الرجاء المحاولة مرة اخري
+                    </div>
+                  )}
 
                   <button
                     type="submit"
