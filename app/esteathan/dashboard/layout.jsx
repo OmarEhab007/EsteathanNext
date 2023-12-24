@@ -166,22 +166,12 @@ export default function RootLayout({ children }) {
                       التقارير{" "}
                     </Link>
                   </li>
-                  <li className="nav-item me-2 text-center nav-color">
-                    {/*<Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>*/}{" "}
+                  
+                  {/* <li className="nav-item me-2 text-center nav-color">
+                    <Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>{" "}
                     تسجيل الدخول
                   </li>
-                  {/* <li className="nav-item me-2 text-center nav-color">
-                    <a
-                      className="nav-link"
-                      href="/"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        signOut();
-                      }}
-                    >
-                      <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
-                    </a>
-                  </li> */}
+                   */}
                 </ul>
               </div>
               <label className="switch m-md-auto">
