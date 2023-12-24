@@ -43,3 +43,14 @@ model Form {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
+
+// create user 
+model User {
+  id        String   @id @default(cuid()) @map("_id")
+  username  String   @unique
+  password  String
+  phone     String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
