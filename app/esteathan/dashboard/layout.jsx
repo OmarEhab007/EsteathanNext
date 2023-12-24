@@ -10,8 +10,8 @@ import Image from "next/image.js";
 import icon from "../bigIcon.png";
 import bgFooter from "../footer-bg.png";
 import Icon from "../bigIcon.png";
-import { signOut } from "next-auth/react"
-
+import { signOut } from "next-auth/react";
+import "@uploadthing/react/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -170,11 +170,18 @@ export default function RootLayout({ children }) {
                     {/*<Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>*/}{" "}
                     تسجيل الدخول
                   </li>
-                  <li className="nav-item me-2 text-center nav-color">
-                    <button className="nav-link" onClick={() => signOut()}>
-                      تسجيل الخروج
-                    </button>
-                  </li>
+                  {/* <li className="nav-item me-2 text-center nav-color">
+                    <a
+                      className="nav-link"
+                      href="/"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        signOut();
+                      }}
+                    >
+                      <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                  </li> */}
                 </ul>
               </div>
               <label className="switch m-md-auto">
@@ -192,6 +199,16 @@ export default function RootLayout({ children }) {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
+              <a
+                className="nav-link logout-button nav-item me-2 text-center nav-color"
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  signOut();
+                }}
+              >
+                <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+              </a>
             </div>
           </nav>
         </header>

@@ -204,7 +204,7 @@ export default function SendRequests() {
                         <div className="col-lg-8  col-sm-12">
                           <p className="card-text">
                             {" "}
-                            {getStudentYear(form.studentId)}{" "}
+                            {getStudentClass(form.studentId)}{" "}
                           </p>
                         </div>
                       </div>
@@ -219,7 +219,7 @@ export default function SendRequests() {
                         <div className="col-lg-8  col-sm-12">
                           <p className="card-text">
                             {" "}
-                            {getStudentClass(form.studentId)}{" "}
+                            {getStudentYear(form.studentId)}{" "}
                           </p>
                         </div>
                       </div>

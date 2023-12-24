@@ -1,146 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;700&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html{
-    direction: rtl;
-    font-family: 'Lateef', serif;
-    font-size: 1.2em;
-    font-weight: 400;
-    line-height: 1.5;
+html {
+  direction: rtl;
+  font-family: "Lateef", serif;
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 1.5;
 
-    --primary-100:#C7B299;
-    --primary-200:#a9957d;
-    --primary-300:#675640;
-    --accent-100:#A68B5B;
-    --accent-200:#483507;
-    --text-100:#4D4D4D;
-    --text-200:#797979;
-    --bg-100:#F5EFE7;
-    --bg-100-50:#f5efe784;
-    --bg-200:#ebe5dd;
-    --bg-300:#c2bdb5;
-      
+  --primary-100: #c7b299;
+  --primary-200: #a9957d;
+  --primary-300: #675640;
+  --accent-100: #a68b5b;
+  --accent-200: #483507;
+  --text-100: #4d4d4d;
+  --text-200: #797979;
+  --bg-100: #f5efe7;
+  --bg-100-50: #f5efe784;
+  --bg-200: #ebe5dd;
+  --bg-300: #c2bdb5;
 }
 
-.dark{
-
-  --primary-100:#FFD700;
-  --primary-200:#ddb900;
-  --primary-300:#917800;
-  --accent-100:#c49216;
-  --accent-200:#5e3b00;
-  --text-100:#dcdcdc;
-  --text-200:#929292;
-  --bg-100:#1E1E1E;
-  --bg-100-50:#1e1e1e8b;
-  --bg-200:#2d2d2d;
-  --bg-300:#454545;
-    
+.dark {
+  --primary-100: #ffd700;
+  --primary-200: #ddb900;
+  --primary-300: #917800;
+  --accent-100: #c49216;
+  --accent-200: #5e3b00;
+  --text-100: #dcdcdc;
+  --text-200: #929292;
+  --bg-100: #1e1e1e;
+  --bg-100-50: #1e1e1e8b;
+  --bg-200: #2d2d2d;
+  --bg-300: #454545;
 }
 
-body{
-    background-color: var(--bg-100) !important;
-    color: var(--text-100) !important;
-
+body {
+  background-color: var(--bg-100) !important;
+  color: var(--text-100) !important;
 }
 
-a{
-    text-decoration: none;
-    color: var(--text-100);
+a {
+  text-decoration: none;
+  color: var(--text-100);
 }
 
-nav{
-    background-color: var(--bg-200) !important;
+nav {
+  background-color: var(--bg-200) !important;
 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
 }
 
-nav a{
-    color: var(--accent-100) !important;
-
+nav a {
+  color: var(--accent-100) !important;
 }
 
-.nav-color{
+.nav-color {
   color: var(--accent-100) !important;
   margin: 0.5em 0;
 }
 
-nav a:hover{
-    background-color: var(--bg-100) !important; 
-    border-radius: 0.5em;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+nav a:hover {
+  background-color: var(--bg-100) !important;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-nav .navbar-brand{
-    color: var(--accent-100) !important;
+nav .navbar-brand {
+  color: var(--accent-100) !important;
 }
 
-.dropdown-menu{
-    background-color: var(--bg-200) !important;
-    color: var(--text-100) !important;
-
+.dropdown-menu {
+  background-color: var(--bg-200) !important;
+  color: var(--text-100) !important;
 }
 
-.card-header{
-    background-color: var(--bg-300) !important;
-    color: var(--text-100) !important;
-  }
+.card-header {
+  background-color: var(--bg-300) !important;
+  color: var(--text-100) !important;
+}
 
-  .card{
-    background-color: var(--bg-200) !important;
-    color: var(--text-100) !important;
-  }
+.card {
+  background-color: var(--bg-200) !important;
+  color: var(--text-100) !important;
+}
 
-  input{
-    background-color: var(--bg-300) !important;
-    color: var(--text-100) !important;
-  }
+input {
+  background-color: var(--bg-300) !important;
+  color: var(--text-100) !important;
+}
 
-  input:focus{
-    background-color: var(--bg-200) !important;
-    color: var(--text-100) !important;
-  }
+input:focus {
+  background-color: var(--bg-200) !important;
+  color: var(--text-100) !important;
+}
 
-  input::placeholder{
-    color: var(--text-200) !important;
-  }
+input::placeholder {
+  color: var(--text-200) !important;
+}
 
-  textarea{
-    background-color: var(--bg-300) !important;
-    color: var(--text-100) !important;
-  }
+textarea {
+  background-color: var(--bg-300) !important;
+  color: var(--text-100) !important;
+}
 
-  textarea:focus{
-    background-color: var(--bg-200) !important;
-    color: var(--text-100) !important;
-  }
+textarea:focus {
+  background-color: var(--bg-200) !important;
+  color: var(--text-100) !important;
+}
 
-  textarea::placeholder{
-    color: var(--text-200) !important;
-  }
+textarea::placeholder {
+  color: var(--text-200) !important;
+}
 
-  select{
-    background-color: var(--bg-300) !important;
-    color: var(--text-100) !important;
-  }
+select {
+  background-color: var(--bg-300) !important;
+  color: var(--text-100) !important;
+}
 
-  select:focus{
-    background-color: var(--bg-200) !important;
-    color: var(--text-100) !important;
-  }
+select:focus {
+  background-color: var(--bg-200) !important;
+  color: var(--text-100) !important;
+}
 
-  select::placeholder{
-    color: var(--text-200) !important;
-  }
+select::placeholder {
+  color: var(--text-200) !important;
+}
 
-
-a{
-  text-decoration:none !important;
+a {
+  text-decoration: none !important;
   color: wheat;
 }
 
@@ -148,542 +141,627 @@ a{
   background-color: var(--bg-300) !important;
 }
 
-.border-primary{
-    border-color: var(--accent-100) !important;
+.border-primary {
+  border-color: var(--accent-100) !important;
 }
 
 /* The switch - the box around the slider */
 .switch {
-    display: block;
-    --width-of-switch: 3.5em;
-    --height-of-switch: 2em;
-    /* size of sliding icon -- sun and moon */
-    --size-of-icon: 1.4em;
-    /* it is like a inline-padding of switch */
-    --slider-offset: 0.3em;
-    position: relative;
-    width: var(--width-of-switch);
-    height: var(--height-of-switch);
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #f4f4f5;
-    transition: .4s;
-    border-radius: 30px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: var(--size-of-icon,1.4em);
-    width: var(--size-of-icon,1.4em);
-    border-radius: 20px;
-    left: var(--slider-offset,0.3em);
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
-    ;
-   transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #303136;
-  }
-  
-  input:checked + .slider:before {
-    left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
-    background: #303136;
-    /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
-    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  /* size of sliding icon -- sun and moon */
+  --size-of-icon: 1.4em;
+  /* it is like a inline-padding of switch */
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon, 1.4em);
+  width: var(--size-of-icon, 1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset, 0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+  background: #303136;
+  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+.index-row {
+  min-height: 75vh;
+}
+
+.reqInfo .card {
+  min-height: 260px;
+}
+
+.reqInfo .card-header {
+  min-height: 130px;
+}
+
+.reqMain {
+  min-height: 60vh;
+}
+
+.reqMain form {
+  border: 1px solid;
+  border-radius: 1em;
+}
+
+.reqParent {
+  height: 100vh;
+}
+
+.reqParent form {
+  border: 1px solid;
+  border-radius: 1em;
+}
+
+.reqParent header {
+  height: 20%;
+}
+
+.reqParent .form-outer {
+  height: 80%;
+}
+
+.studentInfo .container {
+  height: 100vh;
+}
+
+.loader {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.typewriter {
+  --blue: #5c86ff;
+  --blue-dark: #275efe;
+  --key: #fff;
+  --paper: #eef0fd;
+  --text: #d3d4ec;
+  --tool: #fbc56c;
+  --duration: 3s;
+  position: relative;
+  -webkit-animation: bounce05 var(--duration) linear infinite;
+  animation: bounce05 var(--duration) linear infinite;
+  height: 100%;
+}
+
+.typewriter .slide {
+  width: 92px;
+  height: 20px;
+  border-radius: 3px;
+  margin-left: 14px;
+  transform: translateX(14px);
+  background: linear-gradient(var(--blue), var(--blue-dark));
+  -webkit-animation: slide05 var(--duration) ease infinite;
+  animation: slide05 var(--duration) ease infinite;
+  position: absolute;
+  top: 47%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.typewriter .slide:before,
+.typewriter .slide:after,
+.typewriter .slide i:before {
+  content: "";
+  position: absolute;
+  background: var(--tool);
+}
+
+.typewriter .slide:before {
+  width: 2px;
+  height: 8px;
+  top: 6px;
+  left: 100%;
+}
+
+.typewriter .slide:after {
+  left: 94px;
+  top: 3px;
+  height: 14px;
+  width: 6px;
+  border-radius: 3px;
+}
+
+.typewriter .slide i {
+  display: block;
+  position: absolute;
+  right: 100%;
+  width: 6px;
+  height: 4px;
+  top: 4px;
+  background: var(--tool);
+}
+
+.typewriter .slide i:before {
+  right: 100%;
+  top: -2px;
+  width: 4px;
+  border-radius: 2px;
+  height: 14px;
+}
+
+.typewriter .paper {
+  position: absolute;
+  left: 24px;
+  top: -26px;
+  width: 40px;
+  height: 46px;
+  border-radius: 5px;
+  background: var(--paper);
+  transform: translateY(46px);
+  -webkit-animation: paper05 var(--duration) linear infinite;
+  animation: paper05 var(--duration) linear infinite;
+  position: absolute;
+  top: 42%;
+  left: 47%;
+  z-index: 2;
+  transform: translate(50%, -50%);
+}
+
+.typewriter .paper:before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 7px;
+  border-radius: 2px;
+  height: 4px;
+  transform: scaleY(0.8);
+  background: var(--text);
+  box-shadow: 0 12px 0 var(--text), 0 24px 0 var(--text), 0 36px 0 var(--text);
+}
+
+.typewriter .keyboard {
+  width: 120px;
+  height: 56px;
+  margin-top: -10px;
+  z-index: 1;
+  position: relative;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.typewriter .keyboard:before,
+.typewriter .keyboard:after {
+  content: "";
+  position: absolute;
+}
+
+.typewriter .keyboard:before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 7px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  transform: perspective(10px) rotateX(2deg);
+  transform-origin: 50% 100%;
+}
+
+.typewriter .keyboard:after {
+  left: 2px;
+  top: 25px;
+  width: 11px;
+  height: 4px;
+  border-radius: 2px;
+  box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+    60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+    22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+    60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
+  -webkit-animation: keyboard05 var(--duration) linear infinite;
+  animation: keyboard05 var(--duration) linear infinite;
+}
+
+@keyframes bounce05 {
+  85%,
+  92%,
+  100% {
+    transform: translateY(0);
   }
 
-  .index-row{
-    min-height: 75vh;
+  89% {
+    transform: translateY(-4px);
   }
 
-  .reqInfo .card{
-    min-height: 260px;
+  95% {
+    transform: translateY(2px);
   }
+}
 
-  .reqInfo .card-header{
-    min-height: 130px;
-  }
-
-  .reqMain{
-    min-height: 60vh;
-  }
-
-  .reqMain form {
-    border: 1px solid;
-    border-radius: 1em;
-  }
-
-  .reqParent{
-    height: 100vh;
-  }
-
-  .reqParent form{
-    border: 1px solid;
-    border-radius: 1em;
-  }
-  
-  .reqParent header{
-    height: 20%;
-  }
-
-  .reqParent .form-outer{
-    height: 80%;
-  }
-
-  .studentInfo .container{
-    height: 100vh;
-  }
-
-  .loader{
-    background: rgba(255,255,255,0.5);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.25);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .typewriter {
-    --blue: #5C86FF;
-    --blue-dark: #275EFE;
-    --key: #fff;
-    --paper: #EEF0FD;
-    --text: #D3D4EC;
-    --tool: #FBC56C;
-    --duration: 3s;
-    position: relative;
-    -webkit-animation: bounce05 var(--duration) linear infinite;
-    animation: bounce05 var(--duration) linear infinite;
-    height: 100%;
-  }
-  
-  .typewriter .slide {
-    width: 92px;
-    height: 20px;
-    border-radius: 3px;
-    margin-left: 14px;
+@keyframes slide05 {
+  5% {
     transform: translateX(14px);
-    background: linear-gradient(var(--blue), var(--blue-dark));
-    -webkit-animation: slide05 var(--duration) ease infinite;
-    animation: slide05 var(--duration) ease infinite;
-    position: absolute;
-    top: 47%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
   }
-  
-  .typewriter .slide:before, .typewriter .slide:after,
-  .typewriter .slide i:before {
-    content: "";
-    position: absolute;
-    background: var(--tool);
-    
+
+  15%,
+  30% {
+    transform: translateX(6px);
   }
-  
-  .typewriter .slide:before {
-    width: 2px;
-    height: 8px;
-    top: 6px;
-    left: 100%;
+
+  40%,
+  55% {
+    transform: translateX(0);
   }
-  
-  .typewriter .slide:after {
-    left: 94px;
-    top: 3px;
-    height: 14px;
-    width: 6px;
-    border-radius: 3px;
+
+  65%,
+  70% {
+    transform: translateX(-4px);
   }
-  
-  .typewriter .slide i {
-    display: block;
-    position: absolute;
-    right: 100%;
-    width: 6px;
-    height: 4px;
-    top: 4px;
-    background: var(--tool);
+
+  80%,
+  89% {
+    transform: translateX(-12px);
   }
-  
-  .typewriter .slide i:before {
-    right: 100%;
-    top: -2px;
-    width: 4px;
-    border-radius: 2px;
-    height: 14px;
+
+  100% {
+    transform: translateX(14px);
   }
-  
-  .typewriter .paper {
-    position: absolute;
-    left: 24px;
-    top: -26px;
-    width: 40px;
-    height: 46px;
-    border-radius: 5px;
-    background: var(--paper);
+}
+
+@keyframes paper05 {
+  5% {
     transform: translateY(46px);
-    -webkit-animation: paper05 var(--duration) linear infinite;
-    animation: paper05 var(--duration) linear infinite;
-    position: absolute;
-    top: 42%;
-    left: 47%;
-    z-index: 2;
-    transform: translate(50%, -50%);
-  }
-  
-  .typewriter .paper:before {
-    content: "";
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    top: 7px;
-    border-radius: 2px;
-    height: 4px;
-    transform: scaleY(0.8);
-    background: var(--text);
-    box-shadow: 0 12px 0 var(--text), 0 24px 0 var(--text), 0 36px 0 var(--text);
-  }
-  
-  .typewriter .keyboard {
-    width: 120px;
-    height: 56px;
-    margin-top: -10px;
-    z-index: 1;
-    position: relative;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-  }
-  
-  .typewriter .keyboard:before, .typewriter .keyboard:after {
-    content: "";
-    position: absolute;
-  }
-  
-  .typewriter .keyboard:before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 7px;
-    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-    transform: perspective(10px) rotateX(2deg);
-    transform-origin: 50% 100%;
-  }
-  
-  .typewriter .keyboard:after {
-    left: 2px;
-    top: 25px;
-    width: 11px;
-    height: 4px;
-    border-radius: 2px;
-    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    -webkit-animation: keyboard05 var(--duration) linear infinite;
-    animation: keyboard05 var(--duration) linear infinite;
-  }
-  
-  @keyframes bounce05 {
-    85%, 92%, 100% {
-      transform: translateY(0);
-    }
-  
-    89% {
-      transform: translateY(-4px);
-    }
-  
-    95% {
-      transform: translateY(2px);
-    }
-  }
-  
-  @keyframes slide05 {
-    5% {
-      transform: translateX(14px);
-    }
-  
-    15%, 30% {
-      transform: translateX(6px);
-    }
-  
-    40%, 55% {
-      transform: translateX(0);
-    }
-  
-    65%, 70% {
-      transform: translateX(-4px);
-    }
-  
-    80%, 89% {
-      transform: translateX(-12px);
-    }
-  
-    100% {
-      transform: translateX(14px);
-    }
-  }
-  
-  @keyframes paper05 {
-    5% {
-      transform: translateY(46px);
-    }
-  
-    20%, 30% {
-      transform: translateY(34px);
-    }
-  
-    40%, 55% {
-      transform: translateY(22px);
-    }
-  
-    65%, 70% {
-      transform: translateY(10px);
-    }
-  
-    80%, 85% {
-      transform: translateY(0);
-    }
-  
-    92%, 100% {
-      transform: translateY(46px);
-    }
-  }
-  
-  @keyframes keyboard05 {
-    5%, 12%, 21%, 30%, 39%, 48%, 57%, 66%, 75%, 84% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    9% {
-      box-shadow: 15px 2px 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    18% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 2px 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    27% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 12px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    36% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 12px 0 var(--key), 60px 12px 0 var(--key), 68px 12px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    45% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 2px 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    54% {
-      box-shadow: 15px 0 0 var(--key), 30px 2px 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    63% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 12px 0 var(--key);
-    }
-  
-    72% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 2px 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
-  
-    81% {
-      box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key), 60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key), 22px 10px 0 var(--key), 37px 12px 0 var(--key), 52px 10px 0 var(--key), 60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
-    }
   }
 
-
-  .send-done{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255,255,255,0.5);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.25);
-    z-index: 999;
+  20%,
+  30% {
+    transform: translateY(34px);
   }
 
-  .send-done i{
-    font-size: 6em;
+  40%,
+  55% {
+    transform: translateY(22px);
   }
 
-  .premationReson{
-    padding: 0.5em 1em;
-    border: 1px solid gray;
-    background-color: lightgray;
-    border-radius: 0.25em;
+  65%,
+  70% {
+    transform: translateY(10px);
   }
 
-  .SentRequests .card{
-    min-height: 260px;
-
+  80%,
+  85% {
+    transform: translateY(0);
   }
 
-  .SentRequests .card:hover{
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  92%,
+  100% {
+    transform: translateY(46px);
   }
-  
-  .importStudentData .row{
-    min-height: 75vh;
-    text-align: center;
+}
+
+@keyframes keyboard05 {
+  5%,
+  12%,
+  21%,
+  30%,
+  39%,
+  48%,
+  57%,
+  66%,
+  75%,
+  84% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .importStudentData .row .wrapper{
-    border:dashed 2px ;
-    border-radius: 1em;
-    padding: 1em;
-
+  9% {
+    box-shadow: 15px 2px 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .addStudent form{
-    border: 1px solid;
-    border-radius: 1em;
+  18% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 2px 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .addTeacher form{
-    border: 1px solid;
-    border-radius: 1em;
+  27% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 12px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .login {
-    min-height: 75vh;
+  36% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 12px 0 var(--key),
+      60px 12px 0 var(--key), 68px 12px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .signup {
-    min-height: 75vh;
+  45% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 2px 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .reportDate{
-    border-bottom: 1px solid ;
+  54% {
+    box-shadow: 15px 0 0 var(--key), 30px 2px 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .icon{
-    width: 40px ;
+  63% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 12px 0 var(--key);
   }
 
-  footer {
-    width:100%;
-    min-height:200px;
+  72% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 2px 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 10px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
 
-  .footer-bg {
-    width: 100% ;
-    height: 200px ;
-    overflow: hidden;
+  81% {
+    box-shadow: 15px 0 0 var(--key), 30px 0 0 var(--key), 45px 0 0 var(--key),
+      60px 0 0 var(--key), 75px 0 0 var(--key), 90px 0 0 var(--key),
+      22px 10px 0 var(--key), 37px 12px 0 var(--key), 52px 10px 0 var(--key),
+      60px 10px 0 var(--key), 68px 10px 0 var(--key), 83px 10px 0 var(--key);
   }
+}
 
-  .reqbody{
-    min-height:100vh;
-  }
+.send-done {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 999;
+}
 
-  footer p{
-    color: var(--text-300);
-  }
+.send-done i {
+  font-size: 6em;
+}
 
-  footer span{
-    font-size: 1.2em;
-    color: #ca5305;
-  }
+.premationReson {
+  padding: 0.5em 1em;
+  border: 1px solid gray;
+  background-color: lightgray;
+  border-radius: 0.25em;
+}
 
-  .footer-icon{
-    width: 2em !important;
-    
-  }
+.SentRequests .card {
+  min-height: 260px;
+}
 
-  section{
-    width: 100%;
-  }
+.SentRequests .card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
-  header{
-    width: 100%;
-  }
+.importStudentData .row {
+  min-height: 75vh;
+  text-align: center;
+}
 
-  .footer-layer{
-    background-color: var(--bg-200);
-    color: var(--text-100-50);
-    /* border-radius: 2em; */
-  }
+.importStudentData .row .wrapper {
+  border: dashed 2px;
+  border-radius: 1em;
+  padding: 1em;
+}
 
-  .delete-border{
-    border: 1px solid ;
-    border-radius: 1.5em;
-    overflow: hidden;
-  }
+.addStudent form {
+  border: 1px solid;
+  border-radius: 1em;
+}
 
-  .delete-border nav{
-    box-shadow: none !important;
-  }
+.addTeacher form {
+  border: 1px solid;
+  border-radius: 1em;
+}
 
-  .updateStudents form{
-    border: 1px solid;
-    border-radius: 1em;
-  }
+.login {
+  min-height: 75vh;
+}
 
-  .updateTeacher form{
-    border: 1px solid;
-    border-radius: 1em;
-  }
+.signup {
+  min-height: 75vh;
+}
 
-  .deleteData nav a{
-    cursor: pointer;
-  }
+.reportDate {
+  border-bottom: 1px solid;
+}
 
-  .loading-backgound{
-    background: rgba(255,255,255,0.2);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.25);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+.icon {
+  width: 40px;
+}
 
-  .pdfUploader label{
-    background-color: #b51308;
-    transition: all 0.3s ease-in-out;
-    width: 7em;
-    height: 2em;
-  }
+footer {
+  width: 100%;
+  min-height: 200px;
+}
 
-  .pdfUploader label:hover{
-    background-color: #eb2a1c;
-  }
+.footer-bg {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
 
-  .imageUploader label{
-    background-color: #3781bb;
-    transition: all 0.3s ease-in-out;
-    width: 7em;
-    height: 2em;
-  }
+.reqbody {
+  min-height: 100vh;
+}
 
-  .imageUploader label:hover{
-    background-color: #4e9bd1;
-  }
+footer p {
+  color: var(--text-300);
+}
+
+footer span {
+  font-size: 1.2em;
+  color: #ca5305;
+}
+
+.footer-icon {
+  width: 2em !important;
+}
+
+section {
+  width: 100%;
+}
+
+header {
+  width: 100%;
+}
+
+.footer-layer {
+  background-color: var(--bg-200);
+  color: var(--text-100-50);
+  /* border-radius: 2em; */
+}
+
+.delete-border {
+  border: 1px solid;
+  border-radius: 1.5em;
+  overflow: hidden;
+}
+
+.delete-border nav {
+  box-shadow: none !important;
+}
+
+.updateStudents form {
+  border: 1px solid;
+  border-radius: 1em;
+}
+
+.updateTeacher form {
+  border: 1px solid;
+  border-radius: 1em;
+}
+
+.deleteData nav a {
+  cursor: pointer;
+}
+
+.loading-backgound {
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.pdfUploader label {
+  background-color: #b51308;
+  transition: all 0.3s ease-in-out;
+  width: 7em;
+  height: 2em;
+}
+
+.pdfUploader label:hover {
+  background-color: #eb2a1c;
+}
+
+.imageUploader label {
+  background-color: #3781bb;
+  transition: all 0.3s ease-in-out;
+  width: 7em;
+  height: 2em;
+}
+
+.imageUploader label:hover {
+  background-color: #4e9bd1;
+}
+
+.logout-button {
+  margin: 20px;
+  padding: 20px;
+}
+
+/* applied to container */
+.custom-class {
+  background-color: none;
+}
+
+/* applied to button */
+.custom-class > *[data-ut-element="button"] {
+  font-size: 1.6rem;
+  color: rgb(0 0 0 / 1);
+  background-color: rgb(239 68 68 / 1);
+}
+
+/* applied to button when uploading */
+.custom-class > *[data-ut-element="button"][data-state="readying"] {
+  background-color: rgb(239 68 68 / 0.5);
+  color: rgb(0 0 0 / 0.5);
+  cursor: not-allowed;
+}
+
+/* applied to the button when uploading */
+.custom-class > *[data-ut-element="button"][data-state="uploading"] {
+  background-color: rgb(239 68 68 / 0.5);
+  color: rgb(0 0 0 / 0.5);
+  cursor: not-allowed;
+}
+
+/* applied to the upload indicator when uploading */
+.custom-class > *[data-ut-element="button"][data-state="uploading"]::after {
+  background-color: rgb(234 88 12 / 1);
+}
