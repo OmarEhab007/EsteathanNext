@@ -191,7 +191,7 @@ export default function Student() {
                       <UploadButton
                         content={{
                           button({ ready }) {
-                            if (ready) return <div>ارفاق صوره</div>;
+                            if (ready) return <div>ارفاق صوره <i class="fa-regular fa-image"></i></div>;
 
                             return "جاري الاستعداد";
                           },
@@ -224,7 +224,7 @@ export default function Student() {
                       <UploadButton
                         content={{
                           button({ ready }) {
-                            if (ready) return <div>ارفاق مستند</div>;
+                            if (ready) return <div>ارفاق مستند <i class="fa-regular fa-file-pdf"></i></div>;
 
                             return "جاري الاستعداد";
                           },
