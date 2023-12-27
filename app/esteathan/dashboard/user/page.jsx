@@ -97,7 +97,7 @@ export default function User() {
                                 <div className="row justify-content-center align-items-center">
                                     <div className="col-8 pe-0 col-sm-5">
                                         <div>
-                                        <p className=' fs-5 text-center mb-0'> اسم المشرف </p>
+                                        <p className=' fs-5 text-center mb-0'> اسم المسؤول </p>
                                         </div>
                                     </div>
                                     <div className="col-1 ps-0">
@@ -121,7 +121,7 @@ export default function User() {
 
                                     <div className="col-8 pe-0 col-sm-5">
                                         <div className='text-center'>
-                                            <button className='btn esteathan-btn'> تعديل اسم المشرف </button>
+                                            <button className='btn esteathan-btn'> تعديل اسم المسؤول </button>
                                         </div>
                                     </div>
                                     <div className="col-1 ps-0">

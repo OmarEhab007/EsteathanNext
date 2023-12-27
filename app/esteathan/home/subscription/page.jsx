@@ -17,8 +17,13 @@ export default function Subscription() {
                         <div className='details m-auto mb-3'>
                             <div className="card-body">
                                 <p className='text-center m-0'> 
-                                     قم بتحويل قيمة اشتراكك على الحساب البنكي التالي
-                                    <span className='high'> 300608010173943 </span>
+                                     قم بتحويل قيمة اشتراكك على حسابنا في بنك الراجحي</p>
+                                <p className='text-center m-0'>
+                                    <span className='high'> 300608010173943 </span><br />
+                                    <span className='high'> أيبان : SA6380000300608010173943 </span><br />
+                                    <span className='high'> باسم : عبدالحميد عبيدالله الجابري </span>
+                                </p>
+                                <p className='text-center m-0'>
                                     وارفق صورة ايصال الدفع لتتمكن من استخدام البرنامج
                                 </p>
                             </div>
@@ -106,8 +111,8 @@ export default function Subscription() {
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
-                                            <label class="form-check-label" for="exampleRadios2">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2"/>
+                                            <label class="form-check-label" for="exampleRadios3">
                                                 سنة دراسية كاملة 
                                             </label>
                                         </div>
