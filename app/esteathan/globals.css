@@ -878,3 +878,25 @@ header {
   height: 455px;
   border-radius: 0.5em;
 }
+
+/* Largeur de la barre de défilement */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Couleur de la piste */
+::-webkit-scrollbar-track {
+  background: var(--bg-300);
+}
+
+/* Couleur de la poignée */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-100);
+  border-radius: 5px;
+}
+
+/* Couleur de la poignée au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-200);
+  border-radius: 5px;
+}
