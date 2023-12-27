@@ -30,8 +30,7 @@ export default function Subscription() {
                     <div className="card p-3 position-relative">
 
                         <div className='position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading d-none'>
-                            <div className="spinner-border text-success " role="status">
-                            </div>             
+                            <div className="spinner-border text-success " role="status"></div>             
                         </div>
 
                         <div className='position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading d-none '>

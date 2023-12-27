@@ -905,3 +905,11 @@ header {
 .pillUploader{
   border: none !important;
 }
+
+.user .card-body .group .row{
+  border-bottom: 1px solid var(--bg-300);
+}
+
+.pass{
+  color: var(--primary-100);
+}
