@@ -892,11 +892,11 @@ header {
 /* Couleur de la poignée */
 ::-webkit-scrollbar-thumb {
   background: var(--accent-100);
-  border-radius: 5px;
+  border-radius: 7.5px;
 }
 
 /* Couleur de la poignée au survol */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-200);
-  border-radius: 5px;
+  border-radius: 7.5px;
 }
