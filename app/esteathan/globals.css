@@ -43,6 +43,7 @@ html {
 body {
   background-color: var(--bg-100) !important;
   color: var(--text-100) !important;
+  min-height: 100vh;
 }
 
 a {
@@ -210,9 +211,9 @@ input:checked + .slider:before {
   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
-.index-row {
+/* .index-row {
   min-height: 75vh;
-}
+} */
 
 .reqInfo .card {
   min-height: 260px;
@@ -601,7 +602,7 @@ input:checked + .slider:before {
 }
 
 .importStudentData .row {
-  min-height: 75vh;
+  /* min-height: 75vh; */
   text-align: center;
 }
 
@@ -812,13 +813,26 @@ header {
   background-color: var(--accent-100) !important;
   color: var(--bg-100 ) !important;
   transition: all 0.3s ease-in-out;
-  width: 11em;
   height: 2em;
   padding: 0.5em;
 }
 
 .esteathan-btn:hover{
   background-color: var(--accent-200) !important;
+  color: var(--bg-100 ) !important;
+}
+
+.esteathan-outline-btn{
+  background-color: transparent !important;
+  color: var(--accent-100) !important;
+  transition: all 0.3s ease-in-out;
+  height: 2em;
+  padding: 0.5em;
+  border: 1px solid var(--accent-100) !important;
+}
+
+.esteathan-outline-btn:hover{
+  background-color: var(--accent-100) !important;
   color: var(--bg-100 ) !important;
 }
 
@@ -854,4 +868,13 @@ header {
 
 .forgetPassword{
   height: 100vh;
+}
+
+.subscriptionResponce .card-body .row{
+  border-bottom: 1px solid var(--bg-300);
+}
+
+.subscriptionResponce .card-body .group img{
+  height: 455px;
+  border-radius: 0.5em;
 }
