@@ -6,7 +6,7 @@ import { UploadButton, UploadDropzone } from "../../../../utils/uploadthing";
 export default function SubscriptionRenow() {
   return <>
   
-    <section className='subscriptionRenow'>
+    <section className='subscriptionRenow position-relative'>
 
         <div className='container my-5'>
         
@@ -15,7 +15,7 @@ export default function SubscriptionRenow() {
             </div>
 
             <div className='row justify-content-center align-items-center'>    
-                <div className='col-12 col-md-6'>
+                <div className='col-12 col-xl-6 col-lg-7 '>
                     <div className="card">
                         <div className="card-body">
                             <form action="" className='text-center'>
@@ -38,12 +38,12 @@ export default function SubscriptionRenow() {
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
-                                            <label class="form-check-label" for="exampleRadios2">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2"/>
+                                            <label class="form-check-label" for="exampleRadios3">
                                                 سنة دراسية كاملة 
                                             </label>
                                         </div>
-
+                                    
                                 </div>
 
                                 <div className='mb-0 col-lg-6 d-flex justify-center align-items-center'>
