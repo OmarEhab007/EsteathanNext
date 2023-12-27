@@ -135,6 +135,27 @@ export default function SubscriptionResponce() {
 
                 <div className="group overflow-hidden text-center mb-2">
 
+                  <div className="row justify-content-center align-items-center">
+                      <div className="col-8 pe-0 col-sm-5">
+                        <div>
+                          <p className=' fs-5 text-center mb-0'> مدة الاشتراك </p>
+                        </div>
+                      </div>
+                      <div className="col-1 ps-0">
+                        <div>
+                          <p className='text-start text-sm-center mb-0'> : </p>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-6 pe-0">
+                        <div>
+                          <p className='   text-center mb-0'> فصل دراسي واحد </p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div className="group overflow-hidden text-center mb-2">
+
                   <img
                    src="https://news.elbadil.com/wp-content/uploads/2023/07/%D9%83%D9%8A%D9%81-%D8%A7%D8%B7%D9%84%D8%B9-%D8%A5%D9%8A%D8%B5%D8%A7%D9%84-%D8%AA%D8%AD%D9%88%D9%8A%D9%84-%D8%A8%D9%86%D9%83-%D8%A7%D9%84%D8%B1%D8%A7%D8%AC%D8%AD%D9%8A-14451.webp"
                    alt="pill" 
@@ -144,51 +165,6 @@ export default function SubscriptionResponce() {
                 </div>
 
                 <form className='text-center'>
-
-                  <div className='row justify-content-center my-3'>
-
-                    <div className="col-xl-4 col-lg-6 col-md-4 col-sm-6 mb-2">
-                      <div className='row justify-content-center'>
-                        <div className='col-2 pe-0 pe-sm-2'>
-                          <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        </div>
-                        <div className="col-5 col-sm-10 ps-0 ps-sm-2">
-                          <label class="form-check-label" for="exampleRadios1">
-                              فصل دراسي واحد
-                          </label>
-                        </div>
-                        
-                      </div>
-                    </div>
-
-                    <div className="col-xl-4 col-lg-6 col-md-4 col-sm-6 mb-2">
-                      <div className='row justify-content-center'>
-                        <div className='col-2 pe-0 pe-sm-2'>
-                          <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
-                        </div>
-                        <div className="col-5 col-sm-10 ps-0 ps-sm-2">
-                          <label class="form-check-label" for="exampleRadios2">
-                              فصلان دراسيان
-                          </label>
-                        </div>  
-                      </div>
-                    </div>
-
-                    <div className="col-xl-4 col-lg-6 col-md-4 col-sm-6 mb-2">
-                      <div className='row justify-content-center'>
-                        <div className='col-2 pe-0 pe-sm-2'>
-                          <input class="form-check-input me-2" type="radio" name="exampleRadios" id="exampleRadios3" value="option2"/>
-                        </div>
-                        <div className="col-5 col-sm-10 ps-0 ps-sm-2">
-                          <label class="form-check-label" for="exampleRadios3">
-                              سنة دراسية كاملة 
-                          </label>
-                        </div>  
-                      </div>
-                    </div>
-
-                  </div>
-
                   <button className='btn esteathan-btn px-4 me-2 '> قبول </button>
                   <button className='btn esteathan-outline-btn px-4 '> رفض </button>
                 </form>
