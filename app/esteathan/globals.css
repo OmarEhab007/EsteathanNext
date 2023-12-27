@@ -803,6 +803,7 @@ header {
   width: 11em;
   height: 2em;
   padding: 0.5em;
+  margin: auto;
 }
 
 .pillUploader label:hover{
@@ -886,7 +887,7 @@ header {
 
 /* Couleur de la piste */
 ::-webkit-scrollbar-track {
-  background: var(--bg-300);
+  background: var(--bg-200);
 }
 
 /* Couleur de la poignée */
