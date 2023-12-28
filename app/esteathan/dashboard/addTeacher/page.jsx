@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function AddTeacher() {
   const [teacherName, setTeacherName] = useState("");
@@ -10,12 +11,27 @@ export default function AddTeacher() {
     nameError: "",
     phoneError: "",
   });
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
 
   // Regex pattern for validating a full name with at least 3 names in Arabic
   const nameRegex = /^[\u0600-\u06FF\s]+(\s[\u0600-\u06FF\s]+){2,}$/;
 
   // Regex pattern for validating a Saudi Arabia phone number
   const phoneRegex = /^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/;
+
+  const user_id = session?.user?.id;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data.schoolId);
+      }
+    };
+    fetchUserData();
+  }, [session]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +47,8 @@ export default function AddTeacher() {
     if (!nameRegex.test(teacherName)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        nameError: "يرجى إدخال اسم صحيح باللغة العربية ويحتوي على ثلاثة أسماء على الأقل",
+        nameError:
+          "يرجى إدخال اسم صحيح باللغة العربية ويحتوي على ثلاثة أسماء على الأقل",
       }));
       hasErrors = true;
     }
@@ -60,6 +77,7 @@ export default function AddTeacher() {
         body: JSON.stringify({
           name: teacherName,
           phone: phone,
+          schoolId: user.schoolId,
         }),
       });
 
@@ -81,7 +99,9 @@ export default function AddTeacher() {
       }, 1000);
     } catch (error) {
       console.error("Error:", error);
-      setMessage(error.message || "هذا المعلم موجود مسبقا في قاعدة البيانات الخاصة بنا ");
+      setMessage(
+        error.message || "هذا المعلم موجود مسبقا في قاعدة البيانات الخاصة بنا "
+      );
     } finally {
       setLoading(false);
     }
@@ -171,7 +191,12 @@ export default function AddTeacher() {
       </section>
       <section className="message">
         <div className="container">
-          <div className={`text-success text-center mt-3 ${message ? "" : "d-none"}`} role="alert">
+          <div
+            className={`text-success text-center mt-3 ${
+              message ? "" : "d-none"
+            }`}
+            role="alert"
+          >
             {message}
           </div>
         </div>

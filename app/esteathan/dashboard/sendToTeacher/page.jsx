@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 export default function SendToTeasher() {
   const [forms, setForms] = useState([]);
@@ -10,15 +11,26 @@ export default function SendToTeasher() {
   const [student, setStudent] = useState(null);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
 
-  // today = new Date();
+  const user_id = session?.user?.id;
 
   useEffect(() => {
     const today = new Date();
-    fetch("/api/forms") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => {
-        const todayForms = data.datas.filter((form) => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${user_id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log("userData", userData.data)
+
+        const formsResponse = await fetch(
+          `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
+        // setForms(formsData.data || []);
+        const todayForms = formsData.data.filter((form) => {
           const formDate = new Date(form.createdAt);
           return (
             formDate.getDate() === today.getDate() &&
@@ -28,16 +40,49 @@ export default function SendToTeasher() {
           );
         });
         setForms(todayForms);
-      });
 
-    fetch("/api/students") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setStudents(data.datas));
+        console.log("formsData", formsData.data)
 
-    fetch("/api/teacher") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setTeachers(data.datas));
-  }, []);
+        const studentsResponse = await fetch(
+          `/api/students/school/${userData.data.schoolId}`
+        );
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data || []);
+        console.log("studentsData", studentsData.data)
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data || []);
+        console.log("teachersData", teachersData.data)
+      }
+    };
+    // fetch("/api/forms") // replace with your API endpoint
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     const todayForms = data.datas.filter((form) => {
+    //       const formDate = new Date(form.createdAt);
+    //       return (
+    //         formDate.getDate() === today.getDate() &&
+    //         formDate.getMonth() === today.getMonth() &&
+    //         formDate.getFullYear() === today.getFullYear() &&
+    //         form.approval === "approved"
+    //       );
+    //     });
+    //     setForms(todayForms);
+    //   });
+
+    // fetch("/api/students") // replace with your API endpoint
+    //   .then((res) => res.json())
+    //   .then((data) => setStudents(data.datas));
+
+    // fetch("/api/teacher") // replace with your API endpoint
+    //   .then((res) => res.json())
+    //   .then((data) => setTeachers(data.datas));
+
+    fetchUserData();
+  }, [session]);
 
   // console.log(forms);
   // console.log(students);
@@ -120,7 +165,7 @@ export default function SendToTeasher() {
             </div>
             {forms.map((form) => {
               const student = students.find(
-                (student) => student.number === form.studentId
+                (student) => student.id === form.studentId
               );
 
               return (
@@ -243,35 +288,39 @@ export default function SendToTeasher() {
                           </div>
                           {isLoading ? (
                             <div className="position-absolute top-0 bottom-0 start-0 end-0 loading-backgound ">
-                            <div className="h-100 d-flex align-items-center justify-content-center">
-                              <div
-                                className="spinner-border text-primary"
-                                role="status"
-                              >
-                                <span className="visually-hidden">
-                                  Loading...
-                                </span>
+                              <div className="h-100 d-flex align-items-center justify-content-center">
+                                <div
+                                  className="spinner-border text-primary"
+                                  role="status"
+                                >
+                                  <span className="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          ) : 
-                          <div className="sendToteacherButton text-center">
-                            <button
-                              type="button"
-                              className="btn btn-primary mt-3"
-                              onClick={(event) => handleSubmit(event, form.id)}
-                            >
-                              ارسال
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-danger mt-3 ms-5"
-                              onClick={(event) => handleCancel(event, form.id)}
-                            >
-                              الغاء
-                            </button>
+                          ) : (
+                            <div className="sendToteacherButton text-center">
+                              <button
+                                type="button"
+                                className="btn btn-primary mt-3"
+                                onClick={(event) =>
+                                  handleSubmit(event, form.id)
+                                }
+                              >
+                                ارسال
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-danger mt-3 ms-5"
+                                onClick={(event) =>
+                                  handleCancel(event, form.id)
+                                }
+                              >
+                                الغاء
+                              </button>
                             </div>
-                          }
+                          )}
                         </div>
                       </form>
                     </div>

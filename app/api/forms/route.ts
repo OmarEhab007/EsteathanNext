@@ -10,6 +10,7 @@ interface Form {
   verificationCode: string;
   status: string;
   approval: string;
+  schoolId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -40,6 +41,7 @@ export async function POST(req: Request, res: Response) {
     verificationCode,
     status,
     approval,
+    schoolId,
   } = body;
   try {
     const data = await prisma.form.create({
@@ -51,6 +53,7 @@ export async function POST(req: Request, res: Response) {
         verificationCode,
         status,
         approval,
+        schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -79,3 +82,4 @@ export async function DELETE(req: Request, res: Response) {
     );
   }
 }
+

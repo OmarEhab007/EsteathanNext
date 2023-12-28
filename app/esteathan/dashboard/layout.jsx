@@ -12,6 +12,7 @@ import bgFooter from "../footer-bg.png";
 import Icon from "../bigIcon.png";
 import { signOut } from "next-auth/react";
 import "@uploadthing/react/styles.css";
+import {Providers} from "../../../components/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -207,8 +208,7 @@ export default function RootLayout({ children }) {
             </div>
           </nav>
         </header>
-
-        {children}
+        <Providers>{children}</Providers>
         <footer className="align-self-end position-relative">
           <Image
             src={bgFooter}

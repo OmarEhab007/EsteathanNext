@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Reports() {
   const [forms, setForms] = useState([]);
@@ -7,6 +8,8 @@ export default function Reports() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
 
   const handlePrint = () => {
     const printWindow = window.open("", "_blank");
@@ -46,26 +49,57 @@ export default function Reports() {
     }
   };
 
+  const user_id = session?.user?.id;
   useEffect(() => {
     // Fetch data here
-    fetch("/api/forms")
-      .then((res) => res.json())
-      .then((data) => {
-        const approvedForms = data.datas.filter(
+    // fetch("/api/forms")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     const approvedForms = data.datas.filter(
+    //       (form) => form.approval === "approved" || form.approval === "done"
+    //     );
+    //     setForms(approvedForms);
+    //   })
+    //   .finally(() => setLoading(false)); // Set loading to false once data is fetched
+
+    // fetch("/api/students")
+    //   .then((res) => res.json())
+    //   .then((data) => setStudents(data.datas))
+    //   .finally(() => setLoading(false)); // Set loading to false once data is fetched
+    const fetchUserData = async () => {
+      const today = new Date();
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        // console.log(userData.data);
+
+        const formsResponse = await fetch(
+          `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
+        const approvedForms = formsData.data.filter(
           (form) => form.approval === "approved" || form.approval === "done"
         );
         setForms(approvedForms);
-      })
-      .finally(() => setLoading(false)); // Set loading to false once data is fetched
+        setLoading(false);
+        console.log(formsData.data);
 
-    fetch("/api/students")
-      .then((res) => res.json())
-      .then((data) => setStudents(data.datas))
-      .finally(() => setLoading(false)); // Set loading to false once data is fetched
-  }, []);
+        const studentsResponse = await fetch(
+          `/api/students/school/${userData.data.schoolId}`
+        );
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data);
+        setLoading(false);
+        // console.log(studentsData.data);
+      }
+    };
+
+    fetchUserData();
+  }, [session]);
 
   function findStudentByNumber(id) {
-    return students.find((student) => student.number === id);
+    return students.find((student) => student.id === id);
   }
 
   const handleFilter = () => {
@@ -258,7 +292,12 @@ export default function Reports() {
                             const date = new Date(
                               form.updatedAt
                             ).toLocaleDateString();
-                              const time = new Date(form.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                            const time = new Date(
+                              form.createdAt
+                            ).toLocaleTimeString([], {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            });
                             return (
                               <tr key={form.id}>
                                 <th scope="row">{index + 1}</th>

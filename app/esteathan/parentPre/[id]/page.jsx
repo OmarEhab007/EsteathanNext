@@ -14,15 +14,16 @@ export default function ParentPre() {
   const [isVerificationSent, setIsVerificationSent] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await fetch(`/api/students/${id}`);
+        const response = await fetch(`/api/students/id/${id}`);
         const result = await response.json();
+        // console.log(result);
         const student = result.data;
-        console.log(student.parentNumber);
+        // console.log(student.parentNumber);
         setParentPhone(student.parentNumber);
       } catch (error) {
         console.error("Error fetching student data:", error);

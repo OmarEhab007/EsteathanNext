@@ -1,7 +1,24 @@
 "use client";
 import React from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 export default function ImportStudentData() {
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
+  const user_id = session?.user?.id;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data.schoolId);
+      }
+    };
+    fetchUserData();
+  }, [session]);
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -36,9 +53,10 @@ export default function ImportStudentData() {
           body: JSON.stringify({
             parentNumber: student["الجوال"],
             class: classLabel,
-            year: parseInt(student["الفصل"], 10),
+            year: student["الفصل"],
             name: student["اسم الطالب"],
             number: student["رقم الطالب"],
+            schoolId: user.schoolId,
           }),
         });
       });

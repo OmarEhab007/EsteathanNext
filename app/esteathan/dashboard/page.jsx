@@ -1,26 +1,70 @@
 "use client";
 import React, { useState, useEffect } from "react";
+// import { getServerSession } from "next-auth";
+// import { options } from "../../../app/api/auth/[...nextauth]/options";
+import { useSession } from "next-auth/react";
 
 export default function Dashboard() {
   const [forms, setForms] = useState([]);
+  const [user, setUser] = useState(null);
+  const [schoolId, setSchoolId] = useState(null);
+  const { data: session } = useSession();
+  
 
+
+  const user_id = session?.user?.id;
   useEffect(() => {
-    fetch("/api/forms") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.datas); // add this line
-        setForms(data.datas);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        try {
+          const userResponse = await fetch(`/api/user/${session.user.id}`);
+          const userData = await userResponse.json();
+          setUser(userData.data);
 
-  const pendingApprovalCount = forms.filter(
+
+          // Ensure the schoolId is available before making the forms request
+          if (userData.data?.schoolId) {
+            const formsResponse = await fetch(
+              `/api/forms/school/${userData.data.schoolId}`
+            );
+            const formsData = await formsResponse.json();
+            setForms(formsData.data || []);
+            // console.log(formsData.data);
+          }
+          else {
+            console.log("No schoolId available");
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [session]);
+
+  
+
+  const pendingApprovalCount = forms?.filter(
     (form) => form.approval === "pending"
   ).length;
-  const approvedApprovalCount = forms.filter(
+  const approvedApprovalCount = forms?.filter(
     (form) => form.approval === "approved"
   ).length;
-  const receivedTodayCount = forms.filter((form) => {
+
+  const approvedApprovalCountToday = forms?.filter((form) => {
+    const formDate = new Date(form.createdAt);
+    const today = new Date();
+    return (
+      form.approval === "approved" &&
+      formDate.getDate() === today.getDate() &&
+      formDate.getMonth() === today.getMonth() &&
+      formDate.getFullYear() === today.getFullYear()
+    );
+  }
+  ).length;
+
+  const receivedTodayCount = forms?.filter((form) => {
     const formDate = new Date(form.createdAt);
     const today = new Date();
     return (
@@ -30,16 +74,16 @@ export default function Dashboard() {
     );
   }).length;
 
-  const pendingTodayCount = forms.filter((form) => {
-  const formDate = new Date(form.createdAt);
-  const today = new Date();
-  return (
-    form.approval === "pending" &&
-    formDate.getDate() === today.getDate() &&
-    formDate.getMonth() === today.getMonth() &&
-    formDate.getFullYear() === today.getFullYear()
-  );
-}).length;
+  const pendingTodayCount = forms?.filter((form) => {
+    const formDate = new Date(form.createdAt);
+    const today = new Date();
+    return (
+      form.approval === "pending" &&
+      formDate.getDate() === today.getDate() &&
+      formDate.getMonth() === today.getMonth() &&
+      formDate.getFullYear() === today.getFullYear()
+    );
+  }).length;
 
   return (
     <>
@@ -69,7 +113,7 @@ export default function Dashboard() {
                   <h6> طلبات منتظرة الارسال الى المعلم </h6>
                 </div>
                 <div className="card-body">
-                  <p className="fs-1">{approvedApprovalCount}</p>
+                  <p className="fs-1">{approvedApprovalCountToday}</p>
                 </div>
               </div>
             </div>

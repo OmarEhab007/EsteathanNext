@@ -1,22 +1,27 @@
-import type { NextAuthOptions } from 'next-auth'
+import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "../../../../lib/db";
 
 export const options: NextAuthOptions = {
-    providers: [
-  
+  pages: {
+    signIn: "/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         username: { label: "اسم المستخدم", type: "text" },
-        password: {  label: "كلمة السر", type: "password" }
+        password: { label: "كلمة السر", type: "password" },
       },
       async authorize(credentials) {
         const user = await prisma.user.findFirst({
           where: {
-            username: credentials.username,
-            password: credentials.password
+            schoolId: credentials.username,
+            password: credentials.password,
           },
         });
         if (user) {
@@ -25,8 +30,30 @@ export const options: NextAuthOptions = {
           return null;
         }
       },
-    })
-
-  
-]
-}
+    }),
+  ],
+  callbacks: {
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          schoolId: token.schoolId,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      if (user) {
+        const u = user as unknown as any;
+        return {
+          ...token,
+          id: u.id,
+          schoolId: u.schoolId,
+        };
+      }
+      return token;
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+};
