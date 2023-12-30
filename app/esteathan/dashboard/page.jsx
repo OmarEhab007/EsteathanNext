@@ -135,9 +135,9 @@ export default function Dashboard() {
               <div className="card text-center">
                 <div className="card-header">
                   <h3>
-                    <i className="fa-solid fa-coins text-warning"></i>
+                    <i class="fa-solid fa-calendar-check text-warning"></i>
                   </h3>
-                  <h6> الرصيد المتبقي </h6>
+                  <h6> صلاحية الاشتراك </h6>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">0</p>
@@ -154,7 +154,7 @@ export default function Dashboard() {
                     <h6> طلبات الاشتراك </h6>
                   </div>
                   <div className="card-body">
-                    <p className="fs-1 text-center">
+                    <p className=" text-center">
                       <Link
                         href="/esteathan/dashboard/subscriptionResponse"
                         className="text-center"
