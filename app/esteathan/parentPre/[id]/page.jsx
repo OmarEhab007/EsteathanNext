@@ -94,7 +94,7 @@ export default function ParentPre() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            parentNumber: '201019063529',
+            parentNumber: parentPhone,
             code: `رمز التحقق الخاص بك لطلب الاستئذان لابنك من مدرسة ${schoolName} هو : ${verificationCode}`,
           }),
         })
