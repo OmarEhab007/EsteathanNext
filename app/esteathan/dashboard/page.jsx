@@ -85,6 +85,9 @@ export default function Dashboard() {
 
       <section>
         <div className="container mt-5">
+          <div className="heading d-flex justify-content-center">
+            <h1 className="text-center mb-5 high fs-1">  مدرسة: ثانوية أبي قتادة الأنصاري  </h1>
+          </div>
           <div className="row index-row align-items-center justify-content-center">
             <div className=" reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
