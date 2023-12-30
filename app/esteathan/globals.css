@@ -892,7 +892,7 @@ header {
 
 /* Couleur de la poignée */
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-100);
+  background: var(--accent-200);
   border-radius: 7.5px;
 }
 

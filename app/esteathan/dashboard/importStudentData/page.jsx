@@ -67,13 +67,23 @@ export default function ImportStudentData() {
 
   return (
     <>
-      <section className="importStudentData">
+      <section className="importStudentData my-5">
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-md-12">
               <div className="wrapper border-primary">
                 <header>
                   <h2 className=""> استيراد ملفات الطلاب </h2>
+                  <p className="text-muted">
+                    لرفع بيانات الطلاب الرجاء ارسال ملف الاكسل  على واتساب الدعم الفني رقم 
+                    <span className="high d-block"> ( 0545894287) </span>
+                  </p>
+                  <p>
+                    وذلك من برنامج نور من أيقونة 
+                  </p>
+                  <p>
+                    التقارير ثم تقارير الاحصائية ثم البيانات الخاصة بالارشاد الطلابي ثم اختيار الفصل الدارسي ثم تصدير 
+                  </p>
                 </header>
                 <form action="#">
                   <input
@@ -85,7 +95,7 @@ export default function ImportStudentData() {
                     onChange={handleFileChange}
                   />
                   <label htmlFor="file-input">
-                    <i className="fa-solid fa-cloud-arrow-up fa-bounce fs-2 my-4 text-primary"></i>
+                    <i className="fa-solid fa-cloud-arrow-up fa-bounce fs-2 my-4 text-primary cursor-pointer"></i>
                   </label>
                   <p className="text-danger">
                     من فضلك اختر الاكسل الخاص بالطلاب{" "}

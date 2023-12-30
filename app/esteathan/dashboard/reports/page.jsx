@@ -233,10 +233,14 @@ export default function Reports() {
               <div className="row justify-content-center align-items-center mt-5 mb-3">
                 <div className="col-12">
                   <div className="card">
-                    <div className="card-header">
-                      <h4> تقرير الاستئذان </h4>
+                    <div className="card-header text-center">
+                      <p> المنطقة التعليمية: المدينة المنورة </p>
+                      <p> المكتب: غرب المدينة </p>
+                      <h3 className="mb-3"> اسم المدرسة: أبي قتادة الثانوية </h3> 
+                      <h4 className="text-center"> تقرير الاستئذان </h4>
                     </div>
                     <div className="card-body">
+
                       {startDate || endDate ? (
                         <div className="row border-secondary reportDate mb-3">
                           <div className="col-5">
