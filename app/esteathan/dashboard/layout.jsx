@@ -192,7 +192,7 @@ export default function RootLayout({ children }) {
 
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a
+                  {/* <a
                     className="nav-link logout-button  me-2 text-center nav-color"
                     href="/"
                     onClick={(e) => {
@@ -201,7 +201,8 @@ export default function RootLayout({ children }) {
                     }}
                   >
                     <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
-                  </a>
+                  </a> */}
+                  <i class="fa-solid fa-user fs-5 ms-2"></i>
                 </li>
               </ul>
             </div>

@@ -95,26 +95,59 @@ export default function Subscription() {
                                         <div className="underLine ms-1 mb-2"></div>
                                     </div>
                                     <div className='mb-3 col-lg-6'>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                فصل دراسي واحد
-                                            </label>
+                                        <div className="row">
+                                            <div className="col-7">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        فصل دراسي واحد   
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-5">
+                                                <div>
+                                                    <span className='high'>
+                                                        150 ريال
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
-                                            <label class="form-check-label" for="exampleRadios2">
-                                                فصلان دراسيان
-                                            </label>
+                                        
+                                        <div className="row">
+                                            <div className="col-7">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        فصلان دراسيان  
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-5">
+                                                <div>
+                                                    <span className='high'>
+                                                        250 ريال
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
+                                        <div className="row">
+                                            <div className="col-7">
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2"/>
-                                            <label class="form-check-label" for="exampleRadios3">
-                                                سنة دراسية كاملة 
-                                            </label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2"/>
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        سنة دراسية كاملة  
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-5">
+                                                <div>
+                                                    <span className='high'>
+                                                        400 ريال
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>

@@ -94,7 +94,7 @@ export default function Dashboard() {
                   <h3>
                     <i className="fa-solid fa-coins text-warning"></i>
                   </h3>
-                  <h6> الرصيد المتبقي </h6>
+                  <h6>  عدد الأيام المتبقية </h6>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">0</p>
