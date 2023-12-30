@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 // import { getServerSession } from "next-auth";
 // import { options } from "../../../app/api/auth/[...nextauth]/options";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [forms, setForms] = useState([]);
   const [user, setUser] = useState(null);
   const [schoolId, setSchoolId] = useState(null);
   const { data: session } = useSession();
-  
-
 
   const user_id = session?.user?.id;
   useEffect(() => {
@@ -21,7 +20,6 @@ export default function Dashboard() {
           const userData = await userResponse.json();
           setUser(userData.data);
 
-
           // Ensure the schoolId is available before making the forms request
           if (userData.data?.schoolId) {
             const formsResponse = await fetch(
@@ -30,20 +28,18 @@ export default function Dashboard() {
             const formsData = await formsResponse.json();
             setForms(formsData.data || []);
             // console.log(formsData.data);
-          }
-          else {
+          } else {
             console.log("No schoolId available");
           }
         } catch (error) {
           console.error("Error fetching data:", error);
         }
+
       }
     };
 
     fetchUserData();
   }, [session]);
-
-  
 
   const pendingApprovalCount = forms?.filter(
     (form) => form.approval === "pending"
@@ -61,8 +57,7 @@ export default function Dashboard() {
       formDate.getMonth() === today.getMonth() &&
       formDate.getFullYear() === today.getFullYear()
     );
-  }
-  ).length;
+  }).length;
 
   const receivedTodayCount = forms?.filter((form) => {
     const formDate = new Date(form.createdAt);
@@ -87,6 +82,7 @@ export default function Dashboard() {
 
   return (
     <>
+
       <section>
         <div className="container mt-5">
           <div className="row index-row align-items-center justify-content-center">
@@ -145,9 +141,50 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+            {user?.role === "admin" && (
+              <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
+                <div className="card text-center">
+                  <div className="card-header">
+                    <h3>
+                      <i className="fa-solid fa-person-walking-arrow-right text-primary"></i>
+                    </h3>
+                    <h6> طلبات الاشتراك </h6>
+                  </div>
+                  <div className="card-body">
+                    <p className="fs-1 text-center">
+                      <Link
+                        href="/esteathan/dashboard/subscriptionResponse"
+                        className="text-center"
+                      >
+                        اذهب الي الصفحة
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
+              <div className="card text-center">
+                <div className="card-header">
+                  <h3>
+                    <i className="fa-solid fa-person-walking-arrow-right text-primary"></i>
+                  </h3>
+                  <h6> معلومات المستخدم</h6>
+                </div>
+                <div className="card-body">
+                  <Link href="/esteathan/dashboard/user">
+                    اذهب الي الصفحة
+                  </Link>
+                </div>
+              </div>
+            
+            </div>
+
           </div>
         </div>
       </section>
+
     </>
   );
 }

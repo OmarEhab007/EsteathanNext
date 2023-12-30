@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "../../../../lib/db";
+import prisma from "../../../../../lib/db";
 
 interface Subscription {
   status: string;
@@ -12,16 +12,18 @@ interface Subscription {
   updatedAt: Date;
 }
 
-// get subscription data by id  /api/subscription/[id] by params
+
+// get subscription data by bill id /api/subscription/bill/[billId] by params
+
 export const GET = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { billId: string } }
 ) => {
   try {
-    const id = params.id;
+    const billId = params.billId;
     const data = await prisma.subscription.findUnique({
       where: {
-        id: id,
+        billId: billId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -35,16 +37,17 @@ export const GET = async (
   }
 };
 
-// delete subscription data by id  /api/subscription/[id] by params
+// delete subscription data by bill id /api/subscription/bill/[billId] by params
+
 export const DELETE = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { billId: string } }
 ) => {
   try {
-    const id = params.id;
+    const billId = params.billId;
     const data = await prisma.subscription.delete({
       where: {
-        id,
+        billId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -58,18 +61,19 @@ export const DELETE = async (
   }
 };
 
-// update subscription data by id  /api/subscription/[id] by params
+// update subscription data by bill id /api/subscription/bill/[billId] by params
+
 export const PUT = async (
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { billId: string } }
 ) => {
   try {
-    const id = params.id;
+    const billId = params.billId;
     const body = await req.json();
-    const { status, plan, startDate, endDate, schoolId, billId } = body;
+    const { status, plan, startDate, endDate, schoolId } = body;
     const data = await prisma.subscription.update({
       where: {
-        id,
+        billId,
       },
       data: {
         status,
@@ -77,7 +81,6 @@ export const PUT = async (
         startDate,
         endDate,
         schoolId,
-        billId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

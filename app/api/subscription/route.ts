@@ -7,6 +7,7 @@ interface Subscription {
   startDate: Date;
   endDate: Date;
   schoolId: string;
+  billId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -30,7 +31,7 @@ export const GET = async (req: Request, res: Response) => {
 // add new subscription data  /api/subscriptions
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const { status, plan, startDate, endDate, schoolId } = body;
+  const { status, plan, startDate, endDate, billId ,schoolId } = body;
   try {
     const data = await prisma.subscription.create({
       data: {
@@ -39,6 +40,7 @@ export async function POST(req: Request, res: Response) {
         startDate,
         endDate,
         schoolId,
+        billId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

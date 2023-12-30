@@ -10,6 +10,7 @@ import "@uploadthing/react/styles.css";
 // import { extractRouterConfig } from "uploadthing/server";
  
 // import { ourFileRouter } from "./api/uploadthing/core";
+import { Providers } from "../../components/provider";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,8 +30,9 @@ export default function RootLayout({ children }) {
       <body
         className={` d-flex justify-content-center reqbody flex-wrap ${inter.className}`}
       >
-        
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

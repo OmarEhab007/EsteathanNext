@@ -1,12 +1,18 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 // import { signIn } from 'next-auth/client';
 import { useSession, signIn, signOut } from 'next-auth/react'
+// import { useSession } from "next-auth/react";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+  
+  // const { data: session } = useSession();
+
+  
 
   const handleInputChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -22,6 +28,7 @@ export default function Login() {
     if (result.error) {
       setError(result.error);
     } else {
+      // console.log(result);
       window.location.href = '/esteathan/dashboard';
     }
   };

@@ -22,6 +22,7 @@ export default function SubscriptionResponce() {
     const fetchBills = async () => {
       const response = await fetch("/api/bill");
       const data = await response.json();
+
       setBills(data.datas);
       setLoading(false);
       console.log(data);
@@ -54,6 +55,7 @@ export default function SubscriptionResponce() {
     setPassword(password);
     console.log(password);
     console.log(bill);
+
     // create user in db
     const userResponse = await fetch("/api/user", {
       method: "POST",
@@ -63,7 +65,7 @@ export default function SubscriptionResponce() {
       body: JSON.stringify({
         name: bill.schoolName,
         password: password,
-        role: "admin",
+        role: "manager",
         schoolId: bill.schoolId,
         phone: bill.phone,
         status: "active",
@@ -107,6 +109,7 @@ export default function SubscriptionResponce() {
         status: "active",
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
+        billId: bill.id,
       }),
     });
     const subscriptionData = await subscriptionResponse.json();
@@ -130,6 +133,26 @@ export default function SubscriptionResponce() {
     });
     const schoolData = await schoolResponse.json();
     console.log(schoolData);
+
+    // send message to user with schoolId and password
+    fetch("/api/sentMessageToTeacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parentNumber: bill.phone, // Replace with parentPhone
+        message: ` تم قبول طلبك للإنضمام للبرنامج سيكون اسم المستخدم ${bill.schoolId} وكلمة المرور ${password}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // setIsLoading(false);
+      })
+    .then(() => {
+      window.location.reload();
+    });
   };
 
   // handle bill reject
@@ -147,6 +170,24 @@ export default function SubscriptionResponce() {
     });
     const data = await response.json();
     console.log(data);
+    fetch("/api/sentMessageToTeacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parentNumber: bill.phone, // Replace with parentPhone
+        message: ` تم رفض طلبك للإنضمام للبرنامج : ${rejectReason}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // setIsLoading(false);
+      }).then(() => {
+        window.location.reload();
+      }
+      );
   };
   return (
     <>
@@ -157,253 +198,264 @@ export default function SubscriptionResponce() {
           </div>
 
           <div className="row justify-content-center align-items-center">
-          {bills.map((bill) => (
-              <div className="col-12 col-lg-6 mb-3">
-                <div className="card">
-                  <div className="card-header">
-                    <div className="row">
-                      <div className="col-3">
-                        <div>
-                          <h5 className=" fw-bold text-center mb-0"> مدرسة </h5>
-                        </div>
-                      </div>
-                      <div className="col-1">
-                        <div>
-                          <p className=" fs-5 fw-bold text-center mb-0"> : </p>
-                        </div>
-                      </div>
-                      <div className="col-8">
-                        <div>
-                          <p className=" fs-5 fw-bold text-center mb-0">
-                            {bill.schoolName}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="card-body">
-                    <div className="group overflow-hidden mb-2">
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
+            {bills
+              .filter((bill) => bill.status === "pending")
+              .map((bill) => (
+                <div className="col-12 col-lg-6 mb-3">
+                  <div className="card">
+                    <div className="card-header">
+                      <div className="row">
+                        <div className="col-3">
                           <div>
-                            <p className=" fs-5 text-center mb-0">
+                            <h5 className=" fw-bold text-center mb-0">
                               {" "}
-                              الرقم الوزاري{" "}
-                            </p>
+                              مدرسة{" "}
+                            </h5>
                           </div>
                         </div>
-                        <div className="col-1 ps-0">
+                        <div className="col-1">
                           <div>
-                            <p className="text-start text-sm-center mb-0">
+                            <p className=" fs-5 fw-bold text-center mb-0">
                               {" "}
                               :{" "}
                             </p>
                           </div>
                         </div>
-                        <div className="col-12 col-sm-6 pe-0">
+                        <div className="col-8">
                           <div>
-                            <p className="   text-center mb-0">
-                              {" "}
-                              {bill.schoolId}{" "}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
-                          <div>
-                            <p className=" fs-5 text-center mb-0">
-                              {" "}
-                              المنطقة التعليمية{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-1 ps-0">
-                          <div>
-                            <p className="   text-center mb-0"> : </p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-6 pe-0">
-                          <div>
-                            <p className="   text-center mb-0">
-                              {" "}
-                              {bill.district}{" "}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
-                          <div>
-                            <p className=" fs-5 text-center mb-0">
-                              {" "}
-                              المكتب التابع له المدرسة{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-1 ps-0">
-                          <div>
-                            <p className="   text-center mb-0 "> : </p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-6 pe-0">
-                          <div>
-                            <p className="text-center mb-0 "> {bill.office} </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="group overflow-hidden mb-2">
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
-                          <div>
-                            <p className=" fs-5 text-center mb-0">
-                              {" "}
-                              اسم المشرف{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-1 ps-0">
-                          <div>
-                            <p className="text-start text-sm-center mb-0">
-                              {" "}
-                              :{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-6 pe-0">
-                          <div>
-                            <p className="   text-center mb-0">
-                              {" "}
-                              {bill.managerName}{" "}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
-                          <div>
-                            <p className=" fs-5 text-center mb-0">
-                              {" "}
-                              رقم الجوال{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-1 ps-0">
-                          <div>
-                            <p className="text-center mb-0"> : </p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-6 pe-0">
-                          <div>
-                            <p className="text-center mb-0"> {bill.phone} </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="group overflow-hidden text-center mb-2">
-                      <div className="row justify-content-center align-items-center">
-                        <div className="col-8 pe-0 col-sm-5">
-                          <div>
-                            <p className=" fs-5 text-center mb-0">
-                              {" "}
-                              مدة الاشتراك{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-1 ps-0">
-                          <div>
-                            <p className="text-start text-sm-center mb-0">
-                              {" "}
-                              :{" "}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-sm-6 pe-0">
-                          <div>
-                            <p className="   text-center mb-0">
-                              {" "}
-                              {(() => {
-                                switch (bill.plan) {
-                                  case "oneSemester":
-                                    return "فصل دراسي";
-                                  case "twoSemesters":
-                                    return "فصلين دراسيين";
-                                  case "fullYear":
-                                    return "سنة كاملة";
-                                  default:
-                                    return bill.plan;
-                                }
-                              })()}
+                            <p className=" fs-5 fw-bold text-center mb-0">
+                              {bill.schoolName}
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="group overflow-hidden text-center mb-2">
-                      <img
-                        src={bill.attachment}
-                        alt="pill"
-                        className="img-fluid"
-                      />
-                    </div>
+                    <div className="card-body">
+                      <div className="group overflow-hidden mb-2">
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                الرقم الوزاري{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="text-start text-sm-center mb-0">
+                                {" "}
+                                :{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="   text-center mb-0">
+                                {" "}
+                                {bill.schoolId}{" "}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
 
-                    {/* <form className="text-center"> */}
-                    <button
-                      className="btn esteathan-btn px-4 me-2 "
-                      onClick={() => handleBillAccept(bill)}
-                    >
-                      {" "}
-                      قبول{" "}
-                    </button>
-                    
-                    {selectedBill !== bill && (
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                المنطقة التعليمية{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="   text-center mb-0"> : </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="   text-center mb-0">
+                                {" "}
+                                {bill.district}{" "}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                المكتب التابع له المدرسة{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="   text-center mb-0 "> : </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="text-center mb-0 ">
+                                {" "}
+                                {bill.office}{" "}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="group overflow-hidden mb-2">
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                اسم المشرف{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="text-start text-sm-center mb-0">
+                                {" "}
+                                :{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="   text-center mb-0">
+                                {" "}
+                                {bill.managerName}{" "}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                رقم الجوال{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="text-center mb-0"> : </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="text-center mb-0"> {bill.phone} </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="group overflow-hidden text-center mb-2">
+                        <div className="row justify-content-center align-items-center">
+                          <div className="col-8 pe-0 col-sm-5">
+                            <div>
+                              <p className=" fs-5 text-center mb-0">
+                                {" "}
+                                مدة الاشتراك{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-1 ps-0">
+                            <div>
+                              <p className="text-start text-sm-center mb-0">
+                                {" "}
+                                :{" "}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-12 col-sm-6 pe-0">
+                            <div>
+                              <p className="   text-center mb-0">
+                                {" "}
+                                {(() => {
+                                  switch (bill.plan) {
+                                    case "oneSemester":
+                                      return "فصل دراسي";
+                                    case "twoSemester":
+                                      return "فصلين دراسيين";
+                                    case "fullYear":
+                                      return "سنة كاملة";
+                                    default:
+                                      return bill.plan;
+                                  }
+                                })()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="group overflow-hidden text-center mb-2">
+                        <img
+                          src={bill.attachment}
+                          alt="pill"
+                          className="img-fluid"
+                        />
+                      </div>
+
+                      {/* <form className="text-center"> */}
                       <button
-                        type="button"
-                        className="btn btn-outline-danger"
-                        onClick={() => {
-                          // setReason(true);
-                          setRejectedBill(bill);
-                          setRejectButtonVisible(false);
-                          setSelectedBill(bill);
-                        }}
+                        className="btn esteathan-btn px-4 me-2 "
+                        onClick={() => handleBillAccept(bill)}
                       >
                         {" "}
-                        رفض الطلب{" "}
+                        قبول{" "}
                       </button>
-                    )}
-                    {rejectedBill === bill && (
-                      <div className="mt-3">
-                        <h6> سبب الرفض </h6>
-                        <textarea
-                          className="form-control"
-                          rows="3"
-                          required
-                          onChange={(e) => setRejectReason(e.target.value)}
-                        ></textarea>
-                        <div className="replyButtons mt-3 text-center">
-                          <button
-                            type="button"
-                            className="btn btn-outline-danger"
-                            onClick={() => handleBillReject(bill)}
-                          >
-                            {" "}
-                            رفض الطلب{" "}
-                          </button>
+
+                      {selectedBill !== bill && (
+                        <button
+                          type="button"
+                          className="btn btn-outline-danger"
+                          onClick={() => {
+                            // setReason(true);
+                            setRejectedBill(bill);
+                            setRejectButtonVisible(false);
+                            setSelectedBill(bill);
+                          }}
+                        >
+                          {" "}
+                          رفض الطلب{" "}
+                        </button>
+                      )}
+                      {rejectedBill === bill && (
+                        <div className="mt-3">
+                          <h6> سبب الرفض </h6>
+                          <textarea
+                            className="form-control"
+                            rows="3"
+                            required
+                            onChange={(e) => setRejectReason(e.target.value)}
+                          ></textarea>
+                          <div className="replyButtons mt-3 text-center">
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger"
+                              onClick={() => handleBillReject(bill)}
+                            >
+                              {" "}
+                              رفض الطلب{" "}
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-          ))}
+              ))}
           </div>
         </div>
       </section>

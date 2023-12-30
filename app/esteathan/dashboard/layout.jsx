@@ -12,12 +12,14 @@ import bgFooter from "../footer-bg.png";
 import Icon from "../bigIcon.png";
 import { signOut } from "next-auth/react";
 import "@uploadthing/react/styles.css";
-import {Providers} from "../../../components/provider";
+import { Providers } from "../../../components/provider";
+import { useSession } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -35,6 +37,16 @@ export default function RootLayout({ children }) {
       require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
     }
   }, []);
+
+  // useEffect(async() => {
+  //   if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //     // console.log(userData.data);
+  //   }
+  // }, [session]);
+
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
@@ -167,6 +179,17 @@ export default function RootLayout({ children }) {
                       التقارير{" "}
                     </Link>
                   </li>
+                  {/* {user?.role === "admin" && (
+                  <li className="nav-item me-2 text-center">
+                    <Link
+                      className="nav-link"
+                      href="/esteathan/dashboard/subscriptionResponse"
+                    >
+                      {" "}
+                      الاشتراكات{" "}
+                    </Link>
+                    </li>
+                  )} */}
 
                   {/* <li className="nav-item me-2 text-center nav-color">
                     <Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>{" "}
