@@ -170,12 +170,14 @@ export default function Dashboard() {
                   <h3>
                     <i className="fa-solid fa-person-walking-arrow-right text-primary"></i>
                   </h3>
-                  <h6> معلومات المستخدم</h6>
+                  <p> معلومات المستخدم</p>
                 </div>
                 <div className="card-body">
-                  <Link href="/esteathan/dashboard/user">
-                    اذهب الي الصفحة
-                  </Link>
+                  <p>
+                    <Link href="/esteathan/dashboard/user">
+                      اذهب الي الصفحة
+                    </Link>
+                  </p>
                 </div>
               </div>
             

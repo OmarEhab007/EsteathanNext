@@ -48,9 +48,9 @@ export default function SubscriptionResponce() {
     console.log(data);
 
     // generate password from 10 char
-    const password = Array(10)
+    const password = Array(4)
       .fill(0)
-      .map(() => Math.floor(Math.random() * 10))
+      .map(() => Math.floor(Math.random() * 4))
       .join("");
     setPassword(password);
     console.log(password);
@@ -142,7 +142,11 @@ export default function SubscriptionResponce() {
       },
       body: JSON.stringify({
         parentNumber: bill.phone, // Replace with parentPhone
-        message: ` تم قبول طلبك للإنضمام للبرنامج سيكون اسم المستخدم ${bill.schoolId} وكلمة المرور ${password}`,
+        message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
+        الرقم الوزاري:  ${bill.schoolId} 
+        وكلمة المرور:  ${password}
+        
+        `,
       }),
     })
       .then((res) => res.json())
@@ -177,7 +181,7 @@ export default function SubscriptionResponce() {
       },
       body: JSON.stringify({
         parentNumber: bill.phone, // Replace with parentPhone
-        message: ` تم رفض طلبك للإنضمام للبرنامج : ${rejectReason}`,
+        message: ` تم رفض طلبك للاشتراك في برنامج استئذان : ${rejectReason}`,
       }),
     })
       .then((res) => res.json())

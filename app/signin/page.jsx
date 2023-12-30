@@ -41,22 +41,22 @@ export default function Login() {
             <div className="col-lg-6 col-md-8 col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h4> تسجيل الدخول </h4>
+                  <h2 className='text-center'> تسجيل الدخول </h2>
                 </div>
                 <div className="card-body">
                   {error && <p>{error}</p>}
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                      <label htmlFor="userName" className="form-label">  اسم المستخدم </label>
+                      <label htmlFor="userName" className="form-label"> الرقم الوزاري </label>
                       <input type="text" className="form-control" id="userName" name="username" onChange={handleInputChange} />
                     </div>
                     <div className="mb-3">
                       <label htmlFor="password" className="form-label"> كلمة المرور </label>
                       <input type="password" className="form-control" id="password" name="password" onChange={handleInputChange} />
                     </div>
-                    <div className="mb-3">
-                      <button type="submit" className="btn btn-primary me-3"> تسجيل الدخول </button>
-                      <span><Link href="/dashboard/signup" > مستخدم جديد </Link></span>
+                    <div className="mb-3 text-center ">
+                      <button type="submit" className="btn esteathan-btn m-auto d-block mb-1 "> تسجيل الدخول </button>
+                      <span className=''><Link href="/dashboard/signup" >  نسيت الرقم السري </Link></span>
                     </div>
                   </form>
                 </div>
