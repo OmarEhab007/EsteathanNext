@@ -76,9 +76,23 @@ nav .navbar-brand {
   color: var(--accent-100) !important;
 }
 
+.navbar-toggler{
+  color: var(--accent-100) !important;
+  background-color: var(--bg-200) !important;
+}
+
+.navbar-toggler-icon{
+  color: var(--accent-100) !important;
+  background-color: var(--bg-200) !important;
+}
+
 .dropdown-menu {
   background-color: var(--bg-200) !important;
   color: var(--text-100) !important;
+}
+
+.dropdown-menu p{
+  color: var(--accent-100) !important;
 }
 
 .card-header {

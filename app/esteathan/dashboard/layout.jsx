@@ -179,6 +179,32 @@ export default function RootLayout({ children }) {
                       التقارير{" "}
                     </Link>
                   </li>
+                  <ul className="navbar-nav me-2 d-xxl-none d-lg-none d-block text-center">
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                      </a>
+                      <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                        <li><p class="dropdown-item mb-0"> مرحبا عبدالعزيز محمد </p></li>
+                        <li><a class="dropdown-item text-center" href="#">معلومات المستخدم</a></li>
+                        <li><hr class="dropdown-divider"/></li>
+                        <li className="dropdown-item">
+                          <a
+                            className="text-center "
+                            href="/"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              signOut();
+                            }}
+                          >
+                            <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+
+                  </ul>
                   {/* {user?.role === "admin" && (
                   <li className="nav-item me-2 text-center">
                     <Link
@@ -198,6 +224,35 @@ export default function RootLayout({ children }) {
                    */}
                 </ul>
               </div>
+
+              <ul className="navbar-nav me-2 d-lg-block d-none text-center">
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                  </a>
+                  <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                    <li><p class="dropdown-item mb-0 " href=""> مرحبا عبدالعزيز محمد </p></li>
+                    <li><a class="dropdown-item" href="#">معلومات المستخدم</a></li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li className="dropdown-item">
+                      <a
+                        className="   text-center "
+                        href="/"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          signOut();
+                        }}
+                      >
+                        <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                
+              </ul>
+
               <label className="switch m-md-auto">
                 <input type="checkbox" onChange={toggleDarkMode} />
                 <span className="slider"></span>
@@ -214,20 +269,8 @@ export default function RootLayout({ children }) {
                 <span className="navbar-toggler-icon"></span>
               </button>
 
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a
-                    className="nav-link logout-button  me-2 text-center nav-color"
-                    href="/"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      signOut();
-                    }}
-                  >
-                    <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
-                  </a>
-                </li>
-              </ul>
+              
+
             </div>
           </nav>
         </header>
