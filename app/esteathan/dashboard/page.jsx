@@ -20,6 +20,18 @@ export default function Dashboard() {
   const approvedApprovalCount = forms.filter(
     (form) => form.approval === "approved"
   ).length;
+  
+  const approvedApprovalCountToday = forms.filter((form) => {
+    const formDate = new Date(form.createdAt);
+    const today = new Date();
+    return (
+      form.approval === "approved" &&
+      formDate.getDate() === today.getDate() &&
+      formDate.getMonth() === today.getMonth() &&
+      formDate.getFullYear() === today.getFullYear()
+    );
+  }).length;
+  
   const receivedTodayCount = forms.filter((form) => {
     const formDate = new Date(form.createdAt);
     const today = new Date();
@@ -69,7 +81,7 @@ export default function Dashboard() {
                   <h6> طلبات منتظرة الارسال الى المعلم </h6>
                 </div>
                 <div className="card-body">
-                  <p className="fs-1">{approvedApprovalCount}</p>
+                  <p className="fs-1">{approvedApprovalCountToday}</p>
                 </div>
               </div>
             </div>
