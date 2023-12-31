@@ -14,12 +14,43 @@ import { signOut } from "next-auth/react";
 import "@uploadthing/react/styles.css";
 import { Providers } from "../../../components/provider";
 import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+// import { options } from "../../../app/api/auth/[...nextauth]/options";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
+  // const [school, setSchool] = useState(null);
+
+  // const data =  getServerSession(options);
+  const { data: session } = useSession();
+
+  const user_id = session?.user?.id;
+  useEffect(() => {
+    
+    const fetchUserData = async () => {
+      const today = new Date();
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data);
+
+
+        // const schoolResponse = await fetch(
+        //   `/api/school/${userData.data.schoolId}`
+        // );
+        // const schoolData = await schoolResponse.json();
+        // setSchool(schoolData.data[0]);
+        // console.log(schoolData.data[0]);
+      }
+    }
+    fetchUserData();
+  }, [session]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -179,6 +210,17 @@ export default function RootLayout({ children }) {
                       التقارير{" "}
                     </Link>
                   </li>
+                  {user?.role === "admin" && (
+                    <li className="nav-item me-2 text-center">
+                      <Link
+                        className="nav-link"
+                        href="/esteathan/dashboard/subscriptionResponse"
+                      >
+                        {" "}
+                        الاشتراكات{" "}
+                      </Link>
+                    </li>
+                  )}
                   <ul className="navbar-nav me-2 d-xxl-none d-lg-none d-block text-center">
 
                     <li class="nav-item dropdown">
@@ -232,8 +274,8 @@ export default function RootLayout({ children }) {
                     <i class="fa-solid fa-user"></i>
                   </a>
                   <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                    <li><p class="dropdown-item mb-0 " href=""> مرحبا عبدالعزيز محمد </p></li>
-                    <li><a class="dropdown-item" href="#">معلومات المستخدم</a></li>
+                    {/* <li><p class="dropdown-item mb-0 " href=""> مرحبا عبدالعزيز محمد </p></li> */}
+                    <li><a class="dropdown-item" href="/esteathan/dashboard/user">معلومات المستخدم</a></li>
                     <li><hr class="dropdown-divider"/></li>
                     <li className="dropdown-item">
                       <a

@@ -9,6 +9,8 @@ export default function Dashboard() {
   const [forms, setForms] = useState([]);
   const [user, setUser] = useState(null);
   const [schoolId, setSchoolId] = useState(null);
+  const [school, setSchool] = useState(null);
+  const [subscription, setSubscription] = useState(null);
   const { data: session } = useSession();
 
   const user_id = session?.user?.id;
@@ -28,13 +30,26 @@ export default function Dashboard() {
             const formsData = await formsResponse.json();
             setForms(formsData.data || []);
             // console.log(formsData.data);
+            const schoolResponse = await fetch(
+              `/api/school/${userData.data.schoolId}`
+            );
+            const schoolData = await schoolResponse.json();
+            setSchool(schoolData.data[0]);
+            console.log(schoolData.data[0]);
+
+            const subscriptionResponse = await fetch(
+              `/api/subscription/${schoolData.data[0].subscriptionId}`
+            );
+            console.log(schoolData.data[0]);
+            const subscriptionData = await subscriptionResponse.json();
+            console.log(subscriptionData.data);
+            setSubscription(subscriptionData.data);
           } else {
             console.log("No schoolId available");
           }
         } catch (error) {
           console.error("Error fetching data:", error);
         }
-
       }
     };
 
@@ -82,11 +97,13 @@ export default function Dashboard() {
 
   return (
     <>
-
       <section>
         <div className="container mt-5">
           <div className="heading d-flex justify-content-center">
-            <h1 className="text-center mb-5 high fs-1">  مدرسة: ثانوية أبي قتادة الأنصاري  </h1>
+            <h1 className="text-center mb-5 high fs-1">
+              {" "}
+              مدرسة : {school?.name}{" "}
+            </h1>
           </div>
           <div className="row index-row align-items-center justify-content-center">
             <div className=" reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
@@ -140,11 +157,19 @@ export default function Dashboard() {
                   <h6> صلاحية الاشتراك </h6>
                 </div>
                 <div className="card-body">
-                  <p className="fs-1">0</p>
+                  <p className="fs-1">
+                    {subscription?.startDate && subscription?.endDate
+                      ? Math.floor(
+                          (new Date(subscription?.endDate) -
+                            new Date(subscription?.startDate)) /
+                            (1000 * 60 * 60 * 24)
+                        )
+                      : "غير محدد"} يوم
+                  </p>
                 </div>
               </div>
             </div>
-            {user?.role === "admin" && (
+            {/* {user?.role === "admin" && (
               <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
                 <div className="card text-center">
                   <div className="card-header">
@@ -165,9 +190,9 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
-            <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
+            {/* <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
                 <div className="card-header">
                   <h3>
@@ -183,13 +208,10 @@ export default function Dashboard() {
                   </p>
                 </div>
               </div>
-            
-            </div>
-
+            </div> */}
           </div>
         </div>
       </section>
-
     </>
   );
 }
