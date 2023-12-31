@@ -109,7 +109,7 @@ export default function AddTeacher() {
 
   return (
     <>
-      <section className="addTeacher">
+      <section className="addTeacher mb-5">
         <div className="container">
           <h2 className="text-center fs-1 mt-3">اضافة معلم جديد</h2>
           <hr className="w-25 mx-auto mb-5" />
