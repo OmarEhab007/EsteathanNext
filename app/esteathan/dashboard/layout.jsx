@@ -228,8 +228,8 @@ export default function RootLayout({ children }) {
                         <i class="fa-solid fa-user"></i>
                       </a>
                       <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-                        <li><p class="dropdown-item mb-0"> مرحبا عبدالعزيز محمد </p></li>
-                        <li><a class="dropdown-item text-center" href="#">معلومات المستخدم</a></li>
+                        {/* <li><p class="dropdown-item mb-0"> مرحبا عبدالعزيز محمد </p></li> */}
+                        <li><a class="dropdown-item text-center" href="/esteathan/dashboard/user">معلومات المستخدم</a></li>
                         <li><hr class="dropdown-divider"/></li>
                         <li className="dropdown-item">
                           <a

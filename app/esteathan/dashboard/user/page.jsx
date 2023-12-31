@@ -10,12 +10,14 @@ export default function User() {
   const [bill, setBill] = useState(null);
   const [newPhone, setNewPhone] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
 
   const user_id = session?.user?.id;
   useEffect(() => {
     const fetchUserData = async () => {
+      setLoading(true);
       const today = new Date();
       if (session?.user?.id) {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
@@ -44,12 +46,14 @@ export default function User() {
         const billData = await billResponse.json();
         console.log(billData.data);
         setBill(billData.data);
+        setLoading(false);
       }
     };
     fetchUserData();
   }, [session]);
 
   const handlePhoneChange = async () => {
+    setLoading(true);
     // update bill phone
     const response = await fetch(`/api/bill/${bill.id}`, {
       method: "PUT",
@@ -74,7 +78,8 @@ export default function User() {
         ...user,
         phone: newPhone,
       }),
-    });
+    }
+    );
 
     const userData = await userResponse.json();
     console.log(userData.data);
@@ -92,9 +97,12 @@ export default function User() {
     });
     const schoolData = await schoolResponse.json();
     console.log(schoolData);
+
+    setLoading(false);
   };
 
   const handlePasswordChange = async () => {
+    setLoading(true);
     // update user password
     const userResponse = await fetch(`/api/user/${user.id}`, {
       method: "PUT",
@@ -108,6 +116,8 @@ export default function User() {
     });
     const userData = await userResponse.json();
     console.log(userData.data);
+
+    setLoading(false);
   };
 
   return (
@@ -297,7 +307,7 @@ export default function User() {
                         <div
                           className="spinner-border text-success "
                           role="status"
-                        ></div>
+                          ></div>
                       </div>
 
                       <div className="col-8 pe-0 col-sm-5">
