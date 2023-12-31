@@ -49,7 +49,7 @@ export const POST = async (req: Request) => {
       number: parentNumber,
       type: "text",
       message: `${message}`,
-      instance_id: "658D421F79AE1",
+      instance_id: "659083772FEAF",
       access_token: "657080406f853",
     });
     const url = "https://wa.karzoun.app/api/send?" + params.toString();
