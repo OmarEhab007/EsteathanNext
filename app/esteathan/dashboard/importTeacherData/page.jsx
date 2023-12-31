@@ -44,7 +44,7 @@ export default function ImportTeacherData() {
   };
   return (
     <>
-      <section className="importStudentData">
+      <section className="importStudentData my-5">
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-md-12">

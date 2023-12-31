@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <body
-        className={`root-layout ${inter.className} ${darkMode ? "dark" : ""}`}
+        className={`root-layout d-flex flex-wrap ${inter.className} ${darkMode ? "dark" : ""}`}
       >
         <header>
           <nav className="navbar navbar-expand-lg ">
