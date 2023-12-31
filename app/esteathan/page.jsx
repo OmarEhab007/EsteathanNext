@@ -39,7 +39,7 @@ export default function Home() {
     console.log(selectedSchool)
 
     try {
-      const response = await fetch(`/api/students/search?number=${searchNumber}&schoolId=${selectedSchool}`);
+      const response = await fetch(`/api/students/${searchNumber}`);
       const result = await response.json();
       // console.log(result);
       const student = result.data;
@@ -68,7 +68,7 @@ export default function Home() {
               onSubmit={handleSearch}
               className={` p-5 border-success col-md-8 col-sm-10 col-12 ${styles.searchForm}`}
             >
-              <select
+              {/* <select
                 id="school"
                 name="school"
                 className="form-control border-success"
@@ -82,7 +82,7 @@ export default function Home() {
                     {school.name}
                   </option>
                 ))}
-              </select>
+              </select> */}
               
               <label htmlFor="personalId" className="form-label mb-3 mt-3">
                 هوية الطالب

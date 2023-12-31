@@ -12,7 +12,7 @@ datasource db {
 
 model Student {
   id           String   @id @default(cuid()) @map("_id")
-  number       String
+  number       String  @unique
   name         String
   class        String
   year         String

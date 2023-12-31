@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
 
+interface Student {
+  id: string;
+  number: string;
+  name: string;
+  class: string;
+  year: number;
+  parentNumber: string;
+  schoolId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+
+// get student
 export const GET = async (
   req: Request,
   { params }: { params: { number: string } }
@@ -9,7 +23,7 @@ export const GET = async (
     const number = params.number;
     const data = await prisma.student.findUnique({
       where: {
-        number : number,
+        number: number,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

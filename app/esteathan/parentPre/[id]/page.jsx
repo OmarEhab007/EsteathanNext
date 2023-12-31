@@ -53,7 +53,7 @@ export default function ParentPre() {
         const result = await response.json();
         // console.log(result);
         const student = result.data;
-        console.log(student);
+        // console.log(student);
         setStudent(student);
         setParentPhone(student.parentNumber);
         // get student school name 
@@ -61,11 +61,11 @@ export default function ParentPre() {
           `/api/school/${student.schoolId}`
         );
         const schoolData = await schoolResponse.json();
-        console.log(schoolData.data);
-        console.log(schoolData.data[0]);
+        // console.log(schoolData.data);
+        // console.log(schoolData.data[0]);
         setSchool(schoolData.data[0]);
         setSchoolName(schoolData.data[0].name);
-        console.log(schoolData.data[0].name);
+        // console.log(schoolData.data[0].name);
         
       } catch (error) {
         console.error("Error fetching student data:", error);
