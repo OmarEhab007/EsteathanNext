@@ -130,7 +130,18 @@ export default function User() {
 
           <div className="row justify-content-center align-items-center">
             <div className="col-12 col-lg-6 mb-3">
-              <div className="card">
+              <div className="card position-relative">
+
+                {/* loading */}
+                {
+                  loading && (
+                <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading">
+                  <div
+                    className="spinner-border text-success "
+                    role="status"
+                    ></div>
+                </div>
+                )}
                 <div className="card-header">
                   <div className="row">
                     <div className="col-3">
@@ -301,14 +312,8 @@ export default function User() {
                       </div>
                     </div>
 
-                    <div className="row justify-content-center align-items-center position-relative">
-                      {/* loading */}
-                      <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading d-none">
-                        <div
-                          className="spinner-border text-success "
-                          role="status"
-                          ></div>
-                      </div>
+                    <div className="row justify-content-center align-items-center ">
+                      
 
                       <div className="col-8 pe-0 col-sm-5">
                         <div className="text-center">
