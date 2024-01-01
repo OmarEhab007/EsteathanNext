@@ -99,7 +99,7 @@ export default function Reports() {
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
-        console.log(schoolData.data[0]);
+        // console.log(schoolData.data[0]);
       }
     };
 
@@ -107,7 +107,7 @@ export default function Reports() {
   }, [session]);
 
   function findStudentByNumber(id) {
-    return students.find((student) => student.id === id);
+    return students.find((student) => student.number === id);
   }
 
   const handleFilter = () => {
@@ -122,6 +122,7 @@ export default function Reports() {
     });
 
     setForms(filteredForms);
+    console.log(filteredForms);
   };
 
   // Additional cases when start or end date is not specified
