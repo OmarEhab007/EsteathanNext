@@ -84,7 +84,7 @@ export default function Reports() {
         );
         setForms(approvedForms);
         setLoading(false);
-        console.log(formsData.data);
+        // console.log(formsData.data);
 
         const studentsResponse = await fetch(
           `/api/students/school/${userData.data.schoolId}`
@@ -92,7 +92,7 @@ export default function Reports() {
         const studentsData = await studentsResponse.json();
         setStudents(studentsData.data);
         setLoading(false);
-        console.log(studentsData.data);
+        // console.log(studentsData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
