@@ -67,6 +67,7 @@ export default function User() {
     });
     const data = await response.json();
     console.log(data);
+    
 
     // update user phone
     const userResponse = await fetch(`/api/user/${user.id}`, {
@@ -97,8 +98,10 @@ export default function User() {
     });
     const schoolData = await schoolResponse.json();
     console.log(schoolData);
-
+    
     setLoading(false);
+    // reload page
+    window.location.reload();
   };
 
   const handlePasswordChange = async () => {
@@ -116,6 +119,8 @@ export default function User() {
     });
     const userData = await userResponse.json();
     console.log(userData.data);
+    // reload page
+    window.location.reload();
 
     setLoading(false);
   };
