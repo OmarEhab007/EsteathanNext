@@ -3,7 +3,7 @@ import "../esteathan/globals.css";
 import Link from "next/link";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css";
-import "@uploadthing/react/styles.css";
+// import "@uploadthing/react/styles.css";
 // Uncomment the line below if you need Bootstrap's JavaScript functionality
 // import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 // import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={` d-flex justify-content-center reqbody flex-wrap ${inter.className}`}
+        className={` d-flex justify-content-center reqbody flex-wrap `}
       >
         <Providers>
           {children}

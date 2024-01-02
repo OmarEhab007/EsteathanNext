@@ -114,7 +114,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-4 mb-3">
               <div className="subscription-card  text-center">
                 <div className="card subscription-card-3">
                   <div className="card-body">
