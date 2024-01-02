@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
         <header>
           <nav className="navbar navbar-expand-md ">
             <div className="container">
-              <Link href="/esteathan/dashboard" className="navbar-brand px-2">
+              <Link href="/esteathan/home" className="navbar-brand px-2">
                 {" "}
                 <Image
                   src={icon}
