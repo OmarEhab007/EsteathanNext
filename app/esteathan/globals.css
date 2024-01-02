@@ -8,7 +8,7 @@
 
 html {
   direction: rtl;
-  font-family: "Lateef", serif;
+  font-family: "Lateef", serif !important;
   font-size: 1.2em;
   font-weight: 400;
   line-height: 1.5;
@@ -247,7 +247,7 @@ input:checked + .slider:before {
 }
 
 .reqParent {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .reqParent form {
@@ -264,7 +264,7 @@ input:checked + .slider:before {
 }
 
 .studentInfo .container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .loader {
@@ -880,7 +880,7 @@ header {
 }
 
 .forgetPassword {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .subscriptionResponce .card-body .group .row {
@@ -926,3 +926,35 @@ header {
   color: var(--primary-100);
 }
 
+.homeHeader{
+  min-height: 100px  ;
+}
+
+.markUs{
+  color: var(--accent-100) ;
+  background-color: transparent; 
+}
+
+.video iframe{
+  aspect-ratio: 16/9;
+}
+
+.price{
+  transform: translate(-70%, -50%);
+  color: #797979;
+}
+
+.subscription-card-1{
+  border: 3px solid #a68b5b !important;
+  
+}
+  
+.subscription-card-2{
+  border: 3px solid white !important;
+  
+}
+
+.subscription-card-3{
+  border: 3px solid gold !important;
+  
+}

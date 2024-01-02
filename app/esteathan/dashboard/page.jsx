@@ -164,7 +164,8 @@ export default function Dashboard() {
                             new Date(subscription?.startDate)) /
                             (1000 * 60 * 60 * 24)
                         )
-                      : "غير محدد"} يوم
+                      : "غير محدد "}
+                      <span className="fs-5"> يوم </span> 
                   </p>
                 </div>
               </div>

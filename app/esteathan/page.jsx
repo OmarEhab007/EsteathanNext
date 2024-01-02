@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./page.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import Icon from "./bigIcon.png";
@@ -57,16 +56,16 @@ export default function Home() {
 
   return (
     <>
-      <main className={` reqMain w-100  ${styles.reqMain}`}>
+      <main className={` reqMain w-100  mb-5`}>
         <div className="container h-100">
-          <h1 className="text-center mb-3 mt-5">
+          <h1 className="text-center mb-3 mt-3">
             {" "}
-            <Image src={Icon} alt="Icon" width={200} placeholder="blur" />{" "}
+            <Image src={Icon} alt="Icon" width={180} placeholder="blur" />{" "}
           </h1>
           <div className="row justify-content-center align-items-center h-50">
             <form
               onSubmit={handleSearch}
-              className={` p-5 border-success col-md-8 col-sm-10 col-12 ${styles.searchForm}`}
+              className={` p-5 border-success col-md-8 col-sm-10 col-12 `}
             >
               {/* <select
                 id="school"
@@ -104,7 +103,7 @@ export default function Home() {
                 disabled={loading}
               >
                 {loading ? (
-                  <span className="fas fa-spinner fa-spin"></span>
+                  <span className="fas fa-spinner fa-spin "></span>
                 ) : (
                   "بحث"
                 )}

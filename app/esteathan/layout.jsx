@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={` d-flex justify-content-center reqbody flex-wrap ${inter.className}`}
+        className={` d-flex justify-content-center reqbody flex-wrap `}
       >
         <Providers>
           {children}

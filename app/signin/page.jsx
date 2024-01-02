@@ -4,6 +4,9 @@ import Link from 'next/link';
 // import { signIn } from 'next-auth/client';
 import { useSession, signIn, signOut } from 'next-auth/react'
 // import { useSession } from "next-auth/react";
+import bgFooter from "../esteathan/footer-bg.png";
+import Image from "next/image";
+import icon from "../esteathan/bigIcon.png";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -35,8 +38,14 @@ export default function Login() {
 
   return (
     <>
-      <section className='login d-flex justify-content-center align-items-center mt-5'>
-        <div className="container">
+      <section className='login d-flex justify-content-center align-items-center flex-wrap mb-3'>
+
+        <h1 className="text-center mb-3 mt-3 w-100">
+            {" "}
+            <Image src={icon} alt="Icon" width={180} placeholder="blur" />{" "}
+        </h1>
+
+        <div className="container ">
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-md-8 col-sm-12">
               <div className="card">
@@ -65,6 +74,26 @@ export default function Login() {
           </div>
         </div>
       </section>
+      <footer className="align-self-end position-relative">
+          <Image
+            src={bgFooter}
+            placeholder="blur"
+            width="100%"
+            className="footer-bg"
+          />
+          <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
+            <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
+              <div>
+                <p className=" p-3 text-center">
+                  فكرة وتصميم و تنفيذ
+                  <span> عبدالحميد عبيد الله الجابري </span>
+                  جميع الحقوق محفوظة لبرنامج استئذان
+                  <Image src={icon} alt="Icon" width={80} placeholder="blur" />
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
     </>
   );
 }
