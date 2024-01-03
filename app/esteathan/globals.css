@@ -960,3 +960,12 @@ header {
   border: 3px solid gold !important;
   
 }
+
+.subscription-card .card {
+  border-radius: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+.subscription-card .card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
