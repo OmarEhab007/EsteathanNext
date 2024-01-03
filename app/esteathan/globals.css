@@ -815,7 +815,7 @@ header {
 .pillUploader label {
   background-color: #3781bb;
   transition: all 0.3s ease-in-out;
-  width: 11em;
+  width: 13em;
   height: 2em;
   padding: 0.5em;
   margin: auto;
@@ -959,4 +959,13 @@ header {
 .subscription-card-3{
   border: 3px solid gold !important;
   
+}
+
+.subscription-card .card {
+  border-radius: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+.subscription-card .card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
