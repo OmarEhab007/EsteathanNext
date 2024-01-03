@@ -37,7 +37,6 @@ export default function Subscription() {
       managerPhone === "" ||
       attachment === "" ||
       plan === ""
-      
     ) {
       setLoading(false);
       alert("الرجاء ادخال جميع البيانات");
@@ -82,8 +81,22 @@ export default function Subscription() {
                 <div className="details m-auto mb-3">
                   <div className="card-body">
                     <p className="text-center m-0">
-                      قم بتحويل قيمة اشتراكك على الحساب البنكي التالي
+                      قم بتحويل قيمة اشتراكك على حسابنا في بنك الراجحي
+                    </p>
+                    <p className="text-center m-0">
                       <span className="high"> 300608010173943 </span>
+                      <br />
+                      <span className="high">
+                        {" "}
+                        أيبان : SA6380000300608010173943{" "}
+                      </span>
+                      <br />
+                      <span className="high">
+                        {" "}
+                        باسم : عبدالحميد عبيدالله الجابري{" "}
+                      </span>
+                    </p>
+                    <p className="text-center m-0">
                       وارفق صورة ايصال الدفع لتتمكن من استخدام البرنامج
                     </p>
                   </div>
@@ -283,7 +296,7 @@ export default function Subscription() {
                               return `بحد اقصي 4 ميجا`;
                             },
                           }}
-                          className="pillUploader me-2 form-control"
+                          className="pillUploader me-2 form-control text-center"
                           // add two endpoints for each type of file
                           endpoint="imageUploader"
                           onClientUploadComplete={(res) => {
