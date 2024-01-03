@@ -41,7 +41,9 @@ export default function Subscription() {
       setLoading(false);
       alert("الرجاء ادخال جميع البيانات");
     } else {
-        let finalPhone = managerPhone.startsWith('995') ? managerPhone : '995' + managerPhone;
+      let finalPhone = managerPhone.startsWith("995")
+        ? managerPhone
+        : "995" + managerPhone;
 
       const resposne = await fetch("/api/bill", {
         method: "POST",
@@ -236,45 +238,86 @@ export default function Subscription() {
                       </div>
                       <div className="mb-3 col-lg-6">
                         <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios1"
-                            value="oneSemester"
-                            onChange={(e) => setPlan(e.target.value)}
-                          />
-                          <label class="form-check-label" for="exampleRadios1">
-                            فصل دراسي واحد
-                          </label>
+                          <div className="row">
+                            <div className="col-7">
+                              <div>
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios1"
+                                  value="oneSemester"
+                                  onChange={(e) => setPlan(e.target.value)}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="exampleRadios1"
+                                >
+                                  فصل دراسي واحد
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-5">
+                              <div>
+                                <p className="price2">150 ريال</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                         <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios2"
-                            value="twoSemester"
-                            onChange={(e) => setPlan(e.target.value)}
-                          />
-                          <label class="form-check-label" for="exampleRadios2">
-                            فصلان دراسيان
-                          </label>
+                          <div className="row">
+                            <div className="col-7">
+                              <div>
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios2"
+                                  value="twoSemester"
+                                  onChange={(e) => setPlan(e.target.value)}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="exampleRadios2"
+                                >
+                                  فصلان دراسيان
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-5">
+                              <div>
+                                <p className="price2">250 ريال</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-
                         <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios2"
-                            value="fullYear"
-                            onChange={(e) => setPlan(e.target.value)}
-                          />
-                          <label class="form-check-label" for="exampleRadios2">
-                            سنة دراسية كاملة
-                          </label>
+                          <div className="row">
+                            <div className="col-7">
+                              <div>
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios3"
+                                  value="fullYear"
+                                  onChange={(e) => setPlan(e.target.value)}
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="exampleRadios3"
+                                >
+                                  سنة دراسية كاملة
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-5">
+                              <div>
+                                <p className="price2">350 ريال</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
