@@ -42,6 +42,8 @@ export default function Subscription() {
       setLoading(false);
       alert("الرجاء ادخال جميع البيانات");
     } else {
+        let finalPhone = managerPhone.startsWith('995') ? managerPhone : '995' + managerPhone;
+
       const resposne = await fetch("/api/bill", {
         method: "POST",
         headers: {
@@ -52,7 +54,7 @@ export default function Subscription() {
           schoolId,
           schoolName,
           managerName,
-          phone: managerPhone,
+          phone: finalPhone,
           district,
           office,
           attachment,
