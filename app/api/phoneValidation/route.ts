@@ -48,7 +48,7 @@ export const POST = async (req: Request) => {
     const params = new URLSearchParams({
       number: parentNumber,
       type: "text",
-      message: `كود التأكيد : ${code}`,
+      message: code,
       instance_id: "659083772FEAF",
       access_token: "657080406f853",
     });

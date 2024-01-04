@@ -12,20 +12,24 @@ datasource db {
 
 model Student {
   id           String   @id @default(cuid()) @map("_id")
-  number       String   @unique
+  number       String  @unique
   name         String
   class        String
-  year         Int
+  year         String
   parentNumber String
+  schoolId     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@unique([number, schoolId])
 }
 
 // teacher model id, name, phone
 model Teacher {
   id        String   @id @default(cuid()) @map("_id")
   name      String
-  phone     String
+  phone     String   @unique
+  schoolId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -40,17 +44,69 @@ model Form {
   verificationCode String
   status           String
   approval         String
+  schoolId         String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
 
-// create user 
-model User {
+model school {
+  id             String   @id @default(cuid()) @map("_id")
+  schoolId       String   @unique
+  name           String
+  district       String
+  office         String
+  phone          String
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model subscription {
   id        String   @id @default(cuid()) @map("_id")
-  username  String   @unique
+  status    String
+  plan      String
+  startDate DateTime
+  endDate   DateTime
+  schoolId  String
+  billId    String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model plan {
+  id        String   @id @default(cuid()) @map("_id")
+  name      String
+  price     Int
+  duration  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model bill {
+  id          String   @id @default(cuid()) @map("_id")
+  status      String
+  schoolId    String
+  schoolName  String
+  managerName String
+  phone       String
+  district    String
+  office      String
+  attachment  String
+  plan        String
+  history     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model user {
+  id        String   @id @default(cuid()) @map("_id")
+  name      String
   password  String
-  phone     String
   role      String
+  schoolId  String
+  phone     String
+  status    String
+  lastLogin DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

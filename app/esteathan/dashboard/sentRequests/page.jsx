@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 // import BarLoader from "react-spinners/BarLoader";
+import { useSession } from "next-auth/react";
 
 export default function SendRequests() {
   const [forms, setForms] = useState([]);
@@ -13,17 +14,30 @@ export default function SendRequests() {
   const [reasonText, setReasonText] = useState("تم رفض طلب الاستئذان");
   const [isRejectButtonVisible, setRejectButtonVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
 
   // const [NumberOfRequests, setNumberOfRequests] = useState(null);
   // today date
   // const today = new Date();
-
+  const user_id = session?.user?.id;
   useEffect(() => {
-    const today = new Date();
-    fetch("/api/forms") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => {
-        const todayForms = data.datas.filter((form) => {
+    const fetchUserData = async () => {
+      const today = new Date();
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data);
+
+        const formsResponse = await fetch(
+              `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
+        setForms(formsData.data || []);
+        console.log(formsData.data);
+        // fillter forms by today
+        const todayForms = formsData.data.filter((form) => {
           const formDate = new Date(form.createdAt);
           return (
             formDate.getDate() === today.getDate() &&
@@ -33,34 +47,56 @@ export default function SendRequests() {
           );
         });
         setForms(todayForms);
-        console.log(todayForms);
-      });
+        // console.log(todayForms);
 
-    fetch("/api/students") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setStudents(data.datas));
-  }, []);
+        // fetch("/api/forms") // replace with your API endpoint
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     const todayForms = data.datas.filter((form) => {
+        //       const formDate = new Date(form.createdAt);
+        //       return (
+        //         formDate.getDate() === today.getDate() &&
+        //         formDate.getMonth() === today.getMonth() &&
+        //         formDate.getFullYear() === today.getFullYear() &&
+        //         form.approval === "pending"
+        //       );
+        //     });
+        //     setForms(todayForms);
+        //     console.log(todayForms);
+        //   });
+
+        // fetch("/api/students") // replace with your API endpoint
+        //   .then((res) => res.json())
+        //   .then((data) => setStudents(data.datas));
+        const studentsResponse = await fetch(`/api/students/school/${userData.data.schoolId}`);
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data || []);
+        console.log(studentsData.data);
+      }
+    };
+    fetchUserData();
+  }, [session]);
 
   // console.log(students);
-  // console.log(forms);
+  console.log(forms);
 
   const getStudentName = (studentId) => {
-    const student = students.find((student) => student.number === studentId);
+    const student = students.find((student) => student.id === studentId);
     return student ? student.name : "Student not found";
   };
 
   const getStudentYear = (studentId) => {
-    const student = students.find((student) => student.number === studentId);
+    const student = students.find((student) => student.id === studentId);
     return student ? student.year : "Student not found";
   };
 
   const getStudentClass = (studentId) => {
-    const student = students.find((student) => student.number === studentId);
+    const student = students.find((student) => student.id === studentId);
     return student ? student.class : "Student not found";
   };
 
   const getStudentParentNumber = (studentId) => {
-    const student = students.find((student) => student.number === studentId);
+    const student = students.find((student) => student.id === studentId);
     return student ? student.parentNumber : "Student not found";
   };
 
@@ -70,12 +106,17 @@ export default function SendRequests() {
     return studentForms.length;
   };
 
+  const getStudentNumber = (studentId) => {
+    const student = students.find((student) => student.id === studentId);
+    return student ? student.number : "Student not found";
+  };
+
   const handleApproval = (formId) => {
     // Make an API call to update the form data
     setIsLoading(true);
     const form = forms.find((form) => form.id === formId);
     const student = students.find(
-      (student) => student.number === form.studentId
+      (student) => student.id === form.studentId
     );
     const parentNumber = student.parentNumber;
     fetch(`/api/forms/${formId}`, {
@@ -113,7 +154,7 @@ export default function SendRequests() {
     setIsLoading(true);
     const form = forms.find((form) => form.id === formId);
     const student = students.find(
-      (student) => student.number === form.studentId
+      (student) => student.id === form.studentId
     );
     const parentNumber = student.parentNumber;
     fetch(`/api/forms/${formId}`, {
@@ -125,8 +166,6 @@ export default function SendRequests() {
         approval: "rejected",
       }),
     });
-
-
 
     fetch("/api/sentMessageToTeacher", {
       method: "POST",
@@ -190,7 +229,7 @@ export default function SendRequests() {
                           <p className="card-text"> : </p>
                         </div>
                         <div className="col-lg-8  col-sm-12">
-                          <p className="card-text"> {form.studentId} </p>
+                          <p className="card-text"> {getStudentNumber(form.studentId)} </p>
                         </div>
                       </div>
 

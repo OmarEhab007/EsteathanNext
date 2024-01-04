@@ -1,18 +1,46 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
-
+import { useSession } from "next-auth/react";
 
 export default function DeleteData() {
   const [students, setStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("students");
   const [teachers, setTeachers] = useState([]);
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
   // const [editedStudent, setEditedStudent] = useState({});//[name, number, class, year]
   // const [editedTeacher, setEditedTeacher] = useState({});//[name, phone]
-  const router = useRouter()
+  const router = useRouter();
 
+  const user_id = session?.user?.id;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data.schoolId);
+
+        const studentsResponse = await fetch(
+          `/api/students/school/${userData.data.schoolId}`
+        );
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data);
+        // console.log(studentsData.data);
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data);
+        // console.log(teachersData.data);
+      }
+    };
+    fetchUserData();
+  }, [session]);
 
   const filteredStudents = students.filter((student) =>
     student.name.includes(searchQuery)
@@ -44,9 +72,8 @@ export default function DeleteData() {
       });
   };
 
-
   const deleteAllStudents = () => {
-    fetch(`/api/students`, {
+    fetch(`/api/students/school/${user.schoolId}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -56,22 +83,12 @@ export default function DeleteData() {
   };
 
   const deleteAllTeachers = () => {
-    fetch(`/api/teacher`, {
+    fetch(`/api/teacher/school/${user.schoolId}`, {
       method: "DELETE",
     }).then((res) => res.json());
   };
 
-  useEffect(() => {
-    fetch("/api/students") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setStudents(data.datas));
-    
-    fetch("/api/teacher") // replace with your API endpoint
-      .then((res) => res.json())
-      .then((data) => setTeachers(data.datas));
-  }, []);
 
-  // console.log(teachers);
 
   return (
     <>
@@ -129,18 +146,25 @@ export default function DeleteData() {
                 <nav className="col-12">
                   <ul class="nav justify-content-evenly">
                     <li class="nav-item">
-                      <a class="nav-link fs-5 " aria-current="page" onClick={() => setSelectedCategory('students')}>
+                      <a
+                        class="nav-link fs-5 "
+                        aria-current="page"
+                        onClick={() => setSelectedCategory("students")}
+                      >
                         الطلاب
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link fs-5" onClick={() => setSelectedCategory('teachers')}>
+                      <a
+                        class="nav-link fs-5"
+                        onClick={() => setSelectedCategory("teachers")}
+                      >
                         المعلمين
                       </a>
                     </li>
                   </ul>
                 </nav>
-                {selectedCategory === 'students' ? (
+                {selectedCategory === "students" ? (
                   <div className="col-12">
                     <div className="row justify-content-center align-items-center">
                       <div className="col-12  mb-3">
@@ -194,7 +218,10 @@ export default function DeleteData() {
                                   <div className="card-body">
                                     <div className="row align-items-center justify-content-start mb-2">
                                       <div className="col-lg-3  col-5">
-                                        <p className="card-text"> هوية الطالب </p>
+                                        <p className="card-text">
+                                          {" "}
+                                          هوية الطالب{" "}
+                                        </p>
                                       </div>
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
@@ -244,20 +271,24 @@ export default function DeleteData() {
                                       <button
                                         type="button"
                                         className="btn btn-danger text-center me-3"
-                                        onClick={() => deleteStudent(student.id)}
+                                        onClick={() =>
+                                          deleteStudent(student.id)
+                                        }
                                       >
                                         {" "}
                                         حذف الطالب{" "}
                                       </button>
-                                      <button 
-                                      type="button"
-                                      className="btn btn-warning text-center "
-                                      onClick= {()=> router.push(`/esteathan/dashboard/deleteData/updateStudents/${student.number}`)}
-
+                                      <button
+                                        type="button"
+                                        className="btn btn-warning text-center "
+                                        onClick={() =>
+                                          router.push(
+                                            `/esteathan/dashboard/deleteData/updateStudents/${student.id}`
+                                          )
+                                        }
                                       >
                                         {" "}
-                                        تعديل الطالب
-                                        {" "}
+                                        تعديل الطالب{" "}
                                       </button>
                                     </form>
                                   </div>
@@ -270,7 +301,7 @@ export default function DeleteData() {
                     </div>
                   </div>
                 ) : (
-                    <div className="col-12">
+                  <div className="col-12">
                     <div className="row justify-content-center align-items-center">
                       <div className="col-12  mb-3">
                         <div className="card  pb-3 px-2">
@@ -321,10 +352,12 @@ export default function DeleteData() {
                                   </div>
 
                                   <div className="card-body">
-
                                     <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-warning">
                                       <div className="col-lg-3  col-5">
-                                        <p className="card-text"> رقم الهاتف </p>
+                                        <p className="card-text">
+                                          {" "}
+                                          رقم الهاتف{" "}
+                                        </p>
                                       </div>
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
@@ -341,19 +374,24 @@ export default function DeleteData() {
                                       <button
                                         type="button"
                                         className="btn btn-danger text-center me-3"
-                                        onClick={() => deleteTeacher(teacher.id)}
+                                        onClick={() =>
+                                          deleteTeacher(teacher.id)
+                                        }
                                       >
                                         {" "}
                                         حذف المعلم{" "}
                                       </button>
-                                      <button 
-                                      type="button"
+                                      <button
+                                        type="button"
                                         className="btn btn-warning text-center "
-                                        onClick= {()=> router.push(`/esteathan/dashboard/deleteData/updateTeachers/${teacher.id}`)}
+                                        onClick={() =>
+                                          router.push(
+                                            `/esteathan/dashboard/deleteData/updateTeachers/${teacher.id}`
+                                          )
+                                        }
                                       >
                                         {" "}
-                                        تعديل المعلم
-                                        {" "}
+                                        تعديل المعلم{" "}
                                       </button>
                                     </form>
                                   </div>
@@ -364,9 +402,8 @@ export default function DeleteData() {
                         </div>
                       </div>
                     </div>
-                    </div>
+                  </div>
                 )}
-                
               </div>
             </div>
           </div>

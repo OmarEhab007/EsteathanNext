@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/db";
 
-// GET /api/forms get single form data from id
+interface User {
+  name: string;
+  password: string;
+  role: string;
+  schoolId: string;
+  phone: string;
+  status: string;
+  lastLogin: Date;
+}
 
+// get  bill user by id  /api/user/[id] by params
 export const GET = async (
   req: Request,
   { params }: { params: { id: string } }
@@ -25,25 +34,16 @@ export const GET = async (
   }
 };
 
-// update form data
-
-export const PUT = async (
+// delete user data by id  /api/user/[id] by params
+export const DELETE = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const id = params.id;
-    const body = await req.json();
-    const { username, password, role, phone } = body;
-    const data = await prisma.user.update({
+    const data = await prisma.user.delete({
       where: {
         id,
-      },
-      data: {
-        username,
-        password,
-        role,
-        phone,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -57,17 +57,27 @@ export const PUT = async (
   }
 };
 
-// delete form data
-
-export const DELETE = async (
+// update user data by id  /api/user/[id] by params
+export const PUT = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const id = params.id;
-    const data = await prisma.user.delete({
+    const body = await req.json();
+    const { name, password, role, schoolId, phone, status, lastLogin } = body;
+    const data = await prisma.user.update({
       where: {
         id,
+      },
+      data: {
+        name,
+        password,
+        role,
+        schoolId,
+        phone,
+        status,
+        lastLogin,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

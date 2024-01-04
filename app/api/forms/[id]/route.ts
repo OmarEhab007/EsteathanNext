@@ -42,6 +42,7 @@ export const PUT = async (
       verificationCode,
       status,
       approval,
+      schoolId
     } = body;
     const data = await prisma.form.update({
       where: {
@@ -55,6 +56,7 @@ export const PUT = async (
         verificationCode,
         status,
         approval,
+        schoolId,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });

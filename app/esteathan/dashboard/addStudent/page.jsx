@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function AddStudent() {
   const [number, setNumber] = useState("");
@@ -9,11 +10,27 @@ export default function AddStudent() {
   const [parentNumber, setParentNumber] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const { data: session } = useSession();
 
   const nameRegex = /^[\u0600-\u06FF\s]+$/; // Arabic characters and spaces
   const numberRegex = /^\d{10}$/; // 10-digit numbers
   const yearRegex = /^\d{1,2}$/; // 2-digit numbers
   const parentNumberRegex = /^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/; // Valid Saudi Arabia phone number
+
+  const user_id = session?.user?.id;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        const userResponse = await fetch(`/api/user/${session.user.id}`);
+        const userData = await userResponse.json();
+        setUser(userData.data);
+        console.log(userData.data.schoolId);
+      }
+    };
+    fetchUserData();
+  }, [session]);  
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,8 +60,9 @@ export default function AddStudent() {
           number: number,
           name: name,
           class: classNumber,
-          year: parseInt(year),
+          year: year,
           parentNumber: parentNumber,
+          schoolId: user.schoolId,
         }),
       });
 

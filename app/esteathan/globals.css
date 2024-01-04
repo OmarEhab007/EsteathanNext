@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;700&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -8,7 +9,8 @@
 
 html {
   direction: rtl;
-  font-family: "Lateef", serif;
+  /* font-family: "Lateef", serif !important; */
+  font-family: 'Tajawal', sans-serif;
   font-size: 1.2em;
   font-weight: 400;
   line-height: 1.5;
@@ -21,7 +23,7 @@ html {
   --text-100: #4d4d4d;
   --text-200: #797979;
   --bg-100: #f5efe7;
-  --bg-100-50: #f5efe784;
+  --bg-100-50: #f5efe7ab;
   --bg-200: #ebe5dd;
   --bg-300: #c2bdb5;
 }
@@ -43,6 +45,7 @@ html {
 body {
   background-color: var(--bg-100) !important;
   color: var(--text-100) !important;
+  min-height: 100vh;
 }
 
 a {
@@ -75,9 +78,23 @@ nav .navbar-brand {
   color: var(--accent-100) !important;
 }
 
+.navbar-toggler{
+  color: var(--accent-100) !important;
+  background-color: var(--bg-200) !important;
+}
+
+.navbar-toggler-icon{
+  color: var(--accent-100) !important;
+  background-color: var(--bg-200) !important;
+}
+
 .dropdown-menu {
   background-color: var(--bg-200) !important;
   color: var(--text-100) !important;
+}
+
+.dropdown-menu p{
+  color: var(--accent-100) !important;
 }
 
 .card-header {
@@ -98,10 +115,17 @@ input {
 input:focus {
   background-color: var(--bg-200) !important;
   color: var(--text-100) !important;
+  box-shadow: 0 0 0 0.25rem var(--bg-300) !important;
+  border: 1px solid var(--accent-100) !important;
 }
 
 input::placeholder {
   color: var(--text-200) !important;
+}
+
+.form-check-input:checked {
+  background-color: var(--accent-100) !important;
+  border-color: var(--accent-100) !important;
 }
 
 textarea {
@@ -145,7 +169,7 @@ a {
   border-color: var(--accent-100) !important;
 }
 
-/* The switch - the box around the slider */
+/* The switch - the box around the  */
 .switch {
   display: block;
   --width-of-switch: 3.5em;
@@ -174,7 +198,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f4f4f5;
+  background-color: var(--bg-300);
   transition: 0.4s;
   border-radius: 30px;
 }
@@ -193,19 +217,19 @@ a {
 }
 
 input:checked + .slider {
-  background-color: #303136;
+  background-color: var(--bg-300);
 }
 
 input:checked + .slider:before {
   left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
-  background: #303136;
+  background: var(--bg-300);
   /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
-.index-row {
+/* .index-row {
   min-height: 75vh;
-}
+} */
 
 .reqInfo .card {
   min-height: 260px;
@@ -225,7 +249,7 @@ input:checked + .slider:before {
 }
 
 .reqParent {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .reqParent form {
@@ -242,7 +266,7 @@ input:checked + .slider:before {
 }
 
 .studentInfo .container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .loader {
@@ -594,7 +618,7 @@ input:checked + .slider:before {
 }
 
 .importStudentData .row {
-  min-height: 75vh;
+  /* min-height: 75vh; */
   text-align: center;
 }
 
@@ -616,6 +640,14 @@ input:checked + .slider:before {
 
 .login {
   min-height: 75vh;
+}
+
+.login span a {
+  color: var(--accent-100) !important;
+}
+
+.login span a:hover {
+  color: var(--accent-200) !important;
 }
 
 .signup {
@@ -764,4 +796,180 @@ header {
 /* applied to the upload indicator when uploading */
 .custom-class > *[data-ut-element="button"][data-state="uploading"]::after {
   background-color: rgb(234 88 12 / 1);
+}
+
+.group {
+  border: 1px solid var(--accent-100);
+  border-radius: 0.5em;
+}
+
+.underLine {
+  border-bottom: 1px solid var(--accent-100);
+  height: 3px;
+  width: 20%;
+}
+
+.pillUploader {
+  background-color: transparent !important;
+}
+.pillUploader label {
+  background-color: #3781bb;
+  transition: all 0.3s ease-in-out;
+  width: 13em;
+  height: 2em;
+  padding: 0.5em;
+  margin: auto;
+}
+
+.pillUploader label:hover {
+  background-color: #4e9bd1;
+}
+
+.esteathan-btn {
+  background-color: var(--accent-100) !important;
+  color: var(--bg-100) !important;
+  transition: all 0.3s ease-in-out;
+  height: 2em;
+  padding: 0.5em;
+}
+
+.esteathan-btn:hover {
+  background-color: var(--accent-200) !important;
+  color: var(--bg-100) !important;
+}
+
+.esteathan-outline-btn {
+  background-color: transparent !important;
+  color: var(--accent-100) !important;
+  transition: all 0.3s ease-in-out;
+  height: 2em;
+  padding: 0.5em;
+  border: 1px solid var(--accent-100) !important;
+}
+
+.esteathan-outline-btn:hover {
+  background-color: var(--accent-100) !important;
+  color: var(--bg-100) !important;
+}
+
+.details {
+  background-color: var(--bg-100);
+  border-radius: 0.5em;
+  width: 90%;
+}
+
+.high {
+  font-size: 1.25em;
+  color: var(--accent-100);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.high:hover {
+  color: var(--accent-200);
+}
+
+.loading {
+  background-color: var(--bg-100-50);
+  z-index: 999;
+  font-size: 1.5em;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.loading i {
+  font-size: 5em !important;
+}
+
+.forgetPassword {
+  min-height: 100vh;
+}
+
+.subscriptionResponce .card-body .group .row {
+  border-bottom: 1px solid var(--bg-300);
+}
+
+.subscriptionResponce .card-body .group img {
+  height: 455px;
+  border-radius: 0.5em;
+}
+
+/* Largeur de la barre de défilement */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Couleur de la piste */
+::-webkit-scrollbar-track {
+  background: var(--bg-200);
+}
+
+/* Couleur de la poignée */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-100);
+  border-radius: 7.5px;
+}
+
+/* Couleur de la poignée au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-200);
+  border-radius: 7.5px;
+}
+
+.pillUploader {
+  border: none !important;
+}
+
+.user .card-body .group .row {
+  border-bottom: 1px solid var(--bg-300);
+}
+
+.pass {
+  color: var(--primary-100);
+}
+
+.homeHeader{
+  min-height: 100px  ;
+}
+
+.markUs{
+  color: var(--accent-100) ;
+  background-color: transparent; 
+}
+
+.video iframe{
+  aspect-ratio: 16/9;
+}
+
+.price{
+  transform: translate(-70%, -50%);
+  color: #797979;
+}
+
+.subscription-card-1{
+  border: 3px solid #a68b5b !important;
+  
+}
+  
+.subscription-card-2{
+  border: 3px solid white !important;
+  
+}
+
+.subscription-card-3{
+  border: 3px solid gold !important;
+  
+}
+
+.subscription-card .card {
+  border-radius: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+.subscription-card .card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.price2{
+  color: var(--accent-100);
 }

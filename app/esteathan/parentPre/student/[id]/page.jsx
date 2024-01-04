@@ -18,7 +18,7 @@ export default function Student() {
 
   const id = params.id;
   useEffect(() => {
-    fetch(`/api/students/${id}`)
+    fetch(`/api/students/id/${id}`)
       .then((res) => res.json())
       .then((res) => {
         setStudent(res.data);
@@ -43,6 +43,7 @@ export default function Student() {
         verificationCode: "",
         status: "done",
         approval: "pending",
+        schoolId: student.schoolId,
         // Add other form fields here
       }),
     })
