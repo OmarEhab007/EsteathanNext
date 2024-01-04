@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import DataTables from "datatables.net";
 
 export default function Reports() {
   const [forms, setForms] = useState([]);
@@ -238,18 +239,21 @@ export default function Reports() {
               </div>
             </div>
 
+            {/* Report table */}
+
+            
+
             <div className="reportPrint">
               <div className="row justify-content-center align-items-center mt-5 mb-3">
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header text-center">
-                      <p> المنطقة التعليمية:  {school?.district} </p>
+                      <p> المنطقة التعليمية: {school?.district} </p>
                       <p> المكتب: {school?.office} </p>
-                      <h3 className="mb-3"> اسم المدرسة: {school?.name} </h3> 
+                      <h3 className="mb-3"> اسم المدرسة: {school?.name} </h3>
                       <h4 className="text-center"> تقرير الاستئذان </h4>
                     </div>
                     <div className="card-body">
-
                       {startDate || endDate ? (
                         <div className="row border-secondary reportDate mb-3">
                           <div className="col-5">
