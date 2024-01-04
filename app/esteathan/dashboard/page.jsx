@@ -63,7 +63,19 @@ export default function Dashboard() {
     (form) => form.approval === "approved"
   ).length;
 
+
   const approvedApprovalCountToday = forms?.filter((form) => {
+    const formDate = new Date(form.createdAt);
+    const today = new Date();
+    return (
+      form.approval === "approved" &&
+      formDate.getDate() === today.getDate() &&
+      formDate.getMonth() === today.getMonth() &&
+      formDate.getFullYear() === today.getFullYear()
+    );
+  }).length;
+  
+  const receivedTodayCount = forms.filter((form) => {
     const formDate = new Date(form.createdAt);
     const today = new Date();
     return (
