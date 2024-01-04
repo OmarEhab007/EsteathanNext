@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <body
-        className={`root-layout d-flex flex-wrap ${inter.className} ${
+        className={`root-layout d-flex flex-wrap  ${
           darkMode ? "dark" : ""
         }`}
       >
