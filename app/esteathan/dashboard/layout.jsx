@@ -51,10 +51,10 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       import("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-      // import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
-      // import(
-      //   "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-      // );
+      import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
+      import(
+        "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+      );
       import("next/font/google");
     }
   }, []);
