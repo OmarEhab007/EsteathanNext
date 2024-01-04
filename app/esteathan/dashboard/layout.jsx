@@ -5,48 +5,18 @@ import Link from "next/link";
 // import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css";
 // import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-// import "../globals.css"; // Assuming you have global styles in this file
+import "../globals.css"; // Assuming you have global styles in this file
 import Image from "next/image.js";
 import icon from "../bigIcon.png";
 import bgFooter from "../footer-bg.png";
 import Icon from "../bigIcon.png";
 import { signOut } from "next-auth/react";
 import "@uploadthing/react/styles.css";
-import { Providers } from "../../../components/provider";
-import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth/next";
-// import { options } from "../../../app/api/auth/[...nextauth]/options";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
-  const [user, setUser] = useState(null);
-  // const [school, setSchool] = useState(null);
-
-  // const data =  getServerSession(options);
-  const { data: session } = useSession();
-
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log(userData.data);
-
-        // const schoolResponse = await fetch(
-        //   `/api/school/${userData.data.schoolId}`
-        // );
-        // const schoolData = await schoolResponse.json();
-        // setSchool(schoolData.data[0]);
-        // console.log(schoolData.data[0]);
-      }
-    };
-    fetchUserData();
-  }, [session]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -59,20 +29,11 @@ export default function RootLayout({ children }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-  //   }
-  // }, []);
-
-  // useEffect(async() => {
-  //   if (session?.user?.id) {
-  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
-  //       const userData = await userResponse.json();
-  //       setUser(userData.data);
-  //     // console.log(userData.data);
-  //   }
-  // }, [session]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
+    }
+  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
@@ -81,9 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <body
-        className={`root-layout d-flex flex-wrap  ${
-          darkMode ? "dark" : ""
-        }`}
+        className={`root-layout ${inter.className} ${darkMode ? "dark" : ""}`}
       >
         <header>
           <nav className="navbar navbar-expand-lg ">
@@ -207,71 +166,6 @@ export default function RootLayout({ children }) {
                       التقارير{" "}
                     </Link>
                   </li>
-                  {user?.role === "admin" && (
-                    <li className="nav-item me-2 text-center">
-                      <Link
-                        className="nav-link"
-                        href="/esteathan/dashboard/subscriptionResponse"
-                      >
-                        {" "}
-                        الاشتراكات{" "}
-                      </Link>
-                    </li>
-                  )}
-                  <ul className="navbar-nav me-2 d-xxl-none d-lg-none d-block text-center text-center">
-                    <li class="nav-item dropdown">
-                      <Link
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="fa-solid fa-user"></i>
-                      </Link>
-                      <ul
-                        class="dropdown-menu text-center"
-                        aria-labelledby="navbarDropdown"
-                      >
-                        {/* <li><p class="dropdown-item mb-0 " href=""> مرحبا عبدالعزيز محمد </p></li> */}
-                        <li>
-                          <Link
-                            class="dropdown-item"
-                            href="/esteathan/dashboard/user"
-                          >
-                            معلومات المستخدم
-                          </Link>
-                        </li>
-                        <li>
-                          <hr class="dropdown-divider" />
-                        </li>
-                        <li className="">
-                          <Link
-                            className="text-center dropdown-item"
-                            href="/"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              signOut();
-                            }}
-                          >
-                            <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  {/* {user?.role === "admin" && (
-                  <li className="nav-item me-2 text-center">
-                    <Link
-                      className="nav-link"
-                      href="/esteathan/dashboard/subscriptionResponse"
-                    >
-                      {" "}
-                      الاشتراكات{" "}
-                    </Link>
-                    </li>
-                  )} */}
 
                   {/* <li className="nav-item me-2 text-center nav-color">
                     <Link className="nav-link" href="/dashboard/signin"> تسجيل الدخول </Link>{" "}
@@ -280,51 +174,6 @@ export default function RootLayout({ children }) {
                    */}
                 </ul>
               </div>
-
-              <ul className="navbar-nav me-2 d-lg-block d-none text-center">
-                <li class="nav-item dropdown">
-                  <Link
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="fa-solid fa-user"></i>
-                  </Link>
-                  <ul
-                    class="dropdown-menu text-center"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    {/* <li><p class="dropdown-item mb-0 " href=""> مرحبا عبدالعزيز محمد </p></li> */}
-                    <li>
-                      <Link
-                        class="dropdown-item"
-                        href="/esteathan/dashboard/user"
-                      >
-                        معلومات المستخدم
-                      </Link>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-                    <li className="">
-                      <Link
-                        className="text-center dropdown-item"
-                        href="/"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          signOut();
-                        }}
-                      >
-                        <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-
               <label className="switch m-md-auto">
                 <input type="checkbox" onChange={toggleDarkMode} />
                 <span className="slider"></span>
@@ -340,10 +189,26 @@ export default function RootLayout({ children }) {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
+
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a
+                    className="nav-link logout-button  me-2 text-center nav-color"
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signOut();
+                    }}
+                  >
+                    <i className="fas fa-sign-out-alt"></i> تسجيل الخروج
+                  </a>
+                </li>
+              </ul>
             </div>
           </nav>
         </header>
-        <Providers>{children}</Providers>
+
+        {children}
         <footer className="align-self-end position-relative">
           <Image
             src={bgFooter}
