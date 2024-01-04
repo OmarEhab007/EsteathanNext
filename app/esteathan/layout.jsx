@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Link from "next/link";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css";
+import "./globals.css";
 import "@uploadthing/react/styles.css";
 // Uncomment the line below if you need Bootstrap's JavaScript functionality
 // import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -10,7 +10,7 @@ import "@uploadthing/react/styles.css";
 // import { extractRouterConfig } from "uploadthing/server";
  
 // import { ourFileRouter } from "./api/uploadthing/core";
-
+import { Providers } from "../../components/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
