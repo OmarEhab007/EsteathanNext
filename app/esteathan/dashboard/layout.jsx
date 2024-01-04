@@ -5,7 +5,7 @@ import Link from "next/link";
 // import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css";
 // import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "../globals.css"; // Assuming you have global styles in this file
+// import "../globals.css"; // Assuming you have global styles in this file
 import Image from "next/image.js";
 import icon from "../bigIcon.png";
 import bgFooter from "../footer-bg.png";
@@ -59,11 +59,11 @@ export default function RootLayout({ children }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
+  //   }
+  // }, []);
 
   // useEffect(async() => {
   //   if (session?.user?.id) {
