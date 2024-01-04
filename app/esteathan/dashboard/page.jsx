@@ -86,15 +86,15 @@ export default function Dashboard() {
     );
   }).length;
 
-  const receivedTodayCount = forms?.filter((form) => {
-    const formDate = new Date(form.createdAt);
-    const today = new Date();
-    return (
-      formDate.getDate() === today.getDate() &&
-      formDate.getMonth() === today.getMonth() &&
-      formDate.getFullYear() === today.getFullYear()
-    );
-  }).length;
+  // const receivedTodayCount = forms?.filter((form) => {
+  //   const formDate = new Date(form.createdAt);
+  //   const today = new Date();
+  //   return (
+  //     formDate.getDate() === today.getDate() &&
+  //     formDate.getMonth() === today.getMonth() &&
+  //     formDate.getFullYear() === today.getFullYear()
+  //   );
+  // }).length;
 
   const pendingTodayCount = forms?.filter((form) => {
     const formDate = new Date(form.createdAt);
