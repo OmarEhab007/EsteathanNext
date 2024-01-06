@@ -244,6 +244,14 @@ export default function RootLayout({ children }) {
                           </Link>
                         </li>
                         <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/bills"
+                          >
+                            الفواتير
+                          </Link>
+                        </li>
+                        <li>
                           <hr class="dropdown-divider" />
                         </li>
                         <li className="">
@@ -306,6 +314,14 @@ export default function RootLayout({ children }) {
                         معلومات المستخدم
                       </Link>
                     </li>
+                    <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/bills"
+                          >
+                            الفواتير
+                          </Link>
+                        </li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>

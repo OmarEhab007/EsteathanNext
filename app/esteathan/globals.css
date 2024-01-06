@@ -973,3 +973,24 @@ header {
 .price2{
   color: var(--accent-100);
 }
+
+.borderem{
+  border-radius: 0.5em !important;
+}
+
+@media print {
+  body * {
+      visibility: hidden;
+  }
+  .printable, .printable * {
+      visibility: visible;
+  }
+  .printable {
+      position: absolute;
+      left: 0;
+      top: 0;
+  }
+  .esteathan-btn{
+    display: none !important;
+  }
+}
