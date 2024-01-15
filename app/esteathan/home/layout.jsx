@@ -121,8 +121,8 @@ export default function RootLayout({ children }) {
             <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
               <div>
                 <p className=" p-3 text-center">
-                  فكرة وتصميم و تنفيذ
-                  <span> عبدالحميد عبيد الله الجابري </span>
+                  تصميم وتنفيذ    
+                  <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
                   <Image src={icon} alt="Icon" width={80} placeholder="blur" />
                 </p>

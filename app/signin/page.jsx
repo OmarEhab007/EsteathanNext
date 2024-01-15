@@ -144,6 +144,7 @@ export default function Login() {
         </div>
       </section>
       <footer className="align-self-end position-relative">
+
         <Image
           src={bgFooter}
           placeholder="blur"
@@ -159,6 +160,7 @@ export default function Login() {
                 جميع الحقوق محفوظة لبرنامج استئذان
                 <Image src={icon} alt="Icon" width={80} placeholder="blur" />
               </p>
+
             </div>
           </div>
         </div>

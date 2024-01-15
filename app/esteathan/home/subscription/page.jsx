@@ -85,19 +85,19 @@ export default function Subscription() {
                 <div className="details m-auto mb-3">
                   <div className="card-body">
                     <p className="text-center m-0">
-                      قم بتحويل قيمة اشتراكك على حسابنا في بنك الراجحي
+                      قم بتحويل قيمة اشتراكك على حسابنا في بنك البلاد
                     </p>
                     <p className="text-center m-0">
-                      <span className="high"> 300608010173943 </span>
+                      <span className="high"> 900141584360001 </span>
                       <br />
                       <span className="high">
                         {" "}
-                        أيبان : SA6380000300608010173943{" "}
+                        أيبان : SA8015000900141584360001{" "}
                       </span>
                       <br />
                       <span className="high">
                         {" "}
-                        باسم : عبدالحميد عبيدالله الجابري{" "}
+                        باسم : مؤسسة المبدع الفني لتقنية المعلومات{" "}
                       </span>
                     </p>
                     <p className="text-center m-0">
