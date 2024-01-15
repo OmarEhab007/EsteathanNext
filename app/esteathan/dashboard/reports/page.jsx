@@ -11,7 +11,7 @@ export default function Reports() {
   const [school, setSchool] = useState(null);
   const [user, setUser] = useState(null);
   const { data: session } = useSession();
-  const [formstwo, setFormstwo] = useState([]);
+  // const [formstwo, setFormstwo] = useState([]);
 
   const handlePrint = () => {
     const printWindow = window.open("", "_blank");
@@ -74,7 +74,7 @@ export default function Reports() {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
-        console.log(userData.data);
+        // console.log(userData.data);
 
         const formsResponse = await fetch(
           `/api/forms/school/${userData.data.schoolId}`
@@ -85,8 +85,8 @@ export default function Reports() {
         );
         setForms(approvedForms);
         setLoading(false);
-        console.log(formsData.data);
-        setFormstwo(formsData.data);
+        // console.log(formsData.data);
+        // setFormstwo(formsData.data);
         // console.log(approvedForms);
 
         const studentsResponse = await fetch(
@@ -95,14 +95,14 @@ export default function Reports() {
         const studentsData = await studentsResponse.json();
         setStudents(studentsData.data);
         setLoading(false);
-        console.log(studentsData.data);
+        // console.log(studentsData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
-        console.log(schoolData.data[0]);
+        // console.log(schoolData.data[0]);
       }
     };
 
@@ -127,7 +127,7 @@ export default function Reports() {
     });
 
     setForms(filteredForms);
-    console.log(filteredForms);
+    // console.log(filteredForms);
   };
 
   // Additional cases when start or end date is not specified
