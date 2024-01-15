@@ -54,6 +54,7 @@ export default function Home() {
     }
   };
 
+
   return (
     <>
       <main className={` reqMain w-100  mb-5`}>
@@ -82,7 +83,7 @@ export default function Home() {
                   </option>
                 ))}
               </select> */}
-              
+
               <label htmlFor="personalId" className="form-label mb-3 mt-3">
                 هوية الطالب
               </label>
@@ -97,9 +98,8 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className={`btn btn-success mt-3 text-center mx-auto d-block mb-3 ${
-                  loading ? "disabled" : ""
-                }`}
+                className={`btn btn-success mt-3 text-center mx-auto d-block mb-3 ${loading ? "disabled" : ""
+                  }`}
                 disabled={loading}
               >
                 {loading ? (

@@ -22,7 +22,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
-  // const [school, setSchool] = useState(null);
+  const [school, setSchool] = useState(null);
+  const [subscription, setSubscription] = useState(null);
+  const [status, setStatus] = useState(null);
 
   // const data =  getServerSession(options);
   const { data: session } = useSession();
@@ -35,16 +37,32 @@ export default function RootLayout({ children }) {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
-        console.log(userData.data);
+        // console.log(userData.data);
 
-        // const schoolResponse = await fetch(
-        //   `/api/school/${userData.data.schoolId}`
-        // );
-        // const schoolData = await schoolResponse.json();
-        // setSchool(schoolData.data[0]);
+        const schoolResponse = await fetch(
+          `/api/school/${userData.data.schoolId}`
+        );
+        const schoolData = await schoolResponse.json();
+        setSchool(schoolData.data[0]);
         // console.log(schoolData.data[0]);
+
+        const subscriptionResponse = await fetch(
+          `/api/subscription/${schoolData.data[0].subscriptionId}`
+        );
+        const subscriptionData = await subscriptionResponse.json();
+        setSubscription(subscriptionData.data);
+        // console.log(subscriptionData.data);
+        // console.log(subscriptionData.data.status);
+        setStatus(subscriptionData.data.status);
+        if (subscriptionData.data.status=== "invalid") {
+          // Sign out the user and redirect to the login page
+          // Replace 'signOut' and '/login' with your actual sign out function and login page path
+          signOut();
+          // router.push("/signin");
+        }
       }
     };
+
     fetchUserData();
   }, [session]);
 
@@ -315,13 +333,13 @@ export default function RootLayout({ children }) {
                       </Link>
                     </li>
                     <li>
-                          <Link
-                            class="dropdown-item"
-                            href="/esteathan/dashboard/bills"
-                          >
-                            الفواتير
-                          </Link>
-                        </li>
+                      <Link
+                        class="dropdown-item"
+                        href="/esteathan/dashboard/bills"
+                      >
+                        الفواتير
+                      </Link>
+                    </li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
