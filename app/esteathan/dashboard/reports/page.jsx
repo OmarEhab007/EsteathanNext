@@ -11,6 +11,7 @@ export default function Reports() {
   const [school, setSchool] = useState(null);
   const [user, setUser] = useState(null);
   const { data: session } = useSession();
+  const [formstwo, setFormstwo] = useState([]);
 
   const handlePrint = () => {
     const printWindow = window.open("", "_blank");
@@ -73,7 +74,7 @@ export default function Reports() {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
-        // console.log(userData.data);
+        console.log(userData.data);
 
         const formsResponse = await fetch(
           `/api/forms/school/${userData.data.schoolId}`
@@ -84,7 +85,9 @@ export default function Reports() {
         );
         setForms(approvedForms);
         setLoading(false);
-        // console.log(formsData.data);
+        console.log(formsData.data);
+        setFormstwo(formsData.data);
+        // console.log(approvedForms);
 
         const studentsResponse = await fetch(
           `/api/students/school/${userData.data.schoolId}`
@@ -92,22 +95,24 @@ export default function Reports() {
         const studentsData = await studentsResponse.json();
         setStudents(studentsData.data);
         setLoading(false);
-        // console.log(studentsData.data);
+        console.log(studentsData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
-        // console.log(schoolData.data[0]);
+        console.log(schoolData.data[0]);
       }
     };
 
     fetchUserData();
   }, [session]);
 
-  function findStudentByNumber(id) {
-    return students.find((student) => student.number === id);
+  const findStudentByNumber = (id) => {
+    const student = students.find((student) => student.id === id);
+    // console.log(student);
+    return student;
   }
 
   const handleFilter = () => {
@@ -243,13 +248,12 @@ export default function Reports() {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header text-center">
-                      <p> المنطقة التعليمية:  {school?.district} </p>
+                      <p> المنطقة التعليمية: {school?.district} </p>
                       <p> المكتب: {school?.office} </p>
-                      <h3 className="mb-3"> اسم المدرسة: {school?.name} </h3> 
+                      <h3 className="mb-3"> اسم المدرسة: {school?.name} </h3>
                       <h4 className="text-center"> تقرير الاستئذان </h4>
                     </div>
                     <div className="card-body">
-
                       {startDate || endDate ? (
                         <div className="row border-secondary reportDate mb-3">
                           <div className="col-5">
@@ -299,6 +303,8 @@ export default function Reports() {
                         <tbody>
                           {forms.map((form, index) => {
                             const student = findStudentByNumber(form.studentId);
+                            // console.log('Student ID:', form.studentId, 'Student:', student);
+                            // console.log(student);
                             if (!student) {
                               return null; // or return a default row
                             }

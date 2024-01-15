@@ -35,14 +35,14 @@ export default function Dashboard() {
             );
             const schoolData = await schoolResponse.json();
             setSchool(schoolData.data[0]);
-            console.log(schoolData.data[0]);
+            // console.log(schoolData.data[0]);
 
             const subscriptionResponse = await fetch(
               `/api/subscription/${schoolData.data[0].subscriptionId}`
             );
             console.log(schoolData.data[0]);
             const subscriptionData = await subscriptionResponse.json();
-            console.log(subscriptionData.data);
+            // console.log(subscriptionData.data);
             setSubscription(subscriptionData.data);
           } else {
             console.log("No schoolId available");
