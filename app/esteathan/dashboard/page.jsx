@@ -76,16 +76,28 @@ export default function Dashboard() {
     );
   }).length;
   
-  const receivedTodayCount = forms.filter((form) => {
+  // const receivedTodayCount = forms.filter((form) => {
+  //   const formDate = new Date(form.createdAt);
+  //   const today = new Date();
+  //   return (
+  //     form.approval === "approved" &&
+  //     formDate.getDate() === today.getDate() &&
+  //     formDate.getMonth() === today.getMonth() &&
+  //     formDate.getFullYear() === today.getFullYear()
+  //   );
+  // }).length;
+
+  // show received forms count today
+  const receivedTodayCount = forms?.filter((form) => {
     const formDate = new Date(form.createdAt);
     const today = new Date();
     return (
-      form.approval === "approved" &&
       formDate.getDate() === today.getDate() &&
       formDate.getMonth() === today.getMonth() &&
       formDate.getFullYear() === today.getFullYear()
     );
-  }).length;
+  }
+  ).length;
 
   // const receivedTodayCount = forms?.filter((form) => {
   //   const formDate = new Date(form.createdAt);
