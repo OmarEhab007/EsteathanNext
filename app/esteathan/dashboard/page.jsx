@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [school, setSchool] = useState(null);
   const [subscription, setSubscription] = useState(null);
   const { data: session } = useSession();
+  const [today, setToday] = useState(new Date());
 
   const user_id = session?.user?.id;
   useEffect(() => {
@@ -170,14 +171,26 @@ export default function Dashboard() {
                 </div>
                 <div className="card-body">
                   <p className="fs-1">
-                    {subscription?.startDate && subscription?.endDate
-                      ? Math.floor(
-                          (new Date(subscription?.endDate) -
-                            new Date(subscription?.startDate)) /
-                            (1000 * 60 * 60 * 24)
-                        )
-                      : "غير محدد "}
-                      <span className="fs-5"> يوم </span> 
+                    {/*want to make the number of subscription days be updated each day*/}
+                    {subscription?.startDate &&
+                    subscription?.endDate &&
+                    new Date(subscription?.endDate) > new Date() ? (
+                      Math.floor(
+                        (new Date(subscription?.endDate) - today) /
+                          (1000 * 60 * 60 * 24)
+                      )
+                    ) : (
+                      <span className="fs-5"> غير محدد </span>
+                    )}
+
+                    {/*{subscription?.startDate && subscription?.endDate*/}
+                    {/*  ? Math.floor(*/}
+                    {/*      (new Date(subscription?.endDate) -*/}
+                    {/*        new Date(subscription?.startDate)) /*/}
+                    {/*        (1000 * 60 * 60 * 24)*/}
+                    {/*    )*/}
+                    {/*  : "غير محدد "}*/}
+                    {/*  <span className="fs-5"> يوم </span> */}
                   </p>
                 </div>
               </div>
