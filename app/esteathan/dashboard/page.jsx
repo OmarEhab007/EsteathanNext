@@ -179,9 +179,13 @@ export default function Dashboard() {
                         (new Date(subscription?.endDate) - today) /
                           (1000 * 60 * 60 * 24)
                       )
-                    ) : (
+
+                    )
+                      : (
                       <span className="fs-5"> غير محدد </span>
+
                     )}
+                    <span className="fs-5"> يوم </span>
 
                     {/*{subscription?.startDate && subscription?.endDate*/}
                     {/*  ? Math.floor(*/}
