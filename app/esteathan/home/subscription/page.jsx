@@ -72,7 +72,7 @@ export default function Subscription() {
       setTimeout(() => {
         window.location.href = "/esteathan/home";
       }
-      , 2000);
+      , 3000);
     }
   };
 
