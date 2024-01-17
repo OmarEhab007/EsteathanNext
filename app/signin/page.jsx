@@ -154,7 +154,7 @@ export default function Login() {
         <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
           <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
             <div>
-              <p className=" p-3 text-center">
+              <p className="mb-0 text-center">
                 فكرة وتصميم و تنفيذ
                 <span> عبدالحميد عبيد الله الجابري </span>
                 جميع الحقوق محفوظة لبرنامج استئذان
