@@ -134,10 +134,10 @@ export default function Dashboard() {
             <div className=" reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
                 <div className="card-header">
-                  <h3>
+                  <h2 className="mb-3 mt-2">
                     <i className="fa-solid fa-person-walking-arrow-right text-primary"></i>
-                  </h3>
-                  <h6> طلبات بانتظار الرد عليها </h6>
+                  </h2>
+                  <h5> طلبات بانتظار الرد عليها </h5>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">{pendingTodayCount}</p>
@@ -148,10 +148,10 @@ export default function Dashboard() {
             <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
                 <div className="card-header">
-                  <h3>
+                  <h2 className="mb-3 mt-2">
                     <i className="fa-solid fa-envelope-circle-check text-info"></i>
-                  </h3>
-                  <h6> طلبات منتظرة الارسال الى المعلم </h6>
+                  </h2>
+                  <h5> طلبات منتظرة الارسال الى المعلم </h5>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">{approvedApprovalCountToday}</p>
@@ -162,10 +162,10 @@ export default function Dashboard() {
             <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
                 <div className="card-header">
-                  <h3>
+                  <h2 className="mb-3 mt-2">
                     <i className="fa-solid fa-list-check text-success"></i>
-                  </h3>
-                  <h6> عدد الطلبات المستلمة اليوم </h6>
+                  </h2>
+                  <h5> عدد الطلبات المستلمة اليوم </h5>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">{receivedTodayCount}</p>
@@ -176,10 +176,10 @@ export default function Dashboard() {
             <div className="reqInfo col-lg-3 col-md-4 col-sm-6 mb-3">
               <div className="card text-center">
                 <div className="card-header">
-                  <h3>
+                  <h2 className="mb-3 mt-2">
                     <i class="fa-solid fa-calendar-check text-warning"></i>
-                  </h3>
-                  <h6> صلاحية الاشتراك </h6>
+                  </h2>
+                  <h5> صلاحية الاشتراك </h5>
                 </div>
                 <div className="card-body">
                   <p className="fs-1">

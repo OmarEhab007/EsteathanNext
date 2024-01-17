@@ -21,16 +21,16 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-      import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
-      import(
-        "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-      );
-      import("next/font/google");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     import("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
+  //     import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
+  //     import(
+  //       "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+  //     );
+  //     import("next/font/google");
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   if (typeof window !== "undefined") {
@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
           <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
             <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
               <div>
-                <p className=" p-3 text-center">
+                <p className=" mb-0 text-center">
                   تصميم وتنفيذ    
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان

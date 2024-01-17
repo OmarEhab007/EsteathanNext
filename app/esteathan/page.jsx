@@ -57,9 +57,10 @@ export default function Home() {
 
   return (
     <>
-      <main className={` reqMain w-100  mb-5`}>
+      <div className="esteatahn-request d-flex justify-content-center align-items-center flex-wrap w-100">
+      <main className={` reqMain w-100  mb-5 w-100`}>
         <div className="container h-100">
-          <h1 className="text-center mb-3 mt-3">
+          <h1 className="text-center mb-4 mt-3">
             {" "}
             <Image src={Icon} alt="Icon" width={180} placeholder="blur" />{" "}
           </h1>
@@ -129,7 +130,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="align-self-end position-relative">
+      <footer className="align-self-end position-relative w-100">
         <Image
           src={bgFooter}
           placeholder="blur"
@@ -138,7 +139,7 @@ export default function Home() {
         />
         <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
           <div>
-          <p className=" p-3 text-center">
+          <p className=" mb-0 text-center">
                   تصميم وتنفيذ    
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
@@ -147,6 +148,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </div>
     </>
   );
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 // import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css";
 // import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "../globals.css"; // Assuming you have global styles in this file
+// import "../globals.css"; // Assuming you have global styles in this file
 import Image from "next/image.js";
 import icon from "../bigIcon.png";
 import bgFooter from "../footer-bg.png";
@@ -66,23 +66,6 @@ export default function RootLayout({ children }) {
     fetchUserData();
   }, [session]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-      import("../../../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css");
-      import(
-        "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-      );
-      import("next/font/google");
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      require("../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
-    }
-  }, []);
-
   // useEffect(async() => {
   //   if (session?.user?.id) {
   //       const userResponse = await fetch(`/api/user/${session.user.id}`);
@@ -120,6 +103,14 @@ export default function RootLayout({ children }) {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav m-auto mb-2 mb-lg-0">
+                <li className="nav-item me-2 text-center text-center">
+                    <Link
+                      className="nav-link"
+                      href="/esteathan/dashboard"
+                    >
+                       الرئيسية
+                    </Link>
+                  </li>
                   <li className="nav-item dropdown me-2 text-center">
                     <Link
                       className="nav-link dropdown-toggle"
@@ -388,7 +379,7 @@ export default function RootLayout({ children }) {
           <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
             <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center">
               <div>
-              <p className=" p-3 text-center">
+              <p className=" mb-0 text-center">
                   تصميم وتنفيذ    
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان

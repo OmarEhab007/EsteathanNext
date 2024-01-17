@@ -78,12 +78,12 @@ export default function Login() {
   return (
     <>
       <section className="login d-flex justify-content-center align-items-center flex-wrap mb-3">
-        <h1 className="text-center mb-3 mt-3 w-100">
-          {" "}
-          <Image src={icon} alt="Icon" width={180} placeholder="blur" />{" "}
-        </h1>
 
         <div className="container ">
+          <h1 className="text-center mb-3 mt-3 w-100">
+            {" "}
+            <Image src={icon} alt="Icon" width={180} placeholder="blur" />{" "}
+          </h1>
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-md-8 col-sm-12">
               <div className="card">
@@ -122,7 +122,7 @@ export default function Login() {
                     <div className="mb-3 text-center ">
                       <button
                         type="submit"
-                        className="btn esteathan-btn m-auto  mb-1 d-block"
+                        className="btn esteathan-btn m-auto  mb-1  d-block"
                       >
                         {" "}
                         تسجيل الدخول{" "}
