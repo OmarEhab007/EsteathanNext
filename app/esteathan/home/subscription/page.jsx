@@ -41,9 +41,9 @@ export default function Subscription() {
       setLoading(false);
       alert("الرجاء ادخال جميع البيانات");
     } else {
-      let finalPhone = managerPhone.startsWith("995")
+      let finalPhone = managerPhone.startsWith("966")
         ? managerPhone
-        : "995" + managerPhone;
+        : "966" + managerPhone;
 
       const resposne = await fetch("/api/bill", {
         method: "POST",
