@@ -138,14 +138,23 @@ export default function Home() {
           className="footer-bg"
         />
         <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
-          <div>
-          <p className=" mb-0 text-center">
+        <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
+              <div className="w-100">
+                <p className=" mb-0 text-center">
                   تصميم وتنفيذ    
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
                   <Image src={Icon} alt="Icon" width={80} placeholder="blur" />
                 </p>
-          </div>
+              </div>
+              <div className=" d-flex justify-content-center align-content-center w-100">
+                <p className="mb-0 text-center">
+                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب 
+                   <i class="fa-brands fa-whatsapp fs-4 mx-2"></i> 
+                   : <span>966545894287+</span> 
+                </p>
+              </div>
+            </div>
         </div>
       </footer>
       </div>
