@@ -1008,3 +1008,8 @@ header {
 .esteatahn-request{
   min-height: 100vh;
 }
+
+.reports table{
+  overflow-x: auto;
+  border-radius: 0.5em !important;
+}

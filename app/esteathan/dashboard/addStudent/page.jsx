@@ -42,7 +42,7 @@ export default function AddStudent() {
         throw new Error("الرجاء إدخال الاسم باللغة العربية");
       }
       if (!numberRegex.test(number)) {
-        throw new Error("الرقم يجب أن يكون عبارة عن 10 أرقام");
+        throw new Error("هوية الطالب يجب أن تكون 10 أرقام");
       }
       if (!yearRegex.test(year)) {
         throw new Error("السنة يجب أن تكون عبارة عن رقمين");
