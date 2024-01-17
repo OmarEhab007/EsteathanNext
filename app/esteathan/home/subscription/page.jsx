@@ -67,8 +67,12 @@ export default function Subscription() {
       console.log(data);
       setLoading(false);
       setSuccess(true);
-      // re direct to home
-      window.location.href = "/esteathan/home";
+      // redirect to home
+      // waite 3 seconds
+      setTimeout(() => {
+        window.location.href = "/esteathan/home";
+      }
+      , 2000);
     }
   };
 
