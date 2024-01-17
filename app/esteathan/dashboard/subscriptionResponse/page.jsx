@@ -145,7 +145,8 @@ export default function SubscriptionResponce() {
         message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
         الرقم الوزاري:  ${bill.schoolId} 
         وكلمة المرور:  ${password}
-        
+        لتسجيل الدخول اضغط على الرابط التالي:
+        https://www.onetex.com.sa/signin
         `,
       }),
     })
