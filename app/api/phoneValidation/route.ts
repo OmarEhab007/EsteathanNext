@@ -38,6 +38,41 @@ import fetch from "node-fetch";
 //   }
 // };
 
+// export const POST = async (req: Request) => {
+//   try {
+//     // Get the parentNumber and code from the request body
+//     const body = await req.json();
+//     const { parentNumber, code } = body;
+
+//     // Create the URL with query parameters
+//     const params = new URLSearchParams({
+//       number: parentNumber,
+//       type: "text",
+//       message: code,
+//       instance_id: "659083772FEAF",
+//       access_token: "657080406f853",
+//     });
+//     const url = "https://wa.karzoun.app/api/send?" + params.toString();
+
+//     // Send the GET request
+//     const response = await fetch(url);
+
+//     if (!response.ok) {
+//       throw new Error("Failed to send the GET request");
+//     }
+
+//     return NextResponse.json({ message: "OK", parentNumber }, { status: 200 });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Error", error },
+//       {
+//         status: 500,
+//       }
+//     );
+//   }
+// };
+
+
 export const POST = async (req: Request) => {
   try {
     // Get the parentNumber and code from the request body
@@ -46,19 +81,22 @@ export const POST = async (req: Request) => {
 
     // Create the URL with query parameters
     const params = new URLSearchParams({
-      number: parentNumber,
-      type: "text",
-      message: code,
-      instance_id: "659083772FEAF",
-      access_token: "657080406f853",
+      appkey: 'ec2d8e55-c439-4d9b-8c2f-f58d494a53ab',
+      authkey: 'O5DWqlwlKk65geoQO1ydjGQSxeTTOchgOfyP9nWw2aIt5PJsb1',
+      to: parentNumber,
+      message: code
     });
-    const url = "https://wa.karzoun.app/api/send?" + params.toString();
 
-    // Send the GET request
-    const response = await fetch(url);
+    const url = `https://karzoun.app/api/send?${params.toString()}`;
+
+    // Send the POST request
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
 
     if (!response.ok) {
-      throw new Error("Failed to send the GET request");
+      throw new Error('Failed to send the POST request');
     }
 
     return NextResponse.json({ message: "OK", parentNumber }, { status: 200 });

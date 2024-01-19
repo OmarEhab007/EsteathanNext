@@ -143,21 +143,29 @@ export default function SubscriptionResponce() {
       body: JSON.stringify({
         parentNumber: bill.phone, // Replace with parentPhone
         message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
-        الرقم الوزاري:  ${bill.schoolId} 
-        وكلمة المرور:  ${password}
-        لتسجيل الدخول اضغط على الرابط التالي:
-        https://www.onetex.com.sa/signin
-        `,
+    الرقم الوزاري:  ${bill.schoolId} 
+    وكلمة المرور:  ${password}
+    لتسجيل الدخول اضغط على الرابط التالي:
+    https://www.onetex.com.sa/signin
+    `,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to send the message");
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         // setIsLoading(false);
       })
-    .then(() => {
-      window.location.reload();
-    });
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .then(() => {
+        window.location.reload();
+      });
   };
 
   // handle bill reject
@@ -189,10 +197,10 @@ export default function SubscriptionResponce() {
       .then((data) => {
         console.log(data);
         // setIsLoading(false);
-      }).then(() => {
+      })
+      .then(() => {
         window.location.reload();
-      }
-      );
+      });
   };
   return (
     <>

@@ -82,7 +82,7 @@ export default function ParentPre() {
   useEffect(() => {
     console.log(schoolName)
     const sendVerificationCode = async () => {
-      if (parentPhone && !isVerificationSent) {
+      if (parentPhone && !isVerificationSent && schoolName) {
         const verificationCode = Math.floor(
           1000 + Math.random() * 9000
         ).toString();
