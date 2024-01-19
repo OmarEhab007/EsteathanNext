@@ -1,18 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function Reports() {
-  const [forms, setForms] = useState([]);
-  const [students, setStudents] = useState([]);
+  // const [forms, setForms] = useState([]);
+  // const [students, setStudents] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [school, setSchool] = useState(null);
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  // const [school, setSchool] = useState(null);
+  // const [user, setUser] = useState(null);
   const { data: session } = useSession();
   // const [formstwo, setFormstwo] = useState([]);
 
+  const {
+    
+    school,
+    forms,
+    students,
+    toggleDarkMode,
+    setForms,
+    darkMode,
+  } = useStore();
   const handlePrint = () => {
     const printWindow = window.open("", "_blank");
     const reportPrintContent = document.querySelector(".reportPrint");
@@ -51,63 +61,13 @@ export default function Reports() {
     }
   };
 
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    // Fetch data here
-    // fetch("/api/forms")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     const approvedForms = data.datas.filter(
-    //       (form) => form.approval === "approved" || form.approval === "done"
-    //     );
-    //     setForms(approvedForms);
-    //   })
-    //   .finally(() => setLoading(false)); // Set loading to false once data is fetched
 
-    // fetch("/api/students")
-    //   .then((res) => res.json())
-    //   .then((data) => setStudents(data.datas))
-    //   .finally(() => setLoading(false)); // Set loading to false once data is fetched
-    const fetchUserData = async () => {
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        // console.log(userData.data);
+  // const user_id = session?.user?.id;
+  
 
-        const formsResponse = await fetch(
-          `/api/forms/school/${userData.data.schoolId}`
-        );
-        const formsData = await formsResponse.json();
-        const approvedForms = formsData.data.filter(
-          (form) => form.approval === "approved" || form.approval === "done"
-        );
-        setForms(approvedForms);
-        setLoading(false);
-        // console.log(formsData.data);
-        // setFormstwo(formsData.data);
-        // console.log(approvedForms);
-
-        const studentsResponse = await fetch(
-          `/api/students/school/${userData.data.schoolId}`
-        );
-        const studentsData = await studentsResponse.json();
-        setStudents(studentsData.data);
-        setLoading(false);
-        // console.log(studentsData.data);
-
-        const schoolResponse = await fetch(
-          `/api/school/${userData.data.schoolId}`
-        );
-        const schoolData = await schoolResponse.json();
-        setSchool(schoolData.data[0]);
-        // console.log(schoolData.data[0]);
-      }
-    };
-
-    fetchUserData();
-  }, [session]);
+  const approvedOrDoneForms = forms.filter(
+  (form) => form.approval === 'approved' || form.approval === 'done'
+);
 
   const findStudentByNumber = (id) => {
     const student = students.find((student) => student.id === id);
@@ -301,7 +261,7 @@ export default function Reports() {
                           </tr>
                         </thead>
                         <tbody>
-                          {forms.map((form, index) => {
+                          {approvedOrDoneForms.map((form, index) => {
                             const student = findStudentByNumber(form.studentId);
                             // console.log('Student ID:', form.studentId, 'Student:', student);
                             // console.log(student);

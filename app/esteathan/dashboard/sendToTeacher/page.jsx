@@ -2,35 +2,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function SendToTeasher() {
-  const [forms, setForms] = useState([]);
-  const [students, setStudents] = useState([]);
-  const [teachers, setTeachers] = useState([]);
+  // const [forms, setForms] = useState([]);
+  // const [students, setStudents] = useState([]);
+  // const [teachers, setTeachers] = useState([]);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [student, setStudent] = useState(null);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const { data: session } = useSession();
+  const [today, setToday] = useState(new Date());
+  const {
+    user,
+    school,
+    forms,
+    students,
+    teachers,
+    toggleDarkMode,
+    setForms,
+    darkMode,
+  } = useStore();
 
-  const user_id = session?.user?.id;
-
-  useEffect(() => {
-    const today = new Date();
-    const fetchUserData = async () => {
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${user_id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log("userData", userData.data)
-
-        const formsResponse = await fetch(
-          `/api/forms/school/${userData.data.schoolId}`
-        );
-        const formsData = await formsResponse.json();
-        // setForms(formsData.data || []);
-        const todayForms = formsData.data.filter((form) => {
+  const todayForms = forms.filter((form) => {
           const formDate = new Date(form.createdAt);
           return (
             formDate.getDate() === today.getDate() &&
@@ -39,50 +35,76 @@ export default function SendToTeasher() {
             form.approval === "approved"
           );
         });
-        setForms(todayForms);
 
-        console.log("formsData", formsData.data)
+  // const user_id = session?.user?.id;
 
-        const studentsResponse = await fetch(
-          `/api/students/school/${userData.data.schoolId}`
-        );
-        const studentsData = await studentsResponse.json();
-        setStudents(studentsData.data || []);
-        console.log("studentsData", studentsData.data)
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const fetchUserData = async () => {
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${user_id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       console.log("userData", userData.data)
 
-        const teachersResponse = await fetch(
-          `/api/teacher/school/${userData.data.schoolId}`
-        );
-        const teachersData = await teachersResponse.json();
-        setTeachers(teachersData.data || []);
-        console.log("teachersData", teachersData.data)
-      }
-    };
-    // fetch("/api/forms") // replace with your API endpoint
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     const todayForms = data.datas.filter((form) => {
-    //       const formDate = new Date(form.createdAt);
-    //       return (
-    //         formDate.getDate() === today.getDate() &&
-    //         formDate.getMonth() === today.getMonth() &&
-    //         formDate.getFullYear() === today.getFullYear() &&
-    //         form.approval === "approved"
-    //       );
-    //     });
-    //     setForms(todayForms);
-    //   });
+  //       const formsResponse = await fetch(
+  //         `/api/forms/school/${userData.data.schoolId}`
+  //       );
+  //       const formsData = await formsResponse.json();
+  //       // setForms(formsData.data || []);
+  //       const todayForms = formsData.data.filter((form) => {
+  //         const formDate = new Date(form.createdAt);
+  //         return (
+  //           formDate.getDate() === today.getDate() &&
+  //           formDate.getMonth() === today.getMonth() &&
+  //           formDate.getFullYear() === today.getFullYear() &&
+  //           form.approval === "approved"
+  //         );
+  //       });
+  //       setForms(todayForms);
 
-    // fetch("/api/students") // replace with your API endpoint
-    //   .then((res) => res.json())
-    //   .then((data) => setStudents(data.datas));
+  //       console.log("formsData", formsData.data)
 
-    // fetch("/api/teacher") // replace with your API endpoint
-    //   .then((res) => res.json())
-    //   .then((data) => setTeachers(data.datas));
+  //       const studentsResponse = await fetch(
+  //         `/api/students/school/${userData.data.schoolId}`
+  //       );
+  //       const studentsData = await studentsResponse.json();
+  //       setStudents(studentsData.data || []);
+  //       console.log("studentsData", studentsData.data)
 
-    fetchUserData();
-  }, [session]);
+  //       const teachersResponse = await fetch(
+  //         `/api/teacher/school/${userData.data.schoolId}`
+  //       );
+  //       const teachersData = await teachersResponse.json();
+  //       setTeachers(teachersData.data || []);
+  //       console.log("teachersData", teachersData.data)
+  //     }
+  //   };
+  //   // fetch("/api/forms") // replace with your API endpoint
+  //   //   .then((res) => res.json())
+  //   //   .then((data) => {
+  //   //     const todayForms = data.datas.filter((form) => {
+  //   //       const formDate = new Date(form.createdAt);
+  //   //       return (
+  //   //         formDate.getDate() === today.getDate() &&
+  //   //         formDate.getMonth() === today.getMonth() &&
+  //   //         formDate.getFullYear() === today.getFullYear() &&
+  //   //         form.approval === "approved"
+  //   //       );
+  //   //     });
+  //   //     setForms(todayForms);
+  //   //   });
+
+  //   // fetch("/api/students") // replace with your API endpoint
+  //   //   .then((res) => res.json())
+  //   //   .then((data) => setStudents(data.datas));
+
+  //   // fetch("/api/teacher") // replace with your API endpoint
+  //   //   .then((res) => res.json())
+  //   //   .then((data) => setTeachers(data.datas));
+
+  //   fetchUserData();
+  // }, [session]);
 
   // console.log(forms);
   // console.log(students);
@@ -163,7 +185,7 @@ export default function SendToTeasher() {
                 <i> ارسال لمعلم </i>
               </h2>
             </div>
-            {forms.map((form) => {
+            {todayForms.map((form) => {
               const student = students.find(
                 (student) => student.id === form.studentId
               );
