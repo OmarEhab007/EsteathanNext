@@ -1061,3 +1061,15 @@ header {
 .modal-content{
   background-color: var(--bg-100)!important;
 }
+
+.modal-header{
+  border-bottom: 1px solid var(--bg-300)!important;
+}
+
+.modal-footer{
+  border-top: 1px solid var(--bg-300)!important;
+}
+
+.btn-close{
+  color: var(--accent-100)!important;
+}
