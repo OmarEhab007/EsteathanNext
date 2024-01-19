@@ -37,6 +37,9 @@ export default function RootLayout({ children }) {
     setSubscription,
     setStatus,
     toggleDarkMode,
+    setForms,
+    setTeachers,
+    setStudents,
   } = useStore();
 
   // const data =  getServerSession(options);
@@ -48,6 +51,24 @@ export default function RootLayout({ children }) {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
+
+        const formsResponse = await fetch(
+              `/api/forms/school/${userData.data.schoolId}`
+            );
+            const formsData = await formsResponse.json();
+        setForms(formsData.data || []);
+        
+        const studentsResponse = await fetch(
+          `/api/students/school/${userData.data.schoolId}`
+        );
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data);
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`

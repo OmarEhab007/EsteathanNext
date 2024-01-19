@@ -3,44 +3,47 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
+
 
 export default function DeleteData() {
-  const [students, setStudents] = useState([]);
+  // const [students, setStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("students");
-  const [teachers, setTeachers] = useState([]);
-  const [user, setUser] = useState(null);
-  const { data: session } = useSession();
+  // const [teachers, setTeachers] = useState([]);
+  // const [user, setUser] = useState(null);
+  // const { data: session } = useSession();
   // const [editedStudent, setEditedStudent] = useState({});//[name, number, class, year]
   // const [editedTeacher, setEditedTeacher] = useState({});//[name, phone]
+    const { user, school, students, teachers} = useStore();
   const router = useRouter();
 
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log(userData.data.schoolId);
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       console.log(userData.data.schoolId);
 
-        const studentsResponse = await fetch(
-          `/api/students/school/${userData.data.schoolId}`
-        );
-        const studentsData = await studentsResponse.json();
-        setStudents(studentsData.data);
-        // console.log(studentsData.data);
+  //       const studentsResponse = await fetch(
+  //         `/api/students/school/${userData.data.schoolId}`
+  //       );
+  //       const studentsData = await studentsResponse.json();
+  //       setStudents(studentsData.data);
+  //       // console.log(studentsData.data);
 
-        const teachersResponse = await fetch(
-          `/api/teacher/school/${userData.data.schoolId}`
-        );
-        const teachersData = await teachersResponse.json();
-        setTeachers(teachersData.data);
-        // console.log(teachersData.data);
-      }
-    };
-    fetchUserData();
-  }, [session]);
+  //       const teachersResponse = await fetch(
+  //         `/api/teacher/school/${userData.data.schoolId}`
+  //       );
+  //       const teachersData = await teachersResponse.json();
+  //       setTeachers(teachersData.data);
+  //       // console.log(teachersData.data);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [session]);
 
   const filteredStudents = students.filter((student) =>
     student.name.includes(searchQuery)

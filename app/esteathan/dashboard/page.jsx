@@ -4,58 +4,61 @@ import React, { useState, useEffect } from "react";
 // import { options } from "../../../app/api/auth/[...nextauth]/options";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import useStore from "../../../lib/store";
 
 export default function Dashboard() {
-  const [forms, setForms] = useState([]);
-  const [user, setUser] = useState(null);
-  const [schoolId, setSchoolId] = useState(null);
-  const [school, setSchool] = useState(null);
-  const [subscription, setSubscription] = useState(null);
+  // const [forms, setForms] = useState([]);
+  // const [user, setUser] = useState(null);
+  // const [schoolId, setSchoolId] = useState(null);
+  // const [school, setSchool] = useState(null);
+  // const [subscription, setSubscription] = useState(null);
+  const { forms, user, schoolId, school, subscription, setForms, setUser, setSchoolId, setSchool, setSubscription } = useStore();
+
   const { data: session } = useSession();
   const [today, setToday] = useState(new Date());
 
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (session?.user?.id) {
-        try {
-          const userResponse = await fetch(`/api/user/${session.user.id}`);
-          const userData = await userResponse.json();
-          setUser(userData.data);
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     if (session?.user?.id) {
+  //       try {
+  //         const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //         const userData = await userResponse.json();
+  //         setUser(userData.data);
 
-          // Ensure the schoolId is available before making the forms request
-          if (userData.data?.schoolId) {
-            const formsResponse = await fetch(
-              `/api/forms/school/${userData.data.schoolId}`
-            );
-            const formsData = await formsResponse.json();
-            setForms(formsData.data || []);
-            // console.log(formsData.data);
-            const schoolResponse = await fetch(
-              `/api/school/${userData.data.schoolId}`
-            );
-            const schoolData = await schoolResponse.json();
-            setSchool(schoolData.data[0]);
-            // console.log(schoolData.data[0]);
+  //         // Ensure the schoolId is available before making the forms request
+  //         if (userData.data?.schoolId) {
+  //           const formsResponse = await fetch(
+  //             `/api/forms/school/${userData.data.schoolId}`
+  //           );
+  //           const formsData = await formsResponse.json();
+  //           setForms(formsData.data || []);
+  //           // console.log(formsData.data);
+  //           const schoolResponse = await fetch(
+  //             `/api/school/${userData.data.schoolId}`
+  //           );
+  //           const schoolData = await schoolResponse.json();
+  //           setSchool(schoolData.data[0]);
+  //           // console.log(schoolData.data[0]);
 
-            const subscriptionResponse = await fetch(
-              `/api/subscription/${schoolData.data[0].subscriptionId}`
-            );
-            console.log(schoolData.data[0]);
-            const subscriptionData = await subscriptionResponse.json();
-            // console.log(subscriptionData.data);
-            setSubscription(subscriptionData.data);
-          } else {
-            console.log("No schoolId available");
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      }
-    };
+  //           const subscriptionResponse = await fetch(
+  //             `/api/subscription/${schoolData.data[0].subscriptionId}`
+  //           );
+  //           console.log(schoolData.data[0]);
+  //           const subscriptionData = await subscriptionResponse.json();
+  //           // console.log(subscriptionData.data);
+  //           setSubscription(subscriptionData.data);
+  //         } else {
+  //           console.log("No schoolId available");
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching data:", error);
+  //       }
+  //     }
+  //   };
 
-    fetchUserData();
-  }, [session]);
+  //   fetchUserData();
+  // }, [session]);
 
   const pendingApprovalCount = forms?.filter(
     (form) => form.approval === "pending"
