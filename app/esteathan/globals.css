@@ -1057,3 +1057,7 @@ header {
 }
 
 /* End Loading */
+
+.modal-content{
+  background-color: var(--bg-100)!important;
+}

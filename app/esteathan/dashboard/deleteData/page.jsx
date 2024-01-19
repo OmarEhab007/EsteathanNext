@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import useStore from "../../../../lib/store";
 
-
 export default function DeleteData() {
   // const [students, setStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,7 +14,7 @@ export default function DeleteData() {
   // const { data: session } = useSession();
   // const [editedStudent, setEditedStudent] = useState({});//[name, number, class, year]
   // const [editedTeacher, setEditedTeacher] = useState({});//[name, phone]
-    const { user, school, students, teachers} = useStore();
+  const { user, school, students, teachers } = useStore();
   const router = useRouter();
 
   // const user_id = session?.user?.id;
@@ -91,8 +90,6 @@ export default function DeleteData() {
     }).then((res) => res.json());
   };
 
-
-
   return (
     <>
       <section className="deleteData">
@@ -114,11 +111,55 @@ export default function DeleteData() {
                       </p>
                       <button
                         type="button"
-                        className="btn btn-danger mx-auto d-block"
-                        onClick={deleteAllStudents}
+                        class="btn btn-danger mx-auto d-block"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
                       >
-                        حذف البيانات
+                        حذف جميع البيانات
                       </button>
+
+                      <div
+                        class="modal fade"
+                        id="exampleModal"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">
+                                حذف جميع بيانات الطلاب
+                              </h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              هل انت متأكد من حذف جميع بيانات الطلاب ؟
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-success mx-auto"
+                                data-bs-dismiss="modal"
+                              >
+                                عدم الحذف
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-danger mx-auto d-block"
+                                onClick={deleteAllStudents}
+                              >
+                                حذف البيانات
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -133,11 +174,55 @@ export default function DeleteData() {
                       </p>
                       <button
                         type="button"
-                        className="btn btn-danger mx-auto d-block"
-                        onClick={deleteAllTeachers}
+                        class="btn btn-danger mx-auto d-block"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal1"
                       >
-                        حذف البيانات
+                        حذف جميع البيانات  
                       </button>
+
+                      <div
+                        class="modal fade"
+                        id="exampleModal1"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">
+                                حذف جميع بيانات المعلمين 
+                              </h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              هل انت متأكد من حذف جميع بيانات المعلمين ؟
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-success mx-auto"
+                                data-bs-dismiss="modal"
+                              >
+                                عدم الحذف
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-danger mx-auto d-block"
+                                onClick={deleteAllTeachers}
+                              >
+                                حذف البيانات
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
