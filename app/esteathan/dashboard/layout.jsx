@@ -41,12 +41,15 @@ export default function RootLayout({ children }) {
     setTeachers,
     setStudents,
     setBill,
+    loading,
+    setLoading,
   } = useStore();
 
   // const data =  getServerSession(options);
   const { data: session } = useSession();
 
   useEffect(() => {
+    setLoading(true);
     const fetchUserData = async () => {
       if (session?.user?.id) {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
@@ -90,6 +93,7 @@ export default function RootLayout({ children }) {
         const billData = await billResponse.json();
         // console.log(billData.data);
         setBill(billData.data);
+        setLoading(false);
 
         if (subscriptionData.data.status === "invalid") {
           signOut();

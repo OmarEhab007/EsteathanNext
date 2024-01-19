@@ -23,6 +23,7 @@ export default function Dashboard() {
     setSchoolId,
     setSchool,
     setSubscription,
+    loading,
   } = useStore();
 
   const { data: session } = useSession();
@@ -135,12 +136,14 @@ export default function Dashboard() {
   return (
     <>
       <section>
+        { loading && (
         <div className="loading position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
           <div class="loader d-flex justify-content-center align-items-center">
             <span>استئذان</span>
             <span>استئذان</span>
           </div>
         </div>
+            )}
         <div className="container mt-5">
           <div className="heading d-flex justify-content-center">
             <h1 className="text-center mb-5 high fs-1">
