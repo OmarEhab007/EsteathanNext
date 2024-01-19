@@ -136,13 +136,9 @@ export default function Dashboard() {
     <>
       <section>
         <div className="loading position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
-          <div class="🤚">
-            <div class="👉"></div>
-            <div class="👉"></div>
-            <div class="👉"></div>
-            <div class="👉"></div>
-            <div class="🌴"></div>
-            <div class="👍"></div>
+          <div class="loader d-flex justify-content-center align-items-center">
+            <span>استئذان</span>
+            <span>استئذان</span>
           </div>
         </div>
         <div className="container mt-5">
