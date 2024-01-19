@@ -40,6 +40,7 @@ export default function RootLayout({ children }) {
     setForms,
     setTeachers,
     setStudents,
+    setBill,
   } = useStore();
 
   // const data =  getServerSession(options);
@@ -82,6 +83,13 @@ export default function RootLayout({ children }) {
         const subscriptionData = await subscriptionResponse.json();
         setSubscription(subscriptionData.data);
         setStatus(subscriptionData.data.status);
+
+        const billResponse = await fetch(
+          `/api/bill/${subscriptionData.data.billId}`
+        );
+        const billData = await billResponse.json();
+        // console.log(billData.data);
+        setBill(billData.data);
 
         if (subscriptionData.data.status === "invalid") {
           signOut();
@@ -411,7 +419,7 @@ export default function RootLayout({ children }) {
               </ul>
 
               <label className="switch m-md-auto">
-                <input type="checkbox" onChange={toggleDarkMode} />
+                <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
                 <span className="slider"></span>
               </label>
               <button
