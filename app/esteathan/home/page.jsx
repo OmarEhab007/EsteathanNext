@@ -94,7 +94,7 @@ export default function Home() {
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك الفضي </h5>
                     <p className="card-text">
-                      يمكنك الاشتراك لمدة فصلين دراسي واحد   
+                      يمكنك الاشتراك لمدة فصلين دراسيين    
                     </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image

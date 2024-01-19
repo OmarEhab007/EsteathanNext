@@ -286,7 +286,7 @@ export default function Subscription() {
                                   class="form-check-label"
                                   for="exampleRadios2"
                                 >
-                                  فصلين دراسيان
+                                  فصلين دراسيين
                                 </label>
                               </div>
                             </div>
