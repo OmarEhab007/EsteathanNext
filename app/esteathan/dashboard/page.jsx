@@ -12,7 +12,18 @@ export default function Dashboard() {
   // const [schoolId, setSchoolId] = useState(null);
   // const [school, setSchool] = useState(null);
   // const [subscription, setSubscription] = useState(null);
-  const { forms, user, schoolId, school, subscription, setForms, setUser, setSchoolId, setSchool, setSubscription } = useStore();
+  const {
+    forms,
+    user,
+    schoolId,
+    school,
+    subscription,
+    setForms,
+    setUser,
+    setSchoolId,
+    setSchool,
+    setSubscription,
+  } = useStore();
 
   const { data: session } = useSession();
   const [today, setToday] = useState(new Date());
@@ -67,7 +78,6 @@ export default function Dashboard() {
     (form) => form.approval === "approved"
   ).length;
 
-
   const approvedApprovalCountToday = forms?.filter((form) => {
     const formDate = new Date(form.createdAt);
     const today = new Date();
@@ -78,7 +88,7 @@ export default function Dashboard() {
       formDate.getFullYear() === today.getFullYear()
     );
   }).length;
-  
+
   // const receivedTodayCount = forms.filter((form) => {
   //   const formDate = new Date(form.createdAt);
   //   const today = new Date();
@@ -99,8 +109,7 @@ export default function Dashboard() {
       formDate.getMonth() === today.getMonth() &&
       formDate.getFullYear() === today.getFullYear()
     );
-  }
-  ).length;
+  }).length;
 
   // const receivedTodayCount = forms?.filter((form) => {
   //   const formDate = new Date(form.createdAt);
@@ -126,6 +135,16 @@ export default function Dashboard() {
   return (
     <>
       <section>
+        <div className="loading position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
+          <div class="🤚">
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="👉"></div>
+            <div class="🌴"></div>
+            <div class="👍"></div>
+          </div>
+        </div>
         <div className="container mt-5">
           <div className="heading d-flex justify-content-center">
             <h1 className="text-center mb-5 high fs-1">
@@ -194,11 +213,8 @@ export default function Dashboard() {
                         (new Date(subscription?.endDate) - today) /
                           (1000 * 60 * 60 * 24)
                       )
-
-                    )
-                      : (
+                    ) : (
                       <span className="fs-5"> غير محدد </span>
-
                     )}
                     <span className="fs-5"> يوم </span>
 
