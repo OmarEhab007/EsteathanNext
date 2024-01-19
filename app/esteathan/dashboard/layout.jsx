@@ -15,56 +15,100 @@ import "@uploadthing/react/styles.css";
 import { Providers } from "../../../components/provider";
 import { useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
+import useStore from "../../../lib/store";
 // import { options } from "../../../app/api/auth/[...nextauth]/options";
 
 // const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
-  const [user, setUser] = useState(null);
-  const [school, setSchool] = useState(null);
-  const [subscription, setSubscription] = useState(null);
-  const [status, setStatus] = useState(null);
+  // const [darkMode, setDarkMode] = useState(false);
+  // const [user, setUser] = useState(null);
+  // const [school, setSchool] = useState(null);
+  // const [subscription, setSubscription] = useState(null);
+  // const [status, setStatus] = useState(null);
+  const {
+    user,
+    school,
+    subscription,
+    status,
+    darkMode,
+    setUser,
+    setSchool,
+    setSubscription,
+    setStatus,
+    toggleDarkMode,
+  } = useStore();
 
   // const data =  getServerSession(options);
   const { data: session } = useSession();
 
-  const user_id = session?.user?.id;
   useEffect(() => {
     const fetchUserData = async () => {
-      const today = new Date();
       if (session?.user?.id) {
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
-        // console.log(userData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
-        // console.log(schoolData.data[0]);
 
         const subscriptionResponse = await fetch(
           `/api/subscription/${schoolData.data[0].subscriptionId}`
         );
         const subscriptionData = await subscriptionResponse.json();
         setSubscription(subscriptionData.data);
-        // console.log(subscriptionData.data);
-        // console.log(subscriptionData.data.status);
         setStatus(subscriptionData.data.status);
-        if (subscriptionData.data.status=== "invalid") {
-          // Sign out the user and redirect to the login page
-          // Replace 'signOut' and '/login' with your actual sign out function and login page path
+
+        if (subscriptionData.data.status === "invalid") {
           signOut();
-          // router.push("/signin");
         }
       }
     };
 
     fetchUserData();
   }, [session]);
+
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const today = new Date();
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       // console.log(userData.data);
+
+  //       const schoolResponse = await fetch(
+  //         `/api/school/${userData.data.schoolId}`
+  //       );
+  //       const schoolData = await schoolResponse.json();
+  //       setSchool(schoolData.data[0]);
+  //       // console.log(schoolData.data[0]);
+
+  //       const subscriptionResponse = await fetch(
+  //         `/api/subscription/${schoolData.data[0].subscriptionId}`
+  //       );
+  //       const subscriptionData = await subscriptionResponse.json();
+  //       setSubscription(subscriptionData.data);
+  //       // console.log(subscriptionData.data);
+  //       // console.log(subscriptionData.data.status);
+  //       setStatus(subscriptionData.data.status);
+  //       if (subscriptionData.data.status === "invalid") {
+  //         // Sign out the user and redirect to the login page
+  //         // Replace 'signOut' and '/login' with your actual sign out function and login page path
+  //         signOut();
+  //         // router.push("/signin");
+  //       }
+  //     }
+
+  //     console.log(user);
+  //   };
+
+  //   fetchUserData();
+  // }, [session, setUser, setSchool, setSubscription, setStatus]);
 
   // useEffect(async() => {
   //   if (session?.user?.id) {
@@ -75,16 +119,14 @@ export default function RootLayout({ children }) {
   //   }
   // }, [session]);
 
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+  // const toggleDarkMode = () => {
+  //   setDarkMode((prevMode) => !prevMode);
+  // };
 
   return (
     <html lang="ar">
       <body
-        className={`root-layout d-flex flex-wrap ${
-          darkMode ? "dark" : ""
-        }`}
+        className={`root-layout d-flex flex-wrap ${darkMode ? "dark" : ""}`}
       >
         <header>
           <nav className="navbar navbar-expand-lg ">
@@ -103,12 +145,9 @@ export default function RootLayout({ children }) {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav m-auto mb-2 mb-lg-0">
-                <li className="nav-item me-2 text-center text-center">
-                    <Link
-                      className="nav-link"
-                      href="/esteathan/dashboard"
-                    >
-                       الرئيسية
+                  <li className="nav-item me-2 text-center text-center">
+                    <Link className="nav-link" href="/esteathan/dashboard">
+                      الرئيسية
                     </Link>
                   </li>
                   <li className="nav-item dropdown me-2 text-center">
@@ -377,10 +416,10 @@ export default function RootLayout({ children }) {
             className="footer-bg"
           />
           <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
-          <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
+            <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
               <div className="w-100">
                 <p className=" mb-0 text-center">
-                  تصميم وتنفيذ    
+                  تصميم وتنفيذ
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
                   <Image src={icon} alt="Icon" width={80} placeholder="blur" />
@@ -388,9 +427,9 @@ export default function RootLayout({ children }) {
               </div>
               <div className=" d-flex justify-content-center align-content-center w-100">
                 <p className="mb-0 text-center">
-                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب 
-                   <i class="fa-brands fa-whatsapp fs-4 mx-2"></i> 
-                   : <span>966545894287+</span> 
+                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
+                  <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
+                  <span>966545894287+</span>
                 </p>
               </div>
             </div>
