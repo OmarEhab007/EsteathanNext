@@ -78,7 +78,6 @@ export default function Login() {
   return (
     <>
       <section className="login d-flex justify-content-center align-items-center flex-wrap mb-3">
-
         <div className="container ">
           <h1 className="text-center mb-3 mt-3 w-100">
             {" "}
@@ -144,7 +143,6 @@ export default function Login() {
         </div>
       </section>
       <footer className="align-self-end position-relative">
-
         <Image
           src={bgFooter}
           placeholder="blur"
@@ -152,23 +150,25 @@ export default function Login() {
           className="footer-bg"
         />
         <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
-        <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
-              <div className="w-100">
-                <p className=" mb-0 text-center">
-                  تصميم وتنفيذ    
-                  <span> المبدع الفني لتقنية المعلومات </span>
-                  جميع الحقوق محفوظة لبرنامج استئذان
-                  <Image src={icon} alt="Icon" width={80} placeholder="blur" />
-                </p>
-              </div>
-              <div className=" d-flex justify-content-center align-content-center w-100">
-                <p className="mb-0 text-center">
-                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب 
-                   <i class="fa-brands fa-whatsapp fs-4 mx-2"></i> 
-                   : <span>966545894287+</span> 
-                </p>
-              </div>
+          <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
+            <div className="w-100">
+              <p className=" mb-0 text-center">
+                تصميم وتنفيذ
+                <span> المبدع الفني لتقنية المعلومات </span>
+                جميع الحقوق محفوظة لبرنامج استئذان
+                <Image src={icon} alt="Icon" width={80} placeholder="blur" />
+              </p>
             </div>
+            <div className=" d-flex justify-content-center align-content-center w-100">
+              <p className="mb-0 text-center">
+                للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
+                <a href="https://wa.me/+966545894287" target="_blank">
+                  <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
+                  <span>+966545894287</span>
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </>

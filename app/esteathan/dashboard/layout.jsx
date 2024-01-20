@@ -57,11 +57,11 @@ export default function RootLayout({ children }) {
         setUser(userData.data);
 
         const formsResponse = await fetch(
-              `/api/forms/school/${userData.data.schoolId}`
-            );
-            const formsData = await formsResponse.json();
+          `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
         setForms(formsData.data || []);
-        
+
         const studentsResponse = await fetch(
           `/api/students/school/${userData.data.schoolId}`
         );
@@ -423,7 +423,11 @@ export default function RootLayout({ children }) {
               </ul>
 
               <label className="switch m-md-auto">
-                <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                />
                 <span className="slider"></span>
               </label>
               <button
@@ -461,8 +465,10 @@ export default function RootLayout({ children }) {
               <div className=" d-flex justify-content-center align-content-center w-100">
                 <p className="mb-0 text-center">
                   للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
-                  <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
-                  <span>966545894287+</span>
+                  <a href="https://wa.me/+966545894287" target="_blank">
+                    <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
+                    <span>+966545894287</span>
+                  </a>
                 </p>
               </div>
             </div>

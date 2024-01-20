@@ -61,22 +61,16 @@ export default function RootLayout({ children }) {
                 className="collapse navbar-collapse"
                 id="navbarSupportedContent"
               >
-                <ul className="navbar-nav m-auto mb-2 mb-lg-0">                  
+                <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                   <li className="nav-item me-2 text-center text-center">
-                    <Link
-                      className="nav-link"
-                      href="/esteathan/home"
-                    >
-                       الرئيسية
+                    <Link className="nav-link" href="/esteathan/home">
+                      الرئيسية
                     </Link>
                   </li>
 
                   <li className="nav-item me-2 text-center text-center">
-                    <Link
-                      className="nav-link"
-                      href="/signin"
-                    >
-                       تسجيل الدخول
+                    <Link className="nav-link" href="/signin">
+                      تسجيل الدخول
                     </Link>
                   </li>
 
@@ -85,10 +79,9 @@ export default function RootLayout({ children }) {
                       className="nav-link"
                       href="/esteathan/home/subscription"
                     >
-                       اشتراك جديد
+                      اشتراك جديد
                     </Link>
                   </li>
-                  
                 </ul>
               </div>
               <label className="switch m-md-auto">
@@ -121,7 +114,7 @@ export default function RootLayout({ children }) {
             <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
               <div className="w-100">
                 <p className=" mb-0 text-center">
-                  تصميم وتنفيذ    
+                  تصميم وتنفيذ
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
                   <Image src={icon} alt="Icon" width={80} placeholder="blur" />
@@ -129,9 +122,11 @@ export default function RootLayout({ children }) {
               </div>
               <div className=" d-flex justify-content-center align-content-center w-100">
                 <p className="mb-0 text-center">
-                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب 
-                   <i class="fa-brands fa-whatsapp fs-4 mx-2"></i> 
-                   : <span>966545894287+</span> 
+                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
+                  <a href="https://wa.me/+966545894287" target="_blank">
+                    <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
+                    <span>+966545894287</span>
+                  </a>
                 </p>
               </div>
             </div>
