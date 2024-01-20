@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
         // console.log(subscriptionData.data);
         // console.log(subscriptionData.data.status);
         setStatus(subscriptionData.data.status);
-        if (subscriptionData.data.status=== "invalid") {
+        if (subscriptionData.data.status === "invalid") {
           // Sign out the user and redirect to the login page
           // Replace 'signOut' and '/login' with your actual sign out function and login page path
           signOut();
@@ -82,9 +82,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <body
-        className={`root-layout d-flex flex-wrap ${
-          darkMode ? "dark" : ""
-        }`}
+        className={`root-layout d-flex flex-wrap ${darkMode ? "dark" : ""}`}
       >
         <header>
           <nav className="navbar navbar-expand-lg ">
@@ -103,12 +101,9 @@ export default function RootLayout({ children }) {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav m-auto mb-2 mb-lg-0">
-                <li className="nav-item me-2 text-center text-center">
-                    <Link
-                      className="nav-link"
-                      href="/esteathan/dashboard"
-                    >
-                       الرئيسية
+                  <li className="nav-item me-2 text-center text-center">
+                    <Link className="nav-link" href="/esteathan/dashboard">
+                      الرئيسية
                     </Link>
                   </li>
                   <li className="nav-item dropdown me-2 text-center">
@@ -377,10 +372,10 @@ export default function RootLayout({ children }) {
             className="footer-bg"
           />
           <div className="position-absolute top-0 bottom-0 start-0 end-0 ">
-          <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
+            <div className="footer-layer w-100 h-100 d-flex justify-content-center align-items-center flex-wrap">
               <div className="w-100">
                 <p className=" mb-0 text-center">
-                  تصميم وتنفيذ    
+                  تصميم وتنفيذ
                   <span> المبدع الفني لتقنية المعلومات </span>
                   جميع الحقوق محفوظة لبرنامج استئذان
                   <Image src={icon} alt="Icon" width={80} placeholder="blur" />
@@ -388,9 +383,11 @@ export default function RootLayout({ children }) {
               </div>
               <div className=" d-flex justify-content-center align-content-center w-100">
                 <p className="mb-0 text-center">
-                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب 
-                   <i class="fa-brands fa-whatsapp fs-4 mx-2"></i> 
-                   : <span>966545894287+</span> 
+                  للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
+                  <a href="https://wa.me/+966545894287" target="_blank">
+                    <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
+                    <span>+966545894287</span>
+                  </a>
                 </p>
               </div>
             </div>
