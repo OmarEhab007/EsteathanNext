@@ -191,17 +191,17 @@ export default function SendToTeasher() {
               );
 
               return (
-                <div className="col-md-6 mb-3">
+                <div className="col-lg-6 mb-3">
                   <div className="card border-primary position-relative">
                     <div className="card-header border-primary">
                       <div className="row justify-content-start align-items-center">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="mb-0"> اسم الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="mb-0"> : </p>
                         </div>
-                        <div className="col-lg-8  col-12">
+                        <div className="col-lg-8  col-7 pe-0">
                           <p className="mb-0">
                             {" "}
                             {student ? student.name : "Student not found"}
@@ -212,13 +212,13 @@ export default function SendToTeasher() {
 
                     <div className="card-body">
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> هوية الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {student
@@ -229,13 +229,13 @@ export default function SendToTeasher() {
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> السنة الدراسية </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {student ? student.class : "Student not found"}
@@ -244,13 +244,13 @@ export default function SendToTeasher() {
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> رقم الفصل </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {student ? student.year : "Student not found"}{" "}

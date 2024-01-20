@@ -223,17 +223,17 @@ export default function SendRequests() {
             {todayForms
               .filter((form) => form.approval === "pending")
               .map((form) => (
-                <div className="col-md-6 mb-3">
+                <div className="col-lg-6 mb-3">
                   <div className="card border-primary">
                     <div className="card-header border-primary">
                       <div className="row justify-content-start align-items-center">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3 col-4">
                           <h6 className="mb-0"> اسم الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="mb-0"> : </p>
                         </div>
-                        <div className="col-lg-8  col-12">
+                        <div className="col-lg-8 col-7 pe-0">
                           <p className="mb-0">
                             {" "}
                             {getStudentName(form.studentId)}{" "}
@@ -244,25 +244,25 @@ export default function SendRequests() {
 
                     <div className="card-body">
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> هوية الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text"> {getStudentNumber(form.studentId)} </p>
                         </div>
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> السنة الدراسية </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {getStudentClass(form.studentId)}{" "}
@@ -271,13 +271,13 @@ export default function SendRequests() {
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> رقم الفصل </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {getStudentYear(form.studentId)}{" "}
@@ -287,7 +287,7 @@ export default function SendRequests() {
 
                       {/*  ============هنا عدد الاستئذانات======== */}
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text position-relative">
                             {" "}
                             عدد طلبات الاستئذان السابقة{" "}
@@ -296,7 +296,7 @@ export default function SendRequests() {
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {getNumberOfRequests(form.studentId)}
                           </p>
