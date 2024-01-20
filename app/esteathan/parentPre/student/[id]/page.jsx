@@ -99,18 +99,18 @@ export default function Student() {
       <main className="w-100">
         <section className="studentInfo">
           <div className="container d-flex justify-content-center align-items-center ">
-            <div className="card border-info mb-3 col-xxl-6 col-md-7 col-sm-8 col-12 position-relative ">
+            <div className="card border-info mb-3 col-xxl-6 col-xl-8 col-md-10 col-sm-12 col-12 position-relative ">
               <div className="card-header border-primary">
                 <div className="row justify-content-start align-items-center">
-                  <div className="col-lg-3  col-5">
+                  <div className="col-lg-3  col-4 ">
                     <p className="mb-0"> اسم الطالب </p>
                   </div>
                   <div className="col-1">
                     <p className="mb-0"> : </p>
                   </div>
-                  <div className="col-lg-8  col-12">
+                  <div className="col-lg-8  col-7 pe-0">
                     <p className="mb-0">
-                      {student ? student.name : "Loading..."}
+                      {student ? student.name : "جاري تحميل البيانات..."}
                     </p>
                   </div>
                 </div>
@@ -124,10 +124,10 @@ export default function Student() {
                   <div className="col-1">
                     <p className="card-text"> : </p>
                   </div>
-                  <div className="col-lg-8  col-sm-12">
+                  <div className="col-lg-8  col-6">
                     <p className="card-text">
                       {" "}
-                      {student ? student.number : "Loading..."}{" "}
+                      {student ? student.number : "جاري تحميل البيانات..."}{" "}
                     </p>
                   </div>
                 </div>
@@ -139,10 +139,10 @@ export default function Student() {
                   <div className="col-1">
                     <p className="card-text"> : </p>
                   </div>
-                  <div className="col-lg-8  col-sm-12">
+                  <div className="col-lg-8  col-6">
                     <p className="card-text">
                       {" "}
-                      {student ? student.class : "Loading..."}{" "}
+                      {student ? student.class : "جاري تحميل البيانات..."}{" "}
                     </p>
                   </div>
                 </div>
@@ -154,10 +154,10 @@ export default function Student() {
                   <div className="col-1">
                     <p className="card-text"> : </p>
                   </div>
-                  <div className="col-lg-8  col-sm-12">
+                  <div className="col-lg-8  col-6">
                     <p className="card-text">
                       {" "}
-                      {student ? student.year : "Loading..."}{" "}
+                      {student ? student.year : "جاري تحميل البيانات..."}{" "}
                     </p>
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function Student() {
                 </form>
               </div>
               {loading && (
-                <div className="loader">
+                <div className="loader1">
                   <div className="typewriter">
                     <div className="slide">
                       <i></i>
