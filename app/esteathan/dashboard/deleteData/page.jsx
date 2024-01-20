@@ -293,13 +293,13 @@ export default function DeleteData() {
                                 <div className="card border-info">
                                   <div className="card-header border-warning">
                                     <div className="row justify-content-start align-items-center">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4 pe-0">
                                         <p className="mb-0"> اسم الطالب </p>
                                       </div>
-                                      <div className="col-1">
+                                      <div className="col-1 pe-0 ps-0">
                                         <p className="mb-0"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-12">
+                                      <div className="col-lg-8  col-7 pe-0">
                                         <p className="mb-0">{student.name}</p>
                                       </div>
                                     </div>
@@ -307,7 +307,7 @@ export default function DeleteData() {
 
                                   <div className="card-body">
                                     <div className="row align-items-center justify-content-start mb-2">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4">
                                         <p className="card-text">
                                           {" "}
                                           هوية الطالب{" "}
@@ -316,7 +316,7 @@ export default function DeleteData() {
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-sm-12">
+                                      <div className="col-lg-8  col-7">
                                         <p className="card-text">
                                           {" "}
                                           {student.number}{" "}
@@ -325,7 +325,7 @@ export default function DeleteData() {
                                     </div>
 
                                     <div className="row align-items-center justify-content-start mb-2">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4">
                                         <p className="card-text">
                                           {" "}
                                           السنة الدراسية{" "}
@@ -334,7 +334,7 @@ export default function DeleteData() {
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-sm-12">
+                                      <div className="col-lg-8  col-7">
                                         <p className="card-text">
                                           {" "}
                                           {student.class}
@@ -343,13 +343,13 @@ export default function DeleteData() {
                                     </div>
 
                                     <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-warning">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4">
                                         <p className="card-text"> رقم الفصل </p>
                                       </div>
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-sm-12">
+                                      <div className="col-lg-8  col-7">
                                         <p className="card-text">
                                           {" "}
                                           {student.year}{" "}
@@ -425,17 +425,17 @@ export default function DeleteData() {
                             <div className="col-md-3"></div>
 
                             {filteredTeachers.map((teacher) => (
-                              <div className="col-12 col-md-6 mb-3">
+                              <div className="col-12 col-lg-6 mb-3">
                                 <div className="card border-info">
                                   <div className="card-header border-warning">
                                     <div className="row justify-content-start align-items-center">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4 pe-0">
                                         <p className="mb-0"> اسم المعلم </p>
                                       </div>
                                       <div className="col-1">
                                         <p className="mb-0"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-12">
+                                      <div className="col-lg-8  col-7 pe-0">
                                         <p className="mb-0">{teacher.name}</p>
                                       </div>
                                     </div>
@@ -443,7 +443,7 @@ export default function DeleteData() {
 
                                   <div className="card-body">
                                     <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-warning">
-                                      <div className="col-lg-3  col-5">
+                                      <div className="col-lg-3  col-4">
                                         <p className="card-text">
                                           {" "}
                                           رقم الهاتف{" "}
@@ -452,7 +452,7 @@ export default function DeleteData() {
                                       <div className="col-1">
                                         <p className="card-text"> : </p>
                                       </div>
-                                      <div className="col-lg-8  col-sm-12">
+                                      <div className="col-lg-8  col-7 pe-0">
                                         <p className="card-text">
                                           {" "}
                                           {teacher.phone}{" "}
