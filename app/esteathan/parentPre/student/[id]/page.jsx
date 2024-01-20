@@ -87,12 +87,13 @@ export default function Student() {
           },
           body: JSON.stringify({
             parentNumber: phone,
-            message: `تم استلام طلب استئذان لطالب ${student.name} من ولي الامر ، الرجاء مراجعة الطلب في التطبيق والموافقة عليه او رفضه`
+            message: `تم استلام طلب استئذان للطالب ${student.name} من ولي الامر ، الرجاء مراجعة الطلب في التطبيق والموافقة عليه او رفضه`
           }),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
+            setSuccess(true);
           });
       });
   };

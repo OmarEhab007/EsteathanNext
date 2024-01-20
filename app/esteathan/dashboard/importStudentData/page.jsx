@@ -8,6 +8,7 @@ import * as XLSX from "xlsx";
 export default function ImportStudentData() {
   // const [user, setUser] = useState(null);
   const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
   const { user, school, forms, students, toggleDarkMode, setForms, darkMode } =
     useStore();
   // const user_id = session?.user?.id;
@@ -24,6 +25,7 @@ export default function ImportStudentData() {
   // }, [session]);
 
   const handleFileChange = (event) => {
+    setLoading(true);
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -125,6 +127,7 @@ export default function ImportStudentData() {
     };
 
     reader.readAsArrayBuffer(file);
+    setLoading(false);
   };
 
   // const handleFileChange = (event) => {
@@ -176,11 +179,13 @@ export default function ImportStudentData() {
   return (
     <>
       <section className="importStudentData my-5">
+        {loading && (
         <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
           <div className="spinner-border text-success" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
+      )}
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-md-12">
