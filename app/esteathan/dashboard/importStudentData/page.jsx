@@ -176,6 +176,11 @@ export default function ImportStudentData() {
   return (
     <>
       <section className="importStudentData my-5">
+        <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-md-12">

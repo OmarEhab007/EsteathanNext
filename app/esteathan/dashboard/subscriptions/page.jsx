@@ -466,10 +466,10 @@ export default function Subscriptions() {
                             <div class="checkbox-apple mx-auto my-0 text-center">
                               <input
                                 class="yep"
-                                id="check-apple"
+                                id="check-apple0"
                                 type="checkbox"
                               />
-                              <label for="check-apple"></label>
+                              <label for="check-apple0"></label>
                             </div>
                           </div>
                         </div>
@@ -719,10 +719,10 @@ export default function Subscriptions() {
                             <div class="checkbox-apple mx-auto my-0 text-center">
                               <input
                                 class="yep"
-                                id="check-apple"
+                                id="check-apple1"
                                 type="checkbox"
                               />
-                              <label for="check-apple"></label>
+                              <label for="check-apple1"></label>
                             </div>
                           </div>
                         </div>
