@@ -6,8 +6,12 @@ import { UploadButton, UploadDropzone } from "../../../../../utils/uploadthing";
 
 export default function Student() {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const [student, setStudent] = useState(null);
+  const [school, setSchool] = useState(null);
+  const [subscription, setSubscription] = useState(null);
+  const [bill, setBill] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [reason, setReason] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -18,11 +22,35 @@ export default function Student() {
 
   const id = params.id;
   useEffect(() => {
-    fetch(`/api/students/id/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setStudent(res.data);
-      });
+    const fetchStudentData = async () => {
+      const studentResponse = await fetch(`/api/students/id/${id}`);
+      const studentData = await studentResponse.json();
+      setStudent(studentData.data);
+      // console.log(studentData.data);
+      const schoolResponse = await fetch(
+        `/api/school/${studentData.data.schoolId}`
+      );
+      const schoolData = await schoolResponse.json();
+      setSchool(schoolData.data[0]);
+      // console.log(schoolData.data[0]);
+
+      const subscriptionResponse = await fetch(
+        `/api/subscription/${schoolData.data[0].subscriptionId}`
+      );
+      const subscriptionData = await subscriptionResponse.json();
+      setSubscription(subscriptionData.data);
+      // console.log(subscriptionData.data);
+
+      const billResponse = await fetch(
+        `/api/bill/${subscriptionData.data.billId}`
+      );
+      const billData = await billResponse.json();
+      // console.log(billData.data);
+      setBill(billData.data);
+      setPhone(billData.data.phone);
+      // console.log(billData.data.phone);
+    };
+    fetchStudentData();
   }, [id]);
 
   const handleSubmit = (event) => {
@@ -49,10 +77,23 @@ export default function Student() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // Handle the response here
-        setLoading(false);
-        setSuccess(true);
         console.log(data);
+      })
+      .then(() => {
+        fetch("/api/sentMessageToTeacher", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            parentNumber: phone,
+            message: `تم استلام طلب استئذان لطالب ${student.name} من ولي الامر ، الرجاء مراجعة الطلب في التطبيق والموافقة عليه او رفضه`
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
       });
   };
 

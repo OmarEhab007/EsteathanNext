@@ -44,6 +44,12 @@ export default function UpdateStudents() {
   const updateStudent = async (e) => {
     e.preventDefault();
     try {
+      let finalPhone = parentNumber;
+      if (!parentNumber.startsWith("966")) {
+        finalPhone = parentNumber.startsWith("0")
+          ? "966" + parentNumber.substring(1)
+          : "966" + parentNumber;
+      }
       const response = await fetch(`/api/students/id/${student.id}`, {
         method: "PUT",
         headers: {
@@ -54,7 +60,7 @@ export default function UpdateStudents() {
           number: studentId,
           class: studentClass,
           year: year,
-          parentNumber: parentNumber,
+          parentNumber: finalPhone,
         }),
       })
         .then((res) => res.json())

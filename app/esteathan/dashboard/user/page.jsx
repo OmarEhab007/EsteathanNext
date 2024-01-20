@@ -2,55 +2,58 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function User() {
-  const [user, setUser] = useState(null);
-  const [school, setSchool] = useState(null);
-  const [subscription, setSubscription] = useState(null);
-  const [bill, setBill] = useState(null);
+  // const [user, setUser] = useState(null);
+  // const [school, setSchool] = useState(null);
+  // const [subscription, setSubscription] = useState(null);
+  // const [bill, setBill] = useState(null);
   const [newPhone, setNewPhone] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { user, school, students, teachers, setStudents, setTeachers, subscription, bill } =
+    useStore();
 
   const { data: session } = useSession();
 
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log(userData.data);
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     setLoading(true);
+  //     const today = new Date();
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       console.log(userData.data);
 
-        const schoolResponse = await fetch(
-          `/api/school/${userData.data.schoolId}`
-        );
-        const schoolData = await schoolResponse.json();
-        console.log(schoolData.data);
-        console.log(schoolData.data[0]);
-        setSchool(schoolData.data[0]);
+  //       const schoolResponse = await fetch(
+  //         `/api/school/${userData.data.schoolId}`
+  //       );
+  //       const schoolData = await schoolResponse.json();
+  //       console.log(schoolData.data);
+  //       console.log(schoolData.data[0]);
+  //       setSchool(schoolData.data[0]);
 
-        const subscriptionResponse = await fetch(
-          `/api/subscription/${schoolData.data[0].subscriptionId}`
-        );
-        const subscriptionData = await subscriptionResponse.json();
-        console.log(subscriptionData.data);
-        setSubscription(subscriptionData.data);
+  //       const subscriptionResponse = await fetch(
+  //         `/api/subscription/${schoolData.data[0].subscriptionId}`
+  //       );
+  //       const subscriptionData = await subscriptionResponse.json();
+  //       console.log(subscriptionData.data);
+  //       setSubscription(subscriptionData.data);
 
-        const billResponse = await fetch(
-          `/api/bill/${subscriptionData.data.billId}`
-        );
-        const billData = await billResponse.json();
-        console.log(billData.data);
-        setBill(billData.data);
-        setLoading(false);
-      }
-    };
-    fetchUserData();
-  }, [session]);
+  //       const billResponse = await fetch(
+  //         `/api/bill/${subscriptionData.data.billId}`
+  //       );
+  //       const billData = await billResponse.json();
+  //       console.log(billData.data);
+  //       setBill(billData.data);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [session]);
 
   const handlePhoneChange = async () => {
     setLoading(true);
@@ -67,7 +70,6 @@ export default function User() {
     });
     const data = await response.json();
     console.log(data);
-    
 
     // update user phone
     const userResponse = await fetch(`/api/user/${user.id}`, {
@@ -79,8 +81,7 @@ export default function User() {
         ...user,
         phone: newPhone,
       }),
-    }
-    );
+    });
 
     const userData = await userResponse.json();
     console.log(userData.data);
@@ -98,7 +99,7 @@ export default function User() {
     });
     const schoolData = await schoolResponse.json();
     console.log(schoolData);
-    
+
     setLoading(false);
     // reload page
     window.location.reload();
@@ -136,16 +137,14 @@ export default function User() {
           <div className="row justify-content-center align-items-center">
             <div className="col-12 col-lg-6 mb-3">
               <div className="card position-relative">
-
                 {/* loading */}
-                {
-                  loading && (
-                <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading">
-                  <div
-                    className="spinner-border text-success "
-                    role="status"
+                {loading && (
+                  <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading">
+                    <div
+                      className="spinner-border text-success "
+                      role="status"
                     ></div>
-                </div>
+                  </div>
                 )}
                 <div className="card-header">
                   <div className="row">
@@ -318,8 +317,6 @@ export default function User() {
                     </div>
 
                     <div className="row justify-content-center align-items-center ">
-                      
-
                       <div className="col-8 pe-0 col-sm-5">
                         <div className="text-center">
                           <button

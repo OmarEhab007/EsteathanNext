@@ -165,7 +165,7 @@ export default function Pills() {
                                       switch (bill?.plan) {
                                         case "oneSemester":
                                           return "فصل دراسي واحد";
-                                        case "twoSemesters":
+                                        case "twoSemester":
                                           return "فصلين دراسيين";
                                         case "fullYear":
                                           return "سنة دراسية كاملة";
@@ -183,7 +183,7 @@ export default function Pills() {
                                       switch (bill?.plan) {
                                         case "oneSemester":
                                           return "150 ريال";
-                                        case "twoSemesters":
+                                        case "twoSemester":
                                           return "250 ريال";
                                         case "fullYear":
                                           return "350 ريال";
