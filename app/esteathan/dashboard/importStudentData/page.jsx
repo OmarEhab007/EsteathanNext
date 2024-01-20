@@ -25,7 +25,6 @@ export default function ImportStudentData() {
   // }, [session]);
 
   const handleFileChange = (event) => {
-    
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -58,46 +57,46 @@ export default function ImportStudentData() {
       jsonData = jsonData.filter((row) =>
         row.some((cell) => cell !== null && cell !== "")
       );
-      jsonData.shift(); 
+      jsonData.shift();
       console.log(jsonData);
       // console.log(user.schoolId);
 
       // // Assuming jsonData is your array of students
-      jsonData.forEach(async (student) => {
-        let [parentNumber, year, classNumber, name, number] = student;
+      try {
+        setLoading(true);
+        jsonData.forEach(async (student) => {
+          let [parentNumber, year, classNumber, name, number] = student;
 
-        parentNumber = parentNumber.toString();
-        year = year.toString();
-        classNumber = classNumber.toString();
-        name = name.toString();
-        number = number.toString();
+          parentNumber = parentNumber.toString();
+          year = year.toString();
+          classNumber = classNumber.toString();
+          name = name.toString();
+          number = number.toString();
 
-        let classLabel;
-        switch (classNumber) {
-          case "1314":
-            classLabel = "أول ثانوي";
-            break;
-          case "1416":
-            classLabel = "ثاني ثانوي";
-            break;
-          case "1516":
-            classLabel = "ثالث ثانوي";
-            break;
-          default:
-            classLabel = "Unknown class";
-        }
+          let classLabel;
+          switch (classNumber) {
+            case "1314":
+              classLabel = "أول ثانوي";
+              break;
+            case "1416":
+              classLabel = "ثاني ثانوي";
+              break;
+            case "1516":
+              classLabel = "ثالث ثانوي";
+              break;
+            default:
+              classLabel = "Unknown class";
+          }
 
-        // console.log({
-        //   number: number,
-        //   name: name,
-        //   class: classLabel,
-        //   year: year,
-        //   parentNumber: parentNumber,
-        //   schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
-        // });
+          // console.log({
+          //   number: number,
+          //   name: name,
+          //   class: classLabel,
+          //   year: year,
+          //   parentNumber: parentNumber,
+          //   schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
+          // });
 
-        try {
-          setLoading(true);
           const response = await fetch("/api/students", {
             method: "POST",
             headers: {
@@ -119,17 +118,14 @@ export default function ImportStudentData() {
 
           const data = await response.json();
           console.log(data);
-        } catch (error) {
-          console.error(
-            "There was a problem with the fetch operation: " + error.message
-          );
-        }
-      });
-      setLoading(false);
+        });
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
-
     reader.readAsArrayBuffer(file);
-    
   };
 
   // const handleFileChange = (event) => {
@@ -182,12 +178,12 @@ export default function ImportStudentData() {
     <>
       <section className="importStudentData my-5">
         {loading && (
-        <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
-          <div className="spinner-border text-success" role="status">
-            <span className="visually-hidden">Loading...</span>
+          <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
+            <div className="spinner-border text-success" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-md-12">
