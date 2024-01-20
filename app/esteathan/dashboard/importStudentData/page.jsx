@@ -25,7 +25,7 @@ export default function ImportStudentData() {
   // }, [session]);
 
   const handleFileChange = (event) => {
-    setLoading(true);
+    
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -97,6 +97,7 @@ export default function ImportStudentData() {
         // });
 
         try {
+          setLoading(true);
           const response = await fetch("/api/students", {
             method: "POST",
             headers: {
@@ -124,10 +125,11 @@ export default function ImportStudentData() {
           );
         }
       });
+      setLoading(false);
     };
 
     reader.readAsArrayBuffer(file);
-    setLoading(false);
+    
   };
 
   // const handleFileChange = (event) => {
@@ -207,6 +209,7 @@ export default function ImportStudentData() {
                     className="file-input"
                     type="file"
                     name="file"
+                    accept=".xlsx, .xls"
                     hidden
                     onChange={handleFileChange}
                   />
