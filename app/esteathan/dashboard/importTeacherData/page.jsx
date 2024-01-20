@@ -136,9 +136,7 @@ export default function ImportTeacherData() {
                 <header>
                   <h2 className=""> استيراد ملفات المعلمين </h2>
                   <p className="text-muted">
-                    لرفع بيانات الطلاب الرجاء ارسال ملف الاكسل على واتساب الدعم
-                    الفني رقم
-                    <span className="high d-block"> ( 0545894287) </span>
+                    لرفع بيانات الطلاب الرجاء استخراج ملف الاكسل وتحميله هنا   
                   </p>
                   <p>وذلك من برنامج نور من أيقونة</p>
                   <p>

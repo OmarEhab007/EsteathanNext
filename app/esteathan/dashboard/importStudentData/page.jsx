@@ -182,10 +182,8 @@ export default function ImportStudentData() {
               <div className="wrapper border-primary">
                 <header>
                   <h2 className=""> استيراد ملفات الطلاب </h2>
-                  <p className="text-muted">
-                    لرفع بيانات الطلاب الرجاء ارسال ملف الاكسل على واتساب الدعم
-                    الفني رقم
-                    <span className="high d-block"> ( 0545894287) </span>
+                  <p className="text-center">
+                    لرفع بيانات الطلاب الرجاء استخراج ملف الاكسل وتحميله هنا
                   </p>
                   <p>وذلك من برنامج نور من أيقونة</p>
                   <p>
