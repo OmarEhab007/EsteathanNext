@@ -5,7 +5,7 @@ export default function Subscriptions() {
     <>
       <section className="subscribtionsDetails my-5">
         <div className="subscribtionsDetails__header text-center mb-5">
-          <h1>اشتتراكاتنا</h1>
+          <h1>اشتراكاتنا</h1>
         </div>
 
         <div className="subscribtionsDetails__content">
