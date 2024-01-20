@@ -88,6 +88,7 @@ export default function RootLayout({ children }) {
         setSubscription(subscriptionData.data);
         setStatus(subscriptionData.data.status);
 
+
         const billResponse = await fetch(
           `/api/bill/${subscriptionData.data.billId}`
         );
@@ -96,6 +97,7 @@ export default function RootLayout({ children }) {
         setBill(billData.data);
 
         if (subscriptionData.data.status === "invalid") {
+
           signOut();
         }
       }
