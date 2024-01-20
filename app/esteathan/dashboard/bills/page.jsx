@@ -6,51 +6,65 @@ import React from "react";
 import Image from "next/image.js";
 import icon from "../../bigIcon.png";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function Pills() {
-  const [school, setSchool] = useState(null);
-  const [subscription, setSubscription] = useState(null);
-  const [bill, setBill] = useState(null);
-  const [user, setUser] = useState(null);
+  // const [school, setSchool] = useState(null);
+  // const [subscription, setSubscription] = useState(null);
+  // const [bill, setBill] = useState(null);
+  // const [user, setUser] = useState(null);
   const [billNumber, setBillNumber] = useState(null);
   const { data: session } = useSession();
 
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        // console.log(userData.data);
+  const {
+    user,
+    school,
+    bill,
+    subscription,
+    forms,
+    students,
+    teachers,
+    toggleDarkMode,
+    setForms,
+    darkMode,
+  } = useStore();
 
-        const schoolResponse = await fetch(
-          `/api/school/${userData.data.schoolId}`
-        );
-        const schoolData = await schoolResponse.json();
-        // console.log(schoolData.data);
-        // console.log(schoolData.data[0]);
-        setSchool(schoolData.data[0]);
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const today = new Date();
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       // console.log(userData.data);
 
-        const subscriptionResponse = await fetch(
-          `/api/subscription/${schoolData.data[0].subscriptionId}`
-        );
-        const subscriptionData = await subscriptionResponse.json();
-        // console.log(subscriptionData.data);
-        setSubscription(subscriptionData.data);
+  //       const schoolResponse = await fetch(
+  //         `/api/school/${userData.data.schoolId}`
+  //       );
+  //       const schoolData = await schoolResponse.json();
+  //       // console.log(schoolData.data);
+  //       // console.log(schoolData.data[0]);
+  //       setSchool(schoolData.data[0]);
 
-        const billResponse = await fetch(
-          `/api/bill/${subscriptionData.data.billId}`
-        );
-        const billData = await billResponse.json();
-        // console.log(billData.data);
-        setBill(billData.data);
-      }
-    };
+  //       const subscriptionResponse = await fetch(
+  //         `/api/subscription/${schoolData.data[0].subscriptionId}`
+  //       );
+  //       const subscriptionData = await subscriptionResponse.json();
+  //       // console.log(subscriptionData.data);
+  //       setSubscription(subscriptionData.data);
 
-    fetchUserData();
-  }, [session]);
+  //       const billResponse = await fetch(
+  //         `/api/bill/${subscriptionData.data.billId}`
+  //       );
+  //       const billData = await billResponse.json();
+  //       // console.log(billData.data);
+  //       setBill(billData.data);
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, [session]);
 
   const [isPrintMode, setIsPrintMode] = useState(false);
 
@@ -151,7 +165,7 @@ export default function Pills() {
                                       switch (bill?.plan) {
                                         case "oneSemester":
                                           return "فصل دراسي واحد";
-                                        case "twoSemesters":
+                                        case "twoSemester":
                                           return "فصلين دراسيين";
                                         case "fullYear":
                                           return "سنة دراسية كاملة";
@@ -169,7 +183,7 @@ export default function Pills() {
                                       switch (bill?.plan) {
                                         case "oneSemester":
                                           return "150 ريال";
-                                        case "twoSemesters":
+                                        case "twoSemester":
                                           return "250 ريال";
                                         case "fullYear":
                                           return "350 ريال";

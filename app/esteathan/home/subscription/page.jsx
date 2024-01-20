@@ -66,6 +66,24 @@ export default function Subscription() {
       });
       const data = await resposne.json();
       console.log(data);
+
+      fetch("/api/sentMessageToTeacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parentNumber: '966545894287',
+        message: `تم استلام طلب انضمام جديد للبرنامج`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // setIsLoading(false);
+      });
+
+      
       setLoading(false);
       setSuccess(true);
       // redirect to home

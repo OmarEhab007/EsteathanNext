@@ -21,7 +21,7 @@ export const GET = async (
 ) => {
   try {
     const number = params.number;
-    const data = await prisma.student.findUnique({
+    const data = await prisma.student.findFirst({
       where: {
         number: number,
       },

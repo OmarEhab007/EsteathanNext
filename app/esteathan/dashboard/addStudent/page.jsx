@@ -51,6 +51,11 @@ export default function AddStudent() {
         throw new Error("رقم ولي الأمر يجب أن يكون رقم هاتف صحيح في المملكة العربية السعودية");
       }
 
+      let finalPhone = parentNumber;
+      if (!parentNumber.startsWith("966")) {
+        finalPhone = parentNumber.startsWith("0") ? "966" + parentNumber.substring(1) : "966" + parentNumber;
+      }
+
       const response = await fetch("/api/students", {
         method: "POST",
         headers: {
@@ -61,7 +66,7 @@ export default function AddStudent() {
           name: name,
           class: classNumber,
           year: year,
-          parentNumber: parentNumber,
+          parentNumber: finalPhone,
           schoolId: user.schoolId,
         }),
       });

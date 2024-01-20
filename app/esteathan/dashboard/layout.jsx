@@ -15,56 +15,135 @@ import "@uploadthing/react/styles.css";
 import { Providers } from "../../../components/provider";
 import { useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
+import useStore from "../../../lib/store";
 // import { options } from "../../../app/api/auth/[...nextauth]/options";
 
 // const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
-  const [user, setUser] = useState(null);
-  const [school, setSchool] = useState(null);
-  const [subscription, setSubscription] = useState(null);
-  const [status, setStatus] = useState(null);
+  // const [darkMode, setDarkMode] = useState(false);
+  // const [user, setUser] = useState(null);
+  // const [school, setSchool] = useState(null);
+  // const [subscription, setSubscription] = useState(null);
+  // const [status, setStatus] = useState(null);
+  const {
+    user,
+    school,
+    subscription,
+    status,
+    darkMode,
+    setUser,
+    setSchool,
+    setSubscription,
+    setStatus,
+    toggleDarkMode,
+    setForms,
+    setTeachers,
+    setStudents,
+    setBill,
+    loading,
+    setLoading,
+  } = useStore();
 
   // const data =  getServerSession(options);
   const { data: session } = useSession();
 
-  const user_id = session?.user?.id;
   useEffect(() => {
     const fetchUserData = async () => {
-      const today = new Date();
       if (session?.user?.id) {
+        setLoading(true);
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
-        // console.log(userData.data);
+
+        const formsResponse = await fetch(
+          `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
+        setForms(formsData.data || []);
+
+        const studentsResponse = await fetch(
+          `/api/students/school/${userData.data.schoolId}`
+        );
+        const studentsData = await studentsResponse.json();
+        setStudents(studentsData.data);
 
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
-        // console.log(schoolData.data[0]);
+        setLoading(false);
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data);
 
         const subscriptionResponse = await fetch(
           `/api/subscription/${schoolData.data[0].subscriptionId}`
         );
         const subscriptionData = await subscriptionResponse.json();
         setSubscription(subscriptionData.data);
-        // console.log(subscriptionData.data);
-        // console.log(subscriptionData.data.status);
         setStatus(subscriptionData.data.status);
+
+
+        const billResponse = await fetch(
+          `/api/bill/${subscriptionData.data.billId}`
+        );
+        const billData = await billResponse.json();
+        // console.log(billData.data);
+        setBill(billData.data);
+
         if (subscriptionData.data.status === "invalid") {
-          // Sign out the user and redirect to the login page
-          // Replace 'signOut' and '/login' with your actual sign out function and login page path
+
           signOut();
-          // router.push("/signin");
         }
       }
     };
 
     fetchUserData();
   }, [session]);
+
+  // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const today = new Date();
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       // console.log(userData.data);
+
+  //       const schoolResponse = await fetch(
+  //         `/api/school/${userData.data.schoolId}`
+  //       );
+  //       const schoolData = await schoolResponse.json();
+  //       setSchool(schoolData.data[0]);
+  //       // console.log(schoolData.data[0]);
+
+  //       const subscriptionResponse = await fetch(
+  //         `/api/subscription/${schoolData.data[0].subscriptionId}`
+  //       );
+  //       const subscriptionData = await subscriptionResponse.json();
+  //       setSubscription(subscriptionData.data);
+  //       // console.log(subscriptionData.data);
+  //       // console.log(subscriptionData.data.status);
+  //       setStatus(subscriptionData.data.status);
+  //       if (subscriptionData.data.status === "invalid") {
+  //         // Sign out the user and redirect to the login page
+  //         // Replace 'signOut' and '/login' with your actual sign out function and login page path
+  //         signOut();
+  //         // router.push("/signin");
+  //       }
+  //     }
+
+  //     console.log(user);
+  //   };
+
+  //   fetchUserData();
+  // }, [session, setUser, setSchool, setSubscription, setStatus]);
 
   // useEffect(async() => {
   //   if (session?.user?.id) {
@@ -75,9 +154,9 @@ export default function RootLayout({ children }) {
   //   }
   // }, [session]);
 
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+  // const toggleDarkMode = () => {
+  //   setDarkMode((prevMode) => !prevMode);
+  // };
 
   return (
     <html lang="ar">
@@ -212,14 +291,40 @@ export default function RootLayout({ children }) {
                     </Link>
                   </li>
                   {user?.role === "admin" && (
-                    <li className="nav-item me-2 text-center">
+                    <li class="nav-item dropdown text-center">
                       <Link
-                        className="nav-link"
-                        href="/esteathan/dashboard/subscriptionResponse"
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                       >
-                        {" "}
-                        الاشتراكات{" "}
+                        الاشتراكات
                       </Link>
+                      <ul
+                        class="dropdown-menu text-center"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptionResponse"
+                          >
+                            {" "}
+                            طلبات الاشتراك{" "}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptions"
+                          >
+                            {" "}
+                             اشتراكاتنا{" "}
+                          </Link>
+                        </li>
+                      </ul>
                     </li>
                   )}
                   <ul className="navbar-nav me-2 d-xxl-none d-lg-none d-block text-center text-center">
@@ -346,7 +451,11 @@ export default function RootLayout({ children }) {
               </ul>
 
               <label className="switch m-md-auto">
-                <input type="checkbox" onChange={toggleDarkMode} />
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                />
                 <span className="slider"></span>
               </label>
               <button

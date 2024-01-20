@@ -4,40 +4,35 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 // import BarLoader from "react-spinners/BarLoader";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function SendRequests() {
-  const [forms, setForms] = useState([]);
-  const [students, setStudents] = useState([]);
+  // const [forms, setForms] = useState([]);
+  // const [students, setStudents] = useState([]);
   const [parentPhone, setParentPhone] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [reason, setReason] = useState(false);
   const [reasonText, setReasonText] = useState("تم رفض طلب الاستئذان");
   const [isRejectButtonVisible, setRejectButtonVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const { data: session } = useSession();
+  const [today, setToday] = useState(new Date());
+
+  const {
+    user,
+    school,
+    forms,
+    students,
+    toggleDarkMode,
+    setForms,
+    darkMode,
+  } = useStore();
 
   // const [NumberOfRequests, setNumberOfRequests] = useState(null);
   // today date
   // const today = new Date();
-  const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log(userData.data);
-
-        const formsResponse = await fetch(
-              `/api/forms/school/${userData.data.schoolId}`
-        );
-        const formsData = await formsResponse.json();
-        setForms(formsData.data || []);
-        console.log(formsData.data);
-        // fillter forms by today
-        const todayForms = formsData.data.filter((form) => {
+  const todayForms = forms.filter((form) => {
           const formDate = new Date(form.createdAt);
           return (
             formDate.getDate() === today.getDate() &&
@@ -45,40 +40,67 @@ export default function SendRequests() {
             formDate.getFullYear() === today.getFullYear() &&
             form.approval === "pending"
           );
-        });
-        setForms(todayForms);
-        // console.log(todayForms);
+  });
+  
+  // // const user_id = session?.user?.id;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const today = new Date();
+  //     if (session?.user?.id) {
+  //       const userResponse = await fetch(`/api/user/${session.user.id}`);
+  //       const userData = await userResponse.json();
+  //       setUser(userData.data);
+  //       console.log(userData.data);
 
-        // fetch("/api/forms") // replace with your API endpoint
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     const todayForms = data.datas.filter((form) => {
-        //       const formDate = new Date(form.createdAt);
-        //       return (
-        //         formDate.getDate() === today.getDate() &&
-        //         formDate.getMonth() === today.getMonth() &&
-        //         formDate.getFullYear() === today.getFullYear() &&
-        //         form.approval === "pending"
-        //       );
-        //     });
-        //     setForms(todayForms);
-        //     console.log(todayForms);
-        //   });
+  //       const formsResponse = await fetch(
+  //             `/api/forms/school/${userData.data.schoolId}`
+  //       );
+  //       const formsData = await formsResponse.json();
+  //       setForms(formsData.data || []);
+  //       console.log(formsData.data);
+  //       // fillter forms by today
+  //       const todayForms = formsData.data.filter((form) => {
+  //         const formDate = new Date(form.createdAt);
+  //         return (
+  //           formDate.getDate() === today.getDate() &&
+  //           formDate.getMonth() === today.getMonth() &&
+  //           formDate.getFullYear() === today.getFullYear() &&
+  //           form.approval === "pending"
+  //         );
+  //       });
+  //       setForms(todayForms);
+  //       // console.log(todayForms);
 
-        // fetch("/api/students") // replace with your API endpoint
-        //   .then((res) => res.json())
-        //   .then((data) => setStudents(data.datas));
-        const studentsResponse = await fetch(`/api/students/school/${userData.data.schoolId}`);
-        const studentsData = await studentsResponse.json();
-        setStudents(studentsData.data || []);
-        console.log(studentsData.data);
-      }
-    };
-    fetchUserData();
-  }, [session]);
+  //       // fetch("/api/forms") // replace with your API endpoint
+  //       //   .then((res) => res.json())
+  //       //   .then((data) => {
+  //       //     const todayForms = data.datas.filter((form) => {
+  //       //       const formDate = new Date(form.createdAt);
+  //       //       return (
+  //       //         formDate.getDate() === today.getDate() &&
+  //       //         formDate.getMonth() === today.getMonth() &&
+  //       //         formDate.getFullYear() === today.getFullYear() &&
+  //       //         form.approval === "pending"
+  //       //       );
+  //       //     });
+  //       //     setForms(todayForms);
+  //       //     console.log(todayForms);
+  //       //   });
+
+  //       // fetch("/api/students") // replace with your API endpoint
+  //       //   .then((res) => res.json())
+  //       //   .then((data) => setStudents(data.datas));
+  //       const studentsResponse = await fetch(`/api/students/school/${userData.data.schoolId}`);
+  //       const studentsData = await studentsResponse.json();
+  //       setStudents(studentsData.data || []);
+  //       console.log(studentsData.data);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [session]);
 
   // console.log(students);
-  console.log(forms);
+  // console.log(forms);
 
   const getStudentName = (studentId) => {
     const student = students.find((student) => student.id === studentId);
@@ -141,7 +163,7 @@ export default function SendRequests() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setIsLoading(false);
       })
       .then(() => {
@@ -179,7 +201,7 @@ export default function SendRequests() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setIsLoading(false);
       })
       .then(() => {
@@ -198,20 +220,20 @@ export default function SendRequests() {
                 <i> الطلبات المرسلة </i>
               </h2>
             </div>
-            {forms
+            {todayForms
               .filter((form) => form.approval === "pending")
               .map((form) => (
-                <div className="col-md-6 mb-3">
+                <div className="col-lg-6 mb-3">
                   <div className="card border-primary">
                     <div className="card-header border-primary">
                       <div className="row justify-content-start align-items-center">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3 col-4">
                           <h6 className="mb-0"> اسم الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="mb-0"> : </p>
                         </div>
-                        <div className="col-lg-8  col-12">
+                        <div className="col-lg-8 col-7 pe-0">
                           <p className="mb-0">
                             {" "}
                             {getStudentName(form.studentId)}{" "}
@@ -222,25 +244,25 @@ export default function SendRequests() {
 
                     <div className="card-body">
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> هوية الطالب </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text"> {getStudentNumber(form.studentId)} </p>
                         </div>
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-2">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> السنة الدراسية </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {getStudentClass(form.studentId)}{" "}
@@ -249,13 +271,13 @@ export default function SendRequests() {
                       </div>
 
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text"> رقم الفصل </h6>
                         </div>
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {" "}
                             {getStudentYear(form.studentId)}{" "}
@@ -265,7 +287,7 @@ export default function SendRequests() {
 
                       {/*  ============هنا عدد الاستئذانات======== */}
                       <div className="row align-items-center justify-content-start mb-3 pb-2 border-bottom border-primary">
-                        <div className="col-lg-3  col-5">
+                        <div className="col-lg-3  col-4">
                           <h6 className="card-text position-relative">
                             {" "}
                             عدد طلبات الاستئذان السابقة{" "}
@@ -274,7 +296,7 @@ export default function SendRequests() {
                         <div className="col-1">
                           <p className="card-text"> : </p>
                         </div>
-                        <div className="col-lg-8  col-sm-12">
+                        <div className="col-lg-8  col-7">
                           <p className="card-text">
                             {getNumberOfRequests(form.studentId)}
                           </p>
