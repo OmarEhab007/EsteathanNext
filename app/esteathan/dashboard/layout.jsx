@@ -289,14 +289,40 @@ export default function RootLayout({ children }) {
                     </Link>
                   </li>
                   {user?.role === "admin" && (
-                    <li className="nav-item me-2 text-center">
+                    <li class="nav-item dropdown text-center">
                       <Link
-                        className="nav-link"
-                        href="/esteathan/dashboard/subscriptionResponse"
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                       >
-                        {" "}
-                        الاشتراكات{" "}
+                        الاشتراكات
                       </Link>
+                      <ul
+                        class="dropdown-menu text-center"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptionResponse"
+                          >
+                            {" "}
+                            طلبات الاشتراك{" "}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptions"
+                          >
+                            {" "}
+                             اشتراكاتنا{" "}
+                          </Link>
+                        </li>
+                      </ul>
                     </li>
                   )}
                   <ul className="navbar-nav me-2 d-xxl-none d-lg-none d-block text-center text-center">
