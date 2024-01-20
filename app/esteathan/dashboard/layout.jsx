@@ -49,36 +49,37 @@ export default function RootLayout({ children }) {
   const { data: session } = useSession();
 
   useEffect(() => {
-    setLoading(true);
     const fetchUserData = async () => {
       if (session?.user?.id) {
+        setLoading(true);
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
 
         const formsResponse = await fetch(
-              `/api/forms/school/${userData.data.schoolId}`
-            );
-            const formsData = await formsResponse.json();
+          `/api/forms/school/${userData.data.schoolId}`
+        );
+        const formsData = await formsResponse.json();
         setForms(formsData.data || []);
-        
+
         const studentsResponse = await fetch(
           `/api/students/school/${userData.data.schoolId}`
         );
         const studentsData = await studentsResponse.json();
         setStudents(studentsData.data);
 
-        const teachersResponse = await fetch(
-          `/api/teacher/school/${userData.data.schoolId}`
-        );
-        const teachersData = await teachersResponse.json();
-        setTeachers(teachersData.data);
-
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
+        setLoading(false);
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data);
 
         const subscriptionResponse = await fetch(
           `/api/subscription/${schoolData.data[0].subscriptionId}`
@@ -93,7 +94,6 @@ export default function RootLayout({ children }) {
         const billData = await billResponse.json();
         // console.log(billData.data);
         setBill(billData.data);
-        setLoading(false);
 
         if (subscriptionData.data.status === "invalid") {
           signOut();
@@ -423,7 +423,11 @@ export default function RootLayout({ children }) {
               </ul>
 
               <label className="switch m-md-auto">
-                <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                />
                 <span className="slider"></span>
               </label>
               <button
