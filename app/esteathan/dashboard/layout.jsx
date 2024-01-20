@@ -49,9 +49,9 @@ export default function RootLayout({ children }) {
   const { data: session } = useSession();
 
   useEffect(() => {
-    setLoading(true);
     const fetchUserData = async () => {
       if (session?.user?.id) {
+        setLoading(true);
         const userResponse = await fetch(`/api/user/${session.user.id}`);
         const userData = await userResponse.json();
         setUser(userData.data);
@@ -68,17 +68,18 @@ export default function RootLayout({ children }) {
         const studentsData = await studentsResponse.json();
         setStudents(studentsData.data);
 
-        const teachersResponse = await fetch(
-          `/api/teacher/school/${userData.data.schoolId}`
-        );
-        const teachersData = await teachersResponse.json();
-        setTeachers(teachersData.data);
-
         const schoolResponse = await fetch(
           `/api/school/${userData.data.schoolId}`
         );
         const schoolData = await schoolResponse.json();
         setSchool(schoolData.data[0]);
+        setLoading(false);
+
+        const teachersResponse = await fetch(
+          `/api/teacher/school/${userData.data.schoolId}`
+        );
+        const teachersData = await teachersResponse.json();
+        setTeachers(teachersData.data);
 
         const subscriptionResponse = await fetch(
           `/api/subscription/${schoolData.data[0].subscriptionId}`
@@ -93,7 +94,6 @@ export default function RootLayout({ children }) {
         const billData = await billResponse.json();
         // console.log(billData.data);
         setBill(billData.data);
-        setLoading(false);
 
         if (subscriptionData.data.status === "invalid") {
           signOut();

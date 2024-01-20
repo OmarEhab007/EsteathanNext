@@ -14,7 +14,9 @@ export default function DeleteData() {
   // const { data: session } = useSession();
   // const [editedStudent, setEditedStudent] = useState({});//[name, number, class, year]
   // const [editedTeacher, setEditedTeacher] = useState({});//[name, phone]
-  const { user, school, students, teachers } = useStore();
+
+    const { user, school, students, teachers, setStudents, setTeachers} = useStore();
+
   const router = useRouter();
 
   // const user_id = session?.user?.id;

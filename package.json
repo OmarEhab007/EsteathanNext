@@ -24,7 +24,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-spinners": "^0.13.8",
+    "read-excel-file": "^5.7.1",
     "uploadthing": "^6.1.0",
+    "xlsx": "^0.18.5",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
