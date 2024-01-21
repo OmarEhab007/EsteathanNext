@@ -24,12 +24,11 @@ export default function ImportTeacherData() {
   //   fetchUserData();
   // }, [session]);
 
-  const handleFileChange = (event) => {
-    setLoading(true);
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: "array" });
 
@@ -77,33 +76,71 @@ export default function ImportTeacherData() {
 
       // console.log(jsonData);
 
-      jsonData.forEach((teacher) => {
-        let phoneNumber = teacher.find(
-          (cell) => typeof cell === "string" && cell.startsWith("966")
-        );
-        phoneNumber += "123"; // Add your number here
+      try {
+        setLoading(true);
+        const promises = jsonData.map(async (teacher) => {
+          let phoneNumber = teacher.find(
+            (cell) => typeof cell === "string" && cell.startsWith("966")
+          );
 
-        fetch("/api/teacher/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: teacher[1], // Adjust these indices based on your data
-            phone: phoneNumber, // Adjust these indices based on your data
-            schoolId: user.schoolId,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      });
+          if (phoneNumber) {
+            // phoneNumber += "123"; // Add your number here
+
+            const response = await fetch("/api/teacher/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: teacher[1], // Adjust these indices based on your data
+                phone: phoneNumber, // Adjust these indices based on your data
+                schoolId: user.schoolId,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+          }
+        });
+
+        await Promise.all(promises);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+        window.location.href = "/esteathan/dashboard/deleteData";
+      }
+
+      // jsonData.forEach((teacher) => {
+      //   let phoneNumber = teacher.find(
+      //     (cell) => typeof cell === "string" && cell.startsWith("966")
+      //   );
+      //   phoneNumber += "123"; // Add your number here
+
+      //   fetch("/api/teacher/", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       name: teacher[1], // Adjust these indices based on your data
+      //       phone: phoneNumber, // Adjust these indices based on your data
+      //       schoolId: user.schoolId,
+      //     }),
+      //   })
+      //     .then((response) => response.json())
+      //     .then((data) => console.log(data))
+      //     .catch((error) => {
+      //       console.error("Error:", error);
+      //     });
+      // });
     };
 
     reader.readAsArrayBuffer(file);
-    setLoading(false);
   };
 
   // const handleFileChange = (event) => {
@@ -133,11 +170,11 @@ export default function ImportTeacherData() {
     <>
       <section className="importStudentData my-5">
         {loading && (
-      <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
-          <div className="spinner-border text-success" role="status">
-            <span className="visually-hidden">Loading...</span>
+          <div className="loading position-absolute  top-0 bottom-0 end-0 start-0 d-flex justify-content-center align-items-center">
+            <div className="spinner-border text-success" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </div>
         )}
         <div className="container">
           <div className="row justify-content-center align-items-center">
@@ -146,7 +183,7 @@ export default function ImportTeacherData() {
                 <header>
                   <h2 className=""> استيراد ملفات المعلمين </h2>
                   <p className="text-muted">
-                    لرفع بيانات الطلاب الرجاء استخراج ملف الاكسل وتحميله هنا   
+                    لرفع بيانات الطلاب الرجاء استخراج ملف الاكسل وتحميله هنا
                   </p>
                   <p>وذلك من برنامج نور من أيقونة</p>
                   <p>
