@@ -197,6 +197,7 @@ export default function ImportTeacherData() {
                     className="file-input"
                     type="file"
                     name="file"
+                    accept=".xlsx, .xls"
                     hidden
                     onChange={handleFileChange}
                   />
