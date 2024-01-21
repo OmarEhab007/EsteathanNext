@@ -77,18 +77,16 @@ export default function ImportStudentData() {
           number = number.toString();
 
           let classLabel;
-          switch (classNumber) {
-            case "1314":
-              classLabel = "أول ثانوي";
-              break;
-            case "1416":
-              classLabel = "ثاني ثانوي";
-              break;
-            case "1516":
-              classLabel = "ثالث ثانوي";
-              break;
-            default:
-              classLabel = "Unknown class";
+          classNumber = parseInt(classNumber, 10); // Convert to number
+
+          if (classNumber >= 1300 && classNumber < 1400) {
+            classLabel = "أول ثانوي";
+          } else if (classNumber >= 1400 && classNumber < 1500) {
+            classLabel = "ثاني ثانوي";
+          } else if (classNumber >= 1500 && classNumber < 1600) {
+            classLabel = "ثالث ثانوي";
+          } else {
+            classLabel = "الصف غير معروف";
           }
 
           const response = await fetch("/api/students", {
