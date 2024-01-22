@@ -111,7 +111,7 @@ export default function AddStudent() {
             onSubmit={handleSubmit}
             className="border-primary p-3 row justify-content-center align-items-center"
           >
-            <div className="col-md-6 mb-3">
+            <div className="col-sm-6 mb-3">
               <div className="form-group">
                 <label htmlFor="studentName">اسم الطالب</label>
                 <input
@@ -125,7 +125,7 @@ export default function AddStudent() {
               </div>
             </div>
 
-            <div className="col-md-6 mb-3">
+            <div className="col-sm-6 mb-3">
               <div className="form-group">
                 <label htmlFor="studentId"> هوية الطالب </label>
                 <input
@@ -152,7 +152,7 @@ export default function AddStudent() {
                 onChange={(e) => setClassNumber(e.target.value)}
                 >
                   <optgroup  >
-                    <option value="أول ثانوي" > أول ثانوي </option>
+                    <option value="أول ثانوي" selected > أول ثانوي </option>
                     <option value="ثاني ثانوي" > ثاني ثانوي </option>
                     <option value="ثالث ثانوي" > ثالث ثانوي </option>
                   </optgroup>
@@ -192,7 +192,7 @@ export default function AddStudent() {
               <div className="form-group">
                 <label htmlFor="parentNumber">رقم ولي أمر الطالب </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control border-primary"
                   id="parentNumber"
                   placeholder="رقم ولي أمر الطالب "
