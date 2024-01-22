@@ -73,7 +73,7 @@ export default function Subscriptions() {
                 );
 
                 return (
-                  <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-3 ">
+                  <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3 ">
                     <div className="card">
                       <div className="card-header">
                         <div className="row justify-content-center align-items-center text-center">
