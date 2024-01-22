@@ -152,7 +152,9 @@ export default function AddStudent() {
                 onChange={(e) => setClassNumber(e.target.value)}
                 >
                   <optgroup  >
-                    <option value="أول ثانوي" selected > أول ثانوي </option>
+                    <option  selected > </option>
+
+                    <option value="اول ثانوي" > اول ثانوي </option>
                     <option value="ثاني ثانوي" > ثاني ثانوي </option>
                     <option value="ثالث ثانوي" > ثالث ثانوي </option>
                   </optgroup>

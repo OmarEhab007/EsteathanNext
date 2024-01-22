@@ -124,6 +124,7 @@ export default function UpdateStudents() {
                   onChange={(e) => setStudentClass(e.target.value)}
                 >
                   <optgroup>
+                    <option >   </option>
                     <option value="أول ثانوي"> أول ثانوي </option>
                     <option value="ثاني ثانوي"> ثاني ثانوي </option>
                     <option value="ثالث ثانوي"> ثالث ثانوي </option>
