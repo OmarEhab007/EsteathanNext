@@ -24,11 +24,12 @@ export default function ImportStudentData() {
   //   fetchUserData();
   // }, [session]);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
+    setLoading(true);
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: "array" });
 
@@ -62,10 +63,12 @@ export default function ImportStudentData() {
       // console.log(user.schoolId);
 
       // // Assuming jsonData is your array of students
+
       try {
         setLoading(true);
-        jsonData.forEach(async (student) => {
-          let [parentNumber, year, classNumber, name, number] = student;
+        const promises = jsonData.map(async (student) => {
+          let [parentNumber, year, classNumber, name, number] =
+            student.map(String);
 
           parentNumber = parentNumber.toString();
           year = year.toString();
@@ -74,28 +77,17 @@ export default function ImportStudentData() {
           number = number.toString();
 
           let classLabel;
-          switch (classNumber) {
-            case "1314":
-              classLabel = "أول ثانوي";
-              break;
-            case "1416":
-              classLabel = "ثاني ثانوي";
-              break;
-            case "1516":
-              classLabel = "ثالث ثانوي";
-              break;
-            default:
-              classLabel = "Unknown class";
-          }
+          classNumber = parseInt(classNumber, 10); // Convert to number
 
-          // console.log({
-          //   number: number,
-          //   name: name,
-          //   class: classLabel,
-          //   year: year,
-          //   parentNumber: parentNumber,
-          //   schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
-          // });
+          if (classNumber >= 1300 && classNumber < 1400) {
+            classLabel = "أول ثانوي";
+          } else if (classNumber >= 1400 && classNumber < 1500) {
+            classLabel = "ثاني ثانوي";
+          } else if (classNumber >= 1500 && classNumber < 1600) {
+            classLabel = "ثالث ثانوي";
+          } else {
+            classLabel = "الصف غير معروف";
+          }
 
           const response = await fetch("/api/students", {
             method: "POST",
@@ -103,11 +95,11 @@ export default function ImportStudentData() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              number: number,
-              name: name,
+              number,
+              name,
               class: classLabel,
-              year: year,
-              parentNumber: parentNumber,
+              year,
+              parentNumber,
               schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
             }),
           });
@@ -119,11 +111,75 @@ export default function ImportStudentData() {
           const data = await response.json();
           console.log(data);
         });
+
+        await Promise.all(promises);
       } catch (error) {
-        console.log(error);
+        console.error("Error:", error);
       } finally {
         setLoading(false);
+        // redirect to the students page
+        window.location.href = "/esteathan/dashboard/deleteData";
       }
+
+      // try {
+      //   jsonData.forEach(async (student) => {
+      //     let [parentNumber, year, classNumber, name, number] = student;
+
+      //     parentNumber = parentNumber.toString();
+      //     year = year.toString();
+      //     classNumber = classNumber.toString();
+      //     name = name.toString();
+      //     number = number.toString();
+
+      //     let classLabel;
+      //     switch (classNumber) {
+      //       case "1314":
+      //         classLabel = "أول ثانوي";
+      //         break;
+      //       case "1416":
+      //         classLabel = "ثاني ثانوي";
+      //         break;
+      //       case "1516":
+      //         classLabel = "ثالث ثانوي";
+      //         break;
+      //       default:
+      //         classLabel = "Unknown class";
+      //     }
+
+      //     // console.log({
+      //     //   number: number,
+      //     //   name: name,
+      //     //   class: classLabel,
+      //     //   year: year,
+      //     //   parentNumber: parentNumber,
+      //     //   schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
+      //     // });
+
+      //     const response = await fetch("/api/students", {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({
+      //         number: number,
+      //         name: name,
+      //         class: classLabel,
+      //         year: year,
+      //         parentNumber: parentNumber,
+      //         schoolId: user.schoolId, // Assuming user.schoolId is available in this scope
+      //       }),
+      //     });
+
+      //     if (!response.ok) {
+      //       throw new Error(`HTTP error! status: ${response.status}`);
+      //     }
+
+      //     const data = await response.json();
+      //     console.log(data);
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
     };
     reader.readAsArrayBuffer(file);
   };

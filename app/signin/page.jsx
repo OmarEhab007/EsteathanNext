@@ -33,7 +33,7 @@ export default function Login() {
       password: credentials.password,
     });
     if (result.error) {
-      setError(result.error);
+      setError("الرقم الوزاري او كلمة المرور غير صحيحة");
     } else {
       // console.log(result);
       window.location.href = "/esteathan/dashboard";
@@ -90,7 +90,6 @@ export default function Login() {
                   <h2 className="text-center"> تسجيل الدخول </h2>
                 </div>
                 <div className="card-body">
-                  {error && <p>{error}</p>}
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                       <label htmlFor="userName" className="form-label">
@@ -118,6 +117,11 @@ export default function Login() {
                         onChange={handleInputChange}
                       />
                     </div>
+                    {error && (
+                      <div className="alert alert-danger" role="alert">
+                        {error}
+                      </div>
+                    )}
                     <div className="mb-3 text-center ">
                       <button
                         type="submit"
