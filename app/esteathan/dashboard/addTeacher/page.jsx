@@ -66,6 +66,16 @@ export default function AddTeacher() {
       return;
     }
 
+    const transformPhoneNumber = (phone) => {
+      if (phone.startsWith('0')) {
+        return '966' + phone.substring(1);
+      } else if (!phone.startsWith('966')) {
+        return '966' + phone;
+      }
+      return phone;
+    };
+    const transformedPhone = transformPhoneNumber(phone);
+
     setLoading(true);
 
     try {
@@ -76,7 +86,7 @@ export default function AddTeacher() {
         },
         body: JSON.stringify({
           name: teacherName,
-          phone: phone,
+          phone: transformedPhone,
           schoolId: user.schoolId,
         }),
       });
@@ -143,7 +153,7 @@ export default function AddTeacher() {
               <div className="form-group">
                 <label htmlFor="teacherId"> رقم الجوال </label>
                 <input
-                  type="text"
+                  type="number"
                   className={`form-control border-primary ${
                     errors.phoneError ? "is-invalid" : ""
                   }`}
