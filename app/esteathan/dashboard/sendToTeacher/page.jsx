@@ -12,6 +12,7 @@ export default function SendToTeasher() {
   const [student, setStudent] = useState(null);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [messages, setMessages] = useState({});
   // const [user, setUser] = useState(null);
   const { data: session } = useSession();
   const [today, setToday] = useState(new Date());
@@ -149,9 +150,16 @@ export default function SendToTeasher() {
     setSelectedTeacher(result.data);
   };
   // console.log(selectedTeacher?.phone);
-  const handleInputChange = (event) => {
-    setMessage(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setMessage(event.target.value);
+  // };
+
+  const handleInputChange = (event, id) => {
+  setMessages(prevMessages => ({
+    ...prevMessages,
+    [id]: event.target.value
+  }));
+};
 
   function handleCancel(event, formId) {
     // Prevent form submission
@@ -303,8 +311,8 @@ export default function SendToTeasher() {
                               className="form-control"
                               id="exampleFormControlTextarea1"
                               rows="3"
-                              value={message}
-                              onChange={handleInputChange}
+                              value={messages[form.id] || ''}
+                              onChange={(event) => handleInputChange(event, form.id)}
                               required
                             ></textarea>
                           </div>
