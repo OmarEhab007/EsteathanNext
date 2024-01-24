@@ -4,41 +4,65 @@ import React from "react";
 import { UploadButton, UploadDropzone } from "../../../../utils/uploadthing";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import useStore from "../../../../lib/store";
 
 export default function SubscriptionRenow() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [plan, setPlan] = useState(null);
-  const [school, setSchool] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [errorUpload, setErrorUpload] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  // const [school, setSchool] = useState(null);
   const { data: session } = useSession();
   const user_id = session?.user?.id;
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const today = new Date();
-      if (session?.user?.id) {
-        const userResponse = await fetch(`/api/user/${session.user.id}`);
-        const userData = await userResponse.json();
-        setUser(userData.data);
-        console.log(userData.data);
+  const {
+    forms,
+    user,
+    schoolId,
+    school,
+    subscription,
+    setForms,
+    setUser,
+    setSchoolId,
+    setSchool,
+    setSubscription,
+    loading,
+    bill,
+  } = useStore();
 
-        const schoolResponse = await fetch(
-          `/api/school/${userData.data.schoolId}`
-        );
-        const schoolData = await schoolResponse.json();
-        console.log(schoolData.data[0]);
-        setSchool(schoolData.data[0]);
-
-        const subscriptionResponse = await fetch(
-          `/api/subscription/${schoolData.data[0].subscriptionId}`
-        );
-        const subscriptionData = await subscriptionResponse.json();
-        console.log(subscriptionData.data);
-      }
-    };
-    fetchUserData();
-  }, [session]);
-
-  const handleRenewSubscription = async () => {};
+  const handleRenewSubscription = async (e) => {
+    e.preventDefault();
+    console.log(bill);
+    try{
+    const resposne = await fetch("/api/bill", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: "renew",
+        schoolId: bill.schoolId,
+        schoolName: bill.schoolName,
+        managerName: bill.managerName,
+        phone: bill.phone,
+        district: bill.district,
+        office: bill.office,
+        attachment: fileUrl,
+        plan: plan,
+        history: "1",
+      }),
+    });
+    const { data } = await resposne.json();
+      console.log(data);
+      setSuccess(true);
+    }
+    catch(error){
+      console.log(error);
+      setError(true);
+    }
+  };
 
   return (
     <>
@@ -62,6 +86,7 @@ export default function SubscriptionRenow() {
                             name="exampleRadios"
                             id="exampleRadios1"
                             value="oneSemester"
+                            onChange={(e) => setPlan(e.target.value)}
                           />
                           <label class="form-check-label" for="exampleRadios1">
                             فصل دراسي واحد
@@ -74,7 +99,8 @@ export default function SubscriptionRenow() {
                             type="radio"
                             name="exampleRadios"
                             id="exampleRadios2"
-                            value="twoSemesters"
+                            value="twoSemester"
+                            onChange={(e) => setPlan(e.target.value)}
                           />
                           <label class="form-check-label" for="exampleRadios2">
                             فصلان دراسيان
@@ -88,6 +114,7 @@ export default function SubscriptionRenow() {
                             name="exampleRadios"
                             id="exampleRadios3"
                             value="fullYear"
+                            onChange={(e) => setPlan(e.target.value)}
                           />
                           <label class="form-check-label" for="exampleRadios3">
                             سنة دراسية كاملة
@@ -126,6 +153,7 @@ export default function SubscriptionRenow() {
                               setFileUrl(res[0].url);
                               // alert("تم رفع الملف بنجاح");
                               // setUploading(true);
+                              setUploading(true);
                             }
                             console.log(fileUrl);
                           }}
@@ -133,8 +161,21 @@ export default function SubscriptionRenow() {
                             // Do something with the error.
                             // alert(`حدث خطأ! ${error.message}`);
                             // setErrorUpload(true);
+                            setErrorUpload(true);
                           }}
                         />
+                        {uploading && (
+                          // create p for success uploading message
+                          <div className="alert alert-success" role="alert">
+                            تم رفع الملف بنجاح
+                          </div>
+                        )}
+                        {errorUpload && (
+                          // create p for error uploading message
+                          <div className="alert alert-danger" role="alert">
+                            حدث خطأ! الرجاء المحاولة مرة اخري
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -148,6 +189,16 @@ export default function SubscriptionRenow() {
                       </button>
                     </div>
                   </form>
+                  {success && (
+                    <div className="alert alert-success m-3" role="alert">
+                      تم ارسال طلب التجديد بنجاح
+                    </div>
+                  )}
+                  {error && (
+                    <div className="alert alert-danger" role="alert">
+                      حدث خطأ! الرجاء المحاولة مرة اخري
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

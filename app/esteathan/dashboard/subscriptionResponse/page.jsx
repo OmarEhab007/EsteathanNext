@@ -33,139 +33,164 @@ export default function SubscriptionResponce() {
 
   // handle bill accept
   const handleBillAccept = async (bill) => {
-    // send put request to api/bill/[id]
-    const response = await fetch(`/api/bill/${bill.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...bill,
-        status: "accepted",
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
 
-    // generate password from 10 char
-    const password = Array(4)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 4))
-      .join("");
-    setPassword(password);
-    console.log(password);
-    console.log(bill);
+    if (bill.status === "renew") {
+      const response = await fetch(`/api/subscriptionRenew`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          billId: bill.id, // Replace with the actual user id
+          plan: bill.plan,
+          schoolId: bill.schoolId,
+          // Replace with the actual subscription id
+        }),
+      });
 
-    // create user in db
-    const userResponse = await fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: bill.schoolName,
-        password: password,
-        role: "manager",
-        schoolId: bill.schoolId,
-        phone: bill.phone,
-        status: "active",
-        lastLogin: new Date(),
-      }),
-    });
-    const userData = await userResponse.json();
-    console.log(userData);
+      if (!response.ok) {
+        throw new Error("Failed to renew subscription");
+      }
 
-    // map plan to date range start and end
+      const data = await response.json();
+      console.log(data);
+    } else {
 
-    let startDate = new Date();
-    let endDate = new Date();
+      // send put request to api/bill/[id]
+      const response = await fetch(`/api/bill/${bill.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...bill,
+          status: "accepted",
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
 
-    if (bill.plan === "oneSemester") {
-      endDate.setMonth(endDate.getMonth() + 3);
-      // console.log(dateRange);
-      setStartDate(startDate);
-      setEndDate(endDate);
-    } else if (bill.plan === "fullYear") {
-      endDate.setMonth(endDate.getMonth() + 12);
-      // console.log(dateRange);
-      setStartDate(startDate);
-      setEndDate(endDate);
-    } else if (bill.plan === "twoSemester") {
-      endDate.setMonth(endDate.getMonth() + 6);
-      // console.log(dateRange);
-      setStartDate(startDate);
-      setEndDate(endDate);
-    }
+      // generate password from 10 char
+      const password = Array(4)
+        .fill(0)
+        .map(() => Math.floor(Math.random() * 4))
+        .join("");
+      setPassword(password);
+      console.log(password);
+      console.log(bill);
 
-    // create subscription in db
-    const subscriptionResponse = await fetch("/api/subscription", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        schoolId: bill.schoolId,
-        plan: bill.plan,
-        status: "active",
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        billId: bill.id,
-      }),
-    });
-    const subscriptionData = await subscriptionResponse.json();
-    console.log(subscriptionData.data);
-    setSubscription(subscriptionData.data);
+      // create user in db
+      const userResponse = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bill.schoolName,
+          password: password,
+          role: "manager",
+          schoolId: bill.schoolId,
+          phone: bill.phone,
+          status: "active",
+          lastLogin: new Date(),
+        }),
+      });
+      const userData = await userResponse.json();
+      console.log(userData);
 
-    // create school
-    const schoolResponse = await fetch("/api/school", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: bill.schoolName,
-        phone: bill.phone,
-        schoolId: bill.schoolId,
-        district: bill.district,
-        office: bill.office,
-        subscriptionId: subscriptionData.data.id,
-      }),
-    });
-    const schoolData = await schoolResponse.json();
-    console.log(schoolData);
+      // map plan to date range start and end
 
-    // send message to user with schoolId and password
-    fetch("/api/sentMessageToTeacher", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        parentNumber: bill.phone, // Replace with parentPhone
-        message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
+      let startDate = new Date();
+      let endDate = new Date();
+
+      if (bill.plan === "oneSemester") {
+        endDate.setMonth(endDate.getMonth() + 3);
+        // console.log(dateRange);
+        setStartDate(startDate);
+        setEndDate(endDate);
+      } else if (bill.plan === "fullYear") {
+        endDate.setMonth(endDate.getMonth() + 12);
+        // console.log(dateRange);
+        setStartDate(startDate);
+        setEndDate(endDate);
+      } else if (bill.plan === "twoSemester") {
+        endDate.setMonth(endDate.getMonth() + 6);
+        // console.log(dateRange);
+        setStartDate(startDate);
+        setEndDate(endDate);
+      }
+
+      // create subscription in db
+      const subscriptionResponse = await fetch("/api/subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          schoolId: bill.schoolId,
+          plan: bill.plan,
+          status: "active",
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+          billId: bill.id,
+        }),
+      });
+      const subscriptionData = await subscriptionResponse.json();
+      console.log(subscriptionData.data);
+      setSubscription(subscriptionData.data);
+
+      // create school
+      const schoolResponse = await fetch("/api/school", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bill.schoolName,
+          phone: bill.phone,
+          schoolId: bill.schoolId,
+          district: bill.district,
+          office: bill.office,
+          subscriptionId: subscriptionData.data.id,
+        }),
+      });
+      const schoolData = await schoolResponse.json();
+      console.log(schoolData);
+
+      // send message to user with schoolId and password
+      fetch("/api/sentMessageToTeacher", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          parentNumber: bill.phone, // Replace with parentPhone
+          message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
     الرقم الوزاري:  ${bill.schoolId} 
     وكلمة المرور:  ${password}
     لتسجيل الدخول اضغط على الرابط التالي:
     https://www.onetex.com.sa/signin
     `,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to send the message");
-        }
-        return res.json();
+        }),
       })
-      .then((data) => {
-        console.log(data);
-        // setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-      .then(() => {
-        window.location.reload();
-      });
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Failed to send the message");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          // setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        })
+        .then(() => {
+          window.location.reload();
+        });
+
+    } 
   };
 
   // handle bill reject
@@ -212,9 +237,15 @@ export default function SubscriptionResponce() {
 
           <div className="row justify-content-center align-items-center">
             {bills
-              .filter((bill) => bill.status === "pending")
+              .filter(
+                (bill) => bill.status === "pending" || bill.status === "renew"
+              )
               .map((bill) => (
-                <div className="col-12 col-lg-6 mb-3">
+                <div
+                  className={`col-12 col-lg-6 mb-3 ${
+                    bill.status === "renew" ? "bg-warning" : ""
+                  }`}
+                >
                   <div className="card">
                     <div className="card-header">
                       <div className="row">
