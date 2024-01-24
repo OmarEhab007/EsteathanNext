@@ -196,7 +196,7 @@ export default function SendRequests() {
       },
       body: JSON.stringify({
         parentNumber: parentNumber, // Replace with parentPhone
-        message: reasonText,
+        message: `تم رفض طلب الاستئذان بسبب ${reasonText}`,
       }),
     })
       .then((res) => res.json())
