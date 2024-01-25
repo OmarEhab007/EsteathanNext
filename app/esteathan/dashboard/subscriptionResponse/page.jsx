@@ -242,11 +242,12 @@ export default function SubscriptionResponce() {
               )
               .map((bill) => (
                 <div
-                  className={`col-12 col-lg-6 mb-3 ${
-                    bill.status === "renew" ? "bg-warning" : ""
-                  }`}
-                >
-                  <div className="card">
+                  className={`col-12 col-lg-6 mb-3 `
+                
+                }
+                  >
+                  <div className="card position-relative">
+                    {bill.status === "renew" ? <span className="badge bg-danger p-2 position-absolute top-0 end-0">تجديد الاشتراك</span> : <span className="badge bg-success p-2 position-absolute top-0 end-0"> جديد </span>}
                     <div className="card-header">
                       <div className="row">
                         <div className="col-3">

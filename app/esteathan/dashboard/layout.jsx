@@ -361,6 +361,14 @@ export default function RootLayout({ children }) {
                           </Link>
                         </li>
                         <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptionRenew"
+                          >
+                            تجديد الاشتراك
+                          </Link>
+                        </li>
+                        <li>
                           <hr class="dropdown-divider" />
                         </li>
                         <li className="">
@@ -431,6 +439,14 @@ export default function RootLayout({ children }) {
                         الفواتير
                       </Link>
                     </li>
+                    <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptionRenew"
+                          >
+                            تجديد الاشتراك
+                          </Link>
+                        </li>
                     <li>
                       <hr class="dropdown-divider" />
                     </li>
