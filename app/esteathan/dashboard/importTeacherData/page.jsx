@@ -76,15 +76,18 @@ export default function ImportTeacherData() {
 
       // console.log(jsonData);
 
-      try {
-        setLoading(true);
-        const promises = jsonData.map(async (teacher) => {
-          let phoneNumber = teacher.find(
-            (cell) => typeof cell === "string" && cell.startsWith("966")
+      const promises = jsonData.map(async (teacher) => {
+        try {
+          setLoading(true);
+          let phoneNumber = teacher.find((cell) =>
+            cell.toString().startsWith("966")
           );
 
           if (phoneNumber) {
             // phoneNumber += "123"; // Add your number here
+
+            const name = teacher[1].toString();
+            const phone = phoneNumber.toString();
 
             const response = await fetch("/api/teacher/", {
               method: "POST",
@@ -92,8 +95,8 @@ export default function ImportTeacherData() {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                name: teacher[1], // Adjust these indices based on your data
-                phone: phoneNumber, // Adjust these indices based on your data
+                name: name, // Adjust these indices based on your data
+                phone: phone, // Adjust these indices based on your data
                 schoolId: user.schoolId,
               }),
             });
@@ -105,21 +108,27 @@ export default function ImportTeacherData() {
             const data = await response.json();
             console.log(data);
           }
-        });
+        } catch (error) {
+          console.error(`Failed to add teacher: ${error}`);
+        }
+      });
 
-        await Promise.all(promises);
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-        window.location.href = "/esteathan/dashboard/deleteData";
-      }
+      await Promise.all(promises);
+      setLoading(false);
+      window.location.href = "/esteathan/dashboard/deleteData";
 
       // jsonData.forEach((teacher) => {
-      //   let phoneNumber = teacher.find(
-      //     (cell) => typeof cell === "string" && cell.startsWith("966")
+      //   let phoneNumber = teacher.find((cell) =>
+      //     cell.toString().startsWith("966")
       //   );
-      //   phoneNumber += "123"; // Add your number here
+
+      //   // if (phoneNumber) {
+      //   console.log(
+      //     `name: ${teacher[1]}, phone: ${phoneNumber}, schoolId: ${user.schoolId}`
+      //   );
+
+      //   const name = teacher[1].toString();
+      //   const phone = phoneNumber.toString();
 
       //   fetch("/api/teacher/", {
       //     method: "POST",
@@ -127,16 +136,11 @@ export default function ImportTeacherData() {
       //       "Content-Type": "application/json",
       //     },
       //     body: JSON.stringify({
-      //       name: teacher[1], // Adjust these indices based on your data
-      //       phone: phoneNumber, // Adjust these indices based on your data
+      //       name: name, // Adjust these indices based on your data
+      //       phone: phone, // Adjust these indices based on your data
       //       schoolId: user.schoolId,
       //     }),
-      //   })
-      //     .then((response) => response.json())
-      //     .then((data) => console.log(data))
-      //     .catch((error) => {
-      //       console.error("Error:", error);
-      //     });
+      //   });
       // });
     };
 
