@@ -515,19 +515,67 @@ export default function Subscriptions() {
                                     عرض الفاتورة{" "}
                                   </button>
                                   <button
-                                    className="btn alert-danger esteathan-btn m-2"
-                                    onClick={
-                                      // delete subscription
-                                      () => {
-                                        handelDeleteSchool(
-                                          correspondingBill?.schoolId
-                                        );
-                                      }
+                                    type="button"
+                                    class="btn btn-danger m-2"
+                                    data-bs-toggle="modal"
+                                    data-bs-target={
+                                      "#exampleModal" + subscription?.id
                                     }
                                   >
-                                    {" "}
-                                    حذف الاشتراك{" "}
+                                    حذف الاشتراك
                                   </button>
+                                  <div
+                                    class="modal fade"
+                                    id={"exampleModal" + subscription?.id}
+                                    tabindex="-1"
+                                    aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true"
+                                  >
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5
+                                            class="modal-title"
+                                            id="exampleModalLabel"
+                                          >
+                                            مدرسة {correspondingBill.schoolName}
+                                          </h5>
+                                          <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                          ></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          هل انت متأكد من حذف الاشتراك ؟
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                          <button
+                                            type="button"
+                                            class="btn btn-success m-auto"
+                                            data-bs-dismiss="modal"
+                                          >
+                                            الغاء
+                                          </button>
+                                          <button
+                                            className="btn  btn-danger m-auto"
+                                            onClick={
+                                              // delete subscription
+                                              () => {
+                                                handelDeleteSchool(
+                                                  correspondingBill?.schoolId
+                                                );
+                                              }
+                                            }
+                                          >
+                                            {" "}
+                                            حذف {" "}
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
