@@ -47,6 +47,94 @@ export default function RootLayout({ children }) {
 
   // const data =  getServerSession(options);
   const { data: session } = useSession();
+  // const [isInactive, setIsInactive] = useState(false);
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     signOut();
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   // Cleanup when the component is unmounted
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleUnload = () => {
+  //     localStorage.setItem("lastUnload", Date.now().toString());
+  //   };
+
+  //   window.addEventListener("unload", handleUnload);
+
+  //   // Cleanup when the component is unmounted
+  //   return () => {
+  //     window.removeEventListener("unload", handleUnload);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const lastUnload = localStorage.getItem("lastUnload");
+  //   const currentTime = Date.now();
+  //   const fiveSeconds = 5000; // 5 seconds
+
+  //   if (lastUnload && currentTime - parseInt(lastUnload) > fiveSeconds) {
+  //     signOut();
+  //   }
+  // }, []);
+
+  //   useEffect(() => {
+  //   const handleBeforeUnload = () => {
+  //     signOut();
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   // Cleanup when the component is unmounted
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
+  // useEffect(() => {
+  //   let activityTimeout;
+
+  //   const resetTimeout = () => {
+  //     setIsInactive(false); // Reset inactivity state on user activity
+  //     clearTimeout(activityTimeout);
+  //     // Set the timeout to 5 minutes (or your preferred duration)
+  //     activityTimeout = setTimeout(() => {
+  //       setIsInactive(true); // Set user as inactive after 5 minutes
+  //     }, 300000); // 5 minutes in milliseconds
+  //   };
+
+  //   // Add event listeners for different user activities
+  //   window.addEventListener("mousemove", resetTimeout);
+  //   window.addEventListener("keydown", resetTimeout);
+  //   window.addEventListener("click", resetTimeout);
+
+  //   const handleBeforeUnload = (event) => {
+  //     if (isInactive) {
+  //       // User is considered inactive, proceed with sign out
+  //       event.preventDefault();
+  //       signOut();
+  //     }
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   // Cleanup function to remove event listeners and clear timeout
+  //   return () => {
+  //     window.removeEventListener("mousemove", resetTimeout);
+  //     window.removeEventListener("keydown", resetTimeout);
+  //     window.removeEventListener("click", resetTimeout);
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //     clearTimeout(activityTimeout);
+  //   };
+  // }, [isInactive]); // Dependency array includes isInactive
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -88,7 +176,6 @@ export default function RootLayout({ children }) {
         setSubscription(subscriptionData.data);
         setStatus(subscriptionData.data.status);
 
-
         const billResponse = await fetch(
           `/api/bill/${subscriptionData.data.billId}`
         );
@@ -97,7 +184,6 @@ export default function RootLayout({ children }) {
         setBill(billData.data);
 
         if (subscriptionData.data.status === "invalid") {
-
           signOut();
         }
       }
@@ -321,7 +407,7 @@ export default function RootLayout({ children }) {
                             href="/esteathan/dashboard/subscriptions"
                           >
                             {" "}
-                             اشتراكاتنا{" "}
+                            اشتراكاتنا{" "}
                           </Link>
                         </li>
                       </ul>
@@ -358,6 +444,14 @@ export default function RootLayout({ children }) {
                             href="/esteathan/dashboard/bills"
                           >
                             الفواتير
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            class="dropdown-item"
+                            href="/esteathan/dashboard/subscriptionRenew"
+                          >
+                            تجديد الاشتراك
                           </Link>
                         </li>
                         <li>
@@ -429,6 +523,14 @@ export default function RootLayout({ children }) {
                         href="/esteathan/dashboard/bills"
                       >
                         الفواتير
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        class="dropdown-item"
+                        href="/esteathan/dashboard/subscriptionRenew"
+                      >
+                        تجديد الاشتراك
                       </Link>
                     </li>
                     <li>
