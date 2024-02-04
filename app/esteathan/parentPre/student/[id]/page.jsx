@@ -19,6 +19,7 @@ export default function Student() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [errorUpload, setErrorUpload] = useState(false);
+  const [waiteUpload, setWaiteUpload] = useState(false);
 
   const id = params.id;
   useEffect(() => {
@@ -240,11 +241,14 @@ export default function Student() {
                           },
                           allowedContent({ ready, fileTypes, isUploading }) {
                             // if (!ready) return "Checking what you allow";
-                            if (isUploading)
+                            if (isUploading) {
+                              setWaiteUpload(true);
                               return "جاري رفع الملف الرجاء الانتظار";
+                            }
                             return `بحد اقصي 4 ميجا`;
                           },
                         }}
+                        
                         className="imageUploader me-2  "
                         // add two endpoints for each type of file
                         endpoint="imageUploader"
@@ -255,6 +259,7 @@ export default function Student() {
                             setFileUrl(res[0].url);
                             // alert("تم رفع الملف بنجاح");
                             setUploading(true);
+                            setWaiteUpload(false);
                           }
                           console.log(fileUrl);
                         }}
@@ -273,8 +278,10 @@ export default function Student() {
                           },
                           allowedContent({ ready, fileTypes, isUploading }) {
                             // if (!ready) return "Checking what you allow";
-                            if (isUploading)
+                            if (isUploading) {
+                              setWaiteUpload(true);
                               return "جاري رفع الملف الرجاء الانتظار";
+                            }
                             return `بحد اقصي 8 ميجا`;
                           },
                         }}
@@ -287,6 +294,7 @@ export default function Student() {
                             setFileUrl(res[0].url);
                             // alert("Upload Completed");
                             setUploading(true);
+                            setWaiteUpload(false);
                           }
                           console.log(fileUrl);
                         }}
@@ -311,14 +319,19 @@ export default function Student() {
                       حدث خطأ! الرجاء المحاولة مرة اخري
                     </div>
                   )}
-
+                  {/*want to hide submit button on uploading file and show it again after upload success*/}
+                  {waiteUpload && (
+                    <div className="alert alert-warning" role="alert">
+                      جاري رفع الملف الرجاء الانتظار
+                    </div>
+                  )}
                   <button
                     type="submit"
                     className="btn btn-primary text-center m-auto d-block px-5 py-2"
                   >
                     {" "}
                     ارسال{" "}
-                  </button>
+                    </button>
                 </form>
               </div>
               {loading && (
