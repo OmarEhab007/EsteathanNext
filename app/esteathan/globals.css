@@ -74,6 +74,12 @@ nav a:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
+.active{
+  background-color: var(--bg-100) !important;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
 nav .navbar-brand {
   color: var(--accent-100) !important;
 }
