@@ -50,6 +50,8 @@ export default function Student() {
       setBill(billData.data);
       setPhone(billData.data.phone);
       // console.log(billData.data.phone);
+
+
     };
     fetchStudentData();
   }, [id]);
@@ -96,7 +98,23 @@ export default function Student() {
             console.log(data);
             setSuccess(true);
           });
-      });
+      })
+      .then(
+        // get request
+        () => fetch(`/api/students/counter/${id}`
+        ).then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        }
+
+      )
+      )
+
+
+
+    // const counterResponse = await fetch(`/api/students/counter/${id}`);
+    // const counterData = await counterResponse.json();
+    // console.log(counterData);
   };
 
   const handleFileChange = async (e) => {
