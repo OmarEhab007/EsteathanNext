@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "../../../../lib/db";
+import prisma from "../../../../../lib/db";
 
 // export const GET = async (
 //   req: Request,
@@ -37,7 +37,7 @@ import prisma from "../../../../lib/db";
 //     });
 //     return NextResponse.json({ message: "OK", data }, { status: 200 });
 //   } catch (error) {
-//     return NextResponse.jso(
+//     return NextResponse.json(
 //       { message: "Error", error },
 //       {
 //         status: 500,
@@ -46,21 +46,49 @@ import prisma from "../../../../lib/db";
 //   }
 // };
 
-// update student
-// export const PUT = async (
+export const PUT = async(
+  req: Request,
+  { params }: { params: { schoolId: string } }
+) => {
+  try {
+    const schoolId = params.schoolId;
+    const { maxRequestsPerStudent } = await req.json();
+    const data = await prisma.school.update({
+      where: {
+        schoolId,
+      },
+      data: {
+        maxRequestsPerStudent: maxRequestsPerStudent,
+      },
+    });
+    return NextResponse.json({ message: "OK", data }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error", error },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+
+
+// // update student
+// export const GET = async (
 //   req: Request,
-//   { params }: { params: { id : string } }
+//   { params }: { params: { schoolId : string } }
 // ) => {
 //   try {
-//     const id = params.id;
-//     const body = await req.json();
-//     const data = await prisma.student.update({
+//     const schoolId = params.schoolId;
+//     const data = await prisma.school.update({
 //       where: {
-//         id,
+//         schoolId,
 //       },
 //       data: {
-        
-//         requestCount: { increment: 1 },
+//         requestCount: {
+//           increment: 1,
+//         },
 //       },
 //     });
 //     return NextResponse.json({ message: "OK", data }, { status: 200 });
@@ -73,23 +101,3 @@ import prisma from "../../../../lib/db";
 //     );
 //   }
 // };
-
-// update all students counter to 0
-export const GET = async (req: Request) => {
-  try {
-    
-    const data = await prisma.student.updateMany({
-      data: {
-        requestCount: 0,
-      },
-    });
-    return NextResponse.json({ message: "OK", data }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error", error },
-      {
-        status: 500,
-      }
-    );
-  }
-};

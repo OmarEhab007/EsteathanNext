@@ -16,6 +16,7 @@ export default function Home() {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [counterError, setCounterError] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [school, setSchool] = useState(null);
 
   // get all schools
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Home() {
   const handleSearch = async (event) => {
     event.preventDefault();
     setLoading(true);
-    console.log(selectedSchool);
+    // console.log(selectedSchool);
 
     try {
       const response = await fetch(`/api/students/${searchNumber}`);
@@ -46,9 +47,15 @@ export default function Home() {
       const student = result.data;
       if (student) {
         setStudentId(student.id);
+        const school = schools.find(school => school.schoolId === student.schoolId);
+      if (school) {
+        setSchool(school);
+        // console.log(school);
       }
-      console.log(student.requestCount);
-      if (student.requestCount >= 5) {
+
+      }
+      // console.log(student.requestCount);
+      if (student.requestCount >= school?.maxRequestsPerStudent) {
         setCounterError(true);
         setCounter(student.requestCount);
       }

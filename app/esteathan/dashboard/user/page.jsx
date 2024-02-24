@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import useStore from "../../../../lib/store";
+import { parse } from "path";
 
 export default function User() {
   // const [user, setUser] = useState(null);
@@ -12,6 +13,7 @@ export default function User() {
   const [newPhone, setNewPhone] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [newCounter, setNewCounter] = useState(0);
   const { user, school, students, teachers, setStudents, setTeachers, subscription, bill } =
     useStore();
 
@@ -124,6 +126,36 @@ export default function User() {
     window.location.reload();
 
     setLoading(false);
+  };
+
+  const handleCounterChange = async () => {
+    setLoading(true);
+    // update user password
+    const userResponse = await fetch(`/api/school/counter/${school.schoolId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        maxRequestsPerStudent: parseInt(newCounter),
+      }),
+    });
+    const schoolData = await userResponse.json();
+    console.log(schoolData);
+
+    window.location.reload();
+
+    setLoading(false);
+  };
+
+  const resetCounters = async () => {
+    setLoading(true);
+    const response = await fetch(`/api/school/counter`, {
+      method: "GET",
+    });
+    const data = await response.json();
+    console.log(data);
+    window.location.reload();
   };
 
   return (
@@ -482,6 +514,106 @@ export default function User() {
                       </div>
                     </div>
                   </div>
+
+                  <div className="group overflow-hidden text-center mb-2">
+                    <div className="row justify-content-center align-items-center">
+                      <div className="col-8 pe-0 col-sm-5">
+                        <div>
+                          <p className=" fs-5 text-center mb-0">
+                            {" "}
+                            مرات الاستئذان{" "}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-1 ps-0">
+                        <div>
+                          <p className="text-start text-sm-center mb-0"> : </p>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-6 ">
+                        <div>
+                          <p className="text-center mb-0 pass">
+                            {school?.maxRequestsPerStudent}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row justify-content-center align-items-center position-relative">
+                      {/* loading */}
+                      <div className="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center loading d-none">
+                        <div
+                          className="spinner-border text-success "
+                          role="status"
+                        ></div>
+                      </div>
+
+                      <div className="col-8 pe-0 col-sm-5">
+                        <div className="text-center">
+                          <button
+                            className="btn esteathan-btn"
+                            onClick={handleCounterChange}
+                          >
+                            {" "}
+                          تغير مرات الاستئذان{" "}
+                          </button>
+                        </div>
+                      </div>
+                      <div className="col-1 ps-0">
+                        <div>
+                          <p className="text-start text-sm-center mb-0 pe-0">
+                            {" "}
+                            :{" "}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-6 ">
+                        <div className="text-cnter">
+                          <input
+                            type="text"
+                            className="form-control text-center"
+                            placeholder={school?.maxRequestsPerStudent}
+                            onChange={(e) => setNewCounter(e.target.value)}
+                          />
+                    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {user?.role === "admin" ? (
+                    <div className="group overflow-hidden text-center mb-2">
+                      <div className="row justify-content-center align-items-center">
+                        <div className="col-8 pe-0 col-sm-5">
+                          <div>
+                            <p className=" fs-5 text-center mb-0">
+                              {" "}
+                              تصفير عداد الطلبات{" "}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-1 ps-0">
+                          <div>
+                            <p className="text-start text-sm-center mb-0"> : </p>
+                          </div>
+                        </div>
+                        <div className="col-12 col-sm-6 ">
+                          <div>
+                            <button
+                            className="btn esteathan-btn"
+                            onClick={resetCounters}
+                          >
+                              {" "}
+                              تصفير عداد الطلبات{" "}
+                          {" "}
+                          </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                          
+                  
                 </div>
               </div>
             </div>

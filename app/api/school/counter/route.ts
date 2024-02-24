@@ -78,9 +78,9 @@ import prisma from "../../../../lib/db";
 export const GET = async (req: Request) => {
   try {
     
-    const data = await prisma.student.updateMany({
+    const data = await prisma.school.updateMany({
       data: {
-        requestCount: 0,
+        maxRequestsPerStudent: 5,
       },
     });
     return NextResponse.json({ message: "OK", data }, { status: 200 });
