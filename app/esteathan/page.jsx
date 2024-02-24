@@ -139,7 +139,7 @@ export default function Home() {
                         لقد تجاوزت الحد المسموح لطلبات الاستئذان
                       </p>
                       <p className="text-danger">
-                        عدد الطلبات المسموح بها هو {school?.maxRequestsPerStudent} ولقد قمت بطلب {counter} طلب
+                        عدد الطلبات المسموح بها هو {selectedSchool?.maxRequestsPerStudent} ولقد قمت بطلب {counter} طلب
                       </p>
                     </div>
                   ) :
