@@ -151,7 +151,7 @@ export default function ParentPre() {
                     window.location.href = `/esteathan/parentPre/student/${id}`;
                   } else {
                     // If the input value is incorrect, show an error message
-                    setErrorMessage("The verification code is incorrect.");
+                    setErrorMessage("رمز التحقق الخاص بك غير صحيح");
                   }
                 }}
               >
@@ -160,6 +160,7 @@ export default function ParentPre() {
               </button>
               {/* </a> */}
             </form>
+            
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           </div>
         </div>
