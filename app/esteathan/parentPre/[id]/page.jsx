@@ -20,6 +20,7 @@ export default function ParentPre() {
   const [isVerificationSent, setIsVerificationSent] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
   // console.log(id);
 
   // const user_id = session?.user?.id;
@@ -53,8 +54,8 @@ export default function ParentPre() {
         const result = await response.json();
         // console.log(result);
         const student = result.data;
-        // console.log(student);
-        setStudent(student);
+        console.log(student);
+        // setStudent(student);
         setParentPhone(student.parentNumber);
         // get student school name 
         const schoolResponse = await fetch(
@@ -150,7 +151,7 @@ export default function ParentPre() {
                     window.location.href = `/esteathan/parentPre/student/${id}`;
                   } else {
                     // If the input value is incorrect, show an error message
-                    setErrorMessage("The verification code is incorrect.");
+                    setErrorMessage("رمز التحقق الخاص بك غير صحيح");
                   }
                 }}
               >
@@ -159,6 +160,7 @@ export default function ParentPre() {
               </button>
               {/* </a> */}
             </form>
+            
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           </div>
         </div>

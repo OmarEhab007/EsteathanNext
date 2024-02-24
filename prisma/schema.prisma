@@ -12,12 +12,13 @@ datasource db {
 
 model Student {
   id           String   @id @default(cuid()) @map("_id")
-  number       String  
+  number       String
   name         String
   class        String
   year         String
   parentNumber String
   schoolId     String
+  requestCount Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -50,15 +51,16 @@ model Form {
 }
 
 model school {
-  id             String   @id @default(cuid()) @map("_id")
-  schoolId       String   @unique
-  name           String
-  district       String
-  office         String
-  phone          String
-  subscriptionId String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id                    String   @id @default(cuid()) @map("_id")
+  schoolId              String   @unique
+  name                  String
+  district              String
+  office                String
+  phone                 String
+  subscriptionId        String
+  maxRequestsPerStudent Int      @default(5) // New field with default value
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model subscription {
@@ -68,7 +70,7 @@ model subscription {
   startDate DateTime
   endDate   DateTime
   schoolId  String
-  billId    String @unique
+  billId    String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
