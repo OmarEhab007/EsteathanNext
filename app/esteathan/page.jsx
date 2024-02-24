@@ -17,6 +17,7 @@ export default function Home() {
   const [counterError, setCounterError] = useState(false);
   const [counter, setCounter] = useState(0);
   // const [school, setSchool] = useState(null);
+  
 
   // get all schools
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function Home() {
       if (student) {
         setStudentId(student.id);
         const school = schools.find(school => school.schoolId === student.schoolId);
+        setSelectedSchool(school);
       // if (school) {
       //   // setSchool(school);
       //   // console.log(school);
@@ -137,7 +139,7 @@ export default function Home() {
                         لقد تجاوزت الحد المسموح لطلبات الاستئذان
                       </p>
                       <p className="text-danger">
-                        عدد الطلبات المسموح بها هو 5 ولقد قمت بطلب {counter} طلب
+                        عدد الطلبات المسموح بها هو {school?.maxRequestsPerStudent} ولقد قمت بطلب {counter} طلب
                       </p>
                     </div>
                   ) :

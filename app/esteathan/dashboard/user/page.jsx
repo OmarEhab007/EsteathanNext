@@ -150,7 +150,7 @@ export default function User() {
 
   const resetCounters = async () => {
     setLoading(true);
-    const response = await fetch(`/api/school/counter`, {
+    const response = await fetch(`/api/students/counter`, {
       method: "GET",
     });
     const data = await response.json();
