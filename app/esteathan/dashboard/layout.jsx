@@ -16,6 +16,7 @@ import { Providers } from "../../../components/provider";
 import { useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import useStore from "../../../lib/store";
+import { usePathname } from "next/navigation";
 // import { options } from "../../../app/api/auth/[...nextauth]/options";
 
 // const inter = Inter({ subsets: ["latin"] });
