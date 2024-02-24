@@ -16,7 +16,7 @@ export default function Home() {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [counterError, setCounterError] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [school, setSchool] = useState(null);
+  // const [school, setSchool] = useState(null);
 
   // get all schools
   useEffect(() => {
@@ -48,17 +48,17 @@ export default function Home() {
       if (student) {
         setStudentId(student.id);
         const school = schools.find(school => school.schoolId === student.schoolId);
-      if (school) {
-        setSchool(school);
-        // console.log(school);
-      }
+      // if (school) {
+      //   // setSchool(school);
+      //   // console.log(school);
+      // }
 
-      }
-      // console.log(student.requestCount);
-      if (student.requestCount >= school?.maxRequestsPerStudent) {
+      if (student.requestCount >= school.maxRequestsPerStudent) {
         setCounterError(true);
         setCounter(student.requestCount);
       }
+      }
+      // console.log(student.requestCount);
 
     } catch (error) {
       // Handle errors here
