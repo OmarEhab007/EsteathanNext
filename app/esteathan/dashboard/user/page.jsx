@@ -373,7 +373,7 @@ export default function User() {
                         </div>
                       </div>
                       <div className="col-12 col-sm-6 ">
-                        <div className="text-cnter">
+                        <div className="text-center">
                           <input
                             type="text"
                             className="form-control text-center"
@@ -655,7 +655,7 @@ export default function User() {
                         <div className="col-12 col-sm-6 ">
                           <div>
                             <button
-                              className="btn esteathan-btn"
+                              className="btn btn-danger"
                               onClick={resetCounters}
                             >
                               {" "}
@@ -664,12 +664,12 @@ export default function User() {
                           </div>
                         </div>
                       </div>
-                      <div className="row justify-content-center align-items-center">
+                      <div className="row justify-content-center align-items-center pb-2">
                         <div className="col-12">
-                          <h2>First Semester</h2>
+                          <h2> الفصل الأول </h2>
                         </div>
-                        <div className="col-4">
-                          <label>Name:</label>
+                        <div className="col-lg-4 col-sm-6 ">
+                          <label>الاسم:</label>
                           <input
                             type="text"
                             className="form-control"
@@ -679,8 +679,8 @@ export default function User() {
                             placeholder="FS-2021-2022"
                           />
                         </div>
-                        <div className="col-4">
-                          <label>Start Date:</label>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
                           <input
                             type="date"
                             className="form-control"
@@ -689,8 +689,8 @@ export default function User() {
                             }
                           />
                         </div>
-                        <div className="col-4">
-                          <label>End Date:</label>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
                           <input
                             type="date"
                             className="form-control"
@@ -700,12 +700,12 @@ export default function User() {
                           />
                         </div>
                       </div>
-                      <div className="row justify-content-center align-items-center">
+                      <div className="row justify-content-center align-items-center pb-2">
                         <div className="col-12">
-                          <h2>Second Semester</h2>
+                          <h2> الفصل الثاني </h2>
                         </div>
-                        <div className="col-4">
-                          <label>Name:</label>
+                        <div className="col-lg-4 col-sm-6">
+                          <label>الاسم:</label>
                           <input
                             type="text"
                             className="form-control"
@@ -715,8 +715,8 @@ export default function User() {
                             placeholder="SS-2021-2022"
                           />
                         </div>
-                        <div className="col-4">
-                          <label>Start Date:</label>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
                           <input
                             type="date"
                             className="form-control"
@@ -725,8 +725,44 @@ export default function User() {
                             }
                           />
                         </div>
-                        <div className="col-4">
-                          <label>End Date:</label>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterEndDate(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row justify-content-center align-items-center pb-2">
+                        <div className="col-12">
+                          <h2> الفصل الثالث </h2>
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label>الاسم:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterName(e.target.value)
+                            }
+                            placeholder="SS-2021-2022"
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterStartDate(e.target.value)
+                            }
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
                           <input
                             type="date"
                             className="form-control"
@@ -740,9 +776,9 @@ export default function User() {
                         <div className="col-12">
                           <button
                             onClick={changeDates}
-                            className="btn btn-primary"
+                            className="btn esteathan-btn"
                           >
-                            Apply Changes
+                             تأكيد
                           </button>
                         </div>
                       </div>
