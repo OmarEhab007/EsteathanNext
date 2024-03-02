@@ -48,6 +48,17 @@ export default function Home() {
                     اشتراك جديد
                   </Link>
                 </div>
+                <div className="my-3 text-center">
+                  <a
+                    href="https://wa.me/+966545894287"
+                    target="_blank"
+                    className="text-center m-auto"
+                  >
+                    <button class="button-75 m-auto" role="button">
+                      <span class="text">تواصل معنا</span>
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -68,7 +79,7 @@ export default function Home() {
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك البرونزي </h5>
                     <p className="card-text">
-                      يمكنك الاشتراك لمدة فصل دراسي واحد   
+                      اشترك لمدة فصل دراسي واحد   
                     </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
@@ -94,7 +105,7 @@ export default function Home() {
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك الفضي </h5>
                     <p className="card-text">
-                      يمكنك الاشتراك لمدة فصلين دراسيين    
+                      اشترك لمدة فصلين دراسيين    
                     </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
@@ -120,7 +131,7 @@ export default function Home() {
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك الذهبي </h5>
                     <p className="card-text">
-                      يمكنك الاشتراك لمدة سنة كاملة   
+                      اشترك لمدة سنة كاملة   
                     </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
