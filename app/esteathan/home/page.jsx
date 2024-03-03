@@ -50,7 +50,7 @@ export default function Home() {
                 </div>
                 <div className="my-3 text-center">
                   <a
-                    href="https://wa.me/+966545894287"
+                    href="https://wa.me/+201095427168"
                     target="_blank"
                     className="text-center m-auto"
                   >
