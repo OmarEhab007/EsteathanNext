@@ -88,7 +88,7 @@ export const POST = async (req: Request) => {
       type: "template",
       // message: message
       template: JSON.stringify({
-        name: "parent_request",
+        name: "send_to_teacher",
         language: {
           code: "ar",
           policy: "deterministic"

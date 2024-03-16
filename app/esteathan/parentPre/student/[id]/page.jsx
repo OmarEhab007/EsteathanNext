@@ -90,7 +90,7 @@ export default function Student() {
           },
           body: JSON.stringify({
             parentNumber: phone,
-            message: `تم استلام طلب استئذان للطالب ${student.name} من ولي الامر ، الرجاء مراجعة الطلب في التطبيق والموافقة عليه او رفضه`
+            message: `${student.name}`
           }),
         })
           .then((res) => res.json())

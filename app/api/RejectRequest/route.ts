@@ -88,22 +88,12 @@ export const POST = async (req: Request) => {
       type: "template",
       // message: message
       template: JSON.stringify({
-        name: "parent_request",
+        name: "request_refused",
         language: {
           code: "ar",
           policy: "deterministic"
         },
-        components: [
-          {
-            type: "body",
-            parameters: [
-              {
-                type: "text",
-                text: message,
-              },
-            ],
-          },
-        ],
+        
       }),
     });
 
