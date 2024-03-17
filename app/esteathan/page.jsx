@@ -17,7 +17,6 @@ export default function Home() {
   const [counterError, setCounterError] = useState(false);
   const [counter, setCounter] = useState(0);
   // const [school, setSchool] = useState(null);
-  
 
   // get all schools
   useEffect(() => {
@@ -48,20 +47,21 @@ export default function Home() {
       const student = result.data;
       if (student) {
         setStudentId(student.id);
-        const school = schools.find(school => school.schoolId === student.schoolId);
+        const school = schools.find(
+          (school) => school.schoolId === student.schoolId
+        );
         setSelectedSchool(school);
-      // if (school) {
-      //   // setSchool(school);
-      //   // console.log(school);
-      // }
+        // if (school) {
+        //   // setSchool(school);
+        //   // console.log(school);
+        // }
 
-      if (student.requestCount >= school.maxRequestsPerStudent) {
-        setCounterError(true);
-        setCounter(student.requestCount);
-      }
+        if (student.requestCount >= school.maxRequestsPerStudent) {
+          setCounterError(true);
+          setCounter(student.requestCount);
+        }
       }
       // console.log(student.requestCount);
-
     } catch (error) {
       // Handle errors here
       console.error("Error during search:", error);
@@ -139,12 +139,13 @@ export default function Home() {
                         لقد تجاوزت الحد المسموح لطلبات الاستئذان
                       </p>
                       <p className="text-danger">
-                        عدد الطلبات المسموح بها هو {selectedSchool?.maxRequestsPerStudent} ولقد قمت بطلب {counter} طلب
+                        عدد الطلبات المسموح بها هو{" "}
+                        {selectedSchool?.maxRequestsPerStudent} ولقد قمت بطلب{" "}
+                        {counter} طلب
                       </p>
                     </div>
-                  ) :
-                  studentId ? (
-                    <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                  ) : studentId ? (
+                    <div className="d-flex justify-content-center align-items-center d-block">
                       <Link href={`/esteathan/parentPre/${studentId}`}>
                         <button className="btn btn-success">
                           ارسال طلب استئذان
@@ -152,7 +153,7 @@ export default function Home() {
                       </Link>
                     </div>
                   ) : (
-                    <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                    <div className="d-flex justify-content-center align-items-center d-block">
                       <p className="text-danger">هذا الطالب غير موجود</p>
                     </div>
                   )
