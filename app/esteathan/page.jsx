@@ -153,7 +153,7 @@ export default function Home() {
                       </Link>
                     </div>
                   ) : (
-                    <div className="d-flex justify-content-center align-items-center d-block">
+                    <div className="d-flex justify-content-center text-center align-items-center d-block">
                       <p className="text-danger">هذا الطالب غير موجود</p>
                     </div>
                   )
