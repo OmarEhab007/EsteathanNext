@@ -15,6 +15,7 @@ export default function SendToTeasher() {
   // const [user, setUser] = useState(null);
   const { data: session } = useSession();
   const [today, setToday] = useState(new Date());
+  const [selectedStudentName, setSelectedStudentName] = useState(null);
   const {
     user,
     school,
@@ -110,7 +111,7 @@ export default function SendToTeasher() {
   // console.log(students);
   // console.log(teachers);
 
-  const handleSubmit = (event, formId) => {
+  const handleSubmit = (event, formId, studentName) => {
     event.preventDefault();
     setIsLoading(true);
     fetch(`/api/forms/${formId}`, {
@@ -126,14 +127,14 @@ export default function SendToTeasher() {
       })
       .catch((error) => console.error("Error:", error));
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/api/TeacherMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         parentNumber: selectedTeacher?.phone,
-        message: message,
+        message: studentName,
       }),
     })
       .then((res) => res.json())
@@ -188,6 +189,7 @@ export default function SendToTeasher() {
             {todayForms.map((form) => {
               const student = students.find(
                 (student) => student.id === form.studentId
+
               );
 
               return (
@@ -304,7 +306,7 @@ export default function SendToTeasher() {
                               id="exampleFormControlTextarea1"
                               rows="3"
                               value={message}
-                              onChange={handleInputChange}
+                              onChange={handleInputChange }
                               required
                             ></textarea>
                           </div>
@@ -326,8 +328,10 @@ export default function SendToTeasher() {
                               <button
                                 type="button"
                                 className="btn btn-primary mt-3"
-                                onClick={(event) =>
-                                  handleSubmit(event, form.id)
+                                  onClick={(event) =>
+                                  
+                                  handleSubmit(event, form.id, student.name)
+
                                 }
                               >
                                 ارسال

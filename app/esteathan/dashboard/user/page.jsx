@@ -14,8 +14,22 @@ export default function User() {
   const [newPassword, setNewPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [newCounter, setNewCounter] = useState(0);
-  const { user, school, students, teachers, setStudents, setTeachers, subscription, bill } =
-    useStore();
+  const [FirstSemesterName, setFirstSemesterName] = useState(null);
+  const [SecondSemesterName, setSecondSemesterName] = useState(null);
+  const [FirstSemesterStartDate, setFirstSemesterStartDate] = useState(null);
+  const [FirstSemesterEndDate, setFirstSemesterEndDate] = useState(null);
+  const [SecondSemesterStartDate, setSecondSemesterStartDate] = useState(null);
+  const [SecondSemesterEndDate, setSecondSemesterEndDate] = useState(null);
+  const {
+    user,
+    school,
+    students,
+    teachers,
+    setStudents,
+    setTeachers,
+    subscription,
+    bill,
+  } = useStore();
 
   const { data: session } = useSession();
 
@@ -155,6 +169,45 @@ export default function User() {
     });
     const data = await response.json();
     console.log(data);
+    window.location.reload();
+  };
+
+  const changeDates = async () => {
+    const FirstSemesterStartDateObj = new Date(FirstSemesterStartDate);
+    const FirstSemesterEndDateObj = new Date(FirstSemesterEndDate);
+    const SecondSemesterStartDateObj = new Date(SecondSemesterStartDate);
+    const SecondSemesterEndDateObj = new Date(SecondSemesterEndDate);
+    setLoading(true);
+    const response = await fetch(`/api/semester`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: FirstSemesterName,
+        startDate: FirstSemesterStartDateObj.toISOString(),
+        endDate: FirstSemesterEndDateObj.toISOString(),
+      }),
+    })
+    const data = await response.json();
+    console.log(data);
+
+    const response2 = await fetch(`/api/semester`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: SecondSemesterName,
+        startDate: SecondSemesterStartDateObj.toISOString(),
+        endDate:SecondSemesterEndDateObj.toISOString(),
+      }),
+    })
+    const data2 = await response2.json();
+    console.log(data2);
+    if (data.status === "success" && data2.status === "success") {
+      setLoading(false);
+      }
     window.location.reload();
   };
 
@@ -320,7 +373,7 @@ export default function User() {
                         </div>
                       </div>
                       <div className="col-12 col-sm-6 ">
-                        <div className="text-cnter">
+                        <div className="text-center">
                           <input
                             type="text"
                             className="form-control text-center"
@@ -555,7 +608,7 @@ export default function User() {
                             onClick={handleCounterChange}
                           >
                             {" "}
-                          تغير مرات الاستئذان{" "}
+                            تغير مرات الاستئذان{" "}
                           </button>
                         </div>
                       </div>
@@ -575,7 +628,6 @@ export default function User() {
                             placeholder={school?.maxRequestsPerStudent}
                             onChange={(e) => setNewCounter(e.target.value)}
                           />
-                    
                         </div>
                       </div>
                     </div>
@@ -594,26 +646,144 @@ export default function User() {
                         </div>
                         <div className="col-1 ps-0">
                           <div>
-                            <p className="text-start text-sm-center mb-0"> : </p>
+                            <p className="text-start text-sm-center mb-0">
+                              {" "}
+                              :{" "}
+                            </p>
                           </div>
                         </div>
                         <div className="col-12 col-sm-6 ">
                           <div>
                             <button
-                            className="btn esteathan-btn"
-                            onClick={resetCounters}
-                          >
+                              className="btn btn-danger"
+                              onClick={resetCounters}
+                            >
                               {" "}
                               تصفير عداد الطلبات{" "}
-                          {" "}
-                          </button>
+                            </button>
                           </div>
+                        </div>
+                      </div>
+                      <div className="row justify-content-center align-items-center pb-2">
+                        <div className="col-12">
+                          <h2> الفصل الأول </h2>
+                        </div>
+                        <div className="col-lg-4 col-sm-6 ">
+                          <label>الاسم:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={(e) =>
+                              setFirstSemesterName(e.target.value)
+                            }
+                            placeholder="FS-2021-2022"
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setFirstSemesterStartDate(e.target.value)
+                            }
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setFirstSemesterEndDate(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row justify-content-center align-items-center pb-2">
+                        <div className="col-12">
+                          <h2> الفصل الثاني </h2>
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label>الاسم:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterName(e.target.value)
+                            }
+                            placeholder="SS-2021-2022"
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterStartDate(e.target.value)
+                            }
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterEndDate(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row justify-content-center align-items-center pb-2">
+                        <div className="col-12">
+                          <h2> الفصل الثالث </h2>
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label>الاسم:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterName(e.target.value)
+                            }
+                            placeholder="SS-2021-2022"
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> بداية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterStartDate(e.target.value)
+                            }
+                          />
+                        </div>
+                        <div className="col-lg-4 col-sm-6">
+                          <label> نهاية الفصل:</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            onChange={(e) =>
+                              setSecondSemesterEndDate(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row justify-content-center align-items-center">
+                        <div className="col-12">
+                          <button
+                            onClick={changeDates}
+                            className="btn esteathan-btn"
+                          >
+                             تأكيد
+                          </button>
                         </div>
                       </div>
                     </div>
                   ) : null}
-                          
-                  
                 </div>
               </div>
             </div>

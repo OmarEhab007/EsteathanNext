@@ -151,7 +151,7 @@ export default function SendRequests() {
       }),
     });
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/api/AcceptRequest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -189,7 +189,7 @@ export default function SendRequests() {
       }),
     });
 
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/api/RejectRequest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

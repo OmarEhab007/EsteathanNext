@@ -1,5 +1,5 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;700&display=swap"); */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 
 * {
   margin: 0;
@@ -10,7 +10,7 @@
 html {
   direction: rtl;
   /* font-family: "Lateef", serif !important; */
-  font-family: 'Tajawal', sans-serif;
+  font-family: "Tajawal", sans-serif;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
@@ -78,12 +78,12 @@ nav .navbar-brand {
   color: var(--accent-100) !important;
 }
 
-.navbar-toggler{
+.navbar-toggler {
   color: var(--accent-100) !important;
   background-color: var(--bg-200) !important;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   color: var(--accent-100) !important;
   background-color: var(--bg-200) !important;
 }
@@ -93,7 +93,7 @@ nav .navbar-brand {
   color: var(--text-100) !important;
 }
 
-.dropdown-menu p{
+.dropdown-menu p {
   color: var(--accent-100) !important;
 }
 
@@ -268,8 +268,8 @@ input:checked + .slider:before {
 .studentInfo .container {
   min-height: 100vh;
 }
-.studentInfo .send-done .container{
-min-height: auto;
+.studentInfo .send-done .container {
+  min-height: auto;
 }
 
 .loader1 {
@@ -680,7 +680,6 @@ footer {
   .footer-bg {
     height: 150px;
   }
-  
 }
 
 .reqbody {
@@ -938,16 +937,16 @@ header {
   color: var(--primary-100);
 }
 
-.homeHeader{
-  min-height: 100px  ;
+.homeHeader {
+  min-height: 100px;
 }
 
-.markUs{
-  color: var(--accent-100) ;
-  background-color: transparent; 
+.markUs {
+  color: var(--accent-100);
+  background-color: transparent;
 }
 
-.video iframe{
+.video iframe {
   aspect-ratio: 16/9;
 }
 
@@ -1013,21 +1012,24 @@ header {
   color: #797979;
 }
 
-.subscription-card-1{
-  border: 3px solid #a68b5b !important;
-  
-}
-  
-.subscription-card-2{
-  border: 3px solid white !important;
-  
+.subscription-card-1 {
+  border: 3px solid rgba(224, 127, 31, 1) !important;
+  /* box-shadow: rgba(224, 127, 31, 0.3) 0px 19px 38px,
+  rgba(224, 127, 31, 0.22) 0px 15px 12px; */
 }
 
-.subscription-card-3{
+.subscription-card-2 {
+  border: 3px solid rgb(192, 192, 192) !important;
+  /* box-shadow: rgba(192, 192, 192, 0.3) 0px 19px 38px,
+    rgba(192, 192, 192, 0.22) 0px 15px 12px; */
+}
+
+.subscription-card-3 {
   border: 3px solid gold !important;
   box-shadow: rgba(255, 217, 0, 0.3) 0px 19px 38px,
+
   rgba(255, 217, 0, 0.22) 0px 15px 12px;
-  
+ 
 }
 
 .subscription-card .card {
@@ -1035,45 +1037,46 @@ header {
   transition: all 0.3s ease-in-out;
 }
 
-.subscription-card .card:hover {
+/* .subscription-card .card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+} */
 
-.price2{
+.price2 {
   color: var(--accent-100);
 }
 
-.borderem{
+.borderem {
   border-radius: 0.5em !important;
 }
 
 @media print {
   body * {
-      visibility: hidden;
+    visibility: hidden;
   }
-  .printable, .printable * {
-      visibility: visible;
+  .printable,
+  .printable * {
+    visibility: visible;
   }
   .printable {
-      position: absolute;
-      left: 0;
-      top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
-  .esteathan-btn{
+  .esteathan-btn {
     display: none !important;
   }
 }
 
-.esteatahn-request{
+.esteatahn-request {
   min-height: 100vh;
 }
 
-.reports table{
+.reports table {
   overflow-x: auto;
   border-radius: 0.5em !important;
 }
 
-.fa-whatsapp{
+.fa-whatsapp {
   color: #25d366;
 }
 
@@ -1104,33 +1107,52 @@ header {
 }
 
 @keyframes uiverse723 {
-  0%, 100% {
-    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      15% 44%,
+      32% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
   }
 
   50% {
-    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    clip-path: polygon(
+      0% 60%,
+      16% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
   }
 }
 
 /* End Loading */
 
-.modal-content{
-  background-color: var(--bg-100)!important;
+.modal-content {
+  background-color: var(--bg-100) !important;
 }
 
-.modal-header{
-  border-bottom: 1px solid var(--bg-300)!important;
+.modal-header {
+  border-bottom: 1px solid var(--bg-300) !important;
 }
 
-.modal-footer{
-  border-top: 1px solid var(--bg-300)!important;
+.modal-footer {
+  border-top: 1px solid var(--bg-300) !important;
 }
 
-.btn-close{
-  color: var(--accent-100)!important;
+.btn-close {
+  color: var(--accent-100) !important;
 }
 
 /* chek box */
@@ -1159,7 +1181,7 @@ header {
 }
 
 .checkbox-apple label:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 1px;
   left: 1px;
@@ -1195,14 +1217,14 @@ header {
   height: 25px;
 }
 
-.checkbox-apple input:focus{
+.checkbox-apple input:focus {
   outline: none;
   box-shadow: none !important;
 }
 
 /* End check box */
 
-.loading{
+.loading {
   background-color: var(--bg-100-50);
   z-index: 999;
   font-size: 1.5em;
