@@ -67,7 +67,7 @@ export default function Subscription() {
       const data = await resposne.json();
       console.log(data);
 
-      fetch("/api/sentMessageToTeacher", {
+      fetch("/api/NewSubscriptionRequest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
