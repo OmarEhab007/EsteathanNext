@@ -75,7 +75,7 @@ export default function Subscription() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          parentNumber: "201019063529",
+          parentNumber: "201095427168",
           message: `تم استلام طلب انضمام جديد للبرنامج`,
         }),
       })
