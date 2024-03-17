@@ -55,18 +55,14 @@ export default function Login() {
     setUser(userRes.data[0]);
     // send message to school
     console.log(school.data[0].phone);
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/api/RestPasswordMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         parentNumber: school.data[0].phone,
-        message: `
-        مرحباً بكم في برنامج استئذان
-        رقم الرقم السري الخاص بكم هو
-        ${userRes.data.password}
-        `,
+        password: `${userRes.data.password}`,
       }),
     })
       .then((res) => res.json())
