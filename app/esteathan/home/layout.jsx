@@ -123,9 +123,9 @@ export default function RootLayout({ children }) {
               <div className=" d-flex justify-content-center align-content-center w-100">
                 <p className="mb-0 text-center">
                   للدعم الفني والاستفسارات الرجاء التواصل على رقم الواتساب
-                  <a href="https://wa.me/+966545894287" target="_blank">
+                  <a href="https://wa.me/+201095427168" target="_blank">
                     <i class="fa-brands fa-whatsapp fs-4 mx-2"></i>:{" "}
-                    <span>+966545894287</span>
+                    <span>+201095427168</span>
                   </a>
                 </p>
               </div>

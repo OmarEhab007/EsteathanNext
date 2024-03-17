@@ -56,7 +56,8 @@ export default function Home() {
                 </div>
                 <div className="my-3 text-center">
                   <a
-                    href="https://wa.me/+966545894287"
+
+                    href="https://wa.me/+201095427168"
                     target="_blank"
                     className="text-center m-auto"
                   >
@@ -86,7 +87,11 @@ export default function Home() {
                 <div className="card subscription-card-1">
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك البرونزي </h5>
-                    <p className="card-text">اشترك لمدة فصل دراسي واحد</p>
+
+                    <p className="card-text">
+                      اشترك لمدة فصل دراسي واحد   
+                    </p>
+
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
                         src={PriceTag}
@@ -116,7 +121,9 @@ export default function Home() {
                 <div className="card subscription-card-2">
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك الفضي </h5>
-                    <p className="card-text">اشترك لمدة فصلين دراسيين</p>
+                    <p className="card-text">
+                      اشترك لمدة فصلين دراسيين    
+                    </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
                         src={PriceTag}
@@ -146,7 +153,9 @@ export default function Home() {
                 <div className="card subscription-card-3">
                   <div className="card-body">
                     <h5 className="card-title"> الإشتراك الذهبي </h5>
-                    <p className="card-text">اشترك لمدة سنة كاملة</p>
+                    <p className="card-text">
+                      اشترك لمدة سنة كاملة   
+                    </p>
                     <div className="d-flex justify-content-center mb-3 position-relative">
                       <Image
                         src={PriceTag}
