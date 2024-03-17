@@ -33,7 +33,6 @@ export default function SubscriptionResponce() {
 
   // handle bill accept
   const handleBillAccept = async (bill) => {
-
     if (bill.status === "renew") {
       const response = await fetch(`/api/subscriptionRenew`, {
         method: "POST",
@@ -55,7 +54,6 @@ export default function SubscriptionResponce() {
       const data = await response.json();
       console.log(data);
     } else {
-
       // send put request to api/bill/[id]
       const response = await fetch(`/api/bill/${bill.id}`, {
         method: "PUT",
@@ -158,19 +156,22 @@ export default function SubscriptionResponce() {
       console.log(schoolData);
 
       // send message to user with schoolId and password
-      fetch("/api/sentMessageToTeacher", {
+      fetch("/api/AcceptSubscriptionMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          parentNumber: bill.phone, // Replace with parentPhone
-          message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي 
-    الرقم الوزاري:  ${bill.schoolId} 
-    وكلمة المرور:  ${password}
-    لتسجيل الدخول اضغط على الرابط التالي:
-    https://www.onetex.com.sa/signin
-    `,
+          parentNumber: bill.phone,
+          schoolName: bill.schoolName,
+          password: password,
+          schoolId: bill.schoolId, // Replace with parentPhone
+          //       message: ` تم قبول طلبك في برنامج (استئذان) ومعلومات التسجيل هي
+          // الرقم الوزاري:  ${bill.schoolId}
+          // وكلمة المرور:  ${password}
+          // لتسجيل الدخول اضغط على الرابط التالي:
+          // https://www.onetex.com.sa/signin
+          // `,
         }),
       })
         .then((res) => {
@@ -189,8 +190,7 @@ export default function SubscriptionResponce() {
         .then(() => {
           window.location.reload();
         });
-
-    } 
+    }
   };
 
   // handle bill reject
@@ -208,14 +208,15 @@ export default function SubscriptionResponce() {
     });
     const data = await response.json();
     console.log(data);
-    fetch("/api/sentMessageToTeacher", {
+    fetch("/api/RejectSubscriptionMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parentNumber: bill.phone, // Replace with parentPhone
-        message: ` تم رفض طلبك للاشتراك في برنامج استئذان : ${rejectReason}`,
+        parentNumber: bill.phone,
+        schoolName: bill.schoolName, // Replace with parentPhone
+        message: ` ${rejectReason}`,
       }),
     })
       .then((res) => res.json())
@@ -241,13 +242,18 @@ export default function SubscriptionResponce() {
                 (bill) => bill.status === "pending" || bill.status === "renew"
               )
               .map((bill) => (
-                <div
-                  className={`col-12 col-lg-6 mb-3 `
-                
-                }
-                  >
+                <div className={`col-12 col-lg-6 mb-3 `}>
                   <div className="card position-relative">
-                    {bill.status === "renew" ? <span className="badge bg-danger p-2 position-absolute top-0 end-0">تجديد الاشتراك</span> : <span className="badge bg-success p-2 position-absolute top-0 end-0"> جديد </span>}
+                    {bill.status === "renew" ? (
+                      <span className="badge bg-danger p-2 position-absolute top-0 end-0">
+                        تجديد الاشتراك
+                      </span>
+                    ) : (
+                      <span className="badge bg-success p-2 position-absolute top-0 end-0">
+                        {" "}
+                        جديد{" "}
+                      </span>
+                    )}
                     <div className="card-header">
                       <div className="row">
                         <div className="col-3">

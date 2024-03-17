@@ -43,7 +43,9 @@ export default function Subscription() {
     } else {
       let finalPhone = managerPhone;
       if (!managerPhone.startsWith("966")) {
-        finalPhone = managerPhone.startsWith("0") ? "966" + managerPhone.substring(1) : "966" + managerPhone;
+        finalPhone = managerPhone.startsWith("0")
+          ? "966" + managerPhone.substring(1)
+          : "966" + managerPhone;
       }
 
       const resposne = await fetch("/api/bill", {
@@ -68,30 +70,28 @@ export default function Subscription() {
       console.log(data);
 
       fetch("/api/NewSubscriptionRequest", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        parentNumber: '966545894287',
-        message: `تم استلام طلب انضمام جديد للبرنامج`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // setIsLoading(false);
-      });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          parentNumber: "201019063529",
+          message: `تم استلام طلب انضمام جديد للبرنامج`,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          // setIsLoading(false);
+        });
 
-      
       setLoading(false);
       setSuccess(true);
       // redirect to home
       // waite 3 seconds
       setTimeout(() => {
         window.location.href = "/esteathan/home";
-      }
-      , 3000);
+      }, 3000);
     }
   };
 
