@@ -16,6 +16,11 @@ export default function Home() {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [counterError, setCounterError] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [lastRequestTime, setLastRequestTime] = useState(null);
+  const [tooSoonError, setTooSoonError] = useState(false);
+  const [latestForm, setLatestForm] = useState(null);
+  const [differenceInHours, setDifferenceInHours] = useState(null)
+
   // const [school, setSchool] = useState(null);
 
   // get all schools
@@ -60,7 +65,24 @@ export default function Home() {
           setCounterError(true);
           setCounter(student.requestCount);
         }
+        const response = await fetch(
+          `/api/forms/search?number=${student.id}&schoolId=${student.schoolId}`
+        );
+        const result = await response.json();
+        console.log(result.data.createdAt);
+        const formResponseTime = new Date(result.data.createdAt);
+        const currentTime = new Date();
+        const differenceTime =
+          currentTime.getTime() - formResponseTime.getTime();
+        const differenceInHours = Math.round(differenceTime / (1000 * 60 * 60));
+        console.log(differenceInHours);
+        setDifferenceInHours(differenceInHours)
+        if (differenceInHours < 24) {
+          setTooSoonError(true);
+          setLatestForm(result.data);
+        }
       }
+
       // console.log(student.requestCount);
     } catch (error) {
       // Handle errors here
@@ -144,6 +166,14 @@ export default function Home() {
                         {counter} طلب
                       </p>
                     </div>
+                  ) : tooSoonError ? (
+                    <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                      <p className="text-danger">
+                        الرجاء الانتظار لمدة{" "}
+                        {differenceInHours} {differenceInHours === 1 ? "ساعة" : "ساعات"}{" "}
+                       لمعاودة ارسال طلبك
+                      </p>
+                    </div>
                   ) : studentId ? (
                     <div className="d-flex justify-content-center align-items-center d-block">
                       <Link href={`/esteathan/parentPre/${studentId}`}>
@@ -159,6 +189,18 @@ export default function Home() {
                   )
                 ) : null}
               </form>
+              {tooSoonError && (
+                <div className="d-flex justify-content-center align-items-center h-100 d-block">
+                  <p className="text-danger">
+                    لقد تجاوزت الحد المسموح لطلبات الاستئذان
+                  </p>
+                  <p className="text-danger">
+                    الرجاء الانتظار لمدة{" "}
+                    {/* {differenceInHours} {differenceInHours === 1 ? "ساعة" : "ساعات"} */}{" "}
+                    للتحقق من مستخدمين طلابك
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </main>

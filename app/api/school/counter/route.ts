@@ -75,21 +75,21 @@ import prisma from "../../../../lib/db";
 // };
 
 // update all students counter to 0
-export const GET = async (req: Request) => {
-  try {
+// export const GET = async (req: Request) => {
+//   try {
     
-    const data = await prisma.school.updateMany({
-      data: {
-        maxRequestsPerStudent: 5,
-      },
-    });
-    return NextResponse.json({ message: "OK", data }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error", error },
-      {
-        status: 500,
-      }
-    );
-  }
-};
+//     const data = await prisma.school.updateMany({
+//       data: {
+//         maxRequestsPerStudent: 5,
+//       },
+//     });
+//     return NextResponse.json({ message: "OK", data }, { status: 200 });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Error", error },
+//       {
+//         status: 500,
+//       }
+//     );
+//   }
+// };
