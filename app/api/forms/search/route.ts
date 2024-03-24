@@ -16,6 +16,9 @@ export async function GET(req : NextRequest) {
         studentId: number as string,
         schoolId: schoolId as string,
       },
+       orderBy: {
+    createdAt: 'desc',
+  },
     });
 
     if (!data) {
